@@ -23,11 +23,11 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'homestead',
-			'username'  => 'homestead',
-			'password'  => 'secret',
+			'database'  => 'architectProjectDB',
+			'username'  => 'root',
+			'password'  => 'root',
 			'charset'   => 'utf8',
-			'collation' => 'utf8_unicode_ci',
+			'collation' => 'utf8_general_ci',
 			'prefix'    => '',
 		),
 
