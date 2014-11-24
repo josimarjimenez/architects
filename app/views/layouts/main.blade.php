@@ -17,6 +17,8 @@
                     <li>{{ HTML::link('usuarios/register', 'Register') }}</li>
                     <li>{{ HTML::link('usuarios/login', 'Iniciar sesión') }}</li>
                     @else
+                    <li><a href="">Projectos</a></li>
+                    <li><a href="">Configuracion general</a></li>
                     <li>{{ HTML::link('usuarios/logout', 'Cerrar sesión') }}</li>
                     @endif
                 </ul>
