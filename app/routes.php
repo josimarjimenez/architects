@@ -16,5 +16,6 @@ Route::get('/', function()
 	return View::make('hello');
 });
 
+
 Route::controller('usuarios', 'UsersController');
 Route::controller('organizacion', 'OrganizationsController');

@@ -6,21 +6,23 @@ class UsersController extends BaseController {
 	public function __construct() {
 		$this->beforeFilter('csrf', array('on'=>'post'));
 		$this->beforeFilter('auth', array('only'=>array('getDashboard')));
-	}
+	} 
 
-
+    //usuarios/register
 	public function getRegister() {
 		$this->layout->content = View::make('layouts.users.register');
 	}
 
-	public function postCreate() {
+	//POST usuarios/create
+	public function postCreate() { 
 		$validator = Validator::make(Input::all(), User::$rules);
 
 		if ($validator->passes()) {
 			$user = new User;
-			$user->firstname = Input::get('firstname');
-			$user->lastname = Input::get('lastname');
-			$user->email = Input::get('email');
+			$user->nombres = Input::get('nombres'); 
+			$user->apellidos = Input::get('apellidos');
+			$user->mail = Input::get('mail');
+			$user->direccion = Input::get('direccion');
 			$user->password = Hash::make(Input::get('password'));
 			$user->save();
 
@@ -30,10 +32,12 @@ class UsersController extends BaseController {
 		}
 	}
 
+//  /usuarios/login
 	public function getLogin() {
 		$this->layout->content = View::make('layouts.users.login');
 	}
 
+// /usuarios/sigin
 	public function postSignin() {
 		if (Auth::attempt(array('mail'=>Input::get('email'), 'password'=>Input::get('password')))) {
 			return Redirect::to('usuarios/dashboard')->with('message', 'Ha iniciado sesión');
@@ -53,10 +57,6 @@ class UsersController extends BaseController {
     	return Redirect::to('usuarios/login')->with('message', 'Ha finalizado su sesión');
 	}
 
-
-	public function getNeworg() { 
-    	return Redirect::to('usuarios/register')->with('message', 'Ha finalizado su sesión');
-	}
 
 	public function getNew() {
 		$this->layout->content = View::make('layouts.users.register');

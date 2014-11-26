@@ -5,12 +5,11 @@
         @foreach($errors->all() as $error)
             <li>{{ $error }}</li>
         @endforeach
-    </ul>
- 
+    </ul> 
     {{ Form::text('nombres', null, array('class'=>'input-block-level', 'placeholder'=>'Nombres')) }}
     {{ Form::text('apellidos', null, array('class'=>'input-block-level', 'placeholder'=>'Apellidos')) }}
-    {{ Form::text('email', null, array('class'=>'input-block-level', 'placeholder'=>'Dirección de correo')) }}
-    {{ Form::text('direccion', null, array('class'=>'input-block-level', 'placeholder'=>'Dirección de correo')) }}
+    {{ Form::text('mail', null, array('class'=>'input-block-level', 'placeholder'=>'Dirección de correo')) }}
+    {{ Form::text('direccion', null, array('class'=>'input-block-level', 'placeholder'=>'Dirección')) }}
     {{ Form::password('password', array('class'=>'input-block-level', 'placeholder'=>'Contraseña')) }}
     {{ Form::password('password_confirmation', array('class'=>'input-block-level', 'placeholder'=>'Confirm contraseña')) }}
  
