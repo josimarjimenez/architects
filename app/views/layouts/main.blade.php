@@ -14,7 +14,7 @@
             <div class="container">
                 <ul class="nav">
                     @if(!Auth::check())
-                    <li>{{ HTML::link('usuarios/register', 'Registrarse') }}</li>
+                    <li>{{ HTML::link('usuarios/register', 'Register') }}</li>
                     <li>{{ HTML::link('usuarios/login', 'Iniciar sesión') }}</li>
                     @else
                     <li><a href="">Projectos</a></li>
