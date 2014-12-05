@@ -12,7 +12,6 @@ class Rol extends Eloquent {
 	public function users() {
 		return $this->belongsToMany('User', 'belongsTo', 'rolid', 'userid');
 	}
-
 }
 
 
