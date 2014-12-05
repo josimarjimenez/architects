@@ -7,6 +7,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
+	//views
 	use UserTrait, RemindableTrait;
 	public static $rules = array(
 	    'nombres'=>'required|alpha|min:2',
@@ -21,6 +22,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var string
 	 */
+
+	//models
 	protected $table = 'users';
 
 	/**
@@ -33,6 +36,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	public function roles() {
 		return $this->belongsToMany('Rol', 'belongsTo', 'userid', 'rolid');
+	}
+
+	public function teams() {
+		return $this->belongsToMany('Teams', 'memberof', 'userid', 'teamid');
 	}
 
 }
