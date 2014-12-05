@@ -8,7 +8,9 @@ class OrganizationsController extends BaseController {
 	}
 
 	public function getIndex() {
-		$this->layout->content = View::make('layouts.organizations.index');
+		$organizations = Organization::all();
+		$projects = Organization::find(1)->projects; 
+		$this->layout->content = View::make('layouts.organizations.index')->with('projects', $projects);
 	}
 
 }
