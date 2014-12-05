@@ -1,6 +1,11 @@
 <?php 
 class Teams extends Eloquent {
 	
+	use UserTrait, RemindableTrait;
+	public  static $rules = array(
+	    'nombres'=>'required|alpha|min:2',
+	);
+
 	// MASS ASSIGNMENT -------------------------------------------------------
 	// define which attributes are mass assignable (for security)
 	// we only want these 3 attributes able to be filled
