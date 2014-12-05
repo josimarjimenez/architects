@@ -17,7 +17,6 @@ Route::get('/', function()
 	return View::make('hello');
 });
 
-
-Route::controller('usuarios', 'UsersController');
-Route::controller('organizacion', 'OrganizationsController');
-Route::controller('estados','ScrumStatesController');
+Route::controller('users', 'UsersController');
+Route::controller('organization', 'OrganizationsController');
+Route::controller('states','ScrumStatesController');
