@@ -118,7 +118,6 @@ class CreateDatabaseTables extends Migration {
 		});
 
 
-
 		Schema::create('aditionalSpent', function(Blueprint $table)
 		{
 			$table->increments('id');
@@ -157,10 +156,6 @@ class CreateDatabaseTables extends Migration {
 			$table->foreign('categoryid')->references('id')->on('category')->onDelete('cascade');
 
 		});
-
-
-
-
 
 
 		Schema::create('comments', function(Blueprint $table)
@@ -223,7 +218,6 @@ class CreateDatabaseTables extends Migration {
 			$table->foreign('personlTypeid')->references('id')->on('personalType')->onDelete('cascade');
 
 		});
-
 
 			//issue o history used material
 		Schema::create('used', function(Blueprint $table)
