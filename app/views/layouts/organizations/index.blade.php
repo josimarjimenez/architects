@@ -1,3 +1,7 @@
  <br><br>
-<h3>Estadisticas</h3>
-{{ HTML::image('images/reporte3.png') }}
+<h3>Mis projects</h3>
+<ul>
+@foreach ($projects as $project)
+    <li>Fecha: {{ $project->startDate }}</li>
+@endforeach
+</ul>
