@@ -14,4 +14,4 @@ class OrganizationsController extends BaseController {
 	}
 
 }
- ?>
+?>
