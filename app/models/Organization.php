@@ -9,9 +9,11 @@ class Organization extends Eloquent implements UserInterface, RemindableInterfac
 
 	use UserTrait, RemindableTrait;
 	public static $rules = array(
-	    'name'=>'required|alpha_num|min:2',
-	    'test'=>'required|alpha|min:2'
+	    'name'=>'required|alpha_num|min:2', 
+	    'image'=>'mimes:jpg,png'
     );
+
+    protected $appends = array('auxName');
 	
 
 	public function projects() {

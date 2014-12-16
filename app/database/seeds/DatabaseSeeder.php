@@ -12,39 +12,109 @@ class DatabaseSeeder extends Seeder {
 		Eloquent::unguard();
 
 		 $this->call('UserTableSeeder'); 
+		 $this->call('OrganizationTableSeeder'); 
+		 $this->call('ProjectsTableSeeder');
 	}
 
 }
 
 
+//usuarios
 class UserTableSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('usuario')->delete();
+        DB::table('users')->delete();
 
-        $usuarios = array(
+        $users = array(
 	        	 		array(
-			        		'nombres' => 'Daniel Pechán',
-			        		'apellidos' => 'León Ortega',
+			        		'name' => 'Daniel Pechán',
+			        		'lastname' => 'León Ortega',
 			        		'mail' => 'danielPechan@gmail.com' ,
 			        		'password' => Hash::make('admin')
 			        	),
 			        	array(
-			        		'nombres' => 'Ramiro Josimar',
-			        		'apellidos' => 'Jiménez Jiménez',
+			        		'name' => 'Ramiro Josimar',
+			        		'lastname' => 'Jiménez Jiménez',
 			        		'mail' => 'ramirojosimar@gmail.com' ,
 			        		'password' => Hash::make('admin')
 			        	),
 			        	array(
-			        		'nombres' => 'Manuel Alberto',
-			        		'apellidos' => 'Cartuche Flores',
+			        		'name' => 'Manuel Alberto',
+			        		'lastname' => 'Cartuche Flores',
 			        		'mail' => 'macartuche@gmail.com' ,
 			        		'password' => Hash::make('admin')
 			        	)
         	);
 
-		DB::table('usuario')->insert( $usuarios );
+		DB::table('users')->insert( $users );
     }
+}
 
+
+//organizacinoes
+class OrganizationTableSeeder extends Seeder {
+
+    public function run()
+    {
+        DB::table('organization')->delete();
+
+        $organizations = array(
+	        	 		array(
+			        		'name' => 'Unesco',
+			        		'address' => 'S/N',
+			        		'webPage' => 'http://es.unesco.org/'  
+			        	),
+			        	array(
+			        		'name' => 'Yahoo',
+			        		'address' => 'S/N',
+			        		'webPage' => 'https://es.yahoo.com'  
+			        	),
+			        	array(
+			        		'name' => 'Kalvin Klein',
+			        		'address' => 'S/N',
+			        		'webPage' => 'http://explore.calvinklein.com'  
+			        	),
+			        	 
+        	);
+
+		DB::table('organization')->insert( $organizations );
+    }
+}
+
+
+//projectos
+class ProjectsTableSeeder extends Seeder {
+
+    public function run()
+    {
+        DB::table('project')->delete();
+
+        $projects = array(
+	        	 		array(
+			        		'name' => 'Construcción de vía',
+			        		'startDate' => '2014-10-01',
+			        		'endDate' => '2015-06-10',  
+			        		'budgetEstimated' => '125000,45',  
+			        		'organizationid' => '10'
+			        	),
+			        	array(
+			        		'name' => 'Construcción de puente',
+			        		'startDate' => '2014-06-01',
+			        		'endDate' => '2015-01-10',  
+			        		'budgetEstimated' => '200000,45',  
+			        		'organizationid' => '10'
+			        	),
+			        	array(
+			        		'name' => 'Conjunto residencial',
+			        		'startDate' => '2015-10-01',
+			        		'endDate' => '2015-05-28',  
+			        		'budgetEstimated' => '225000,45',  
+			        		'organizationid' => '11'
+			        	),
+			        	 
+        	);
+
+		DB::table('project')->insert( $projects );
+    }
 }

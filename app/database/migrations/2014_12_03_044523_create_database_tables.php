@@ -26,7 +26,7 @@ class CreateDatabaseTables extends Migration {
 			$table->string('name', 100);
 			$table->string('lastname', 100);
 			$table->string('mail', 45)->unique();
-			$table->string('password', 45);
+			$table->string('password', 100);
 			$table->string('direction', 100);
 			$table->string('avatar', 100);
 			$table->string('remember_token',200);
@@ -69,8 +69,7 @@ class CreateDatabaseTables extends Migration {
 
 		Schema::create('organization',function($table){
 			$table->increments('id');
-			$table->string('name');
-			$table->string('test');
+			$table->string('name'); 
 			$table->string('logo');
 			$table->string('address');
 			$table->string('webPage');
@@ -79,6 +78,7 @@ class CreateDatabaseTables extends Migration {
 
 		Schema::create('project',function($table){
 			$table->increments('id');
+			$table->string('name');
 			$table->date('startDate');
 			$table->date('endDate');
 			$table->decimal('budgetSummary',5,2);
