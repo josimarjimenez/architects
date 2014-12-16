@@ -12,7 +12,6 @@ class OrganizationsController extends BaseController {
 		$validator = Validator::make(Input::all(), Organization::$rules);
 		if ($validator->passes()) {
 
-
 			//Upload the logo 
     		$file = Input::file('image');
 			$upload_success = Input::file('image')
@@ -38,13 +37,32 @@ class OrganizationsController extends BaseController {
 		
 	}
 
-	public function getIndex() {
-		$organizations = Organization::all();
-		$projects = Organization::find(1)->projects; 
-		$projects = Organization::find(1)->projects; 
-		$orgs = Organization::where('name', 'asdfasdf');
- 
-		$this->layout->content = View::make('layouts.organizations.index')->with('projects', $projects)->with('org', $orgs);
+	public function getIndex() { 
+		$this->layout->content = View::make('layouts.organizations.index')  ;
+	}
+
+	/**
+	 * Show all projects of one enterprise 
+	 **/
+	public function getName($name){ 
+		
+		$organization = app('organization'); 
+		setlocale(LC_MONETARY, 'en_US');
+		foreach ($organization->projects as $project) {
+			$project->nameAux = str_replace(" ",'-', $project->name);
+			$project->nameAux = $this->stripAccents($project->nameAux);
+			$project->budgetEstimated = money_format('%(#10n',  $project->budgetEstimated);
+		}
+		
+		$this->layout->content = View::make('layouts.organizations.projects')
+								->with('organization', $organization);
+	}
+
+	/**
+	* Replace accents 
+	**/
+	private function stripAccents($str) {
+    	return strtr(utf8_decode($str), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
 	}
 }
 ?>

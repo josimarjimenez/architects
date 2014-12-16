@@ -8,12 +8,12 @@ class UsersController extends BaseController {
 		$this->beforeFilter('auth', array('only'=>array('getDashboard')));
 	} 
 
-    //usuarios/register
-	public function getRegister() {
+    //users/register
+	public function getRegister() { 
 		$this->layout->content = View::make('layouts.users.register');
 	}
 
-	//POST usuarios/create
+	//POST users/create
 	public function postCreate() { 
 		$validator = Validator::make(Input::all(), User::$rules);
 
@@ -26,26 +26,31 @@ class UsersController extends BaseController {
 			$user->password = Hash::make(Input::get('password'));
 			$user->save();
 
-			return Redirect::to('usuarios/login')->with('message', 'Gracias por registrarse');
+			return Redirect::to('users/login')->with('message', 'Gracias por registrarse');
 		} else {
-			return Redirect::to('usuarios/register')
+			return Redirect::to('users/register')
 			->with('message', 'Ocurrieron los siguientes errores')
 			->withErrors($validator)
 			->withInput();   
 		}
 	}
 
-//  /usuarios/login
+//  /users/login
 	public function getLogin() {
 		$this->layout->content = View::make('layouts.users.login');
 	}
 
-// /usuarios/sigin
-	public function postSignin() {
-		if (Auth::attempt(array('mail'=>Input::get('email'), 'password'=>Input::get('password')))) {
-			return Redirect::to('usuarios/dashboard')->with('message', 'Ha iniciado sesión');
+// /users/sigin
+	public function postSignin() 
+	{
+
+		$data =array('mail'=>Input::get('mail'), 
+				'password'=>Input::get('password'));
+		
+		if (Auth::attempt($data)) {
+			return Redirect::to('users/dashboard')->with('message', 'Ha iniciado sesión');
 		} else {
-			return Redirect::to('usuarios/login')
+			return Redirect::to('users/login')
 			->with('message', 'Tu email/password es incorrecto')
 			->withInput();
 		}      
@@ -57,7 +62,7 @@ class UsersController extends BaseController {
 
 	public function getLogout() {
     	Auth::logout();
-    	return Redirect::to('usuarios/login')->with('message', 'Ha finalizado su sesión');
+    	return Redirect::to('users/login')->with('message', 'Ha finalizado su sesión');
 	}
 
 

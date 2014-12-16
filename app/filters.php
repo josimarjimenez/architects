@@ -12,8 +12,14 @@
 */
 
 App::before(function($request)
-{
-	//
+{ 
+	App::singleton('organization', function(){
+        $organization = Organization::find(10); 
+		$organization->auxName = str_replace(" ",'-', $organization->name); 
+        return $organization;
+    });
+
+	View::share('organization', app('organization'));
 });
 
 
