@@ -1,7 +1,18 @@
 <?php 
-class Project extends Eloquent {
+use Illuminate\Auth\UserTrait;
+use Illuminate\Auth\UserInterface;
+use Illuminate\Auth\Reminders\RemindableTrait;
+use Illuminate\Auth\Reminders\RemindableInterface;
+class Project extends Eloquent implements UserInterface, RemindableInterface{
 	protected $table = 'project';
 
+
+	use UserTrait, RemindableTrait;
+	public static $rules = array(
+	    'name'=>'required|alpha_spaces|min:2', 
+	    'startDate'=>'date', 
+	    'endDate'=>'date'
+    );
 
 
 	//relationSHIP

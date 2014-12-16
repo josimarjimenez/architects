@@ -13,10 +13,10 @@
 
 Route::get('/', function()
 {
-	
 	return View::make('hello');
 });
 
 
 Route::controller('users', 'UsersController');
 Route::controller('organization', 'OrganizationsController');
+Route::controller('projects', 'ProjectsController');

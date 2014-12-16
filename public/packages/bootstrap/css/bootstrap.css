@@ -6398,3 +6398,270 @@ th.hidden-lg, td.hidden-lg {
 #selectOrganization ul li h3 a{
   color:#6a6a6a;
 }
+
+.navbar-inner1{
+
+ 
+    min-height:40px;
+    padding-right:20px;
+    padding-left:20px;
+    background-color:#fafafa;
+    background-image:-moz-linear-gradient(top,#fff,#f2f2f2);
+    background-image:-webkit-gradient(linear,0 0,0 100%,from(#fff),to(#f2f2f2));
+    background-image:-webkit-linear-gradient(top,#fff,#f2f2f2);
+    background-image:-o-linear-gradient(top,#fff,#f2f2f2);
+    background-image:linear-gradient(to bottom,#fff,#f2f2f2);
+    background-repeat:repeat-x;border:1px solid #d4d4d4;
+    -webkit-border-radius:4px;-moz-border-radius:4px;
+    border-radius:4px;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff',endColorstr='#fff2f2f2',GradientType=0);
+    *zoom:1;-webkit-box-shadow:0 1px 4px rgba(0,0,0,0.065);
+    -moz-box-shadow:0 1px 4px rgba(0,0,0,0.065);
+    box-shadow:0 1px 4px rgba(0,0,0,0.065)
+
+  
+    }
+
+#tabhead{
+    background-color:#1e1e1e;
+    background:-webkit-gradient(linear, left top, left bottom, from(#464646), to(#1e1e1e));
+    background:-moz-linear-gradient(top, #464646, #1e1e1e);
+    height:44px;
+    padding-left:15px;
+    color:#fff;
+    border-bottom:1px solid #333;
+    /*position:fixed;*/
+    -moz-box-shadow:0px 2px 5px #888;
+    -webkit-box-shadow:0px 2px 5px #888;
+}
+
+    .megamenu_container{
+        height: 52px;
+        margin: 0 auto;
+        width: 100% !important;
+    }
+
+    .megamenu {
+        color: #ffffff;
+        font-family: Arial,Helvetica,sans-serif;
+        font-size: 14px;
+        line-height: 1;
+        list-style: outside none none;
+        margin: 0;
+        padding: 0;
+        z-index: 1899;
+    }
+    .megamenu li {
+        border: medium none;
+        float: left;
+        margin: 0 12px 0 0;
+    }
+    .megamenu li.right {
+        float: right;
+        margin-right: -1px;
+    }
+
+    .megamenu li .drop {
+    background: url("../img/down.png") no-repeat scroll right center rgba(0, 0, 0, 0);
+    padding-right: 30px;
+}
+
+.megamenu .megamenu-top-header {
+    color: #ffffff;
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    outline: 0 none;
+    padding: 10px;
+    text-decoration: none;
+    text-shadow: 1px 1px 1px #000000;
+}
+
+.megamenu li .dropcontent {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 #161616;
+    border-color: -moz-use-text-color #1b1b1b #1b1b1b;
+    border-image: none;
+    border-radius: 0 0 4px 4px;
+    border-right: 1px solid #1b1b1b;
+    border-style: none solid solid;
+    border-width: medium 1px 1px;
+    box-shadow: 0 5px 10px #444;
+    left: -9999em;
+    margin-bottom: 0;
+    margin-top: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 24px 0 10px;
+    position: absolute;
+    text-align: left;
+    top: 44px;
+    z-index: 1888;
+}
+
+.megamenu .col_8 {
+    width: 610px;
+}
+
+.megamenu .col_1, 
+.megamenu .col_2, 
+.megamenu .col_3, 
+.megamenu .col_4, 
+.megamenu .col_5, 
+.megamenu .col_6, 
+.megamenu .col_7, 
+.megamenu .col_8, 
+.megamenu .col_9, 
+.megamenu .col_10, 
+.megamenu .col_11, 
+.megamenu .col_12 {
+    display: inline;
+    float: left;
+    margin-left: 15px;
+    margin-right: 15px;
+    position: relative;
+}
+.megamenu h3 {
+    font-size: 28px;
+    line-height: 28px;
+}
+.megamenu h1, .megamenu h2, .megamenu h3 {
+    margin-bottom: 18px;
+}
+.megamenu p, .megamenu h1, 
+.megamenu h2, .megamenu h3, 
+.megamenu h4, .megamenu h5, 
+.megamenu h6 {
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    text-shadow: 1px 1px 1px #000;
+}
+
+.megamenu .drop8columns {
+    width: 640px;
+}
+
+
+.megamenu li ul {
+    list-style: outside none none;
+    margin: 0 0 12px;
+    padding: 0;
+}
+
+.project-menu-horizontal-list {
+    padding-left: 20px !important;
+}
+
+.megamenu li ul li {
+    float: none;
+    font-size: 12px;
+    line-height: 24px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    text-align: left;
+}
+
+.project-menu-horizontal-list li {
+    display: inline-block;
+    height: 20px;
+    margin-bottom: 9px !important;
+    vertical-align: top;
+    width: 180px;
+}
+
+.project-menu-iteration-list-item {
+    border: 1px dotted #555555 !important;
+    display: inline-block;
+    height: 40px;
+    line-height: 11px !important;
+    margin-bottom: 2px !important;
+    overflow: hidden;
+    padding: 5px !important;
+    vertical-align: top;
+    width: 135px;
+}
+
+.megamenu li.right a {
+    margin-right: 5px;
+}
+.megamenu li a {
+    color: #ffffff;
+    text-shadow: 1px 1px 1px #000000;
+}
+.project-menu-horizontal-list a {
+    font-size: 14px;
+}
+ .megamenu .pull-left-450 {
+    margin-left: -548px;
+}
+
+.megamenu h3 {
+    font-size: 28px;
+    line-height: 28px;
+}
+.megamenu h1, .megamenu h2, .megamenu h3 {
+    margin-bottom: 18px;
+}
+
+#body {
+    background-color: #fff;
+    min-height: 600px;
+    padding-top: 15px;
+}
+ 
+ #projects td{
+    text-align: right;
+ }
+  #projects td:first-child{
+    text-align: left !important;
+ }
+
+ .uniForm .inlineLabels label, .uniForm .inlineLabels .label{
+    float: left;
+    line-height: 1;
+    margin: 0.3em 2% 0 0;
+    padding: 0;
+    position: relative;
+    width: 32%;
+ }
+
+ .uniForm .inlineLabels .textInput, .uniForm .inlineLabels .fileUpload, .uniForm .inlineLabels .selectInput, .uniForm .inlineLabels select, .uniForm .inlineLabels textarea {
+    float: left;
+    width: 64%;
+}
+
+.uniForm label, .uniForm .label {
+    display: block;
+    float: none;
+    line-height: 100%;
+    margin: 0 0 0.5em;
+    padding: 0;
+    width: auto;
+}
+
+.uniForm:after, .uniForm .buttonHolder:after, .uniForm .ctrlHolder:after, .uniForm .ctrlHolder .multiField:after, .uniForm .inlineLabel:after {
+    clear: both;
+    content: ".";
+    display: block;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    min-height: 0;
+    visibility: hidden;
+}
+.uniForm .ctrlHolder {
+    border-bottom: 1px solid #efefef;
+    padding: 1em;
+}
+
+.uniForm .buttonHolder {
+    background: none repeat scroll 0 0 #efefef;
+    border-radius: 4px;
+    margin: 1.5em 0 0;
+    padding: 1.5em;
+    text-align: right;
+}
