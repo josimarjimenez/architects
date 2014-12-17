@@ -55,70 +55,29 @@
       									</td>
       									<td class="dash-iter-right">
       										<span class="recent-stories" style="display: inline;">Modificados recientemente:</span>
-      										<ul class="dash-iter-stories">            
-            <li class="story-view story-style-list superboard-story story_block gripper-status-4" story_id="774524" id="superboard_story_774524" rank="5075"><div class="story-checkbox-holder" style="display: none;">
-<input type="checkbox" class="story-checkbox">
-</div>
-
-
-    
-    
-    <span class="story-icons">
-        
-
-        
-        
-            
-            
-            <a href="#" class="edit-story-button"><i class="icon-glyph icon-edit" title="Edit story"></i></a>
-
-        
-    </span>
-
-    
-    <h1 class="formatted_story_text"><span style="color:#555555;" class="story_number">#3</span> <p>Migracion de metadata y de archivos de DSpace v1.42 a 4.1</p></h1>
-    
-</li><li class="story-view story-style-list superboard-story story_block gripper-status-10" story_id="774523" id="superboard_story_774523" rank="502518"><div class="story-checkbox-holder" style="display: none;">
-<input type="checkbox" class="story-checkbox">
-</div>
-
-
-    
-    
-    <span class="story-icons">
-        
-
-        
-        
-            
-            
-            <a href="#" class="edit-story-button"><i class="icon-glyph icon-edit" title="Edit story"></i></a>
-
-        
-    </span>
-
-    
-    <h1 class="formatted_story_text"><span style="color:#555555;" class="story_number">#2</span> <p>Instalacion de DSpace 4.1 o 4.2 (version estable)</p></h1>
-    
-</li><li class="story-view story-style-list superboard-story story_block gripper-status-10" story_id="774520" id="superboard_story_774520" rank="502499"><div class="story-checkbox-holder" style="display: none;">
-<input type="checkbox" class="story-checkbox">
-</div>
-
-
-    
-    
-    <span class="story-icons">
-
-            <a href="#" class="edit-story-button"><i class="icon-glyph icon-edit" title="Edit story"></i></a>
-
-        
-    </span>
-
-    
-    <h1 class="formatted_story_text"><span style="color:#555555;" class="story_number">#1</span> <p>Reparar Dspace v1.42</p></h1>
-    
-</li></ul>
-      									</td>
+      										<ul class="dash-iter-stories">
+      											@foreach ($iteration->issues as $issue)
+      												<li class="story-view story-style-list superboard-story story_block gripper-status-4" >
+      													<div class="story-checkbox-holder" style="display: none;">
+      														<input type="checkbox" class="story-checkbox">
+														</div>
+														<span 
+														 	class="story-icons">
+															<a href="#" class="edit-story-button">
+																<i class="icon-glyph icon-edit" title="Editar historia"></i>
+															</a>        
+    													</span>
+    													<h1 class="formatted_story_text">
+    														<span style="color:#555555;" class="story_number">
+    															#3
+    														</span>
+    														<p>{{ $issue->summary }}
+    														</p>
+    													</h1>
+    												</li>
+      											@endforeach 
+      										</ul>
+            							</td>
       								</tr>
       							</tbody>
       						</table>

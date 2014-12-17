@@ -6,5 +6,9 @@ class Iterations extends Eloquent{
 	public function projects() {
 		return $this->belongsTo('Project','projectid');
 	}
+
+	public function issues(){ 
+		return $this->hasMany('Issue','iterationid');
+	}
 }
 ?>
