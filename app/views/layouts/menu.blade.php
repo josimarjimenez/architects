@@ -53,6 +53,13 @@
 				</li>
 
 				<li>
+					<a href="/materials/materials/{{ $organization->auxName }}/all_materials" title="Get a listing of all members of the organization.">
+						<i class="topmenu-icon icon-glyph icon-group"></i> 
+						Material 
+					</a>
+				</li>
+
+				<li>
 					<a href="/organization/{{ $organization->auxName }}/edit"><i class="topmenu-icon icon-glyph icon-cogs"></i> Editar organización</a>
 				</li>
 
