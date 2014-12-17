@@ -7,7 +7,7 @@
 	</ul> 
 <h1>Crear proyecto</h1>
 	<div class="panel">
-		{{ Form::open(array('url'=>'projects/create','files'=>true, 'class'=>'uniForm')) }}
+		{{ Form::open(array('url'=>'projects.store','files'=>true, 'class'=>'uniForm')) }}
 			<fieldset class="inlineLabels">
 				<div class="ctrlHolder" id="div_id_name">
 					{{ Form::label('name', 'Nombre' , array('class'=>'requiredField' )) }}
@@ -22,8 +22,8 @@
 					{{ Form::text('endDate', null, array('type' => 'text', 'class' => 'textInput textinput datepicker input-block-level','placeholder' => 'Fecha fin', 'id' => 'endDate')) }}
 				</div>
 				<div class="ctrlHolder" id="div_id_name">
-					{{ Form::label('budget', 'Presupuesto', array('class'=>'requiredField' )) }}
-					{{ Form::text('budget', null, array('class'=>'textInput textinput', 'placeholder'=>'Presupuesto del proyecto')) }}
+					{{ Form::label('budgetEstimated', 'Presupuesto', array('class'=>'requiredField' )) }}
+					{{ Form::text('budgetEstimated', null, array('class'=>'textInput textinput', 'placeholder'=>'Presupuesto del proyecto')) }}
 				</div>
 				{{ Form::hidden('organizationid', $organization->id) }}
 				<div class="buttonHolder">
@@ -43,6 +43,7 @@ $(document).ready(function() {
 		todayHighlight: true,
 		format: "yyyy-mm-dd"
 	});
+
 	$('#endDate').datepicker({
 		clearBtn: true,
 		calendarWeeks: true,

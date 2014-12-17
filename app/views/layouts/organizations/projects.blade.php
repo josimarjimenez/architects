@@ -24,7 +24,7 @@
 				<td>{{ $project->endDate }}</td>
 				<td>{{ $project->budgetEstimated }}</td> 
 				<td>
-					{{ HTML::link('projects/edit/'.$project->id,  'Editar', array('class'=>"btn btn-medium btn-info")  ) }}
+					{{ HTML::link('projects/'.$project->id.'/edit',  'Editar', array('class'=>"btn btn-medium btn-info")  ) }}
 					{{ HTML::link('projects/delete/'.$project->id,  'Eliminar', array('class'=>"btn btn-danger btn-medium")  ) }}
 				</td>
 			</tr>

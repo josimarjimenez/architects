@@ -19,4 +19,4 @@ Route::get('/', function()
 
 Route::controller('users', 'UsersController');
 Route::controller('organization', 'OrganizationsController');
-Route::controller('projects', 'ProjectsController');
+Route::resource('projects', 'ProjectsController');

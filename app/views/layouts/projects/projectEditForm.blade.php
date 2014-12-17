@@ -7,7 +7,7 @@
 	</ul> 
 <h1>Editar proyecto</h1>
 	<div class="panel">
-		{{ Form::model($project, array('route' => 'projects.update', $project->id)) }}	
+		{{ Form::model($project, ['method'=> 'PUT', 'route' => ['projects.update', $project->id]]) }}	
 			<fieldset class="inlineLabels">
 				<div class="ctrlHolder" id="div_id_name">
 					{{ Form::label('name', 'Nombre' , array('class'=>'requiredField' )) }}
@@ -22,9 +22,16 @@
 					{{ Form::text('endDate', null, array('type' => 'text', 'class' => 'textInput textinput datepicker input-block-level','placeholder' => 'Fecha fin', 'id' => 'endDate')) }}
 				</div>
 				<div class="ctrlHolder" id="div_id_name">
-					{{ Form::label('budget', 'Presupuesto', array('class'=>'requiredField' )) }}
-					{{ Form::text('budget', null, array('class'=>'textInput textinput', 'placeholder'=>'Presupuesto del proyecto')) }}
+					{{ Form::label('budgetEstimated', 'Presupuesto', array('class'=>'requiredField' )) }}
+					{{ Form::text('budgetEstimated', null, array('class'=>'textInput textinput', 'placeholder'=>'Presupuesto del proyecto')) }}
 				</div>
+
+				<div class="ctrlHolder" id="div_id_name">
+					{{ Form::label('observation', 'Presupuesto', array('class'=>'requiredField' )) }}
+					{{ Form::textArea('observation', null, array('class'=>'textInput textinput', 'placeholder'=>'Presupuesto del proyecto')) }}
+				</div>
+
+
 				{{ Form::hidden('organizationid', $organization->id) }}
 				<div class="buttonHolder">
 					{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}

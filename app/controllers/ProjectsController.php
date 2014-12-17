@@ -3,13 +3,18 @@
 class ProjectsController extends BaseController {
 	protected $layout = "layouts.main";
 
-	public function getCreate(){  
+ 	public function index() {}
+
+    public function show($id) {}
+
+
+	public function create(){  
 		$this->layout->content = View::make('layouts.projects.projectForm')
 		->with('organization', app('organization'))  ;
 	}
 
 	//save mew
-	public function postCreate(){
+	public function store(){
 		$validator = Validator::make(Input::all(), Project::$rules);
 
 		if ($validator->passes()) { 
@@ -33,7 +38,7 @@ class ProjectsController extends BaseController {
 		}
 	}
 
-	public function getEdit($id){
+	public function edit($id){
 		try {
 			$project = Project::findOrFail($id);
 		}catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) { 
@@ -47,8 +52,13 @@ class ProjectsController extends BaseController {
 		->with('project', $project)  ;
 	}
 
-	public function postUpdate(){
-		
+	public function update($id){
+		$project = Project::findOrFail($id);
+		$project->fill(Input::all());
+		$project->save();
+		$organization = app('organization');
+		return Redirect::to('organization/name/'.$organization->auxName.'/projects')
+			->with('message', 'Registro actualizado');
 	}
 }
  ?>
