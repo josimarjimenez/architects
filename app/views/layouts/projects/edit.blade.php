@@ -27,8 +27,8 @@
 				</div>
 
 				<div class="ctrlHolder" id="div_id_name">
-					{{ Form::label('observation', 'Presupuesto', array('class'=>'requiredField' )) }}
-					{{ Form::textArea('observation', null, array('class'=>'textInput textinput', 'placeholder'=>'Presupuesto del proyecto')) }}
+					{{ Form::label('observation', 'Observaciones', array('class'=>'requiredField' )) }}
+					{{ Form::textArea('observation', null, array('class'=>'textInput textinput', 'placeholder'=>'Observaciones del proyecto')) }}
 				</div>
 
 

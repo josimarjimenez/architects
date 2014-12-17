@@ -9,7 +9,7 @@ class ProjectsController extends BaseController {
 
 
 	public function create(){  
-		$this->layout->content = View::make('layouts.projects.projectForm')
+		$this->layout->content = View::make('layouts.projects.new')
 		->with('organization', app('organization'))  ;
 	}
 
@@ -23,7 +23,7 @@ class ProjectsController extends BaseController {
 			$project->name = Input::get('name'); 
 			$project->startDate = Input::get('startDate'); 
 			$project->endDate = Input::get('endDate');   
-			$project->budgetEstimated = Input::get('budget');  
+			$project->budgetEstimated = Input::get('budgetEstimated');  
 			$project->organizationid = Input::get('organizationid'); 
 			$project->save();
 
@@ -48,7 +48,7 @@ class ProjectsController extends BaseController {
 		}
 		
 		 
-		$this->layout->content = View::make('layouts.projects.projectEditForm')
+		$this->layout->content = View::make('layouts.projects.edit')
 		->with('project', $project)  ;
 	}
 
