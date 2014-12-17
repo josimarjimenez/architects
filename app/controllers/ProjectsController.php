@@ -74,4 +74,4 @@ class ProjectsController extends BaseController {
 		return Redirect::to('organization/name/'.$organization->auxName.'/projects')->with('message', 'Registro eliminado');
 	}
 }
- ?>
+?>

@@ -7,6 +7,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
+	//views
 	use UserTrait, RemindableTrait;
 	public static $rules = array(
 	    'nombres'=>'required|alpha|min:2',
@@ -15,11 +16,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	    'password'=>'required|alpha_num|between:6,12|confirmed',
 	    'password_confirmation'=>'required|alpha_num|between:6,12'
     );
+    
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
+
+	//models
 	protected $table = 'users';
 
 	/**
@@ -31,6 +35,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	public function roles() {
 		return $this->belongsToMany('Rol', 'belongsTo', 'userid', 'rolid');
+	}
+
+	public function equipos() {
+		return $this->belongsToMany('Teams', 'memberof', 'userid', 'teamid');
 	}
 
 }
