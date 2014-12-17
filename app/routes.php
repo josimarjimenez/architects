@@ -11,8 +11,9 @@
 |
 */
 
+ 
 Route::get('/', 'UsersController@getLogin');
-
 Route::controller('users', 'UsersController');
 Route::controller('organization', 'OrganizationsController');
+Route::controller('states','ScrumStatesController');
 Route::resource('projects', 'ProjectsController');

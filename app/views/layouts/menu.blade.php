@@ -46,7 +46,7 @@
 
 
 				<li>
-					<a href="/organization/{{ $organization->auxName }}/all_members" title="Get a listing of all members of the organization.">
+					<a href="/organization/members/{{ $organization->auxName }}/all_members" title="Get a listing of all members of the organization.">
 						<i class="topmenu-icon icon-glyph icon-group"></i> 
 						Miembros 
 					</a>
