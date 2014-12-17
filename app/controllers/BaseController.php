@@ -19,13 +19,6 @@ class BaseController extends Controller {
 		if ( ! is_null($this->layout))
 		{
 			$this->layout = View::make($this->layout);
-			/*
-			$organization = Organization::find(10);
-			$auxName = str_replace(" ",'-', $organization->name);
-			
-			->with('organization', $organization)
-			->with('auxName', $auxName);
-			*/
 		}
 	}
 

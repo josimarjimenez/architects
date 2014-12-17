@@ -63,17 +63,20 @@ class OrganizationTableSeeder extends Seeder {
 	        	 		array(
 			        		'name' => 'Unesco',
 			        		'address' => 'S/N',
-			        		'webPage' => 'http://es.unesco.org/'  
+			        		'webPage' => 'http://es.unesco.org/',
+			        		'usersid' => 15
 			        	),
 			        	array(
 			        		'name' => 'Yahoo',
 			        		'address' => 'S/N',
-			        		'webPage' => 'https://es.yahoo.com'  
+			        		'webPage' => 'https://es.yahoo.com',
+			        		'usersid' => 15
 			        	),
 			        	array(
 			        		'name' => 'Kalvin Klein',
 			        		'address' => 'S/N',
-			        		'webPage' => 'http://explore.calvinklein.com'  
+			        		'webPage' => 'http://explore.calvinklein.com',
+			        		'usersid' => 15 
 			        	),
 			        	 
         	);

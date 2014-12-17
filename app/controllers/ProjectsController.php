@@ -34,13 +34,15 @@ class ProjectsController extends BaseController {
 	}
 
 	public function getEdit($id){
-		 
-		$project = Project::findOrFail($id);
-		$organization = app('organization');
-		if($project==null){
-			return Redirect::to('/organization/name/'.$organization->auxName.'/projects')
+		try {
+			$project = Project::findOrFail($id);
+		}catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) { 
+			$organization = app('organization');
+		    return Redirect::to('/organization/name/'.$organization->auxName.'/projects')
 			->with('message', 'No existe el proyecto');
 		}
+		
+		 
 		$this->layout->content = View::make('layouts.projects.projectEditForm')
 		->with('project', $project)  ;
 	}

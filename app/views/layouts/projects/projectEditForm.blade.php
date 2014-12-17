@@ -7,8 +7,7 @@
 	</ul> 
 <h1>Editar proyecto</h1>
 	<div class="panel">
-		{{ Form::model($project, array('route' => 'projects.udpate', $project->id)) }}	
-
+		{{ Form::model($project, array('route' => 'projects.update', $project->id)) }}	
 			<fieldset class="inlineLabels">
 				<div class="ctrlHolder" id="div_id_name">
 					{{ Form::label('name', 'Nombre' , array('class'=>'requiredField' )) }}
