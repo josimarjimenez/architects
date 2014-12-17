@@ -40,14 +40,15 @@ $(document).ready(function() {
 		clearBtn: true,
 		calendarWeeks: true,
 		autoclose: true,
-		todayHighlight: true
+		todayHighlight: true,
+		format: "yyyy-mm-dd"
 	});
 	$('#endDate').datepicker({
 		clearBtn: true,
 		calendarWeeks: true,
 		autoclose: true,
-		todayHighlight: true
+		todayHighlight: true,
+		format: "yyyy-mm-dd"
 	});
-
 } );
 </script>

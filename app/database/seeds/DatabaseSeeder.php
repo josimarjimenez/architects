@@ -96,21 +96,21 @@ class ProjectsTableSeeder extends Seeder {
 			        		'startDate' => '2014-10-01',
 			        		'endDate' => '2015-06-10',  
 			        		'budgetEstimated' => '125000,45',  
-			        		'organizationid' => '10'
+			        		'organizationid' => '1'
 			        	),
 			        	array(
 			        		'name' => 'Construcción de puente',
 			        		'startDate' => '2014-06-01',
 			        		'endDate' => '2015-01-10',  
 			        		'budgetEstimated' => '200000,45',  
-			        		'organizationid' => '10'
+			        		'organizationid' => '2'
 			        	),
 			        	array(
 			        		'name' => 'Conjunto residencial',
 			        		'startDate' => '2015-10-01',
 			        		'endDate' => '2015-05-28',  
 			        		'budgetEstimated' => '225000,45',  
-			        		'organizationid' => '11'
+			        		'organizationid' => '3'
 			        	),
 			        	 
         	);
