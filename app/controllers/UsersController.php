@@ -60,10 +60,12 @@ class UsersController extends BaseController {
 		$organization = app('organization');
 		$projectsCount = sizeof($organization->projects);
 		$iterationsCount = sizeof($organization->iterations);
+
+
     	$this->layout->content = View::make('layouts.users.dashboard')
     	->with('organization', $organization)
     	->with('projectsCount', $projectsCount)
-    	->with('iterationsCount', $iterationsCount); 
+    	->with('iterationsCount', $iterationsCount);
 	}
 
 	public function getLogout() {

@@ -20,10 +20,15 @@ class Project extends Eloquent implements UserInterface, RemindableInterface{
 	public function organization() {
 		return $this->belongsTo('Organizations','organizationid');
 	}
-
+	
+	//iterations
 	public function iterations() {
 		return $this->hasMany('Iterations','projectid');
 	}
 
+	//teams
+	public function teams(){
+		return $this->belongsToMany('Teams', 'workIn', 'projectid', 'teamsid');
+	}
 }
 ?>
