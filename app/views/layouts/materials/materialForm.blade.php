@@ -5,21 +5,28 @@
 		<li>{{ $error }}</li>
 		@endforeach
 	</ul> 
-	<h1>Crear material</h1>
+	<h1>Crear/Editar material</h1>
 	<div class="panel">
-		{{ Form::open(array('url'=>'materials/create','class'=>'uniForm')) }}
+		<?php 
+			if($type == "new"){
+		 ?>
+		{{ Form::open(array('url'=>'materials','class'=>'uniForm')) }}
+		<?php }else { ?>
+		{{ Form::model($material,array('action' => array('MaterialsController@update', $material->id), 'method' => 'PUT', 'class'=>'uniForm')) }}	
+		<?php } ?>
 			<fieldset class="inlineLabels">
 				<div class="ctrlHolder" id="div_id_name">
 					{{ Form::label('name', 'Nombre' , array('class'=>'requiredField' )) }}
 					{{ Form::text('name', null, array('class'=>'textInput textinput', 'placeholder'=>'Nombre del material')) }}
 				</div>
 				<div class="ctrlHolder" id="div_id_name">
-					{{ Form::label('budget', 'Precio', array('class'=>'requiredField' )) }}
-					{{ Form::text('budget', null, array('class'=>'textInput textinput', 'placeholder'=>'Precio')) }}
+					{{ Form::label('value', 'Precio', array('class'=>'requiredField' )) }}
+					{{ Form::text('value', null, array('class'=>'textInput textinput', 'placeholder'=>'Precio')) }}
 				</div>
 				<div class="buttonHolder">
 					{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
 				</div>
+				{{ Form::hidden('organizationid', $organization->id) }}
 			</fieldset>
 		{{ Form::close() }}
 	</div>
