@@ -45,8 +45,10 @@ class OrganizationsController extends BaseController {
 	 * Show all projects of one enterprise 
 	 **/
 	public function getName($name){ 
-		
+ 
+
 		$organization = app('organization'); 
+		
 		setlocale(LC_MONETARY, 'en_US');
 		foreach ($organization->projects as $project) {
 			$project->nameAux = str_replace(" ",'-', $project->name);

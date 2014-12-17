@@ -78,7 +78,7 @@ class CreateDatabaseTables extends Migration {
 
 		Schema::create('project',function($table){
 			$table->increments('id');
-			$table->string('name');
+			$table->string('teams');
 			$table->date('startDate');
 			$table->date('endDate');
 			$table->decimal('budgetSummary',5,2);
@@ -88,6 +88,7 @@ class CreateDatabaseTables extends Migration {
 			$table->timestamps(); 
 			$table->foreign('organizationid')->references('id')->on('organization')->onDelete('cascade');
 		});
+
 
 
 
