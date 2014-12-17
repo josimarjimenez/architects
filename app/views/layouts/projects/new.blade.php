@@ -63,6 +63,5 @@ $(document).ready(function() {
 		todayHighlight: true,
 		format: "yyyy-mm-dd"
 	});
-
 } );
 </script>
