@@ -24,8 +24,12 @@
 				<td>{{ $project->endDate }}</td>
 				<td>{{ $project->budgetEstimated }}</td> 
 				<td>
-					{{ HTML::link('projects/edit/'.$project->id,  'Editar', array('class'=>"btn btn-medium btn-info")  ) }}
-					{{ HTML::link('projects/delete/'.$project->id,  'Eliminar', array('class'=>"btn btn-danger btn-medium")  ) }}
+					{{ HTML::link('projects/'.$project->id.'/edit',  'Editar', array('class'=>"btn btn-medium btn-info")  ) }} 
+					&nbsp
+					{{ Form::open(array('url' => 'projects/' . $project->id, 'class' => 'pull-right')) }}
+						{{ Form::hidden('_method', 'DELETE') }}
+						{{ Form::submit('Eliminar', array('class' => 'btn btn-danger')) }}
+					{{ Form::close() }}
 				</td>
 			</tr>
 			@endforeach  

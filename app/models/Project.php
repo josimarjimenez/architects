@@ -6,7 +6,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class Project extends Eloquent implements UserInterface, RemindableInterface{
 	protected $table = 'project';
 
-
+	protected $guarded = ['id', 'created_at', 'updated_at'];
 	use UserTrait, RemindableTrait;
 	public static $rules = array(
 	    'name'=>'required|alpha_spaces|min:2', 
@@ -16,8 +16,14 @@ class Project extends Eloquent implements UserInterface, RemindableInterface{
 
 
 	//relationSHIP
+	//organization
 	public function organization() {
 		return $this->belongsTo('Organizations','organizationid');
 	}
+
+	public function iterations() {
+		return $this->hasMany('Iterations','projectid');
+	}
+
 }
 ?>

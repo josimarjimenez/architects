@@ -3,13 +3,19 @@
 class ProjectsController extends BaseController {
 	protected $layout = "layouts.main";
 
-	public function getCreate(){  
-		$this->layout->content = View::make('layouts.projects.projectForm')
-		->with('organization', app('organization'))  ;
+ 	public function index() {}
+
+    public function show($id) {}
+
+
+	public function create(){  
+		$this->layout->content = View::make('layouts.projects.new')
+		->with('organization', app('organization')) 
+		->with('type',  'new') ;
 	}
 
 	//save mew
-	public function postCreate(){
+	public function store(){
 		$validator = Validator::make(Input::all(), Project::$rules);
 
 		if ($validator->passes()) { 
@@ -18,7 +24,7 @@ class ProjectsController extends BaseController {
 			$project->name = Input::get('name'); 
 			$project->startDate = Input::get('startDate'); 
 			$project->endDate = Input::get('endDate');   
-			$project->budgetEstimated = Input::get('budget');  
+			$project->budgetEstimated = Input::get('budgetEstimated');  
 			$project->organizationid = Input::get('organizationid'); 
 			$project->save();
 
@@ -33,7 +39,7 @@ class ProjectsController extends BaseController {
 		}
 	}
 
-	public function getEdit($id){
+	public function edit($id){
 		try {
 			$project = Project::findOrFail($id);
 		}catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) { 
@@ -43,12 +49,29 @@ class ProjectsController extends BaseController {
 		}
 		
 		 
-		$this->layout->content = View::make('layouts.projects.projectEditForm')
-		->with('project', $project)  ;
+		$this->layout->content = View::make('layouts.projects.new')
+		->with('project', $project)->with('type',  'edit')  ;
 	}
 
-	public function postUpdate(){
-		
+	public function update($id){
+		$project = Project::findOrFail($id);
+		$project->fill(Input::all());
+		$project->save();
+		$organization = app('organization');
+		return Redirect::to('organization/name/'.$organization->auxName.'/projects')
+			->with('message', 'Registro actualizado');
+	}
+
+
+	public function destroy($id){
+		//project
+		$project = Project::find($id);
+		if( sizeof($project->iterations) < 1 ){
+			$project->delete();
+		}
+
+		$organization = app('organization');
+		return Redirect::to('organization/name/'.$organization->auxName.'/projects')->with('message', 'Registro eliminado');
 	}
 }
  ?>

@@ -5,9 +5,15 @@
 		<li>{{ $error }}</li>
 		@endforeach
 	</ul> 
-<h1>Editar proyecto</h1>
+<h1>Crear/Editar proyecto</h1>
 	<div class="panel">
-		{{ Form::model($project, array('route' => 'projects.update', $project->id)) }}	
+		<?php 
+			if($type == "new"){
+		 ?>
+		{{ Form::open(array('url'=>'projects','files'=>true, 'class'=>'uniForm')) }}
+		<?php }else { ?>
+		{{ Form::model($project,array('action' => array('ProjectsController@update', $project->id), 'method' => 'PUT', 'class'=>'uniForm')) }}	
+		<?php } ?>
 			<fieldset class="inlineLabels">
 				<div class="ctrlHolder" id="div_id_name">
 					{{ Form::label('name', 'Nombre' , array('class'=>'requiredField' )) }}
@@ -22,9 +28,15 @@
 					{{ Form::text('endDate', null, array('type' => 'text', 'class' => 'textInput textinput datepicker input-block-level','placeholder' => 'Fecha fin', 'id' => 'endDate')) }}
 				</div>
 				<div class="ctrlHolder" id="div_id_name">
-					{{ Form::label('budget', 'Presupuesto', array('class'=>'requiredField' )) }}
-					{{ Form::text('budget', null, array('class'=>'textInput textinput', 'placeholder'=>'Presupuesto del proyecto')) }}
+					{{ Form::label('budgetEstimated', 'Presupuesto', array('class'=>'requiredField' )) }}
+					{{ Form::text('budgetEstimated', null, array('class'=>'textInput textinput', 'placeholder'=>'Presupuesto del proyecto')) }}
 				</div>
+
+				<div class="ctrlHolder" id="div_id_name">
+					{{ Form::label('observation', 'Observaciones', array('class'=>'requiredField' )) }}
+					{{ Form::textArea('observation', null, array('class'=>'textInput textinput', 'placeholder'=>'Observaciones del proyecto')) }}
+				</div>
+
 				{{ Form::hidden('organizationid', $organization->id) }}
 				<div class="buttonHolder">
 					{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
@@ -40,14 +52,16 @@ $(document).ready(function() {
 		clearBtn: true,
 		calendarWeeks: true,
 		autoclose: true,
-		todayHighlight: true
+		todayHighlight: true,
+		format: "yyyy-mm-dd"
 	});
+
 	$('#endDate').datepicker({
 		clearBtn: true,
 		calendarWeeks: true,
 		autoclose: true,
-		todayHighlight: true
+		todayHighlight: true,
+		format: "yyyy-mm-dd"
 	});
-
 } );
 </script>
