@@ -14,10 +14,15 @@ class Teams extends Eloquent {
 	protected $table = 'teams';
 
 	//relationSHIP
+	//user
 	public function users() {
 		return $this->belongsToMany('User', 'memberof', 'teamid', 'userid');
 	}
 
+	//project
+	public function projects(){
+		return $this->belongsToMany('Project', 'workIn', 'teamsid', 'projectid');
+	}
 }
 
 ?>
