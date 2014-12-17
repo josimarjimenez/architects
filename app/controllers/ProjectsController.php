@@ -10,7 +10,8 @@ class ProjectsController extends BaseController {
 
 	public function create(){  
 		$this->layout->content = View::make('layouts.projects.new')
-		->with('organization', app('organization'))  ;
+		->with('organization', app('organization')) 
+		->with('type',  'new') ;
 	}
 
 	//save mew
@@ -48,8 +49,8 @@ class ProjectsController extends BaseController {
 		}
 		
 		 
-		$this->layout->content = View::make('layouts.projects.edit')
-		->with('project', $project)  ;
+		$this->layout->content = View::make('layouts.projects.new')
+		->with('project', $project)->with('type',  'edit')  ;
 	}
 
 	public function update($id){
@@ -63,7 +64,6 @@ class ProjectsController extends BaseController {
 
 
 	public function destroy($id){
-
 		//project
 		$project = Project::find($id);
 		if( sizeof($project->iterations) < 1 ){

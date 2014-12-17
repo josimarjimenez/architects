@@ -1,5 +1,5 @@
 <br><br>
-<div id="projectError">
+<div id="asdf">
 	<ul>
 		@foreach($errors->all() as $error)
 		<li>{{ $error }}</li>
@@ -7,7 +7,7 @@
 	</ul> 
 <h1>Editar proyecto</h1>
 	<div class="panel">
-		{{ Form::model($project,array('action' => array('ProjectsController@update', $project->id), 'method' => 'PUT')) }}	
+		{{ Form::model($project,array('action' => array('ProjectsController@update', $project->id), 'method' => 'PUT', 'class'=>'uniForm')) }}	
 			<fieldset class="inlineLabels">
 				<div class="ctrlHolder" id="div_id_name">
 					{{ Form::label('name', 'Nombre' , array('class'=>'requiredField' )) }}
@@ -41,20 +41,19 @@
 	</div>
 </div>
 <script type="text/javascript">
-$(document).ready(function() {
+	$(document).ready(function() {
+		$('#startDate').datepicker({
+			clearBtn: true,
+			calendarWeeks: true,
+			autoclose: true,
+			todayHighlight: true
+		});
+		$('#endDate').datepicker({
+			clearBtn: true,
+			calendarWeeks: true,
+			autoclose: true,
+			todayHighlight: true
+		});
 
-	$('#startDate').datepicker({
-		clearBtn: true,
-		calendarWeeks: true,
-		autoclose: true,
-		todayHighlight: true
-	});
-	$('#endDate').datepicker({
-		clearBtn: true,
-		calendarWeeks: true,
-		autoclose: true,
-		todayHighlight: true
-	});
-
-} );
+	} );
 </script>
