@@ -18,7 +18,7 @@
 		<div class="col_8">
 			<ul class="project-menu-horizontal-list">
 				<li> 
-					<a href="/organization/name/{{ $organization->auxName }}/dashboard" title="Ver todas las iteraciones">
+					<a href="/users/dashboard" title="Ver todas las iteraciones">
 						<i class="topmenu-icon icon-globe"> </i>
 						Escritorio
 					</a>

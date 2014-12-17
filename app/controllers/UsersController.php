@@ -69,8 +69,13 @@ class UsersController extends BaseController {
 		$organization = app('organization');
 		$projectsCount = sizeof($organization->projects);
 		$iterationsCount = sizeof($organization->iterations);
-
-
+		 
+		foreach($organization->projects as $elementKey => $element) { 
+			if(sizeof($element->iterations) < 1){ 
+				 unset($organization->projects[$elementKey]); 
+			} 
+		}
+		  
     	$this->layout->content = View::make('layouts.users.dashboard')
     	->with('organization', $organization)
     	->with('projectsCount', $projectsCount)
