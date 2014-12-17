@@ -25,10 +25,10 @@ class TeamsController extends BaseController {
 			$teams->save();
 
 			$organization = app('organization');
-			return Redirect::to('organization/name/'.$organization->auxName.'/projects')
-			->with('message', 'Registro creado con exito'); 
+			return Redirect::to('organization/name/'.$organization->auxName.'/teams')
+			->with('message', 'Equipo creado con exito'); 
 		}else{
-			return Redirect::to('projects/create')
+			return Redirect::to('teams/create')
 			->with('message', 'Ocurrieron los siguientes errores')
 			->withErrors($validator)
 			->withInput();   	
@@ -37,37 +37,37 @@ class TeamsController extends BaseController {
 
 	public function edit($id){
 		try {
-			$project = Project::findOrFail($id);
+			$teams = Teams::findOrFail($id);
 		}catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) { 
 			$organization = app('organization');
-		    return Redirect::to('/organization/name/'.$organization->auxName.'/projects')
-			->with('message', 'No existe el proyecto');
+		    return Redirect::to('/organization/name/'.$organization->auxName.'/teams')
+			->with('message', 'No existe el Equipo');
 		}
 		
 		 
-		$this->layout->content = View::make('layouts.projects.new')
-		->with('project', $project)->with('type',  'edit')  ;
+		$this->layout->content = View::make('layouts.teams.new')
+		->with('team', $teams)->with('type',  'edit')  ;
 	}
 
 	public function update($id){
-		$project = Project::findOrFail($id);
-		$project->fill(Input::all());
-		$project->save();
+		$teams = Teams::findOrFail($id);
+		$teams->fill(Input::all());
+		$teams->save();
 		$organization = app('organization');
-		return Redirect::to('organization/name/'.$organization->auxName.'/projects')
-			->with('message', 'Registro actualizado');
+		return Redirect::to('organization/name/'.$organization->auxName.'/teams')
+			->with('message', 'Equipo actualizado');
 	}
 
 
 	public function destroy($id){
 		//project
-		$project = Project::find($id);
-		if( sizeof($project->iterations) < 1 ){
-			$project->delete();
+		$teams = Teams::find($id);
+		if( sizeof($teams->iterations) < 1 ){
+			$teams->delete();
 		}
 
 		$organization = app('organization');
-		return Redirect::to('organization/name/'.$organization->auxName.'/projects')->with('message', 'Registro eliminado');
+		return Redirect::to('organization/name/'.$organization->auxName.'/teams')->with('message', 'Equipo eliminado');
 	}
 }
 ?>
