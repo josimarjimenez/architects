@@ -56,6 +56,15 @@ class UsersController extends BaseController {
 		}      
 	}
 
+
+	public function getUpdate($id){
+
+	}
+
+	public function getDelete($id){
+
+	}
+
 	public function getDashboard() {
     	$this->layout->content = View::make('layouts.users.dashboard'); 
 	}
