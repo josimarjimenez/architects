@@ -11,11 +11,7 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
-
+Route::get('/', 'UsersController@getLogin');
 
 Route::controller('users', 'UsersController');
 Route::controller('organization', 'OrganizationsController');

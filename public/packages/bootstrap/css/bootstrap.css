@@ -6665,3 +6665,55 @@ th.hidden-lg, td.hidden-lg {
     padding: 1.5em;
     text-align: right;
 }
+
+#report {
+    border-bottom: 2px solid #eee;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 1000px;
+    padding-bottom: 5px;
+    width: 100%;
+}
+
+.report-tab-selected, .report-tab {
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: -2px;
+    padding: 0;
+}
+ 
+.report-tab {
+    background-color: #ddd;
+    border: 2px solid #d4d4d4;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.report-tab a {
+    color: #444;
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+#report_area {
+    max-height: 332px;
+    min-height: 92px;
+    overflow: auto;
+    text-align: center;
+}
+.stats-bubble {
+    background-color: #f2f2f2;
+    display: inline-block;
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+}
+.stats-bubble h4 {
+    color: #333;
+    font-size: 50px;
+    line-height: 52px;
+    margin: 0;
+    text-align: center;
+    width: 168px;
+}
