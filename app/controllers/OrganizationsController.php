@@ -60,6 +60,19 @@ class OrganizationsController extends BaseController {
 								->with('organization', $organization);
 	}
 
+
+	/**
+	*Show all members of one enterprise
+	**/
+	public function getMembers($name){
+		$organization = app('organization');
+		$users = User::all();
+		$this->layout->content = View::make('layouts.users.users')
+								->with('organization', $organization)
+								->with('users', $users);
+
+	}
+
 	/**
 	* Replace accents 
 	**/

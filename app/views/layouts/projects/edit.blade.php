@@ -41,19 +41,22 @@
 	</div>
 </div>
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('#startDate').datepicker({
-			clearBtn: true,
-			calendarWeeks: true,
-			autoclose: true,
-			todayHighlight: true
-		});
-		$('#endDate').datepicker({
-			clearBtn: true,
-			calendarWeeks: true,
-			autoclose: true,
-			todayHighlight: true
-		});
+$(document).ready(function() {
+
+	$('#startDate').datepicker({
+		clearBtn: true,
+		calendarWeeks: true,
+		autoclose: true,
+		todayHighlight: true,
+		format:"yyyy-mm-dd"
+	});
+	$('#endDate').datepicker({
+		clearBtn: true,
+		calendarWeeks: true,
+		autoclose: true,
+		todayHighlight: true,
+		format:"yyyy-mm-dd"
+	});
 
 	} );
 </script>
