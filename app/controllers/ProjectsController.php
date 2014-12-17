@@ -60,5 +60,18 @@ class ProjectsController extends BaseController {
 		return Redirect::to('organization/name/'.$organization->auxName.'/projects')
 			->with('message', 'Registro actualizado');
 	}
+
+
+	public function destroy($id){
+
+		//project
+		$project = Project::find($id);
+		if( sizeof($project->iterations) < 1 ){
+			$project->delete();
+		}
+
+		$organization = app('organization');
+		return Redirect::to('organization/name/'.$organization->auxName.'/projects')->with('message', 'Registro eliminado');
+	}
 }
  ?>
