@@ -14,7 +14,11 @@
 App::before(function($request)
 { 
 	App::singleton('organization', function(){
+<<<<<<< HEAD
         $organization = Organization::where('name', 'Unesco')->get()->first(); 
+=======
+        $organization = Organization::where('name', 'Unesco')->get()->first();
+>>>>>>> 60478ede96feef93f8396ae927b0e91c539862ae
 		$organization->auxName = str_replace(" ",'-', $organization->name); 
         return $organization;
     });
