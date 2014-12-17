@@ -7,7 +7,7 @@
 	</ul> 
 <h1>Editar Equipo</h1>
 	<div class="panel">
-		{{ Form::model($project, array('route' => 'teams.udpate', $project->id)) }}	
+		{{ Form::model($teams, array('route' => 'teams.udpate', $teams->id)) }}	
 
 			<fieldset class="inlineLabels">
 				<div class="ctrlHolder" id="div_id_name">

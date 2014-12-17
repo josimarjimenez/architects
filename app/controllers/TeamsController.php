@@ -10,7 +10,7 @@ class TeamsController extends BaseController {
 
 	//save mew
 	public function postCreate(){
-		$validator = Validator::make(Input::all(), Project::$rules);
+		$validator = Validator::make(Input::all(), Teams::$rules);
 
 		if ($validator->passes()) { 
 
@@ -33,7 +33,7 @@ class TeamsController extends BaseController {
 		 
 		$teams = Teams::findOrFail($id);
 		$organization = app('organization');
-		if($project==null){
+		if($teams==null){
 			return Redirect::to('/organization/name/'.$organization->auxName.'/teams')
 			->with('message', 'No hay el Equipo');
 		}
@@ -45,4 +45,4 @@ class TeamsController extends BaseController {
 		
 	}
 }
- ?>
+?>
