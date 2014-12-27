@@ -11,10 +11,15 @@
 |
 */
 
+Route::group(array('before' => 'auth'), function()
+{
+	Route::controller('organization', 'OrganizationsController');
+	Route::controller('states','ScrumStatesController');
+	Route::resource('projects', 'ProjectsController');
+	Route::resource('materials', 'MaterialsController');
+	Route::resource('teams', 'TeamsController');
+});
  
-Route::get('/', 'UsersController@getLogin');
 Route::controller('users', 'UsersController');
-Route::controller('organization', 'OrganizationsController');
-Route::controller('states','ScrumStatesController');
-Route::resource('projects', 'ProjectsController');
-Route::resource('materials', 'MaterialsController');
+Route::get('/', 'UsersController@getLogin');
+

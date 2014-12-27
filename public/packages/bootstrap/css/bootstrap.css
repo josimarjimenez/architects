@@ -6852,3 +6852,116 @@ li {
     min-height: 21px;
     padding: 0 0 0 3px;
 }
+.main-content {
+    min-height: 700px;
+    padding-right: 142px;
+}
+.story_form, #scrum_log_form_div {
+    background: none repeat scroll 0 0 #fafafa;
+    border: 1px solid #e1e1e1;
+    border-radius: 3px;
+    margin: 10px;
+    max-width: 1000px;
+    padding: 10px;
+}
+.story_form #id_summary {
+    margin-bottom: 0;
+    margin-top: -2px;
+    padding-bottom: 0;
+    vertical-align: middle;
+    width: 75%;
+}
+input, textarea, .uneditable-input {
+    margin-left: 0;
+}
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+}
+textarea {
+    height: auto;
+}
+input, textarea, .uneditable-input {
+    width: 206px;
+}
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    border-radius: 4px;
+    color: #555555;
+    display: inline-block;
+    font-size: 14px;
+    height: 20px;
+    line-height: 20px;
+    margin-bottom: 10px;
+    padding: 4px 6px;
+    vertical-align: middle;
+}
+input, button, select, textarea {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+label, input, button, select, textarea {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+}
+textarea {
+    overflow: auto;
+    vertical-align: top;
+}
+button, input, select, textarea {
+    font-size: 100%;
+    margin: 0;
+    vertical-align: middle;
+}
+.story_form #add_button {
+    min-width: 175px;
+    position: relative;
+    top: -2px;
+}
+button.btn, input.btn[type="submit"] {
+}
+.btn {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #f5f5f5;
+    background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) #b3b3b3;
+    border-image: none;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    color: #333333;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 0;
+    padding: 4px 12px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
+}
+.green {
+    background: -moz-linear-gradient(center top , #7db72f, #4e7d0e) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 1px solid #538312;
+    color: #e8f0de;
+}
+.button {
+    border-radius: 0.5em;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: inline-block;
+    font: 14px/100% Arial,Helvetica,sans-serif;
+    margin: 0 2px;
+    outline: medium none;
+    padding: 0.5em 2em 0.55em;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    vertical-align: baseline;
+}

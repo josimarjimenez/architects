@@ -78,7 +78,7 @@ class CreateDatabaseTables extends Migration {
 
 		Schema::create('project',function($table){
 			$table->increments('id');
-			$table->string('teams');
+			$table->string('name');
 			$table->date('startDate');
 			$table->date('endDate');
 			$table->decimal('budgetSummary',5,2);

@@ -24,7 +24,7 @@ class MaterialsController extends BaseController {
 		$material->save();
 		$organization = app('organization'); 
 
-		$this->layout->content = View::make('layouts.materials.index')
+		return Redirect::to('/materials/')
 								->with('organization', $organization)
 								->with('message', "Registro grabado");
 	}

@@ -3,9 +3,24 @@
 class ProjectsController extends BaseController {
 	protected $layout = "layouts.main";
 
- 	public function index() {}
+ 	public function index() {
+ 		 
+ 	}
 
-    public function show($id) {}
+    public function show($id) { 
+
+    	try {
+			$project = Project::findOrFail($id);
+			$iterations =sizeof($project->iterations);
+			$this->layout->content = View::make('layouts.projects.show')
+								->with('project', $project)
+								->with('iterations', $iterations);
+		}catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) { 
+			$organization = app('organization');
+		    return Redirect::to('/materials/')
+			->with('message', 'No existe el material');
+		}
+    }
 
 
 	public function create(){  
