@@ -17,4 +17,4 @@ Route::controller('users', 'UsersController');
 Route::controller('organization', 'OrganizationsController');
 Route::controller('states','ScrumStatesController');
 Route::resource('projects', 'ProjectsController');
-Route::controller('materials', 'MaterialsController');
+Route::resource('materials', 'MaterialsController');

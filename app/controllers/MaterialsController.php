@@ -2,33 +2,71 @@
 class MaterialsController extends BaseController {
 	protected $layout = "layouts.main";
 
-	public function getCreate(){
+	public function create(){
 		$this->layout->content = View::make('layouts.materials.materialForm')
-		->with('organization', app('organization'));
+		->with('organization', app('organization'))
+		->with('type', 'new');
 	}
 
-	public function getMaterials($name){
-		$organization = app('organization');
-		$materials = Material::all();
-		$this->layout->content = View::make('layouts.materials.materials')
+	public function index(){
+		$organization = app('organization');  
+		$this->layout->content = View::make('layouts.materials.index')
+								->with('organization', $organization);
+	}
+
+
+	public function store(){ 
+	
+		$material = new Material;
+		$material->name = Input::get('name'); 
+		$material->value = Input::get('value');  
+		$material->organizationid = Input::get('organizationid');  
+		$material->save();
+		$organization = app('organization'); 
+
+		$this->layout->content = View::make('layouts.materials.index')
 								->with('organization', $organization)
-								->with('materials', $materials);
+								->with('message', "Registro grabado");
 	}
-
 
 	public function edit($id){
-		/*
+		
 		try {
-			$project = Project::findOrFail($id);
+			$material = Material::findOrFail($id);
 		}catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) { 
 			$organization = app('organization');
-		    return Redirect::to('/organization/name/'.$organization->auxName.'/projects')
-			->with('message', 'No existe el proyecto');
+		    return Redirect::to('/materials/')
+			->with('message', 'No existe el material');
 		}
 		
 		 
-		$this->layout->content = View::make('layouts.projects.new')
-		->with('project', $project)->with('type',  'edit')  ; */
+		$this->layout->content = View::make('layouts.materials.materialForm')
+								->with('organization', $material->organization)
+								->with('material', $material)
+								->with('type', "edti");
+	}
+
+	public function update($id){
+		$material = Material::findOrFail($id);
+		$material->fill(Input::all());
+		$material->save();
+		$organization = app('organization');
+		return Redirect::to('/materials')
+			->with('message', 'Registro actualizado')
+			->with('organization', $organization);
+
+	}
+
+	public function destroy($id){
+		$material = Material::find($id);
+		$material->delete();  
+		return Redirect::to('/materials')
+		->with('message', 'Registro eliminado')
+		->with('organization', app('organization'));
+	}
+
+	public function show($id){
+		
 	}
 
 }
