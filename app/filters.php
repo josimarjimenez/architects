@@ -16,17 +16,23 @@ App::before(function($request)
 	App::singleton('organization', function(){
 
         $organization = Organization::where('name', 'Unesco')->get()->first(); 
-
-        $organization = Organization::where('name', 'Unesco')->get()->first();
-
-		$organization->auxName = str_replace(" ",'-', $organization->name); 
-		
+		$organization->auxName = str_replace(" ",'-', $organization->name);
+	 	foreach ($organization->projects as $project) {
+	 		$project->auxName = str_replace(" ",'-', $project->name);
+	 		$project->auxName = stripAccents($project->auxName);
+	 	}
         return $organization;
     });
-
+ 
 	View::share('organization', app('organization'));
 });
 
+/**
+	* Replace accents 
+	**/
+function stripAccents($str) {
+	return strtr(utf8_decode($str), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
+}
 
 App::after(function($request, $response)
 {
@@ -46,7 +52,8 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {
-	if (Auth::guest()) return Redirect::guest('layouts/users/login');
+	
+	if (Auth::guest()) return Redirect::guest('users/login');
 });
 
 
@@ -68,7 +75,8 @@ Route::filter('auth.basic', function()
 
 Route::filter('guest', function()
 {
-	if (Auth::check()) return Redirect::to('/');
+
+	if (Auth::check()) return Redirect::to('layouts/users/login');
 });
 
 /*

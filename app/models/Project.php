@@ -14,6 +14,7 @@ class Project extends Eloquent implements UserInterface, RemindableInterface{
 	    'endDate'=>'date'
     );
 
+    protected $appends = array('auxName');
 
 	//relationSHIP
 	//organization

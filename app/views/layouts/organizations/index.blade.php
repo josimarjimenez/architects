@@ -1,4 +1,4 @@
- <br><br>
+<br><br>
 <h3>MI empresa</h3>
 <ul>
 @foreach ($projects as $project)
