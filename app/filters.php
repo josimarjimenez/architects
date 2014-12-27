@@ -15,9 +15,9 @@ App::before(function($request)
 { 
 	App::singleton('organization', function(){
 
-        $organization = Organization::where('name', 'Unesco')->get()->first(); 
+        $organization = Organization::where('name', 'DC Diseños y Construcciones')->get()->first(); 
 
-        $organization = Organization::where('name', 'Unesco')->get()->first();
+        $organization = Organization::where('name', 'DC Diseños y Construcciones')->get()->first();
 
 		$organization->auxName = str_replace(" ",'-', $organization->name); 
 		
