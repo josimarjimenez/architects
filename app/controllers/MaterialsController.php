@@ -17,16 +17,27 @@ class MaterialsController extends BaseController {
 
 	public function store(){ 
 	
-		$material = new Material;
-		$material->name = Input::get('name'); 
-		$material->value = Input::get('value');  
-		$material->organizationid = Input::get('organizationid');  
-		$material->save();
-		$organization = app('organization'); 
+		$validator = Validator::make(input::all(), Material::$rules);
 
-		return Redirect::to('/materials/')
-								->with('organization', $organization)
-								->with('message', "Registro grabado");
+		if($validator->passes()){
+			$material = new Material;
+			$material->name = Input::get('name'); 
+			$material->quantity = Input::get('quantity');
+			$material->value = Input::get('value');  
+			$material->organizationid = Input::get('organizationid');  
+			$material->save();
+
+			$organization = app('organization'); 
+			return Redirect::to('/materials/name')
+								->with('organization', $organization->auxName.'/material')
+								->with('message', "Material ingresado con exito");
+		}else{
+			return Redirect::to('materials/create');
+			>with('message', 'Ocurrieron los siguientes errores')
+			->withErrors($validator)
+			->withInput();
+		}
+		
 	}
 
 	public function edit($id){
