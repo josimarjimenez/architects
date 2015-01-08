@@ -1,5 +1,5 @@
 <ul id="messages">
-     <li id="message_1"><a onclick="$('#message_1').fadeOut(); return false;" href="#"><small>Limpiar</small></a>{{ $message }}</li>
+	<li id="message_1"><a onclick="$('#message_1').fadeOut(); return false;" href="#"><small>Limpiar</small></a>{{ $message }}</li>
 </ul>
 <div class="project-body-header">
 	<span class="iteration-board-link">
@@ -47,26 +47,32 @@
 	<div style="margin-left:auto; margin-right:auto; width:100%;">
 		<div id="story_form" class="story_form" style="margin-left:auto; margin-right:auto">
 			<ul id="createdStories">
-    		</ul>
-    		<div id="addStoryFormOnProgress" class="hidden">Guardando historia.  Por favor espere...</div>
-    		<form method="POST" id="addStoryForm">
-    			<textarea id="id_summary" rows="1" cols="50" name="summary" maxlength="5000"></textarea>
-    			 <button id="add_button" type="submit" class="btn">Agregar historia</button>
-    			 <div class="iteration-app">
-    		@include('layouts.issue.form')
-    	</div>
-    		</form>
-    	</div>
-    	<img src="https://d11uy15xvlvge3.cloudfront.net/static/v105/scrumdo/images/ajax-loader.gif" id="loadingIcon">
-    	<h1>Historia</h1>
-    	
-    </div>
+			</ul>
+			<div id="addStoryFormOnProgress" class="hidden">Guardando historia.  Por favor espere...</div> 
+			{{ Form::open(array('url'=>'issue','class'=>'uniForm', 'id'=>'addStoryForm')) }}
+				<textarea id="summary" rows="1" cols="50" name="summary" maxlength="5000"></textarea>
+				<button id="add_button" type="submit" class="btn">Agregar historia</button>
+				<div class="iteration-app">
+					@include('layouts.issue.form')
+				</div>
+			{{ Form::close() }}	
+		</div>
+		<img src="https://d11uy15xvlvge3.cloudfront.net/static/v105/scrumdo/images/ajax-loader.gif" id="loadingIcon">
+		<h1>Historia</h1>
+
+	</div>
 </div>
 <script type="text/javascript">
 
-	$(document).ready(function() { 
-		$("#id_summary").keypress(function() { 
-			$("#story_details").show( "slow" );
-		});	
+$(document).ready(function() { 
+	$("#summary").keypress(function() { 
+		$("#story_details").show( "slow" );
+	});	
+
+	$(".add_category_link").click(function() {
+		$( this ).css('display', 'none');
+		$("#categoryid").css( "display","none" );
+		$(".category_name").css( "display","block" ); 
 	});
+});
 </script>

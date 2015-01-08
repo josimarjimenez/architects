@@ -4,18 +4,19 @@
       <tr>
         <td>Detalle:</td>
         <td>
-          <textarea id="id_detail" rows="10" cols="40" name="detail" maxlength="5000"></textarea>
+          <textarea id="detail" rows="10" cols="40" name="detail" maxlength="5000"></textarea>
         </td>
       </tr>
       <tr>
         <td>Etiquetas:</td>
         <td>
           <div class="tag_holder">
-            <input style="display: none;" name="tags" id="id_tags" type="text"><ul class="tagit ui-widget ui-widget-content ui-corner-all">
-            <li class="tagit-new">
-              <input aria-haspopup="true" aria-autocomplete="list" role="textbox" autocomplete="off" class="ui-widget-content ui-autocomplete-input" type="text">
-            </li>
-          </ul>
+            <input style="display: none;" name="labels" id="id_tags" type="text">
+            <ul class="tagit ui-widget ui-widget-content ui-corner-all">
+              <li class="tagit-new">
+                <input aria-haspopup="true" aria-autocomplete="list" role="textbox" autocomplete="off" class="ui-widget-content ui-autocomplete-input" type="text">
+              </li>
+            </ul>
         </div>
       </td>
     </tr>
@@ -24,13 +25,8 @@
       <td id="points_section">
         <ul>
           <li>
-            <label for="id_points_0">
-              <input checked="checked" id="id_points_0" value="?" name="points" type="radio"> ?
-            </label>
-          </li>
-          <li>
             <label for="id_points_1">
-              <input id="id_points_1" value="0" name="points" type="radio"> 0
+              <input type="radio" name="points" value="0" id="id_points_1"> 0
             </label>
           </li>
           <li>
@@ -76,31 +72,12 @@
         </ul>
       </td>
     </tr>
-    <tr>
-      <td>Estimado</td>
-      <td id="estimate_section">
-        <input name="estimated_minutes_0" value="0" id="id_estimated_minutes_0" type="text">:
-        <input name="estimated_minutes_1" value="00" id="id_estimated_minutes_1" type="text"> (HH:MM)   
-      </td>
-    </tr>
-    <tr>
-      <td>Asignado a:&nbsp;</td>
-      <td>
-        <div class="tag_holder">
-          <input style="display: none;" name="assignee" id="id_assignee" type="text">
-          <ul class="tagit ui-widget ui-widget-content ui-corner-all">
-            <li class="tagit-new">
-              <input aria-haspopup="true" aria-autocomplete="list" role="textbox" autocomplete="off" class="ui-widget-content ui-autocomplete-input" type="text">
-            </li>
-          </ul>
-        </div>
-      </td>
-    </tr> 
+    
     <tr>
       <td>Categoría:&nbsp;</td>
       <td>
-        <select name="category" id="id_category">
-
+        <select name="categoryid" id="categoryid">
+          <option value="0">----</option>
         </select>   
         <a class="add_category_link" href="#">Agregar categoría</a>
         <input name="category_name" class="category_name" maxlength="25" style="display:none" type="text">
@@ -109,7 +86,7 @@
     <tr>
       <td>Iteración:&nbsp;</td>
       <td>
-        <select name="iteration" id="id_iteration">
+        <select name="iterationid" id="iterationid">
           @foreach ($iterations as $iteration)
             <option value="{{ $iteration->id }}">{{ $project->name }} / {{$iteration->name}} </option>
           @endforeach
