@@ -7,5 +7,9 @@ class Issue extends Eloquent{
 	public function project(){ 
 		return $this->belongsTo('Iterations','iterationid');
 	}
+
+	public function category(){
+		return $this->hasOne('Category');
+	}
 }
 ?>
