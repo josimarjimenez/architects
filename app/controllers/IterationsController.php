@@ -1,6 +1,6 @@
 <?php 
 
-class ProjectsController extends BaseController {
+class IterationsController extends BaseController {
 	protected $layout = "layouts.main";
 
  	public function index() {
@@ -8,50 +8,44 @@ class ProjectsController extends BaseController {
  	}
 
     public function show($id) { 
-
+   
     	try {
-			$project = Project::findOrFail($id); 
-			$iterations =sizeof($project->iterations);
-			$this->layout->content = View::make('layouts.projects.show')
-								->with('project', $project)
-								->with('iterations', $iterations);
+			$iteration = Iterations::findOrFail($id); 
+
+
+			$this->layout->content = View::make('layouts.iterations.show')
+								->with('iteration', $iteration)
+								->with('message', 'Iteracion creada con éxito');
 		}catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) { 
-			$organization = app('organization');
-		    return Redirect::to('/materials/')
-			->with('message', 'No existe el material');
+			 
+		    return Redirect::to('/projects/')
+			->with('message', 'Error al crear la iteración');
 		}
     }
 
 
-	public function create(){  
-		$this->layout->content = View::make('layouts.projects.new')
-		->with('organization', app('organization')) 
-		->with('type',  'new') ;
+	public function create(){   
+		$projectid = Input::get('projectid');
+		$project = Project::findOrFail($projectid);  
+		
+		$this->layout->content = View::make('layouts.iterations.form')
+		->with('project', $project) 
+		->with('type',  'new');
 	}
 
 	//save mew
 	public function store(){
-		$validator = Validator::make(Input::all(), Project::$rules);
 
-		if ($validator->passes()) { 
+		$iterations = new Iterations;
+		$iterations->name = Input::get('name'); 
+		$iterations->start = Input::get('start'); 
+		$iterations->end = Input::get('end');   
+		$iterations->realBudget = Input::get('realBudget');  
+		$iterations->projectid = Input::get('projectid'); 
+		$iterations->save();
 
-			$project = new Project;
-			$project->name = Input::get('name'); 
-			$project->startDate = Input::get('startDate'); 
-			$project->endDate = Input::get('endDate');   
-			$project->budgetEstimated = Input::get('budgetEstimated');  
-			$project->organizationid = Input::get('organizationid'); 
-			$project->save();
-
-			$organization = app('organization');
-			return Redirect::to('organization/name/'.$organization->auxName.'/projects')
+		return Redirect::to('/iterations/'.$iterations->id)
 			->with('message', 'Registro creado con exito'); 
-		}else{
-			return Redirect::to('projects/create')
-			->with('message', 'Ocurrieron los siguientes errores')
-			->withErrors($validator)
-			->withInput();   	
-		}
 	}
 
 	public function edit($id){

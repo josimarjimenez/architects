@@ -20,7 +20,10 @@
 	</div>
 	<br><br>
 		@if($iterations < 1)
-			<a style="padding: 10px 20px;" class="button green large" href="/projects/project/k-gestion/iteration_create">Nueva iteración</a>
+			{{ Form::open(array('url' => 'iterations/create', 'method'=>'GET','class' => 'pull-right')) }}
+				{{ Form::text('projectid', $project->id) }}
+				{{ Form::submit('Nueva iteración', array('class' => 'button green large')) }}
+			{{ Form::close() }}
 		@else
 			<div style="margin-left:auto; margin-right:auto" class="story_form" id="story_form">
 				<ul id="createdStories"></ul>
@@ -30,8 +33,5 @@
 					<button class="btn" type="submit" id="add_button">Agregar historia</button>
 				</form>
 			</div>
-		@endif
-		
-		FORMULARIO DE ISSUE
-	
+		@endif 
 </div>
