@@ -32,8 +32,10 @@ class IssueController extends BaseController {
 	//save mew
 	public function store(){
 		 
+		 $validator = Validator::make(input::all(), Issue::$rules);
 
-			$issue = new Issue;
+		 if($validator->passes()){
+		 	$issue = new Issue;
 			$issue->summary = Input::get('summary'); 
 			$issue->detail = Input::get('detail'); 
 			$issue->budget = 0.0;   
@@ -42,22 +44,28 @@ class IssueController extends BaseController {
 			$issue->labels = Input::get('labels'); 
 			$issue->iterationid = Input::get('iterationid'); 
 
-			$categoryId = Input::get('categoryid');
-			if($categoryId == 0 ){
-				//crear categoria 
-				$category = new Category;
-				$category->name = Input::get('category_name');
-				$category->save();
-				$issue->categoryid = $category->id;
+				$categoryId = Input::get('categoryid');
+				if($categoryId == 0 ){
+					//crear categoria 
+					$category = new Category;
+					$category->name = Input::get('category_name');
+					$category->save();
+					$issue->categoryid = $category->id;
+				}else{
+					$issue->categoryid = $categoryId;
+				}
+
+				$issue->save();
+ 					return Redirect::to('/iterations/'.$issue->iterationid)
+						->with('message', 'Historia creada con exito');	
 			}else{
-				$issue->categoryid = $categoryId;
+				return Redirect::to('issue/create')
+				->with('message', 'Ocurrieron los siguientes errores')
+				->withErrors($validator)
+				->withInput();
 			}
 
-			$issue->save();
- 
-
- 			return Redirect::to('/iterations/'.$issue->iterationid)
-			->with('message', 'Historia creada con exito');  
+ 			  
 		 
 	}
 
