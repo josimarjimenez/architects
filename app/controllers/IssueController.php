@@ -1,6 +1,6 @@
 <?php 
 
-class ProjectsController extends BaseController {
+class IssueController extends BaseController {
 	protected $layout = "layouts.main";
 
  	public function index() {
@@ -10,7 +10,7 @@ class ProjectsController extends BaseController {
     public function show($id) { 
 
     	try {
-			$project = Project::findOrFail($id); 
+			$project = Project::findOrFail($id);
 			$iterations =sizeof($project->iterations);
 			$this->layout->content = View::make('layouts.projects.show')
 								->with('project', $project)
@@ -24,9 +24,9 @@ class ProjectsController extends BaseController {
 
 
 	public function create(){  
-		$this->layout->content = View::make('layouts.projects.new')
-		->with('organization', app('organization')) 
-		->with('type',  'new') ;
+		$this->layout->content = View::make('layouts.issue.form')
+		->with('project', app('project')) 
+		->with('type',  'new');
 	}
 
 	//save mew

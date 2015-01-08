@@ -17,7 +17,9 @@ Route::group(array('before' => 'auth'), function()
 	Route::controller('states','ScrumStatesController');
 	Route::resource('projects', 'ProjectsController');
 	Route::resource('materials', 'MaterialsController');
-	Route::resource('teams', 'TeamsController');
+	Route::resource('teams', 'TeamsController'); 
+	Route::resource('issue', 'IssueController');
+	Route::resource('iterations', 'IterationsController');
 });
  
 Route::controller('users', 'UsersController');

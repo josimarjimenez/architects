@@ -3,7 +3,11 @@
 class TeamsController extends BaseController {
 	protected $layout = "layouts.main";
 
- 	public function index() {}
+ 	public function index() {
+
+
+ 		
+ 	}
 
     public function show($id) {}
 

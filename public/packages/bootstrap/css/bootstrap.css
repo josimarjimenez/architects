@@ -6890,8 +6890,7 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
     border-radius: 4px;
     color: #555555;
     display: inline-block;
-    font-size: 14px;
-    height: 20px;
+    font-size: 14px; 
     line-height: 20px;
     margin-bottom: 10px;
     padding: 4px 6px;
@@ -6964,4 +6963,36 @@ button.btn, input.btn[type="submit"] {
     text-decoration: none;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
     vertical-align: baseline;
+}
+ul#messages {
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+}
+ul#messages li {
+    background: none repeat scroll 0 0 #efd;
+    border: 1px solid #bc9;
+    margin: 3px;
+    padding: 5px 10px;
+}
+ul#messages li a {
+    color: #693;
+    float: right;
+}
+.iteration-board-link {
+    float: right;
+    font-size: 16px;
+}
+.iteration-title-date {
+    color: #888;
+    font-size: 0.8em;
+    margin-left: 20px;
+}
+.noData {
+    border-color: #e3e3e3;
+    border-style: dotted;
+    color: #e3e3e3;
+    font-size: 16px;
+    text-align: center;
+    vertical-align: middle;
 }
