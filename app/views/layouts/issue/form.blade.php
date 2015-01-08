@@ -1,14 +1,14 @@
-<div style="display: none;" id="story_details">
+<div id="story_details" style="display: none;" >
   <table id="add_story_table">
     <tbody>
       <tr>
-        <td>Detail:</td>
+        <td>Detalle:</td>
         <td>
           <textarea id="id_detail" rows="10" cols="40" name="detail" maxlength="5000"></textarea>
         </td>
       </tr>
       <tr>
-        <td>Tags:</td>
+        <td>Etiquetas:</td>
         <td>
           <div class="tag_holder">
             <input style="display: none;" name="tags" id="id_tags" type="text"><ul class="tagit ui-widget ui-widget-content ui-corner-all">
@@ -20,7 +20,7 @@
       </td>
     </tr>
     <tr>
-      <td>Points:&nbsp;</td>
+      <td>Puntos:&nbsp;</td>
       <td id="points_section">
         <ul>
           <li>
@@ -77,14 +77,14 @@
       </td>
     </tr>
     <tr>
-      <td>Estimate</td>
+      <td>Estimado</td>
       <td id="estimate_section">
         <input name="estimated_minutes_0" value="0" id="id_estimated_minutes_0" type="text">:
         <input name="estimated_minutes_1" value="00" id="id_estimated_minutes_1" type="text"> (HH:MM)   
       </td>
     </tr>
     <tr>
-      <td>Assigned To:&nbsp;</td>
+      <td>Asignado a:&nbsp;</td>
       <td>
         <div class="tag_holder">
           <input style="display: none;" name="assignee" id="id_assignee" type="text">
@@ -95,37 +95,27 @@
           </ul>
         </div>
       </td>
+    </tr> 
+    <tr>
+      <td>Categoría:&nbsp;</td>
+      <td>
+        <select name="category" id="id_category">
+
+        </select>   
+        <a class="add_category_link" href="#">Agregar categoría</a>
+        <input name="category_name" class="category_name" maxlength="25" style="display:none" type="text">
+      </td>
     </tr>
     <tr>
-     <td>Epic:&nbsp;</td>
-     <td> 
-      <select name="epic" id="id_epic">
-        <option value="" selected="selected">----------</option>
-      </select>
-    </td>
-  </tr>
-  <tr>
-    <td>Category:&nbsp;</td>
-    <td>
-      <select name="category" id="id_category">
-        <option value="" selected="selected">----------</option>
-        <option value="None">None</option>
-        <option value=""></option>
-      </select>   
-      <a class="add_category_link" href="#">Add Category</a>
-      <input name="category_name" class="category_name" maxlength="25" style="display:none" type="text">
-    </td>
-  </tr>
-  <tr>
-    <td>Iteration:&nbsp;</td>
-    <td>
-      <select name="iteration" id="id_iteration">
-        <option value="107046">KTaxy / Backlog</option>
-        <option value="107047">KTaxy / Sprint 1</option>
-        <option value="117986" selected="selected">KTaxy / adsfasdf</option>
-      </select>
-    </td>
-  </tr>
-</tbody>
+      <td>Iteración:&nbsp;</td>
+      <td>
+        <select name="iteration" id="id_iteration">
+          @foreach ($iterations as $iteration)
+            <option value="{{ $iteration->id }}">{{ $project->name }} / {{$iteration->name}} </option>
+          @endforeach
+        </select>
+      </td>
+    </tr>
+  </tbody>
 </table>
 </div>

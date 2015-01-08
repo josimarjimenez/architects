@@ -52,12 +52,21 @@
     		<form method="POST" id="addStoryForm">
     			<textarea id="id_summary" rows="1" cols="50" name="summary" maxlength="5000"></textarea>
     			 <button id="add_button" type="submit" class="btn">Agregar historia</button>
+    			 <div class="iteration-app">
+    		@include('layouts.issue.form')
+    	</div>
     		</form>
     	</div>
     	<img src="https://d11uy15xvlvge3.cloudfront.net/static/v105/scrumdo/images/ajax-loader.gif" id="loadingIcon">
     	<h1>Historia</h1>
-    	<div class="iteration-app">
-    		
-    	</div>
+    	
     </div>
 </div>
+<script type="text/javascript">
+
+	$(document).ready(function() { 
+		$("#id_summary").keypress(function() { 
+			$("#story_details").show( "slow" );
+		});	
+	});
+</script>

@@ -11,10 +11,13 @@ class IterationsController extends BaseController {
    
     	try {
 			$iteration = Iterations::findOrFail($id); 
-
+			$iterations = Iterations::where('projectid','=', $iteration->projectid)->get();
+			$project = Project::findOrFail($iteration->projectid);
 
 			$this->layout->content = View::make('layouts.iterations.show')
 								->with('iteration', $iteration)
+								->with('iterations', $iterations)
+								->with('project', $project)
 								->with('message', 'Iteracion creada con éxito');
 		}catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) { 
 			 

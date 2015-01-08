@@ -15,6 +15,7 @@ class UsersController extends BaseController {
 
 	//POST users/create
 	public function postCreate() { 
+ 
 		$validator = Validator::make(Input::all(), User::$rules);
 
 		if ($validator->passes()) {
