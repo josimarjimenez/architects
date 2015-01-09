@@ -104,12 +104,11 @@ $(document).ready(function() {
      if(summary == '' && detail == ''){
        return false;
      }
-
      return true;
   });
 
-});
 
- 
+
+});
 
 </script>

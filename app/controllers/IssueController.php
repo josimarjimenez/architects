@@ -31,9 +31,8 @@ class IssueController extends BaseController {
 
 	//save mew
 	public function store(){
-		die();
-		 
-		 $validator = Validator::make(Input::all(), Issue::$rules);
+		
+		$validator = Validator::make(Input::all(), Issue::$rules);
 
 		// if($validator->passes()){
 		 	$issue = new Issue;
