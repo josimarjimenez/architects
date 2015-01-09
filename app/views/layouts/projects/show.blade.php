@@ -21,7 +21,7 @@
 	<br><br>
 		@if($iterations < 1)
 			{{ Form::open(array('url' => 'iterations/create', 'method'=>'GET','class' => 'pull-right')) }}
-				{{ Form::text('projectid', $project->id) }}
+				{{ Form::hidden('projectid', $project->id) }}
 				{{ Form::submit('Nueva iteración', array('class' => 'button green large')) }}
 			{{ Form::close() }}
 		@else

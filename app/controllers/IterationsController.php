@@ -11,10 +11,13 @@ class IterationsController extends BaseController {
    
     	try {
 			$iteration = Iterations::findOrFail($id); 
-
+			$iterations = Iterations::where('projectid','=', $iteration->projectid)->get();
+			$project = Project::findOrFail($iteration->projectid);
 
 			$this->layout->content = View::make('layouts.iterations.show')
 								->with('iteration', $iteration)
+								->with('iterations', $iterations)
+								->with('project', $project)
 								->with('message', 'Iteracion creada con éxito');
 		}catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) { 
 			 
@@ -35,17 +38,29 @@ class IterationsController extends BaseController {
 
 	//save mew
 	public function store(){
+		
+		$validator = Validator::make(input::all(), Iterations::$rules);
 
-		$iterations = new Iterations;
-		$iterations->name = Input::get('name'); 
-		$iterations->start = Input::get('start'); 
-		$iterations->end = Input::get('end');   
-		$iterations->realBudget = Input::get('realBudget');  
-		$iterations->projectid = Input::get('projectid'); 
-		$iterations->save();
+		if($validator->passes()){
+			$iterations = new Iterations;
+			$iterations->name = Input::get('name'); 
+			$iterations->start = Input::get('start'); 
+			$iterations->end = Input::get('end');   
+			$iterations->realBudget = Input::get('realBudget');  
+			$iterations->projectid = Input::get('projectid'); 
+			$iterations->save();
 
-		return Redirect::to('/iterations/'.$iterations->id)
-			->with('message', 'Registro creado con exito'); 
+			$organization = app('organization');
+			return Redirect::to('organization/name/'.$organization->auxName.'/iterations')
+			->with('message', 'Iteracion creada con exito'); 
+			
+		}else{
+			return Redirect::to('iterations/create')
+			->with('message', 'Ocurrieron los siguientes errores')
+			->withErrors($validator)
+			->withInput();
+		}
+		
 	}
 
 	public function edit($id){

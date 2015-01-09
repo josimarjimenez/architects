@@ -31,27 +31,42 @@ class IssueController extends BaseController {
 
 	//save mew
 	public function store(){
-		$validator = Validator::make(Input::all(), Project::$rules);
+		 
+		 $validator = Validator::make(input::all(), Issue::$rules);
 
-		if ($validator->passes()) { 
+		 if($validator->passes()){
+		 	$issue = new Issue;
+			$issue->summary = Input::get('summary'); 
+			$issue->detail = Input::get('detail'); 
+			$issue->budget = 0.0;   
+			$issue->currentState = "TO-DO";  
+			$issue->points = Input::get('points'); 
+			$issue->labels = Input::get('labels'); 
+			$issue->iterationid = Input::get('iterationid'); 
 
-			$project = new Project;
-			$project->name = Input::get('name'); 
-			$project->startDate = Input::get('startDate'); 
-			$project->endDate = Input::get('endDate');   
-			$project->budgetEstimated = Input::get('budgetEstimated');  
-			$project->organizationid = Input::get('organizationid'); 
-			$project->save();
+				$categoryId = Input::get('categoryid');
+				if($categoryId == 0 ){
+					//crear categoria 
+					$category = new Category;
+					$category->name = Input::get('category_name');
+					$category->save();
+					$issue->categoryid = $category->id;
+				}else{
+					$issue->categoryid = $categoryId;
+				}
 
-			$organization = app('organization');
-			return Redirect::to('organization/name/'.$organization->auxName.'/projects')
-			->with('message', 'Registro creado con exito'); 
-		}else{
-			return Redirect::to('projects/create')
-			->with('message', 'Ocurrieron los siguientes errores')
-			->withErrors($validator)
-			->withInput();   	
-		}
+				$issue->save();
+ 					return Redirect::to('/iterations/'.$issue->iterationid)
+						->with('message', 'Historia creada con exito');	
+			}else{
+				return Redirect::to('issue/create')
+				->with('message', 'Ocurrieron los siguientes errores')
+				->withErrors($validator)
+				->withInput();
+			}
+
+ 			  
+		 
 	}
 
 	public function edit($id){
