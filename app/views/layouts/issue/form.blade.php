@@ -96,3 +96,20 @@
   </tbody>
 </table>
 </div>
+<script type="text/javascript">
+$(document).ready(function() { 
+  $('#addStoryForm').submit(function(event){  
+     var summary = $('#summary').val();
+     var detail = $('#detail').val();
+     if(summary == '' && detail == ''){
+       return false;
+     }
+
+     return true;
+  });
+
+});
+
+ 
+
+</script>
