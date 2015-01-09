@@ -13,10 +13,15 @@ class IterationsController extends BaseController {
 			$iteration = Iterations::findOrFail($id); 
 			$iterations = Iterations::where('projectid','=', $iteration->projectid)->get();
 			$project = Project::findOrFail($iteration->projectid);
-
+			$issues = Issue::where('iterationid','=', $id)->get();  
+			$countIssues = sizeof($issues);
+			$totalPoints = $issues->sum('points'); 
 			$this->layout->content = View::make('layouts.iterations.show')
 								->with('iteration', $iteration)
 								->with('iterations', $iterations)
+								->with('issues', $issues)
+								->with('countIssues', $countIssues)
+								->with('totalPoints', $totalPoints)
 								->with('project', $project)
 								->with('message', 'Iteracion creada con éxito');
 		}catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) { 
@@ -51,11 +56,11 @@ class IterationsController extends BaseController {
 			$iterations->save();
 
 			$organization = app('organization');
-			return Redirect::to('organization/name/'.$organization->auxName.'/iterations')
+			return Redirect::to('/iterations/'.$iterations->id)
 			->with('message', 'Iteracion creada con exito'); 
 			
 		}else{
-			return Redirect::to('iterations/create')
+			return Redirect::to('iterations/create?projectid='.Input::get('projectid'))
 			->with('message', 'Ocurrieron los siguientes errores')
 			->withErrors($validator)
 			->withInput();
