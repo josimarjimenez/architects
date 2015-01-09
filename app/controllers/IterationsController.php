@@ -39,7 +39,7 @@ class IterationsController extends BaseController {
 	//save mew
 	public function store(){
 		
-		$validator = Validator::make(input::all(), Iterations::$rules);
+		$validator = Validator::make(Input::all(), Iterations::$rules);
 
 		if($validator->passes()){
 			$iterations = new Iterations;
