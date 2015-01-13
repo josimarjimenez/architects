@@ -107,7 +107,15 @@ $(document).ready(function() {
      return true;
   });
 
-
+$(points_section).ready(function()){
+  $('#points_section').submit(function (){
+    var radio = $('#radio').val();
+    if(radio == '') {
+      return false;
+    }
+      return true;
+  });
+}
 
 });
 
