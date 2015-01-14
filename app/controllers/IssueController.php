@@ -31,14 +31,14 @@ class IssueController extends BaseController {
 
 	//save mew
 	public function store(){
-		 
-		 $validator = Validator::make(input::all(), Issue::$rules);
+		
+		$validator = Validator::make(Input::all(), Issue::$rules);
 
-		 if($validator->passes()){
+		// if($validator->passes()){
 		 	$issue = new Issue;
 			$issue->summary = Input::get('summary'); 
 			$issue->detail = Input::get('detail'); 
-			$issue->budget = 0.0;   
+			$issue->budget = 0.0;  	 
 			$issue->currentState = "TO-DO";  
 			$issue->points = Input::get('points'); 
 			$issue->labels = Input::get('labels'); 
@@ -58,13 +58,14 @@ class IssueController extends BaseController {
 				$issue->save();
  					return Redirect::to('/iterations/'.$issue->iterationid)
 						->with('message', 'Historia creada con exito');	
+			/*
 			}else{
 				return Redirect::to('issue/create')
 				->with('message', 'Ocurrieron los siguientes errores')
 				->withErrors($validator)
 				->withInput();
 			}
-
+*/
  			  
 		 
 	}

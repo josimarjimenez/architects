@@ -17,7 +17,7 @@ class MaterialsController extends BaseController {
 
 	public function store(){ 
 	
-		$validator = Validator::make(input::all(), Material::$rules);
+		$validator = Validator::make(Input::all(), Material::$rules);
 
 		if($validator->passes()){
 			$material = new Material;
@@ -33,7 +33,7 @@ class MaterialsController extends BaseController {
 								->with('message', "Material ingresado con exito");
 		}else{
 			return Redirect::to('materials/create');
-			>with('message', 'Ocurrieron los siguientes errores')
+			->with('message', 'Ocurrieron los siguientes errores')
 			->withErrors($validator)
 			->withInput();
 		}

@@ -11,12 +11,9 @@ class Iterations extends Eloquent{
 	use UserTrait, RemindableTrait;
 	public static $rules = array(
 	    'name'=>'required|alpha_spaces|min:2', 
-	    'start'=>'required|alpha_spaces|min:2',
-	    'end'=>'required|alpha_spaces|min:2',
-	    'realBudget'=>'required|alpha_spaces|min:2',
-	    'projectid'=>'required|alpha_spaces|min:2',
-	    'startDate'=>'date', 
-	    'endDate'=>'date'
+	    'start'=>'required',
+	    'end'=>'required',
+	    'projectid'=>'required'
 	);
  
 	public function projects() {

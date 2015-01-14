@@ -7059,3 +7059,110 @@ ul.tagit input[type="text"] {
 #id_estimated_minutes_0 {
     text-align: right;
 }
+.gripper-status-1 {
+    border-left: 6px solid #444;
+}
+.story-shared, .single-story-block, .superboard-story {
+    background-color: #ffffff;
+    border-radius: 4px;
+    position: relative;
+    z-index: 20;
+}
+.story_block, .story_small {
+    cursor: move;
+    list-style-type: none;
+    margin: 0 0 5px;
+    min-height: 33px;
+    padding: 0;
+    position: relative;
+}
+.story-checkbox-holder {
+    display: none;
+    position: relative;
+}
+.story_block, .story_small {
+    cursor: move;
+    list-style-type: none;
+}
+.story-border {
+    border-bottom: 1px solid #e1e1e1;
+    border-right: 1px solid #e1e1e1;
+    border-top: 1px solid #e1e1e1;
+    min-height: inherit;
+    padding: 0 3px 3px 8px;
+}
+.block_story_body {
+    cursor: default;
+}
+.story-shared .story-content, .single-story-block .story-content, .superboard-story .story-content {
+    max-height: 446px;
+    overflow: hidden;
+}
+.block_story_body {
+    cursor: default;
+}
+.superboard-story .story-icons {
+    float: right;
+    margin-left: 2px;
+    margin-right: 3px;
+    opacity: 0.15;
+}
+.superboard-story .story-icons a {
+    color: #000;
+}
+a {
+    color: #0088cc;
+    text-decoration: none;
+}
+.icon-share:before {
+    content: "";
+} 
+.superboard-story h1 {
+    font-size: 14px;
+    line-height: 16px;
+}
+.story_block h1 {
+    font-size: 16px;
+    line-height: 18px;
+    margin: 2px 3px 7px 0;
+}
+.formatted_story_text .story_number {
+    display: inline;
+    float: left;
+    margin-right: 5px;
+}
+.formatted_story_text p {
+    margin: 0;
+}
+.story-shared .story_footer, .single-story-block .story_footer, .superboard-story .story_footer {
+    margin-right: 35px;
+    min-height: 26px;
+}
+.story-shared .story_footer a, .single-story-block .story_footer a, .superboard-story .story_footer a {
+    text-decoration: none;
+    vertical-align: middle;
+}
+.story-shared a.label-task, .single-story-block a.label-task, .superboard-story a.label-task {
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25) inset;
+    float: left;
+    font-size: 13px;
+    margin-right: 3px;
+    padding: 2px 8px;
+    vertical-align: middle;
+}
+.status-background-1 {
+    background-color: #444;
+}
+.status-foreground-1, .status-foreground-2, .status-foreground-3, .status-foreground-4, .status-foreground-5, .status-foreground-8, .status-foreground-9, .status-foreground-10 {
+    color: #fff;
+}
+.story-shared .story_footer span, .single-story-block .story_footer span, .superboard-story .story_footer span {
+    vertical-align: middle;
+}
+.story-shared .tasks-holder, .single-story-block .tasks-holder, .superboard-story .tasks-holder {
+    vertical-align: middle;
+}
+.story-shared .story_footer span, .single-story-block .story_footer span, .superboard-story .story_footer span {
+    vertical-align: middle;
+}
