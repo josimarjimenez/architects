@@ -101,7 +101,7 @@ $(document).ready(function() {
   $('#addStoryForm').submit(function(event){  
      var summary = $('#summary').val();
      var detail = $('#detail').val();
-     if(summary == '' && detail == ''){
+     if(summary == '' && detail == '' ){
        return false;
      }
 
