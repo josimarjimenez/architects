@@ -12,6 +12,7 @@
   {{ HTML::style('css/todo.css')}}
   {{ HTML::script('packages/js/todo.js') }}
   {{ HTML::script('packages/bootstrap/js/bootstrap-datepicker.js') }}
+  {{ HTML::script('packages/bootstrap/js/bootstrap-modal.js') }}
 </head>
 <body>
   <div class="navbar navbar-fixed-top">
