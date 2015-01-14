@@ -104,12 +104,19 @@ $(document).ready(function() {
      if(summary == '' && detail == '' ){
        return false;
      }
-
      return true;
   });
 
-});
+$(points_section).ready(function()){
+  $('#points_section').submit(function (){
+    var radio = $('#radio').val();
+    if(radio == '') {
+      return false;
+    }
+      return true;
+  });
+}
 
- 
+});
 
 </script>

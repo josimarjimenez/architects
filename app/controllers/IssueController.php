@@ -31,11 +31,8 @@ class IssueController extends BaseController {
 
 	//save mew
 	public function store(){
-		
-		 
-		 $validator = Validator::make(Input::all(), Issue::$rules);
-
-		// if($validator->passes()){
+ 		$validator = Validator::make(Input::all(), Issue::$rules);
+  		// if($validator->passes()){
 		 	$issue = new Issue;
 			$issue->summary = Input::get('summary'); 
 			$issue->detail = Input::get('detail'); 
@@ -66,9 +63,7 @@ class IssueController extends BaseController {
 				->withErrors($validator)
 				->withInput();
 			}
-*/
- 			  
-		 
+*/   	 
 	}
 
 	public function edit($id){

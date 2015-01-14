@@ -17,7 +17,7 @@ class MaterialsController extends BaseController {
 
 	public function store(){ 
 	
-		$validator = Validator::make(input::all(), Material::$rules);
+		$validator = Validator::make(Input::all(), Material::$rules);
 
 		if($validator->passes()){
 			$material = new Material;
