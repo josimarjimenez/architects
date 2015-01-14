@@ -13,6 +13,7 @@ class Material extends Eloquent{
 	    'name'=>'required|alpha_spaces|min:2', 
 	    'quantity'=>'required|alpha_spaces|min:2',
 	    'value'=>'required|alpha_spaces|min:2',
+	    'projectid'=>'required'
 	    'startDate'=>'date', 
 	    'endDate'=>'date'
     );

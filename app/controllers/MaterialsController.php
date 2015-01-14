@@ -24,6 +24,7 @@ class MaterialsController extends BaseController {
 			$material->name = Input::get('name'); 
 			$material->quantity = Input::get('quantity');
 			$material->value = Input::get('value');  
+			$material->projectid = Input::get('projectid');
 			$material->organizationid = Input::get('organizationid');  
 			$material->save();
 
