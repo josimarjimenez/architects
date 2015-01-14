@@ -46,6 +46,13 @@
 				</li>
 
 				<li>
+					<a href="/taskBoard" title="Lista de materiales en la organización">
+						<i class="topmenu-icon icon-glyph icon-group"></i> 
+						Task board
+					</a>
+				</li>
+
+				<li>
 					<a href="/organization/{{ $organization->auxName }}/edit"><i class="topmenu-icon icon-glyph icon-cogs"></i> Editar organización</a>
 				</li>
 
