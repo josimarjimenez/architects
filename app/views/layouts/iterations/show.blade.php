@@ -1,3 +1,4 @@
+
 <ul id="messages">
 	<li id="message_1"><a onclick="$('#message_1').fadeOut(); return false;" href="#"><small>Limpiar</small></a>{{ $message }}</li>
 </ul>
@@ -93,7 +94,7 @@
 					</a>
 					<span class="tasks-holder">
 						<span>
-							<a class="open-tasks-link show_tasks_link" href="#">
+							<a class="open-tasks-link show_tasks_link" href="#myModal" onclick="mostrarTaskboard({{ $issue->id }})">
 								Tareas
 							</a>
 						</span>
@@ -110,6 +111,15 @@
 	</ul>
 </div>
 </div>
+
+     <div class="modal" id="myModal" style="margin-top: 0px; width: 1340px; margin-left: -670px; height: 496px;">
+	    @include('layouts.task.taskboard')
+    </div> 
+     <div class="modal" id="taskForm" style="margin-top: 0px; width: 600px; margin-left: -300px; height: 358px;">
+	    @include('layouts.task.form')
+    </div>
+ 
+
 <script type="text/javascript">
 
 $(document).ready(function() { 
@@ -122,5 +132,27 @@ $(document).ready(function() {
 		$("#categoryid").css( "display","none" );
 		$(".category_name").css( "display","block" ); 
 	});
+
+    //ajax task form 
+    
 });
+
+	
+  function mostrarTaskboard(id){
+  	$("#myModal").modal({ // wire up the actual modal functionality and show the dialog
+    	"backdrop" : "static",
+    	"keyboard" : true,
+    	"show" : true // ensure the modal is shown immediately
+  	}); 
+  }
+
+  function mostrarTaskForm(){
+  	$("#taskForm").modal({ // wire up the actual modal functionality and show the dialog
+    	"backdrop" : "static",
+    	"keyboard" : true,
+    	"show" : true // ensure the modal is shown immediately
+  	}); 
+  }
+
+  
 </script>

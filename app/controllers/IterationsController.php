@@ -15,17 +15,20 @@ class IterationsController extends BaseController {
 			$project = Project::findOrFail($iteration->projectid);
 			$issues = Issue::where('iterationid','=', $id)->get();  
 			$countIssues = sizeof($issues);
+			$categories = Category::all();
+			$idCategory = 0;
 			$totalPoints = $issues->sum('points'); 
 			$this->layout->content = View::make('layouts.iterations.show')
 								->with('iteration', $iteration)
 								->with('iterations', $iterations)
 								->with('issues', $issues)
+								->with('categories', $categories)
+								->with('idCategory', $idCategory)
 								->with('countIssues', $countIssues)
 								->with('totalPoints', $totalPoints)
 								->with('project', $project)
 								->with('message', 'Iteracion creada con éxito');
 		}catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) { 
-			 
 		    return Redirect::to('/projects/')
 			->with('message', 'Error al crear la iteración');
 		}

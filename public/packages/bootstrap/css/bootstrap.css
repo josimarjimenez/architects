@@ -5939,10 +5939,11 @@ body.modal-open, .modal-open .navbar-fixed-top, .modal-open .navbar-fixed-bottom
     width: device-width
 }
 
+/*
 .hidden {
     display: none !important;
     visibility: hidden !important
-}
+}*/
 
 .visible-xs, tr.visible-xs, th.visible-xs, td.visible-xs {
     display: none !important
@@ -7165,4 +7166,69 @@ a {
 }
 .story-shared .story_footer span, .single-story-block .story_footer span, .superboard-story .story_footer span {
     vertical-align: middle;
+}
+
+.task-window .tasks-header-table th, .task-window .tasks-table th {
+    color: #ffffff;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+}
+.task-window .tasks-header-table td, .task-window .tasks-header-table th, .task-window .tasks-header-table col, .task-window .tasks-table td, .task-window .tasks-table th, .task-window .tasks-table col {
+    width: 200px;
+}
+.status-bg-z-0, .status-bg-1 {
+    background-color: #444;
+}
+.status-bg-z-3, .status-bg-4 {
+    background-color: #448cca;
+}
+.status-bg-z-9, .status-bg-10 {
+    background-color: #8dc73e;
+}
+.task-window .tasks-header-table, .task-window .tasks-table {
+    background-color: #ffffff;
+    margin-bottom: 10px;
+    table-layout: fixed;
+    width: 100%;
+}
+.task-window .tasks-table-header-holder {
+    background-color: #ffffff;
+    margin-bottom: 0;
+    max-height: 445px;
+    width: 100%;
+}
+.task-window .tasks-table-holder {
+    background-color: #ffffff;
+    margin-top: 0;
+    min-height: 300px;
+    width: 100%;
+}
+.task-window .tasks-header-table td, .task-window .tasks-table td {
+    vertical-align: top;
+}
+.task-window .tasks-header-table .task-popup-list, .task-window .tasks-table .task-popup-list {
+    border-right: 1px dotted #ccc;
+    margin-left: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 0;
+    vertical-align: top;
+}
+.modal-body {
+    max-height: none;
+    overflow: visible;
+}
+
+.modal-open.page-overflow .page-container, .modal-open.page-overflow .page-container .navbar-fixed-top, .modal-open.page-overflow .page-container .navbar-fixed-bottom, .modal-open.page-overflow .modal-scrollable {
+    overflow-y: scroll;
+}
+
+.modal-scrollable {
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    position: fixed;
+    right: 0;
+    top: 0;
 }

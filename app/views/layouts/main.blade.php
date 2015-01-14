@@ -10,6 +10,7 @@
   {{ HTML::style('css/main.css')}}
   {{ HTML::script('packages/js/jquery-2.1.1.js') }}
   {{ HTML::script('packages/bootstrap/js/bootstrap-datepicker.js') }}
+  {{ HTML::script('packages/bootstrap/js/bootstrap-modal.js') }}
 </head>
 <body>
   <div class="navbar navbar-fixed-top">

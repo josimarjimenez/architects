@@ -26,6 +26,7 @@ class IssueController extends BaseController {
 	public function create(){  
 		$this->layout->content = View::make('layouts.issue.form')
 		->with('project', app('project')) 
+		->with('idCategory', 0) 
 		->with('type',  'new');
 	}
 
