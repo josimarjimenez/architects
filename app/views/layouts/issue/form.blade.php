@@ -78,6 +78,13 @@
       <td>
         <select name="categoryid" id="categoryid">
           <option value="0">----</option>
+          @foreach ($categories as $category)
+            @if($category->id == $idCategory)
+              <option value="{{ $category->id }}" selected>{{ $category->name }} </option>
+            @else
+              <option value="{{ $category->id }}" >{{ $category->name }} </option>
+            @endif
+          @endforeach
         </select>   
         <a class="add_category_link" href="#">Agregar categoría</a>
         <input name="category_name" class="category_name" maxlength="25" style="display:none" type="text">
@@ -101,22 +108,12 @@ $(document).ready(function() {
   $('#addStoryForm').submit(function(event){  
      var summary = $('#summary').val();
      var detail = $('#detail').val();
-     if(summary == '' && detail == '' ){
+     var radio = $('input[name=points]:checked'); 
+     if(summary == '' ||  detail == '' || !radio.val()){
        return false;
      }
      return true;
-  });
-
-$(points_section).ready(function()){
-  $('#points_section').submit(function (){
-    var radio = $('#radio').val();
-    if(radio == '') {
-      return false;
-    }
-      return true;
-  });
-}
-
+  });   
 });
 
 </script>

@@ -26,13 +26,16 @@ class IssueController extends BaseController {
 	public function create(){  
 		$this->layout->content = View::make('layouts.issue.form')
 		->with('project', app('project')) 
+		->with('idCategory', 0) 
 		->with('type',  'new');
 	}
 
 	//save mew
 	public function store(){
- 		$validator = Validator::make(Input::all(), Issue::$rules);
-  		// if($validator->passes()){
+		
+		$validator = Validator::make(Input::all(), Issue::$rules);
+
+		// if($validator->passes()){
 		 	$issue = new Issue;
 			$issue->summary = Input::get('summary'); 
 			$issue->detail = Input::get('detail'); 
@@ -63,7 +66,9 @@ class IssueController extends BaseController {
 				->withErrors($validator)
 				->withInput();
 			}
-*/   	 
+*/
+ 			  
+		 
 	}
 
 	public function edit($id){
