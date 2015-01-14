@@ -32,7 +32,7 @@ class MaterialsController extends BaseController {
 								->with('organization', $organization->auxName.'/material')
 								->with('message', "Material ingresado con exito");
 		}else{
-			return Redirect::to('materials/create');
+			return Redirect::to('materials/create')
 			->with('message', 'Ocurrieron los siguientes errores')
 			->withErrors($validator)
 			->withInput();
