@@ -25,7 +25,8 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"twbs/bootstrap": "*",
-		"twitter/bootstrap": "*"
+		"twitter/bootstrap": "*",
+		"way/generators": "2.*"
 	},
 	"autoload": {
 		"classmap": [

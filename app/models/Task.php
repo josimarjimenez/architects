@@ -4,7 +4,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Task extends Eloquent{
+class Task extends Eloquent implements JsonSerializable{
 	protected $table = 'task';
 	protected $guarded = ['id', 'created_at', 'updated_at'];
 	
@@ -15,8 +15,10 @@ class Task extends Eloquent{
 	    'points'=>'required|alpha_spaces|min:2',
 	    'value'=>'required|alpha_spaces|min:2',
     );
-
-	protected $appends = array('auxName');
+ 
+	public function jsonSerialize(){
+		return $this->toArray();
+	} 
 
 	public function issue() {
 		return $this->belongsTo('Issue','issueid');

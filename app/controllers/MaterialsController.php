@@ -22,15 +22,13 @@ class MaterialsController extends BaseController {
 		if($validator->passes()){
 			$material = new Material;
 			$material->name = Input::get('name'); 
-			$material->quantity = Input::get('quantity');
 			$material->value = Input::get('value');  
 			$material->projectid = Input::get('projectid');
 			$material->organizationid = Input::get('organizationid');  
 			$material->save();
 
 			$organization = app('organization'); 
-			return Redirect::to('/materials/name')
-								->with('organization', $organization->auxName.'/material')
+			return Redirect::to('/materials/')
 								->with('message', "Material ingresado con exito");
 		}else{
 			return Redirect::to('materials/create')

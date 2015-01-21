@@ -21,15 +21,15 @@
 				<tbody>
 					<tr>			
 						<td>
-							<ul data-task-status="1" class="task-popup-list" style="height: 155px;">
+							<ul data-task-status="1" id="todo" class="task-popup-list ui-sortable" style="height: 155px;">
 							</ul>
 						</td> 	
 						<td>
-							<ul data-task-status="4" class="task-popup-list" style="height: 155px;">
+							<ul data-task-status="4" id="haciendo"  class="task-popup-list" style="height: 155px;">
 							</ul>
 						</td>	 	
 						<td>
-							<ul data-task-status="10" class="task-popup-list" >
+							<ul data-task-status="10"  id="hecho" class="task-popup-list" >
 							</ul>
 						</td>	 
 					</tr>

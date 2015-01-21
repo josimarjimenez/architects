@@ -46,6 +46,13 @@
 				</li>
 
 				<li>
+					<a href="/personalType" title="Lista de tipo depersonal en la organización">
+						<i class="topmenu-icon icon-glyph icon-group"></i> 
+						Tipo de personal 
+					</a>
+				</li>
+				
+				<li>
 					<a href="/taskBoard" title="Lista de materiales en la organización">
 						<i class="topmenu-icon icon-glyph icon-group"></i> 
 						Task board

@@ -20,12 +20,8 @@
 					{{ Form::text('name', null, array('class'=>'textInput textinput', 'placeholder'=>'Nombre del material')) }}
 				</div>
 				<div class="ctrlHolder" id="div_id_name">
-					{{ Form::label('quantity', 'Cantidad', array('class'=>'requiredField' )) }}
-					{{ Form::text('quantity', null, array('class'=>'textInput textinput', 'placeholder'=>'Cantidad')) }}
-				</div>
-				<div class="ctrlHolder" id="div_id_name">
-					{{ Form::label('value', 'Precio', array('class'=>'requiredField' )) }}
-					{{ Form::text('value', null, array('class'=>'textInput textinput', 'placeholder'=>'Precio')) }}
+					{{ Form::label('value', 'Precio unitario', array('class'=>'requiredField' )) }}
+					{{ Form::text('value', null, array('class'=>'textInput textinput', 'placeholder'=>'Precio unitario')) }}
 				</div>
 				<div class="buttonHolder">
 					{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
