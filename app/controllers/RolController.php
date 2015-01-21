@@ -16,6 +16,7 @@ class RolController extends BaseController {
 
 	//save mew
 	public function store(){
+		
 		$validator = Validator::make(Input::all(), Rol::$rules);
 
 		if ($validator->passes()) { 
