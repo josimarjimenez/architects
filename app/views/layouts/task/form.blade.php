@@ -3,7 +3,7 @@
     <h3 class="title-label">Nueva Tarea</h3>
 </div>
 <div class="modal-body edit-story-body" style="height: 218px; max-height: 218px;">
-    {{ Form::open(array('url' => 'task', 'id' => 'taskForm')) }}  
+    {{ Form::open(array('url' => 'task', 'id' => 'formularioTarea')) }}  
         <div class="control-group">
             <label for="name" class="control-label">Nombre</label>
             <div class="controls">
@@ -28,7 +28,7 @@
         <div class="control-group">
             <label for="inputEmail" class="control-label">Estimado</label>
             <div class="controls">
-              <input type="text" value="0" placeholder="00" name="hours" id="id_estimated_minutes_0">:<input type="text" value="00" name="minutes" id="id_estimated_minutes_1"> (HH:MM)
+              <input type="text" value="0" placeholder="00" name="test" id="test">
             </div>
         </div>
 
@@ -41,43 +41,67 @@
               </select>
             </div>
         </div>
+        <input type="hidden" name="issueid" id="issueid" value="">
         <div class="modal-footer">
-    <a class="btn hide track-time-button pull-left" href="/projects/enter_time/wuto-loja?task=" target="_blank">Track Time</a>    
-    <a class="btn btn-success hide add-another-button" href="#" style="display: inline-block;">Save &amp; Add Another</a>    
-     {{ Form::submit('Guardar', array('class' => 'button expand round')) }}   
-</div>
+            <a class="btn hide track-time-button pull-left" href="/projects/enter_time/wuto-loja?task=" target="_blank">Track Time</a>    
+            <a class="btn btn-success hide add-another-button" href="#" style="display: inline-block;">Save &amp; Add Another</a>    
+        {{ Form::submit('Guardar', array('class' => 'button expand round')) }}   
+    </div>
    {{ Form::close() }}
 </div>
 
 <script type="text/javascript">
 	$(document).ready(function() { 
-		var form = $('#taskForm'); 
-        form.bind('submit',function () {
+
+        $( "#formularioTarea" ).submit(function( event ) { 
+            event.preventDefault(); 
+
             $.ajax({
-                type: form.attr('method'),
-                url: form.attr('action'),
-                data: form.serialize(),
+                type: 'POST',
+                url:  $(this).attr('action'),
+                data: $(this).serialize(),
                 beforeSend: function(){
-                    $('.before').append('<img src="images/loading.gif" />');
+                    //$('.before').append('<img src="images/loading.gif" />');
                 },
-                complete: function(data){
-                    
+
+                complete: function(data){ 
                 },
+
                 success: function (data) {
                     $('.before').hide();
                     $('.errors_form').html('');
                     $('.success_message').hide().html(''); 
-                    /*
+                    
                     if(data.success == false){
                         var errores = '';
                         for(datos in data.errors){
                             errores += '<small class="error">' + data.errors[datos] + '</small>';
                         }
                         $('.errors_form').html(errores)
+                    
                     }else{
-                        $(form)[0].reset();//limpiamos el formulario
-                        $('.success_message').show().html(data.message)
-                    }*/
+                        var task = data.task; 
+                        //fijar en la parte de atras la tarea
+                        var li = '<li class="task-view" data-task-id="'+task.id+'">';
+                        li += '<span class="task-toolbar">';
+                            li += '<a href="#" class="edit-link">';
+                                li +='<i class="icon-glyph icon-edit" title="Editar tarea"></i>';
+                            li += '</a>';
+                            li += '<a href="#" class="delete-link">';
+                                li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
+                            li += '</a>';
+                        li += '</span>';
+                        li += task.name+'<br >';
+                        li += task.summary;
+                        li += '<b> ('+task.userid+')</b>';
+                        li += '</li>';
+
+                    
+                        $('#todo').append(li);
+                        $( "#formularioTarea" )[0].reset();
+                        //limpiamos el formulario
+                        $('.success_message').show().html(data.message);
+                    } 
                 },
                 error: function(errors){
                     $('.before').hide();

@@ -27,3 +27,38 @@ Route::group(array('before' => 'auth'), function()
  
 Route::controller('users', 'UsersController');
 Route::get('/', 'UsersController@getLogin');
+
+Route::post('task', function(){ 
+	if(Request::ajax()){ 
+		$task = new Task; 
+		$task->name = Input::get("name");
+		$task->summary = Input::get("summary");
+		//$task->points  = Input::get("points");
+		$task->points  = 1;
+		$task->timeEstimated = Input::get("test");
+		$task->timeRemaining = Input::get("test");
+		$task->scrumid = 1; //estado todo ...quemado por código
+		$task->issueid = Input::get("issueid"); 
+		$task->save();
+		if($task){  
+			return Response::json(array(
+                    'success' => true,
+                    'message' => 'Tarea registrada',
+                    'task' =>  $task
+            ));
+		}else{
+			 return Response::json(array(
+                'success' => false,
+                'errors' => 'Error al grabar'
+            )); 
+		}
+	}
+});
+
+Route::get('tareas/taskAll', function(){ 
+	if(Request::ajax()){ 
+		$id = Input::get("id");
+		$tasks = Task::where('issueid','=', $id)->get();
+		return Response::json(array('tasks'=>$tasks));
+	}
+});

@@ -7232,3 +7232,33 @@ a {
     right: 0;
     top: 0;
 }
+.task-window .tasks-header-table .task-popup-list li, .task-window .tasks-table .task-popup-list li {
+    list-style: outside none none;
+}
+.task-window .tasks-header-table .task-view, .task-window .tasks-table .task-view {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #aaaaaa;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px 1px 1px 8px;
+    display: block;
+    margin: 3px;
+    min-height: 30px;
+    padding: 3px;
+}
+
+.task-window .tasks-header-table .task-popup-list li, .task-window .tasks-table .task-popup-list li {
+    list-style: outside none none;
+}
+
+.task-window .tasks-header-table .task-view .delete-link, .task-window .tasks-header-table .task-view .edit-link, .task-window .tasks-table .task-view .delete-link, .task-window .tasks-table .task-view .edit-link {
+    float: right;
+}
+
+.task-window ul a {
+    color: #0088cc;
+    text-decoration: none;
+}
