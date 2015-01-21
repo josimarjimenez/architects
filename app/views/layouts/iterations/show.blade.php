@@ -111,17 +111,13 @@
 	</ul>
 </div>
 </div>
-
-     <div class="modal" id="myModal" style="margin-top: 0px; width: 1340px; margin-left: -670px; height: 496px;">
-	    @include('layouts.task.taskboard')
-    </div> 
-     <div class="modal" id="taskForm" style="margin-top: 0px; width: 600px; margin-left: -300px; height: 358px;">
-	    @include('layouts.task.form')
-    </div>
- 
-
+<div class="modal" id="myModal" style="margin-top: 0px; width: 1340px; margin-left: -670px; height: 496px;">
+	@include('layouts.task.taskboard')
+</div> 
+<div class="modal" id="taskForm" style="margin-top: 0px; width: 600px; margin-left: -300px; height: 358px;">
+	@include('layouts.task.form')
+</div>
 <script type="text/javascript">
-
 $(document).ready(function() { 
 	$("#summary").keypress(function() { 
 		$("#story_details").show( "slow" );
@@ -132,27 +128,81 @@ $(document).ready(function() {
 		$("#categoryid").css( "display","none" );
 		$(".category_name").css( "display","block" ); 
 	});
-
-    //ajax task form 
-    
 });
 
-	
-  function mostrarTaskboard(id){
-  	$("#myModal").modal({ // wire up the actual modal functionality and show the dialog
-    	"backdrop" : "static",
-    	"keyboard" : true,
-    	"show" : true // ensure the modal is shown immediately
-  	}); 
-  }
 
-  function mostrarTaskForm(){
-  	$("#taskForm").modal({ // wire up the actual modal functionality and show the dialog
-    	"backdrop" : "static",
-    	"keyboard" : true,
-    	"show" : true // ensure the modal is shown immediately
-  	}); 
-  }
+function mostrarTaskboard(id){
+	  	$("#myModal").modal({
+	  		// wire up the actual modal functionality and show the dialog
+	  		"backdrop" : "static",
+	  		"keyboard" : true,
+	    	"show" : true 
+	    	// ensure the modal is shown immediately
+	    }); 
+		
+		var li = '';
+		$.ajax({
+            type: 'GET',
+            url:  'http://localhost:8000/tareas/taskAll',
+            data: 'id='+id,
 
-  
+            success: function (data) {
+            	$('.before').hide();
+                $('.errors_form').html('');
+                $('.success_message').hide().html(''); 
+                    
+                $('#todo').empty();
+                $('#haciendo').empty();
+                $('#hecho').empty();
+
+                var tasks = data.tasks; 
+                $.each( tasks, function( key, value ) { 
+
+                	li += '<li class="task-view" data-task-id="'+value.id+'">';
+	                li += '<span class="task-toolbar">';
+	                li += '<a href="#" class="edit-link">';
+	                li += '<i class="icon-glyph icon-edit" title="Editar tarea"></i>';
+	                li += '</a>';
+	                li += '<a href="#" class="delete-link">';
+	                li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
+	                li += '</a>';
+	                li += '</span>';
+	                li += value.name+'<br >';
+	                li += value.summary;
+	                li += '<b> ('+value.userid+')</b>';
+	                li += '</li>';
+
+					switch(value.scrumid){
+						case 1:
+						//todo
+						$('#todo').append(li);    
+						break;
+						case 2:
+						//haciendo
+						$('#haciendo').append(li);    
+						break;
+						case 3:
+						//hecho
+						$('#hecho').append(li); 
+						break;
+					} 
+				});       
+            },
+            error: function(errors){
+                $('.before').hide();
+                $('.errors_form').html('');
+                $('.errors_form').html(errors);
+            }
+        });
+	  	$("#issueid").val(id);
+	  }
+
+	  function mostrarTaskForm(){
+	  	$("#taskForm").modal({ // wire up the actual modal functionality and show the dialog
+	  		"backdrop" : "static",
+	  		"keyboard" : true,
+	    	"show" : true // ensure the modal is shown immediately
+	    }); 
+	  }
+
 </script>
