@@ -4,33 +4,22 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Material extends Eloquent{
-	protected $table = 'material';
+class PersonalType extends Eloquent{
+	protected $table = 'personaltype';
 	protected $guarded = ['id', 'created_at', 'updated_at'];
 	
 	use UserTrait, RemindableTrait;
 	public static $rules = array(
 	    'name'=>'required|alpha_spaces|min:2', 
-	    'value'=>'required',
-	    'startDate'=>'date', 
-	    'endDate'=>'date'
+	    'description'=>'required|alpha_spaces|min:2',
+	    'hourCost'=>'required'
     );
 
 	protected $appends = array('auxName');
 
-	public function organization() {
-		return $this->belongsTo('Organization','organizationid');
-	}
-
-	//projects
-	public function project() {
-		return $this->hasMany('Project','materialid');
-	}
-
 	//used
 	public function used(){
-		return $this->belongsToMany('Used', 'materialid');
+		return $this->belongsToMany('Assigned', 'materialid');
 	}
-
 }
 ?>

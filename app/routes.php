@@ -22,6 +22,7 @@ Route::group(array('before' => 'auth'), function()
 	Route::resource('issue', 'IssueController');
 	Route::resource('iterations', 'IterationsController');
 	Route::resource('task', 'TaskController');
+	Route::resource('personalType', 'PersonalTypeController');
 });
  
 Route::controller('users', 'UsersController');

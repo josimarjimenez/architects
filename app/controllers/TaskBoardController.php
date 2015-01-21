@@ -8,6 +8,72 @@ class TaskBoardController extends BaseController {
 	}
 
 
+public function getMembers($name){
+		$organization = app('organization');
+		$users = User::all();
+		$this->layout->content = View::make('layouts.users.users')
+								->with('organization', $organization)
+								->with('users', $users);
+
+	}
+
+	public function tasks($project_id){
+       
+		$organization = app('organization');
+        // Load tasks
+        $tasks = Task::all();
+      
+
+        foreach ($tasks as $task) {
+        	echo $task['name'];
+        	/*
+            if ($task['status'] == 0) {
+                $data['stories'][] = $task;
+            } elseif ($task['status'] == 1) {
+                $data['tasks'][] = $task;
+            } elseif ($task['status'] == 2) {
+                $data['tests'][] = $task;
+            } elseif ($task['status'] == 3) {
+                $data['done'][] = $task;
+            }
+            */
+        }
+        /*
+        foreach ($tasks as $task) {
+            if ($task['status'] == 0) {
+                $data['stories'][] = $task;
+            } elseif ($task['status'] == 1) {
+                $data['tasks'][] = $task;
+            } elseif ($task['status'] == 2) {
+                $data['tests'][] = $task;
+            } elseif ($task['status'] == 3) {
+                $data['done'][] = $task;
+            }
+        }
+	*/
+        // Load project info
+       
+       /* $this->load->model('project_model');
+        $project = $this->project_model->get($project_id);
+        
+        $this->title = "Project: {$project['name']}";
+        $this->menu = 'dashboard|edit_project|new_task';
+        
+        $data['project_id']    = $project_id;
+        
+        $data['current_user'] = $this->session->userdata('user');
+        
+        $db_users = $this->project_model->get_related_users($project_id);
+        $users = array();
+        foreach ($db_users as $user) {
+            $users[$user['id']] = $user;
+        }
+        $data['users'] = $users;
+        
+        $this->load->view('task_board', $data); */
+    }
+
+/*
  public function add($project)
     {
         $this->load->helper('tasks');
@@ -33,7 +99,6 @@ class TaskBoardController extends BaseController {
         $this->load->view('task_add', $data);
     }
 
-/*
     public function edit($project, $id)
     {
         $this->load->helper('tasks');
