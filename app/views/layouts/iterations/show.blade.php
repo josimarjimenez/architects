@@ -157,8 +157,8 @@ function mostrarTaskboard(id){
 
                 var tasks = data.tasks; 
                 $.each( tasks, function( key, value ) { 
-
-                	li += '<li class="task-view" data-task-id="'+value.id+'">';
+                	li = '';
+                	li += '<li class="task-view" id="'+value.id+'"data-task-id="'+value.id+'">';
 	                li += '<span class="task-toolbar">';
 	                li += '<a href="#" class="edit-link">';
 	                li += '<i class="icon-glyph icon-edit" title="Editar tarea"></i>';
