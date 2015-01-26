@@ -55,6 +55,14 @@ Route::post('task', function(){
 		}
 	}
 });
+//get specific task
+Route::get('tareas/getTask', function(){ 
+	if(Request::ajax()){ 
+		$id = Input::get("id");
+		$task = Task::findOrFail($id);
+		return Response::json(array('task'=>$task));
+	}
+});
 
 //get all task
 Route::get('tareas/taskAll', function(){ 

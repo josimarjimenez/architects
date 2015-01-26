@@ -18,6 +18,7 @@ class IterationsController extends BaseController {
 			$categories = Category::all();
 			$idCategory = 0;
 			$totalPoints = $issues->sum('points'); 
+			$materiales = Material::all();
 			$this->layout->content = View::make('layouts.iterations.show')
 								->with('iteration', $iteration)
 								->with('iterations', $iterations)
@@ -27,6 +28,7 @@ class IterationsController extends BaseController {
 								->with('countIssues', $countIssues)
 								->with('totalPoints', $totalPoints)
 								->with('project', $project)
+								->with('materiales', $materiales)
 								->with('message', 'Iteracion creada con éxito');
 		}catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) { 
 		    return Redirect::to('/projects/')
