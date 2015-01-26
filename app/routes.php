@@ -25,6 +25,7 @@ Route::group(array('before' => 'auth'), function()
 	Route::resource('personalType', 'PersonalTypeController');
 });
  
+Route::controller('projects', 'ProjectsController');
 Route::controller('users', 'UsersController');
 Route::get('/', 'UsersController@getLogin');
 
