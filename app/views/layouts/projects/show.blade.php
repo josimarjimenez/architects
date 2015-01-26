@@ -17,10 +17,10 @@
 				<h4>0</h4>
 			</div>
 		</div>
+		{{ HTML::link('projects/members/'.$project->id,  'Grupo de trabajo', array('class'=>"btn btn-medium btn-info")  ) }}
 	</div>
 	<br><br>
-		{{ HTML::link('projects/members/'.$project->id,  'Editar', array('class'=>"btn btn-medium btn-info")  ) }}
-		
+				
 		@if($iterations < 1)
 			{{ Form::open(array('url' => 'iterations/create', 'method'=>'GET','class' => 'pull-right')) }}
 				{{ Form::hidden('projectid', $project->id) }}
