@@ -1,7 +1,7 @@
 <?php 
 
 class TaskController  {
-	//protected $layout = "layouts.main";
+	protected $layout = "layouts.main";
 
  	public function index() {
  		 
@@ -17,7 +17,8 @@ class TaskController  {
 	}
 
 	//save mew
-	public function store(){ 	  
+	public function store(){ 	
+		//metodo no usado, se maneja por ajax las peticiones  
 		$task = new Task;
 		$task->name = Input::get("name");
 		$task->summary = Input::get("summary");
@@ -27,8 +28,7 @@ class TaskController  {
 		$task->scrumid = 1; //estado todo ...quemado por código
 		$task->issueid = Input::get("issueid"); 
 		$task->save();
-		die;
-
+		//die;
 	}
 
 	public function edit($id){
@@ -42,6 +42,13 @@ class TaskController  {
 
 	public function destroy($id){
 		 
+	}
+
+	public function showRemaining($id){
+		$task = Task::findOrFail($id);
+		$this->layout->content = View::make('layouts.task.remainingForm')
+		->with('organization', app('organization')) 
+		->with('type',  'new') ;
 	}
 }
 ?>
