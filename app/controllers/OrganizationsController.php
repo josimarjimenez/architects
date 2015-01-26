@@ -53,7 +53,9 @@ class OrganizationsController extends BaseController {
 		foreach ($organization->projects as $project) {
 			$project->nameAux = str_replace(" ",'-', $project->name);
 			$project->nameAux = $this->stripAccents($project->nameAux);
-			$project->budgetEstimated = money_format('%(#10n',  $project->budgetEstimated);
+			$project->budgetEstimated = $this->asDollars($project->budgetEstimated);
+			//$pricetotal = asDollars($pricetotal);
+			//$project->budgetEstimated = money_format('%(#10n',  $project->budgetEstimated);
 		}
 		
 		$this->layout->content = View::make('layouts.organizations.projects')
@@ -78,6 +80,10 @@ class OrganizationsController extends BaseController {
 	**/
 	private function stripAccents($str) {
     	return strtr(utf8_decode($str), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
+	}
+
+	private function asDollars($value) {
+  		return '$' . number_format($value, 2);
 	}
 }
 ?>

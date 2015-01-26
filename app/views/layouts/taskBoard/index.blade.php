@@ -2,7 +2,7 @@
 	         <div id="header"> To Do List </div>
 
             <div class="task-list task-container" id="pending">
-                <h3>Pending</h3>
+                <h3>Pendiente</h3>
                 <!--<div class="todo-task">
                     <div class="task-header">Sample Header</div>
                     <div class="task-date">25/06/1992</div>
@@ -11,15 +11,15 @@
             </div>
 
             <div class="task-list task-container" id="inProgress">
-                <h3>In Progress</h3>
+                <h3>En progreso</h3>
             </div>
 
             <div class="task-list task-container" id="completed">
-                <h3>Completed</h3>
+                <h3>Completado</h3>
             </div>
 
             <div class="task-list">
-                <h3>Add a task</h3>
+                <h3>Agregar nueva tarea</h3>
                 <form id="todo-form">
                     <input type="text" placeholder="Title" />
                     <textarea placeholder="Description"></textarea>
@@ -30,7 +30,7 @@
                 <input type="button" class="btn btn-primary" value="Clear Data" onclick="todo.clear();" />
 
                 <div id="delete-div">
-                    Drag Here to Delete
+                    Mover aqui para borrar
                 </div>
             </div>
 
