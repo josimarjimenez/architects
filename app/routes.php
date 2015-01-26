@@ -73,7 +73,7 @@ Route::get('tareas/taskAll', function(){
 	}
 });
 
-//udpate task
+//udpate STATE task
 Route::get('tareas/updateTaks', function(){ 
 	if(Request::ajax()){ 
 		$id = Input::get("id");
@@ -93,5 +93,27 @@ Route::get('tareas/updateTaks', function(){
 		}
 		$task->save();
 		return Response::json(array('succes'=>'1'));
+	}
+});
+
+Route::post('tareas/editTask', function(){ 
+	if(Request::ajax()){ 
+		$id = Input::get("id");
+		$task = Task::findOrFail($id);
+		$task->name = Input::get("name"); 
+		$task->summary = Input::get("summary");
+		$task->points = Input::get("tags");
+		$task->timeEstimated = Input::get("timeEstimated");
+		$task->save();
+		$issue = Issue::findOrFail($task->issueid);
+		$iteration = Iterations::findOrFail($issue->iterationid);
+		$project = Project::findOrFail($iteration->projectid);
+		$totalSpent = Input::get("total");
+		$iteration->summaryBudgets = $iteration->summaryBudgets + $totalSpent;
+		$iteration->save();
+
+		$project->budgetSummary = $project->budgetSummary +$totalSpent;
+		$project->save();
+		return Response::json(array('succes'=>'1', 'gastadoIteracion'=>$iteration->summaryBudgets, 'gastadoProyecto'=>$project->budgetSummary));
 	}
 });

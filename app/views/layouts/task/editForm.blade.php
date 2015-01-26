@@ -3,7 +3,7 @@
     <h3 class="title-label">Tarea</h3>
 </div>
 <div class="modal-body edit-story-body" style="height: 218px; max-height: 218px;">
-    <form action="task.update" id="editFormTask">
+    <form action="http://localhost:8000/tareas/editTask" id="editFormTask" >
         <div class="control-group">
             <label for="name" class="control-label">Nombre</label>
             <div class="controls">
@@ -55,21 +55,21 @@
                 </tr>
             </table>
         </div>
-        
+        <input type="hidden" value="0" name="total" id="total">
         <div class="modal-footer">
-            <a class="btn track-time-button pull-left" href="/projects/enter_time/wuto-loja?task=" target="_blank">Tiempo gastado</a>
+           <!-- <a class="btn track-time-button pull-left" href="/projects/enter_time/wuto-loja?task=" target="_blank">Tiempo gastado</a> -->
         {{ Form::submit('Guardar', array('class' => 'button expand round')) }}   
     </div>
    </form>
 </div>
 <div class="modal" id="chooseMaterial" style="margin-top: 0px; width: 600px; margin-left: -300px; height: 358px;">
     @include('layouts.materials.choose')
-    <a href="#" onclick="cerrarChoose()">Cerrar</a>
+    <a href="#" onclick="cerrarChoose()" class="btn">Cerrar</a>
 </div>
 
 <script type="text/javascript">
 	$(document).ready(function() { 
-        $( "#formularioTarea" ).submit(function( event ) { 
+        $( "#editFormTask" ).submit(function( event ) { 
             event.preventDefault(); 
 
             $.ajax({
@@ -77,7 +77,7 @@
                 url:  $(this).attr('action'),
                 data: $(this).serialize(),
                 beforeSend: function(){
-                    //$('.before').append('<img src="images/loading.gif" />');
+                    
                 },
 
                 complete: function(data){ 
@@ -96,27 +96,14 @@
                         $('.errors_form').html(errores)
                     
                     }else{
-                        var task = data.task; 
-                        //fijar en la parte de atras la tarea
-                        var li = '<li class="task-view" data-task-id="'+task.id+'">';
-                        li += '<span class="task-toolbar">';
-                            li += '<a href="#" class="edit-link">';
-                                li +='<i class="icon-glyph icon-edit" title="Editar tarea"></i>';
-                            li += '</a>';
-                            li += '<a href="#" class="delete-link">';
-                                li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
-                            li += '</a>';
-                        li += '</span>';
-                        li += task.name+'<br >';
-                        li += task.summary;
-                        li += '<b> ('+task.userid+')</b>';
-                        li += '</li>';
-
-                    
-                        $('#todo').append(li);
-                        $( "#formularioTarea" )[0].reset();
-                        //limpiamos el formulario
-                        $('.success_message').show().html(data.message);
+                        if(data.succes == 1){
+                            
+                            var msj = 'Tarea actualizada \n';
+                            msj += 'Total gastado actualmente: '+data.gastadoProyecto;
+                            alert(msj);
+                            $("#editTaskForm").modal('hide');
+                        }
+                       
                     } 
                 },
                 error: function(errors){
@@ -146,19 +133,23 @@
             insert += '<td>'+nombre+'</td>';
             insert += '<td align="right">'+valor+'</td>';
             insert += '<td><input style="width:60px !important" type="text" value="" id="pu_'+id+'" onkeyup="calcular('+id+', '+valor+');" /></td>';
-            insert += '<td><input disabled="disabled" style="width:60px !important"  type="text" value="" id="to_'+id+'" /></td>';
+            insert += '<td>';
+            insert += '<input disabled="disabled" style="width:60px !important"  type="text" value="" id="to_'+id+'" />';
+            insert += '<input type="hidden" value="'+id+'" name="name_'+id+'" id="id_'+id+'" />';
+            insert += '</td>';
             insert += '</tr>';
             $('#listaMateriales').append(insert);
         } 
+        $('#total').val(0)
     }
 
-    function calcular(id, valor){
-        
+    function calcular(id, valor){ 
         var cantidad = $('#pu_'+id).val();
         var total = cantidad * valor;
-        console.log(cantidad);
-        console.log(total)
+        var totalSend = Number($('#total').val());
         $('#to_'+id).val(total); 
+        totalSend += total;
+        $('#total').val(totalSend)
     }
     function cerrarChoose(){
         $("#chooseMaterial").modal('hide');
