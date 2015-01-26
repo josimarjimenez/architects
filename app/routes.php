@@ -56,10 +56,34 @@ Route::post('task', function(){
 	}
 });
 
+//get all task
 Route::get('tareas/taskAll', function(){ 
 	if(Request::ajax()){ 
 		$id = Input::get("id");
 		$tasks = Task::where('issueid','=', $id)->get();
 		return Response::json(array('tasks'=>$tasks));
+	}
+});
+
+//udpate task
+Route::get('tareas/updateTaks', function(){ 
+	if(Request::ajax()){ 
+		$id = Input::get("id");
+		$state = Input::get("state");
+		$task = Task::findOrFail($id);
+		
+		switch($state){
+			case "todo":
+				$task->scrumid = 1; 
+			break;
+			case "haciendo":
+				$task->scrumid = 2;
+			break;
+			case "hecho":
+				$task->scrumid = 3;
+			break;
+		}
+		$task->save();
+		return Response::json(array('succes'=>'1'));
 	}
 });
