@@ -28,8 +28,12 @@ class Project extends Eloquent implements UserInterface, RemindableInterface{
 	}
 
 	//teams
-	public function teams(){
-		return $this->belongsToMany('Teams', 'workIn', 'projectid', 'teamsid');
+	//public function teams(){
+	//	return $this->belongsToMany('Teams', 'workIn', 'projectid', 'teamsid');
+	//}
+
+	public function team(){
+		return $this->hasOne('Teams','projectid');
 	}
 }
 ?>

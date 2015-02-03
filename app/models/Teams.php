@@ -1,22 +1,26 @@
 <?php 
 class Teams extends Eloquent {
 	
-	use UserTrait, RemindableTrait;
+	//use UserTrait, RemindableTrait;
 	public  static $rules = array(
-	    'nombres'=>'required|alpha|min:2',
+	    'name'=>'required|alpha|min:2',
 	);
 
 	protected $table = 'teams';
 
 	//user
 	public function users() {
-		return $this->belongsToMany('User', 'memberof', 'teamid', 'userid');
+		return $this->belongsToMany('User', 'memberof', 'teamid', 'usersid');
 	}
 
+	//public function project()
+    //{
+    //    return $this->belongsTo('Project');
+    //}
 	//project
-	public function projects(){
-		return $this->belongsToMany('Project', 'workIn', 'teamsid', 'projectid');
-	}
+	//public function projects(){
+	//	return $this->belongsToMany('Project', 'workIn', 'teamsid', 'projectid');
+	//}
 }
 
 ?>

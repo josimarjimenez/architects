@@ -117,6 +117,10 @@
 <div class="modal" id="taskForm" style="margin-top: 0px; width: 600px; margin-left: -300px; height: 358px;">
 	@include('layouts.task.form')
 </div>
+
+<div class="modal" id="editTaskForm" style="margin-top: 0px; width: 800px; margin-left: -300px; height: 358px;">
+	@include('layouts.task.editForm')
+</div>
 <script type="text/javascript">
 $(document).ready(function() { 
 	$("#summary").keypress(function() { 
@@ -139,6 +143,8 @@ function mostrarTaskboard(id){
 	    	"show" : true 
 	    	// ensure the modal is shown immediately
 	    }); 
+
+	    
 		
 		var li = '';
 		$.ajax({
@@ -157,12 +163,12 @@ function mostrarTaskboard(id){
 
                 var tasks = data.tasks; 
                 $.each( tasks, function( key, value ) { 
-
-                	li += '<li class="task-view" data-task-id="'+value.id+'">';
+                	li = '';
+                	li += '<li class="task-view" id="'+value.id+'" >';
 	                li += '<span class="task-toolbar">';
-	                li += '<a href="#" class="edit-link">';
+	                li += '<a href="#" class="edit-link" onclick="editTask('+value.id+')"> ';
 	                li += '<i class="icon-glyph icon-edit" title="Editar tarea"></i>';
-	                li += '</a>';
+	                li += '</a>'
 	                li += '<a href="#" class="delete-link">';
 	                li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
 	                li += '</a>';
@@ -199,6 +205,35 @@ function mostrarTaskboard(id){
 
 	  function mostrarTaskForm(){
 	  	$("#taskForm").modal({ // wire up the actual modal functionality and show the dialog
+	  		"backdrop" : "static",
+	  		"keyboard" : true,
+	    	"show" : true // ensure the modal is shown immediately
+	    }); 
+	  }
+
+	  function editTask(id){ 
+	  	//recover task data
+	  	$.ajax({
+            type: 'GET',
+            url:  'http://localhost:8000/tareas/getTask',
+            data: 'id='+id,
+            success: function (data) {
+            	//alert(data.task.id); 
+            	$('#editFormTask #name').val(data.task.name);
+            	$('#editFormTask #summary').val(data.task.summary);
+            	$('#editFormTask #tags').val(data.task.points);
+            	$('#editFormTask #timeEstimated').val(data.task.timeEstimated);
+            	$('#editFormTask #issueid').val(data.task.issueid);
+            	$('#editFormTask #id').val(data.task.id);	
+            },
+            error: function(errors){
+                $('.before').hide();
+                $('.errors_form').html('');
+                $('.errors_form').html(errors);
+            }
+        });
+
+	  	$("#editTaskForm").modal({ // wire up the actual modal functionality and show the dialog
 	  		"backdrop" : "static",
 	  		"keyboard" : true,
 	    	"show" : true // ensure the modal is shown immediately

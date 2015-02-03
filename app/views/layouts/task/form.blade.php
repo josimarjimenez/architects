@@ -28,7 +28,7 @@
         <div class="control-group">
             <label for="inputEmail" class="control-label">Estimado</label>
             <div class="controls">
-              <input type="text" value="0" placeholder="00" name="test" id="test">
+              <input type="text" value="0" placeholder="00" name="timeEstimated" id="timeEstimated">
             </div>
         </div>
 
@@ -42,9 +42,7 @@
             </div>
         </div>
         <input type="hidden" name="issueid" id="issueid" value="">
-        <div class="modal-footer">
-            <a class="btn hide track-time-button pull-left" href="/projects/enter_time/wuto-loja?task=" target="_blank">Track Time</a>    
-            <a class="btn btn-success hide add-another-button" href="#" style="display: inline-block;">Save &amp; Add Another</a>    
+        <div class="modal-footer">            
         {{ Form::submit('Guardar', array('class' => 'button expand round')) }}   
     </div>
    {{ Form::close() }}

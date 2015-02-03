@@ -21,10 +21,11 @@ Route::group(array('before' => 'auth'), function()
 	Route::resource('taskBoard', 'TaskBoardController'); 
 	Route::resource('issue', 'IssueController');
 	Route::resource('iterations', 'IterationsController');
-	Route::resource('task', 'TaskController');
+	//Route::resource('task', 'TaskController');
 	Route::resource('personalType', 'PersonalTypeController');
 });
  
+Route::controller('projects', 'ProjectsController');
 Route::controller('users', 'UsersController');
 Route::get('/', 'UsersController@getLogin');
 
@@ -54,11 +55,65 @@ Route::post('task', function(){
 		}
 	}
 });
+//get specific task
+Route::get('tareas/getTask', function(){ 
+	if(Request::ajax()){ 
+		$id = Input::get("id");
+		$task = Task::findOrFail($id);
+		return Response::json(array('task'=>$task));
+	}
+});
 
+//get all task
 Route::get('tareas/taskAll', function(){ 
 	if(Request::ajax()){ 
 		$id = Input::get("id");
 		$tasks = Task::where('issueid','=', $id)->get();
 		return Response::json(array('tasks'=>$tasks));
+	}
+});
+
+//udpate STATE task
+Route::get('tareas/updateTaks', function(){ 
+	if(Request::ajax()){ 
+		$id = Input::get("id");
+		$state = Input::get("state");
+		$task = Task::findOrFail($id);
+		
+		switch($state){
+			case "todo":
+				$task->scrumid = 1; 
+			break;
+			case "haciendo":
+				$task->scrumid = 2;
+			break;
+			case "hecho":
+				$task->scrumid = 3;
+			break;
+		}
+		$task->save();
+		return Response::json(array('succes'=>'1'));
+	}
+});
+
+Route::post('tareas/editTask', function(){ 
+	if(Request::ajax()){ 
+		$id = Input::get("id");
+		$task = Task::findOrFail($id);
+		$task->name = Input::get("name"); 
+		$task->summary = Input::get("summary");
+		$task->points = Input::get("tags");
+		$task->timeEstimated = Input::get("timeEstimated");
+		$task->save();
+		$issue = Issue::findOrFail($task->issueid);
+		$iteration = Iterations::findOrFail($issue->iterationid);
+		$project = Project::findOrFail($iteration->projectid);
+		$totalSpent = Input::get("total");
+		$iteration->summaryBudgets = $iteration->summaryBudgets + $totalSpent;
+		$iteration->save();
+
+		$project->budgetSummary = $project->budgetSummary +$totalSpent;
+		$project->save();
+		return Response::json(array('succes'=>'1', 'gastadoIteracion'=>$iteration->summaryBudgets, 'gastadoProyecto'=>$project->budgetSummary));
 	}
 });

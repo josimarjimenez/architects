@@ -4,7 +4,7 @@
 	<i class="icon-plus-sign"></i>
 	Nuevo
 	</a>
-	<h1>Tipo de personal</>
+	<h1>Tipo de personal</h1>
 		<br>
 		<table id="personalTypes" class="table table-bordered table-striped">
 			<tbody>
