@@ -104,16 +104,37 @@ Route::post('tareas/editTask', function(){
 		$task->summary = Input::get("summary");
 		$task->points = Input::get("tags");
 		$task->timeEstimated = Input::get("timeEstimated");
+		
+
+
+		//vincular materiales a tarea
+		$idsMaterial =  Input::get("listaIDS");
+		$ids = explode(" ", $idsMaterial);
+		foreach ($ids as $id) {
+			if($id==''){
+				continue;
+			}
+			$cantidad 	=  Input::get("cu_".$id); 
+			$total  	=  Input::get("to_".$id);
+			$idMaterial =  Input::get("id_".$id); 
+			  
+			$task->materials()->attach([$id => ['quantity'=>$cantidad, 'total'=>$total]]);
+		}
+ 
 		$task->save();
+
+
 		$issue = Issue::findOrFail($task->issueid);
 		$iteration = Iterations::findOrFail($issue->iterationid);
 		$project = Project::findOrFail($iteration->projectid);
 		$totalSpent = Input::get("total");
+		/*
 		$iteration->summaryBudgets = $iteration->summaryBudgets + $totalSpent;
 		$iteration->save();
 
 		$project->budgetSummary = $project->budgetSummary +$totalSpent;
 		$project->save();
-		return Response::json(array('succes'=>'1', 'gastadoIteracion'=>$iteration->summaryBudgets, 'gastadoProyecto'=>$project->budgetSummary));
+		*/
+		return Response::json(array('succes'=>'1'));
 	}
 });
