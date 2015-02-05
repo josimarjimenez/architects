@@ -37,7 +37,7 @@ class PersonalTypeController extends BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make(Input::all(), PersonalType::$rules);
+		$validator = Validator::make(Input::all(), PersonalType::$rules, PersonalType::$messages);
 
 		if ($validator->passes()) { 
 

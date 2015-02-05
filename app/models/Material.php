@@ -3,6 +3,7 @@ use Illuminate\Auth\UserTrait;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
+use Illuminate\Validation\Validator;
 
 class Material extends Eloquent{
 	protected $table = 'material';
@@ -11,10 +12,24 @@ class Material extends Eloquent{
 	use UserTrait, RemindableTrait;
 	public static $rules = array(
 	    'name'=>'required|alpha_spaces|min:2', 
-	    'value'=>'required',
+	    'value'=>'required|foo|numeric',
 	    'startDate'=>'date', 
 	    'endDate'=>'date'
     );
+
+    public static $messages = array(
+      'name.required' => 'El nombre es obligatorio.',
+      'name.min' => 'El nombre debe contener al menos dos caracteres.',
+      'value.required' => 'El precio unitario es obligatorio.',
+      'value.numeric' => 'El precio unitario debe ser decimal.',
+      'value.foo' => 'Cantidad debe ser mayor a 3'
+   	);
+
+    public static function validate($data){
+      $reglas = self::$rules;
+      return Validator::make($data, $reglas);
+   	}
+
 
 	protected $appends = array('auxName');
 

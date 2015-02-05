@@ -97,6 +97,7 @@
                     
                         $('#todo').append(li);
                         $( "#formularioTarea" )[0].reset();
+                       // $('#taskForm').modal('hide');
                         //limpiamos el formulario
                         $('.success_message').show().html(data.message);
                     } 

@@ -36,8 +36,8 @@ Route::post('task', function(){
 		$task->summary = Input::get("summary");
 		//$task->points  = Input::get("points");
 		$task->points  = 1;
-		$task->timeEstimated = Input::get("test");
-		$task->timeRemaining = Input::get("test");
+		$task->timeEstimated = Input::get("timeEstimated");
+		$task->timeRemaining = Input::get("timeEstimated");
 		$task->scrumid = 1; //estado todo ...quemado por código
 		$task->issueid = Input::get("issueid"); 
 		$task->save();
