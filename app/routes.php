@@ -36,8 +36,8 @@ Route::post('task', function(){
 		$task->summary = Input::get("summary");
 		//$task->points  = Input::get("points");
 		$task->points  = 1;
-		$task->timeEstimated = Input::get("test");
-		$task->timeRemaining = Input::get("test");
+		$task->timeEstimated = Input::get("timeEstimated");
+		$task->timeRemaining = Input::get("timeEstimated");
 		$task->scrumid = 1; //estado todo ...quemado por código
 		$task->issueid = Input::get("issueid"); 
 		$task->save();
@@ -104,16 +104,37 @@ Route::post('tareas/editTask', function(){
 		$task->summary = Input::get("summary");
 		$task->points = Input::get("tags");
 		$task->timeEstimated = Input::get("timeEstimated");
+		
+
+
+		//vincular materiales a tarea
+		$idsMaterial =  Input::get("listaIDS");
+		$ids = explode(" ", $idsMaterial);
+		foreach ($ids as $id) {
+			if($id==''){
+				continue;
+			}
+			$cantidad 	=  Input::get("cu_".$id); 
+			$total  	=  Input::get("to_".$id);
+			$idMaterial =  Input::get("id_".$id); 
+			  
+			$task->materials()->attach([$id => ['quantity'=>$cantidad, 'total'=>$total]]);
+		}
+ 
 		$task->save();
+
+
 		$issue = Issue::findOrFail($task->issueid);
 		$iteration = Iterations::findOrFail($issue->iterationid);
 		$project = Project::findOrFail($iteration->projectid);
 		$totalSpent = Input::get("total");
+		/*
 		$iteration->summaryBudgets = $iteration->summaryBudgets + $totalSpent;
 		$iteration->save();
 
 		$project->budgetSummary = $project->budgetSummary +$totalSpent;
 		$project->save();
-		return Response::json(array('succes'=>'1', 'gastadoIteracion'=>$iteration->summaryBudgets, 'gastadoProyecto'=>$project->budgetSummary));
+		*/
+		return Response::json(array('succes'=>'1'));
 	}
 });

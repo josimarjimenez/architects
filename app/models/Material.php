@@ -28,8 +28,8 @@ class Material extends Eloquent{
 	}
 
 	//used
-	public function used(){
-		return $this->belongsToMany('Used', 'materialid');
+	public function tasks(){
+		return $this->belongsToMany('Task', 'used', 'materialid', 'taskid');
 	}
 
 }

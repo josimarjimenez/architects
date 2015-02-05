@@ -31,5 +31,9 @@ class Task extends Eloquent implements JsonSerializable{
 	public function scrumState() {
 		return $this->belongsTo('ScrumState','scrumid');
 	}
+
+	public function materials(){
+		return $this->belongsToMany('Material', 'used', 'taskid', 'materialid');
+	}
 }
 ?>
