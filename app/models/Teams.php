@@ -3,7 +3,11 @@ class Teams extends Eloquent {
 	
 	//use UserTrait, RemindableTrait;
 	public  static $rules = array(
-	    'name'=>'required|alpha|min:2',
+	    'name' => 'required|alpha|min:2',
+	);
+
+	public static $messages = array(
+		'name.required' => 'El nombre es obligatorio',
 	);
 
 	protected $table = 'teams';

@@ -36,11 +36,11 @@
 				<tbody>
 					<tr>			
 						<td>
-							<ul data-task-status="1" id="todo" class="connectedSortable task-popup-list ui-sortable" style="height: 155px;">
+							<ul data-task-status="1" id="todo" class="connectedSortable task-popup-list ui-sortable" >
 							</ul>
 						</td> 	
 						<td>
-							<ul data-task-status="4" id="haciendo"  class="connectedSortable task-popup-list" style="height: 155px;">
+							<ul data-task-status="4" id="haciendo"  class="connectedSortable task-popup-list">
 							</ul>
 						</td>	 	
 						<td>

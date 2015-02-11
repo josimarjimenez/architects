@@ -56,6 +56,7 @@
             </table>
         </div>
         <input type="hidden" value="0" name="total" id="total">
+        <input type="text" value="" name="listaIDS" id="listaIDS" />
         <div class="modal-footer">
            <!-- <a class="btn track-time-button pull-left" href="/projects/enter_time/wuto-loja?task=" target="_blank">Tiempo gastado</a> -->
         {{ Form::submit('Guardar', array('class' => 'button expand round')) }}   
@@ -99,7 +100,7 @@
                         if(data.succes == 1){
                             
                             var msj = 'Tarea actualizada \n';
-                            msj += 'Total gastado actualmente: '+data.gastadoProyecto;
+                            
                             alert(msj);
                             $("#editTaskForm").modal('hide');
                         }
@@ -128,23 +129,29 @@
         $('#listaMateriales').css('display','block');
 
         //chequear si existe el elemento
-        if($("#pu_"+id).length == 0){
+        if($("#cu_"+id).length == 0){
              var insert = '<tr>';
             insert += '<td>'+nombre+'</td>';
             insert += '<td align="right">'+valor+'</td>';
-            insert += '<td><input style="width:60px !important" type="text" value="" id="pu_'+id+'" onkeyup="calcular('+id+', '+valor+');" /></td>';
+            insert += '<td><input style="width:60px !important" type="text" name="cu_'+id+'" value="" id="cu_'+id+'" onkeyup="calcular('+id+', '+valor+');" /></td>';
             insert += '<td>';
-            insert += '<input disabled="disabled" style="width:60px !important"  type="text" value="" id="to_'+id+'" />';
+            insert += '<input readonly style="width:60px !important"  type="text" value="" id="to_'+id+'" name="to_'+id+'" />';
             insert += '<input type="hidden" value="'+id+'" name="name_'+id+'" id="id_'+id+'" />';
             insert += '</td>';
             insert += '</tr>';
             $('#listaMateriales').append(insert);
+
+            var valorId = $('#listaIDS').val();
+            console.log(id);
+            valorId+= " "+id;
+            $('#listaIDS').val(valorId);
+            
         } 
         $('#total').val(0)
     }
 
     function calcular(id, valor){ 
-        var cantidad = $('#pu_'+id).val();
+        var cantidad = $('#cu_'+id).val();
         var total = cantidad * valor;
         var totalSend = Number($('#total').val());
         $('#to_'+id).val(total); 
