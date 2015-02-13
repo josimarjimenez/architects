@@ -38,6 +38,7 @@
 			<h4>2</h4> 
 		</div>
 	</div>
+	<img src="{{ action('GraphicsController@create') }}">
 	<div style="" id="burnup_chart">
 		<div style="" id="iterationBurndown" class="noData">
 			No hay suficientes datos

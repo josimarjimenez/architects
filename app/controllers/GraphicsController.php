@@ -1,18 +1,24 @@
 <?php 
+ 
 
 class GraphicsController extends BaseController {
 
-	$l1datay = array(11,9,2,4,3,13,17);
-	$l2datay = array(23,12,5,19,17,10,15);
-	$datax=array('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug');
+
 
  	public function index() {
  		 
  	}
 
     public function create(){  
+
+    	JpGraph\JpGraph::load();
+    	JpGraph\JpGraph::module('bar');
+
+    	$l1datay = array(11,9,2,4,3,13,17);
+		$l2datay = array(23,12,5,19,17,10,15);
+		$datax=array('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug');
 		//Create the graph
-		$graph = new Graph(400,200);    
+		$graph = new Graph(600,400);    
 		$graph->SetScale('textlin');
  
 		$graph->img->SetMargin(40,130,20,40);
@@ -45,7 +51,7 @@ class GraphicsController extends BaseController {
 		//$graph->xaxis->SetTextTickInterval(2);
 		
 		//Display the graph
-		$graph->Stroke();
+		 $graph->Stroke();
 
 	}
 }

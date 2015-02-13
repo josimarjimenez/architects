@@ -28,6 +28,7 @@ Route::group(array('before' => 'auth'), function()
 Route::controller('projects', 'ProjectsController');
 Route::controller('users', 'UsersController');
 Route::get('/', 'UsersController@getLogin');
+Route::get('grafica', 'GraphicsController@create');
 
 Route::post('task', function(){ 
 	if(Request::ajax()){ 
