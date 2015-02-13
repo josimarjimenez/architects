@@ -138,3 +138,12 @@ Route::post('tareas/editTask', function(){
 		return Response::json(array('succes'=>'1'));
 	}
 });
+
+
+Route::get('ajax/getProject', function(){ 
+	if(Request::ajax()){ 
+		$id = Input::get("id");
+		$project = Project::findOrFail($id); 
+		return Response::json(array('project'=>$project, 'iterations'=>$project->iterations));
+	}
+});

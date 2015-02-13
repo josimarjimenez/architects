@@ -10,10 +10,17 @@
 <li class="right">
 	{{ HTML::link('users/logout', 'Cerrar sesión',array('class'=>'drop megamenu-top-header')) }}
 </li>
-<li class="right"> 
+<li id="navbar-project-menu" class="right" > 
+	
+</li>
+<li id="navbar-organization-menu" class="right"> 
 	@include('layouts.menuOrg')
 </li>
-<li class="right">
-	@include('layouts.menuProject')
+
+
+<!--
+<li id="navbar-project-menu" class="right"> 
 </li>
+
+-->
 @endif

@@ -4,7 +4,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Iterations extends Eloquent{
+class Iterations extends Eloquent implements JsonSerializable{
 	protected $table = 'iterations';
 	protected $guarded = ['id', 'create_at', 'update_at'];
 
@@ -16,6 +16,20 @@ class Iterations extends Eloquent{
 	    'projectid'=>'required'
 	);
  
+ 	public function jsonSerialize(){ 
+		//return (object) get_object_vars($this);
+		return array(
+             'id' => $this->id,
+             'name' => $this->name,
+             'start' => $this->start,
+             'end' => $this->end,
+             'summaryPoints' => $this->summaryPoints,
+             'summaryBudgets' => $this->summaryBudgets,
+             'realBudget' => $this->realBudget,
+             'projectid' => $this->projectid
+        );
+	} 
+
 	public function projects() {
 		return $this->belongsTo('Project','projectid');
 	}

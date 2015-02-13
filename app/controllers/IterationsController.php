@@ -29,7 +29,7 @@ class IterationsController extends BaseController {
 								->with('totalPoints', $totalPoints)
 								->with('project', $project)
 								->with('materiales', $materiales)
-								->with('message', 'Iteracion creada con éxito');
+								->with('message', '');
 		}catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) { 
 		    return Redirect::to('/projects/')
 			->with('message', 'Error al crear la iteración');

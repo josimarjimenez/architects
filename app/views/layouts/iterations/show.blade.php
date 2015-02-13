@@ -1,7 +1,9 @@
-
+ 
+@if(!empty($message))
 <ul id="messages">
 	<li id="message_1"><a onclick="$('#message_1').fadeOut(); return false;" href="#"><small>Limpiar</small></a>{{ $message }}</li>
 </ul>
+@endif
 <div class="project-body-header">
 	<span class="iteration-board-link">
 		<a href="/projects/project/k-gestion/iteration/117871/board">

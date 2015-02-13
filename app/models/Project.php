@@ -3,7 +3,7 @@ use Illuminate\Auth\UserTrait;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
-class Project extends Eloquent implements UserInterface, RemindableInterface{
+class Project extends Eloquent implements UserInterface, RemindableInterface, JsonSerializable{
 	protected $table = 'project';
 
 	protected $guarded = ['id', 'created_at', 'updated_at'];
@@ -15,6 +15,19 @@ class Project extends Eloquent implements UserInterface, RemindableInterface{
     );
 
     protected $appends = array('auxName');
+
+
+	public function jsonSerialize(){ 
+		//return (object) get_object_vars($this);
+		return array(
+             'name' => $this->name,
+             'startDate' => $this->startDate,
+             'endDate' => $this->endDate,
+             'budgetSummary' => $this->budgetSummary,
+             'budgetEstimated' => $this->budgetEstimated,
+             'id' => $this->id
+        );
+	} 
 
 	//relationSHIP
 	//organization

@@ -3,6 +3,7 @@
 		<h1 id="tour-project-name">
 			{{ $project->name }}
 		</h1>
+		{{ HTML::link('projects/members/'.$project->id,  'Grupo de trabajo', array('class'=>"btn btn-medium btn-info")  ) }}
 		<div class="project-body-header-stats">
 			<div class="stats-bubble">
 				Total Stories
@@ -17,7 +18,7 @@
 				<h4>0</h4>
 			</div>
 		</div>
-		{{ HTML::link('projects/members/'.$project->id,  'Grupo de trabajo', array('class'=>"btn btn-medium btn-info")  ) }}
+		
 	</div>
 	<br><br>
 				
@@ -35,5 +36,23 @@
 					<button class="btn" type="submit" id="add_button">Agregar historia</button>
 				</form>
 			</div>
+			<div style="width: 940px; height: 300px; margin-left: auto; margin-right: auto; padding: 0px; position: relative;" id="overallBurndown">
+				<?php echo HTML::image('images/graficoProy.png'); ?> 
+			</div>
 		@endif 
 </div>
+<script type="text/javascript">
+	$( document ).ready(function() { 
+		
+		/*
+		$("#navbar-project-menu").css('display', 'block');
+		$('#projectMenu').html('{{ $project->name }}');
+		$('#summaryProject').attr('href', '/projects/project/1');
+		
+		$('#projectMenu').click(function() { 
+		  	$('#subMenuProject').css('display', 'block');
+		});
+		*/
+	});
+
+</script>

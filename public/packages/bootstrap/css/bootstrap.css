@@ -6599,6 +6599,29 @@ th.hidden-lg, td.hidden-lg {
  .megamenu .pull-left-450 {
     margin-left: -548px;
 }
+.megamenu li ul {
+    list-style: outside none none;
+    margin: 0 0 12px;
+    padding: 0;
+}
+.megamenu li ul li {
+    float: none;
+    font-size: 12px;
+    line-height: 24px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    text-align: left;
+}
+
+.project-menu-horizontal-list li {
+    display: inline-block;
+    height: 20px;
+    margin-bottom: 9px !important;
+    vertical-align: top;
+    width: 200px;
+}
+
 
 .megamenu h3 {
     font-size: 28px;
@@ -6733,6 +6756,10 @@ th.hidden-lg, td.hidden-lg {
     background-color: #e0e0e0;
     margin-right: 10px;
     padding-bottom: 15px; 
+}
+#navbar-project-menu h3 
+{
+    text-align: left !important;
 }
 .mydashboard .dash-proj-title {
     background-color: #555;
@@ -7261,4 +7288,26 @@ a {
 .task-window ul a {
     color: #0088cc;
     text-decoration: none;
+}
+.project-body-header {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 5px;
+    width: 960px;
+}
+.project-body-header-stats {
+    text-align: center;
+}
+.story_form #id_summary {
+    margin-bottom: 0;
+    margin-top: -2px;
+    padding-bottom: 0;
+    vertical-align: middle;
+    width: 75%;
+}
+.hidden {
+    display: none;
+}
+#navbar-project-menu{
+    display: none;
 }
