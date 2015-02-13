@@ -12,16 +12,15 @@ class Material extends Eloquent{
 	use UserTrait, RemindableTrait;
 	public static $rules = array(
 	    'name'=>'required|alpha_spaces|min:2', 
-<<<<<<< HEAD
+ 
 	    'quantity'=>'required|alpha_spaces|min:2',
 	    'value'=>'required|alpha_spaces|min:2',
-	    'projectid'=>'required'
+	    'projectid'=>'required',
 	    'value'=>'required',
->	    'startDate'=>'date', 
-=======
+ 	    'startDate'=>'date', 
+ 
 	    'value'=>'required|foo|numeric',
-	    'startDate'=>'date', 
->>>>>>> 195562e18c5214acc488ff139dfeb67849468458
+	    'startDate'=>'date',  
 	    'endDate'=>'date'
     );
 
