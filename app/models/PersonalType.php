@@ -10,10 +10,17 @@ class PersonalType extends Eloquent{
 	
 	use UserTrait, RemindableTrait;
 	public static $rules = array(
-	    'name'=>'required|alpha_spaces|min:2', 
-	    'description'=>'required|alpha_spaces|min:2',
-	    'hourCost'=>'required'
+	    'name'=>'required|alpha_spaces|min:3', 
+	    'description'=>'alpha_spaces|min:2',
+	    'hourCost' => 'required|foo|numeric'
     );
+
+	public static $messages = array(
+		'name.required' => 'El nombre es obligatorio',
+		'name.min' => 'El nombre debe contener más de 3 caracteres',
+		'hourCost.required' => 'Costo / hora es requerido',
+		'hourCost.foo' => 'Costo / hora debe ser mayor a cero'
+	);
 
 	protected $appends = array('auxName');
 

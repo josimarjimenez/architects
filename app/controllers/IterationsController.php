@@ -46,14 +46,32 @@ class IterationsController extends BaseController {
 		->with('type',  'new');
 	}
 
+	//date validator
+	public function validarFecha($inicio, $fin){
+		 
+		if($inicio > $fin){
+ 
+			return false;
+		}else{ 
+			return true;
+		}
+	}
+
 	//save mew
 	public function store(){
-		
-		$validator = Validator::make(Input::all(), Iterations::$rules);
 
-		$fechaInicio = Input::get('inicio');  
-		$fechaFin = Input::get('fin');  
-		if($validator->passes()){
+		$validator = Validator::make(Input::all(), Iterations::$rules);
+		$inicio = Input::get('start'); 
+		$end  = Input::get('end');   
+
+		$valido = $this->validarFecha($inicio, $end); 
+		if(!$valido){
+		return Redirect::to('iterations/create?projectid='.Input::get('projectid'))
+			->with('message', 'La fecha inicial es mayor que la final')
+			->withErrors($validator)
+			->withInput();
+		}	
+		if($validator->passes() && $valido){
 			$iterations = new Iterations;
 			$iterations->name = Input::get('name'); 
 			$iterations->start = Input::get('start'); 

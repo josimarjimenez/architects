@@ -1,11 +1,14 @@
 <br><br>
 <div id="personalTypeError">
-	<ul>
+
+	@if($errors->all())
+	<ul class="alert alert-error">
 		@foreach($errors->all() as $error)
 		<li>{{ $error }}</li>
 		@endforeach
-	</ul> 
-<h1>Crear/Editar tipo de personal</h1>
+	</ul>
+	@endif 
+<h1>Crear / Editar tipo de personal</h1>
 	<div class="panel">
 		<?php 
 			if($type == "new"){

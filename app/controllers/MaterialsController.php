@@ -17,12 +17,13 @@ class MaterialsController extends BaseController {
 
 	public function store(){ 
 	
-		$validator = Validator::make(Input::all(), Material::$rules);
+		$validator = Validator::make(Input::all(), Material::$rules, Material::$messages);
 
 		if($validator->passes()){
 			$material = new Material;
 			$material->name = Input::get('name'); 
 			$material->value = Input::get('value');  
+			$material->projectid = Input::get('projectid');
 			$material->organizationid = Input::get('organizationid');  
 			$material->save();
 
