@@ -1,16 +1,19 @@
 <?php 
  
 
-class GraphicsController extends BaseController {
+class GraphicsController extends BaseController{
 
-
-
+ 
  	public function index() {
  		 
  	}
 
-    public function create(){  
+    public function create($id){  
+ 
+    	$iteration = Iterations::findOrFail(20);
+    	$tasks =  Task::where('issueid','=', $id)->get();
 
+    	
     	JpGraph\JpGraph::load();
     	JpGraph\JpGraph::module('bar');
 
@@ -18,7 +21,7 @@ class GraphicsController extends BaseController {
 		$l2datay = array(23,12,5,19,17,10,15);
 		$datax=array('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug');
 		//Create the graph
-		$graph = new Graph(600,400);    
+		$graph = new Graph(900,400);    
 		$graph->SetScale('textlin');
  
 		$graph->img->SetMargin(40,130,20,40);

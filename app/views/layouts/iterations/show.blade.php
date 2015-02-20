@@ -38,13 +38,14 @@
 			<h4>2</h4> 
 		</div>
 	</div>
-	<img src="{{ action('GraphicsController@create') }}">
-	<div style="" id="burnup_chart">
-		<div style="" id="iterationBurndown" class="noData">
-			No hay suficientes datos
-		</div>
-		<br>
+	<div style="text-align:center; margin-top:20px;" id="burnup_chart">
+
+		@if($iteration->issues()->count() > 1)
+		<img src="{{ action('GraphicsController@create' , array('iteration' =>  $iteration->id  )) }}">
+		@else
 		<img src="https://d11uy15xvlvge3.cloudfront.net/static/v105/scrumdo/images/burndown.png">
+		@endif
+
 	</div>	
 </div>
 <div class="container wide_body" id="body">
