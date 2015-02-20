@@ -10,7 +10,7 @@ class ProjectsController extends BaseController {
     public function show($id) { 
 
     	try {
-			$project = Project::findOrFail($id);
+			$project = Project::findOrFail($id); 
 			$iterations =sizeof($project->iterations);
 			$this->layout->content = View::make('layouts.projects.show')
 								->with('project', $project)
@@ -88,5 +88,43 @@ class ProjectsController extends BaseController {
 		$organization = app('organization');
 		return Redirect::to('organization/name/'.$organization->auxName.'/projects')->with('message', 'Registro eliminado');
 	}
+
+	public function getMembers($id){
+		$organization = app('organization');
+		$project = Project::find($id);
+		$team = $project->team;
+		$users = User::all();
+		$members;
+		if($team != null){
+			$members = Teams::find($team->id)->users;
+			$members = array_pluck($members, 'id');
+			$this->layout->content = View::make('layouts.projects.addMembers')
+								->with('organization', $organization)
+								->with('project',$project)
+								->with('team', $team)
+								->with('users', $users)
+								->with('members',$members);	
+		}
+		//$users = Teams::find($team->id)->users();
+		//$organization = app('organization');
+		//$this->layout->content = View::make('layouts.projects.addMembers')
+		//						->with('organization', $organization)
+		//						->with('users', $users);
+		//$this->layout->content = View::make('layouts.projects.addMembers');
+		//						->with('organization', $organization)
+		//						->with('users', $users);
+	}
+
+	public function postAsigned() { 
+ 		$members = Input::get('users_id');
+ 		$project_id = Input::get('project_id');
+ 		$team_id = Input::get('team_id');
+ 		$var = null;
+ 		$num = count($members) ;
+		$team = Teams::find($team_id);
+    	$team->users()->sync($members);
+ 		return Redirect::to('projects/members/'.$project_id)->with('message', 'Se han asignado los miembros correctamente.');
+	}
+
 }
 ?>

@@ -25,7 +25,9 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"twbs/bootstrap": "*",
-		"twitter/bootstrap": "*"
+		"twitter/bootstrap": "*",
+		"way/generators": "2.*",
+		"jpgraph/jpgraph": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
@@ -34,7 +36,9 @@
 			"app/models",
 			"app/database/migrations",
 			"app/database/seeds",
-			"app/tests/TestCase.php"
+			"app/tests/TestCase.php",
+			"app/libraries/jpgraph/docs/src/jpgraph.php",
+			"app/libraries/jpgraph/docs/src/jpgraph_line.php"
 		]
 	},
 	"scripts": {

@@ -9,7 +9,11 @@
   {{ HTML::style('packages/bootstrap/css/datepicker3.css') }}
   {{ HTML::style('css/main.css')}}
   {{ HTML::script('packages/js/jquery-2.1.1.js') }}
+  {{ HTML::script('packages/js/jquery.ui.min.js') }}
+  {{ HTML::style('css/todo.css')}}
+  {{ HTML::script('packages/js/todo.js') }}
   {{ HTML::script('packages/bootstrap/js/bootstrap-datepicker.js') }}
+  {{ HTML::script('packages/bootstrap/js/bootstrap-modal.js') }}
 </head>
 <body>
   <div class="navbar navbar-fixed-top">

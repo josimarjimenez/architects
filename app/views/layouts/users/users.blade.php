@@ -1,4 +1,4 @@
-<div id="body" class="container ">
+<div id="body" class="container">
 	<a href="/users/new" style="text-decoration:none; vertical-align:middle" 
 	class="btn btn-success pull-right">
 	<i class="icon-plus-sign"></i> 
