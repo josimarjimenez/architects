@@ -15,11 +15,10 @@
 		<?php 
 		if($type == "new"){
 			?>
-			<!--{{ Form::open(array('url'=>'users/create', 'class'=>'form-signup')) }}-->
 			{{ Form::open(array('url'=>'users/create','class'=>'uniForm')) }}
 			
 			<?php }else { ?>
-				{{ Form::open(array('url'=>'users/update' . $user->id),'class'=>'uniForm')) }}
+				{{ Form::open(array('url'=>'users/edit/'.$user->id,'class'=>'uniForm')) }}
 			<?php } ?>
 			<fieldset class="inlineLabels">
 				<div class="ctrlHolder" id="div_id_name">
