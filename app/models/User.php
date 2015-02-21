@@ -12,9 +12,25 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public static $rules = array(
 	    'nombres'=>'required|alpha|min:2',
 	    'apellidos'=>'required|alpha|min:2',
-	    'mail'=>'required|email',
+	    'mail'=>'required|email|unique:users',
 	    'password'=>'required|alpha_num|between:6,12|confirmed',
-	    'password_confirmation'=>'required|alpha_num|between:6,12'
+	    'password_confirmation'=>'alpha_num'
+    );
+
+    public static $messages = array(
+    	'nombres.required' => 'El nombre es obligatorio',
+    	'nombres.min' => 'El nombre debe contoner al menos dos caracteres',
+    	'apellidos.required' => 'El apellido es obligatorio',
+    	'mail.required' => 'El email es obligatorio',
+    	'mail.email' => 'El correo registrado no es válido',
+    	'mail.unique' => 'El mail ya se encuentra registrado',
+    	'password.required' => 'El password es obligatorio',
+    	'password.alpha_num' => 'El password debe contener letras y números',
+    	'password.between' => 'El password debe contener entre 6 y 12 caracteres',
+    	'password.confirmed' => 'El password de confirmación es diferente',
+    	//'password_confirmation.required' => 'El password de confirmación es obligatorio',
+    	//'password_confirmation.alpha_num' => 'El password de confirmación debe contener letras y números',
+    	//'password_confirmation.between' => 'El password de confirmación debe contener entre 6 y 12 caracteres'
     );
     
 	/**

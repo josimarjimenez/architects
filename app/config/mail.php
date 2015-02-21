@@ -28,7 +28,8 @@ return array(
 	|
 	*/
 
-	'host' => 'smtp.mailgun.org',
+//	'host' => 'smtp.mailgun.org',
+	'host' => 'smtp.gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -42,6 +43,7 @@ return array(
 	*/
 
 	'port' => 587,
+	//'port' => 465,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,7 +56,8 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => null, 'name' => null),
+	//'from' => array('address' => null, 'name' => null),
+	'from' => array('address' => 'josimar.revolution@gmail.com', 'name' => 'Josimar Jimenez'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +83,7 @@ return array(
 	|
 	*/
 
-	'username' => null,
+	'username' => 'josimar.revolution@gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +96,7 @@ return array(
 	|
 	*/
 
-	'password' => null,
+	'password' => 'josim10RAECU',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -119,6 +122,40 @@ return array(
 	|
 	*/
 
+	
+
 	'pretend' => false,
+
+	/*
+	return array(
+ 
+    'driver' => 'smtp',
+ 
+    'host' => 'smtp.gmail.com',
+ 
+    'port' => 587,
+ 
+    'from' => array('address' => 'authapp@awesomeauthapp. com', 'name' => 'Awesome Laravel 4 Auth App'),
+ 
+    'encryption' => 'tls',
+ 
+    'username' => 'your_gmail_username',
+ 
+    'password' => 'your_gmail_password',
+ 
+    'sendmail' => '/usr/sbin/sendmail -bs',
+ 
+    'pretend' => false,
+ 
+);
+
+
+'host' => 'smtp.gmail.com',
+'port' => 465,
+'from' => array('address' => 'la dirección que quieres que aparezca', 'name' => 'Nombre que quieres que aparezca en el email'),
+'username' => 'TuUsuario@gmail.com',
+'password' => 'Tu Password',
+
+	*/
 
 );

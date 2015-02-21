@@ -8,24 +8,38 @@ class UsersController extends BaseController {
 		$this->beforeFilter('auth', array('only'=>array('getDashboard')));
 	} 
 
+	public function index(){
+		$organization = app('organization');  
+		$this->layout->content = View::make('layouts.users.users')
+								->with('organization', $organization);
+	}
+
     //users/register
 	public function getRegister() { 
-		$this->layout->content = View::make('layouts.users.register');
+		//$this->layout->content = View::make('layouts.users.register');
+		$this->layout->content = View::make('layouts.users.form')
+		->with('organization', app('organization'))
+		->with('type', 'new');
 	}
 
 	//POST users/create
 	public function postCreate() { 
  
-		$validator = Validator::make(Input::all(), User::$rules);
+		//$validator = Validator::make(Input::all(), User::$rules);
+		$validator = Validator::make(Input::all(), User::$rules, User::$messages);
 
 		if ($validator->passes()) {
 			$user = new User;
-			$user->nombres = Input::get('nombres'); 
-			$user->apellidos = Input::get('apellidos');
+			$user->name = Input::get('nombres'); 
+			$user->lastname = Input::get('apellidos');
 			$user->mail = Input::get('mail');
-			$user->direccion = Input::get('direccion');
+			$user->direction = Input::get('direccion');
 			$user->password = Hash::make(Input::get('password'));
 			$user->save();
+
+			Mail::send('layouts.users.welcome', array('firstname'=>Input::get('nombres')), function($message){
+        	$message->to(Input::get('mail'), Input::get('nombres').' '.Input::get('apellidos'))->subject('Welcome to the Laravel 4 Auth App!');
+    		});
 
 			return Redirect::to('users/login')->with('message', 'Gracias por registrarse');
 		} else {
@@ -58,12 +72,38 @@ class UsersController extends BaseController {
 	}
 
 
-	public function getUpdate($id){
+	public function getEdit($id){
+		try {
+			$user = User::findOrFail($id);
+		}catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) { 
+			$organization = app('organization');
+		    return Redirect::to('/organization/members/'. $organization->auxName . '/all_members')
+			->with('message', 'No existe el usuario');
+		}
+		
+		$this->layout->content = View::make('layouts.users.form')
+	//		->with('organization', app('organization'))
+			->with('user', $user)
+			->with('type', "edit");
+			//->with('type', "edit");
+	}
+
+
+	public function postUpdate($id){
+		$user = User::findOrFail($id);
+		$user->fill(Input::all());
+		$user->save();
+		$organization = app('organization');
+		return Redirect::to('/users')
+			->with('message', 'Registro actualizado');
 
 	}
 
-	public function getDelete($id){
 
+	public function destroy($id){
+		$user = User::find($id);
+		$organization = app('organization');
+		return Redirect::to('/users')->with('message', 'Registro eliminado');
 	}
 
 	public function getDashboard() {
@@ -84,7 +124,10 @@ class UsersController extends BaseController {
 
 
 	public function getNew() {
-		$this->layout->content = View::make('layouts.users.register');
+		//$this->layout->content = View::make('layouts.users.register');
+		$this->layout->content = View::make('layouts.users.form')
+		->with('organization', app('organization'))
+		->with('type', 'new');
 	}
 
 }

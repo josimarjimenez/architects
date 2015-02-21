@@ -16,6 +16,7 @@ Route::group(array('before' => 'auth'), function()
 	Route::controller('organization', 'OrganizationsController');
 	Route::controller('states','ScrumStatesController');
 	Route::resource('projects', 'ProjectsController');
+	//Route::resource('users', 'UsersController');
 	Route::resource('materials', 'MaterialsController');
 	Route::resource('teams', 'TeamsController');
 	Route::resource('taskBoard', 'TaskBoardController'); 
@@ -28,6 +29,7 @@ Route::group(array('before' => 'auth'), function()
 Route::controller('projects', 'ProjectsController');
 Route::controller('users', 'UsersController');
 Route::get('/', 'UsersController@getLogin');
+Route::post('update/{id}', 'UsersController@update');
 Route::get('grafica/{id}', 'GraphicsController@create');
 
 Route::post('task', function(){ 
