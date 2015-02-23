@@ -1,3 +1,12 @@
-<h1>Hi, {{ $firstname }}!</h1>
+<h1>Hola, {{ $firstname }}!</h1>
  
-<p>We'd like to personally welcome you to the Laravel 4 Authentication Application. Thank you for registering!</p>
+<p>Bienvenido al sistema de proyectos de construcción</p>
+
+<p>Tu cuenta ha sido creado y tu password ha sido  generado automáticamente, te recomendamos que después 
+de ingresar al sistema cambies tu password, tus datos de ingreso son:</p>
+
+<p>Usuario: {{ $mail }}</p>
+
+<p>Password: {{ $password }}</p>
+
+<p>Gracias por tu registro!</p>

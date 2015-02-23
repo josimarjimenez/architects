@@ -5,4 +5,5 @@
 	{{ Form::password('password', array('class'=>'input-block-level', 'placeholder'=>'Contraseña')) }}	
 	
 	{{ Form::submit('Ingresar', array('class'=>'btn btn-large btn-primary btn-block'))}}
+	{{ HTML::link('users/recoverpassword', 'Olvidaste tu contraseña', array('class'=>'drop megamenu-top-header')) }}
 	{{ Form::close() }}

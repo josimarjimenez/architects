@@ -22,6 +22,11 @@ class UsersController extends BaseController {
 		->with('type', 'new');
 	}
 
+	public function getRecoverpassword(){
+		$this->layout->content = View::make('layouts.users.formrecoverpassword')
+		->with('organization', app('organization'));
+	}
+
 	//POST users/create
 	public function postCreate() { 
  
@@ -37,8 +42,8 @@ class UsersController extends BaseController {
 			$user->password = Hash::make(Input::get('password'));
 			$user->save();
 
-			Mail::send('layouts.users.welcome', array('firstname'=>Input::get('nombres')), function($message){
-        	$message->to(Input::get('mail'), Input::get('nombres').' '.Input::get('apellidos'))->subject('Welcome to the Laravel 4 Auth App!');
+			Mail::send('layouts.users.welcome', array('firstname'=>Input::get('nombres'), 'mail'=>Input::get('mail'), 'password'=>Input::get('password')), function($message){
+        	$message->to(Input::get('mail'), Input::get('nombres').' '.Input::get('apellidos'))->subject('Bienvenido!!');
     		});
 
 			return Redirect::to('users/login')->with('message', 'Gracias por registrarse');
@@ -132,6 +137,38 @@ class UsersController extends BaseController {
 		$this->layout->content = View::make('layouts.users.form')
 		->with('organization', app('organization'))
 		->with('type', 'new');
+	}
+
+	public function postSendpasswordrecovery(){
+		$mail = Input::get('mail'); 
+		$user = User::where('mail', '=', $mail )->get();
+		
+		print_r($user);
+
+		die;
+
+		if ($user) {
+			$passwordTmp = substr( $user->name, 0, 4) . substr( $user->lastname, 0, 4);
+
+			Mail::send('layouts.users.recoverpassword', array('mail'=> $user->mail, 'password'=> $passwordTmp), function($message){
+        	$message->to(Input::get('mail'), $user->name . ' ' . $user->lastname)->subject('Bienvenido!!');
+    		});
+
+			return Redirect::to('users/login')
+			->with('message', 'Se ha generado un constraseña temporal y se ha enviado a su correo.')
+			->withInput();
+
+		} else {
+			return Redirect::to('users/recoverpassword')
+			->with('message', 'Tu email no se encuentra registrado.')
+			->withInput();
+		}      
+
+
+		if($user){
+
+			
+		}
 	}
 
 }

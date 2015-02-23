@@ -5,7 +5,7 @@ use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
 class PersonalType extends Eloquent{
-	protected $table = 'personaltype';
+	protected $table = 'personalType';
 	protected $guarded = ['id', 'created_at', 'updated_at'];
 	
 	use UserTrait, RemindableTrait;
