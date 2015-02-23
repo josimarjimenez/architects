@@ -105,12 +105,7 @@ class UsersController extends BaseController {
 	}
 
 
-	public function destroy($id){
-		$user = User::find($id);
-		$organization = app('organization');
-		return Redirect::to('/users')->with('message', 'Registro eliminado');
-	}
-
+ 
 	public function getDashboard() {
 		$organization = app('organization');
 		$projectsCount = sizeof($organization->projects);

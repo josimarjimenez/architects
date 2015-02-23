@@ -60,9 +60,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function checkEmailRegistered(){
 		//return $this->where('rating', '>', 5)
 		//->orderBy('rating', 'DESC')->get();
+		return Album::where('artista', '=', 'Something Corporate')->get();
+	}
 
-		return Album::where('artista', '=', 'Something Corporate')
-		->get();
+	public function organization(){
+		return $this->belongsTo('Organization', 'usersid');
 	}
 
 }

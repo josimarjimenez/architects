@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::group(array('before' => 'auth'), function()
 {
 	Route::controller('organization', 'OrganizationsController');
@@ -25,7 +26,30 @@ Route::group(array('before' => 'auth'), function()
 	//Route::resource('task', 'TaskController');
 	Route::resource('personalType', 'PersonalTypeController');
 });
+
+
+Route::get('users/delete', function(){ 
+	if(Request::ajax()){ 
+		$id = Input::get("id");
+		$user = User::findOrFail($id); 
+		$organizations = sizeof(Organization::where('usersid','=', $id)->get());
+
  
+		if($organizations>= 1){
+			return Response::json(array('succes'=>'false', 
+				'message'=>'No se puede borrar el registro. <br />El usuario es propietario de una organización'));
+		}
+
+		if($user->delete()){
+			return Response::json(array('succes'=>'true', 
+				'message'=>'Usuario eliminado exitosamente', 'gr'=>$user->organization()));
+		}else{
+			return Response::json(array('succes'=>'false', 
+				'message'=>'Error, claves foráneas'));
+		}
+	} 
+}); 
+
 Route::controller('projects', 'ProjectsController');
 Route::controller('users', 'UsersController');
 Route::get('/', 'UsersController@getLogin');
@@ -150,3 +174,4 @@ Route::get('ajax/getProject', function(){
 		return Response::json(array('project'=>$project, 'iterations'=>$project->iterations));
 	}
 });
+
