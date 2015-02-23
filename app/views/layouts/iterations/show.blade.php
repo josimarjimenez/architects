@@ -39,7 +39,7 @@
 		</div>
 	</div>
 	<div style="text-align:center; margin-top:20px;" id="burnup_chart">
-
+ 
 		@if($iteration->issues()->count() > 1)
 		<img src="{{ action('GraphicsController@create' , array('iteration' =>  $iteration->id  )) }}">
 		@else
