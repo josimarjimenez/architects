@@ -145,8 +145,9 @@ class UsersController extends BaseController {
 		if ($user) {
 			$passwordTmp = substr( $user->name, 0, 4) . substr( $user->lastname, 0, 4);
 
-			Mail::send('layouts.users.recoverpassword', array('mail'=> $user->mail, 'password'=> $passwordTmp), function($message){
-        	$message->to(Input::get('mail'), $user->name . ' ' . $user->lastname)->subject('Bienvenido!!');
+			Mail::send('layouts.users.recoverpassword', array('name'=>$user->name,'mail'=> $user->mail, 'password'=> $passwordTmp), 
+				function($message) use ($user){
+        			$message->to(Input::get('mail'), $user->name . ' ' . $user->lastname)->subject('Bienvenido!!');
     		});
 
 			return Redirect::to('users/login')
@@ -158,12 +159,7 @@ class UsersController extends BaseController {
 			->with('message', 'Tu email no se encuentra registrado.')
 			->withInput();
 		}      
-
-
-		if($user){
-
-			
-		}
+ 
 	}
 
 }
