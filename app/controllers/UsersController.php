@@ -132,17 +132,17 @@ class UsersController extends BaseController {
 
 	public function postSendpasswordrecovery(){
 		$mail = Input::get('mail'); 
-		$user = User::where('mail', '=', $mail )->get();
+		$user = User::where('mail', '=', $mail )->get()->first();
 		
 		print_r($user);
 
-		die;
+		//die;
 
 		if ($user) {
 			$passwordTmp = substr( $user->name, 0, 4) . substr( $user->lastname, 0, 4);
 
-			Mail::send('layouts.users.recoverpassword', array('mail'=> $user->mail, 'password'=> $passwordTmp), function($message){
-        	$message->to(Input::get('mail'), $user->name . ' ' . $user->lastname)->subject('Bienvenido!!');
+			Mail::send('layouts.users.recoverpassword', array('name'=>$user->name, 'mail'=> $user->mail, 'password'=> $passwordTmp), function($message){
+        	$message->to(Input::get('mail'))->subject('Bienvenido!!');
     		});
 
 			return Redirect::to('users/login')
@@ -155,11 +155,6 @@ class UsersController extends BaseController {
 			->withInput();
 		}      
 
-
-		if($user){
-
-			
-		}
 	}
 
 }
