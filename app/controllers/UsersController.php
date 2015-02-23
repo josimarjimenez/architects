@@ -104,11 +104,10 @@ class UsersController extends BaseController {
 		$user->mail = Input::get('mail');
 		$user->direction = Input::get('direccion');
 		$user->password = Hash::make(Input::get('password'));
-		print_r($user);
-		die();
 		$user->save();
+
 		$organization = app('organization');
-		return Redirect::to('/users')
+		return Redirect::to('/organization/members/'. $organization->auxName . '/all_members')
 			->with('message', 'Registro actualizado');
 
 	}
@@ -141,12 +140,8 @@ class UsersController extends BaseController {
 
 	public function postSendpasswordrecovery(){
 		$mail = Input::get('mail'); 
-		$user = User::where('mail', '=', $mail )->get();
+		$user = User::where('mail', '=', $mail )->get()->first();
 		
-		print_r($user);
-
-		die;
-
 		if ($user) {
 			$passwordTmp = substr( $user->name, 0, 4) . substr( $user->lastname, 0, 4);
 
