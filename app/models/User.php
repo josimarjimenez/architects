@@ -57,4 +57,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->belongsToMany('Teams', 'memberof', 'userid', 'teamid');
 	}
 
+	public function checkEmailRegistered(){
+		//return $this->where('rating', '>', 5)
+		//->orderBy('rating', 'DESC')->get();
+
+		return Album::where('artista', '=', 'Something Corporate')
+		->get();
+	}
+
 }

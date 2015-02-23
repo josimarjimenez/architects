@@ -22,6 +22,11 @@ class UsersController extends BaseController {
 		->with('type', 'new');
 	}
 
+	public function getRecoverpassword(){
+		$this->layout->content = View::make('layouts.users.formrecoverpassword')
+		->with('organization', app('organization'));
+	}
+
 	//POST users/create
 	public function postCreate() { 
  
@@ -128,6 +133,11 @@ class UsersController extends BaseController {
 		$this->layout->content = View::make('layouts.users.form')
 		->with('organization', app('organization'))
 		->with('type', 'new');
+	}
+
+	public function postSendpasswordrecovery(){
+		
+		
 	}
 
 }
