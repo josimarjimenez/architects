@@ -10,16 +10,40 @@ class GraphicsController extends BaseController{
 
     public function create($id){  
  
-    	$iteration = Iterations::findOrFail(20);
-    	$tasks =  Task::where('issueid','=', $id)->get();
+    	$iteration = Iterations::findOrFail($id);
+    	$issues = Issue::where('iterationid','=',$iteration->id)->get();
+    	$tasksId=array();
+    	foreach ($issues as $issue) { 
+    		$tasksId[] = $issue->id;
+    	}
+    	  
 
+    	$tasks =  Task::whereIn('issueid',$tasksId)->get();
+    	$countTODO = 0;
+    	$countDOING =0; 
+    	$countDONE = 0;
+
+
+ 
+    	foreach ($tasks as $task) { 
+    		switch ($task->scrumid) {
+    			case 1: 
+    				$countTODO++;
+    				break;
+    			case 2: 
+    				$countDOING++;
+    				break;
+    			case 3: 
+    				$countDONE++;
+    				break; 
+    		} 
+    	}
     	
     	JpGraph\JpGraph::load();
     	JpGraph\JpGraph::module('bar');
 
-    	$l1datay = array(11,9,2,4,3,13,17);
-		$l2datay = array(23,12,5,19,17,10,15);
-		$datax=array('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug');
+		$l1datay = array($countTODO,$countDOING, $countDONE);
+		$datax=array('TO-DO','DOING','DONE');
 		//Create the graph
 		$graph = new Graph(900,400);    
 		$graph->SetScale('textlin');
@@ -28,23 +52,18 @@ class GraphicsController extends BaseController{
 		$graph->SetShadow();
  
 		// Create the linear error plot
-		$l1plot=new LinePlot($l1datay);
+		$l1plot=new BarPlot($l1datay);
 		$l1plot->SetColor('red');
 		$l1plot->SetWeight(2);
-		$l1plot->SetLegend('Prediction');
+		$l1plot->SetLegend('Avance de iteración');
  
-		// Create the bar plot
-		$bplot = new BarPlot($l2datay);
-		$bplot->SetFillColor('orange');
-		$bplot->SetLegend('Result');
- 
-		// Add the plots to t'he graph
-		$graph->Add($bplot);
+		
+		// Add the plots to t'he graph 
 		$graph->Add($l1plot);
  
-		$graph->title->Set('Adding a line plot to a bar graph v1');
-		$graph->xaxis->title->Set('X-title');
-		$graph->yaxis->title->Set('Y-title');
+		$graph->title->Set('Tareas');
+		$graph->xaxis->title->Set('Estados');
+		$graph->yaxis->title->Set('Cantidad');
  
 		$graph->title->SetFont(FF_FONT1,FS_BOLD);
 		$graph->yaxis->title->SetFont(FF_FONT1,FS_BOLD);

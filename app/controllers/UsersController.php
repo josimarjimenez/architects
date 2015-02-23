@@ -78,6 +78,7 @@ class UsersController extends BaseController {
 
 
 	public function getEdit($id){
+
 		try {
 			$user = User::findOrFail($id);
 		}catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) { 
@@ -86,7 +87,7 @@ class UsersController extends BaseController {
 			->with('message', 'No existe el usuario');
 		}
 		
-		$this->layout->content = View::make('layouts.users.form')
+		$this->layout->content = View::make('layouts.users.edit')
 	//		->with('organization', app('organization'))
 			->with('user', $user)
 			->with('type', "edit");
@@ -95,11 +96,18 @@ class UsersController extends BaseController {
 
 
 	public function postUpdate($id){
+
 		$user = User::findOrFail($id);
-		$user->fill(Input::all());
+		//$user->fill(Input::all());
+		$user->name = Input::get('nombres'); 
+		$user->lastname = Input::get('apellidos');
+		$user->mail = Input::get('mail');
+		$user->direction = Input::get('direccion');
+		$user->password = Hash::make(Input::get('password'));
 		$user->save();
+
 		$organization = app('organization');
-		return Redirect::to('/users')
+		return Redirect::to('/organization/members/'. $organization->auxName . '/all_members')
 			->with('message', 'Registro actualizado');
 
 	}
@@ -134,7 +142,7 @@ class UsersController extends BaseController {
 		$mail = Input::get('mail'); 
 		$user = User::where('mail', '=', $mail )->get()->first();
 		
-		print_r($user);
+//		print_r($user);
 
 		//die;
 
