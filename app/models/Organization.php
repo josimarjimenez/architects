@@ -23,5 +23,9 @@ class Organization extends Eloquent implements UserInterface, RemindableInterfac
 	public function materials() {
 		return $this->hasMany('Material','organizationid');
 	}
+
+	public function users() {
+		return $this->hasOne('User','id');
+	}
 }
 ?>
