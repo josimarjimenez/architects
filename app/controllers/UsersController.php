@@ -91,8 +91,16 @@ class UsersController extends BaseController {
 
 
 	public function postUpdate($id){
+
 		$user = User::findOrFail($id);
 		//$user->fill(Input::all());
+		$user->name = Input::get('nombres'); 
+		$user->lastname = Input::get('apellidos');
+		$user->mail = Input::get('mail');
+		$user->direction = Input::get('direccion');
+		$user->password = Hash::make(Input::get('password'));
+		print_r($user);
+		die();
 		$user->save();
 		$organization = app('organization');
 		return Redirect::to('/users')
