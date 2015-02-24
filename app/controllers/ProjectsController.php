@@ -12,9 +12,16 @@ class ProjectsController extends BaseController {
     	try {
 			$project = Project::findOrFail($id); 
 			$iterations =sizeof($project->iterations);
+			$idIterations = array();
+			foreach ($project->iterations as $iteration) {
+				$idIterations[] = $iteration->id;
+			}
+			$stories= Issue::whereIn('iterationid', $idIterations)->get();
+			$totalStories = sizeof($stories);
 			$this->layout->content = View::make('layouts.projects.show')
 								->with('project', $project)
-								->with('iterations', $iterations);
+								->with('iterations', $iterations)
+								->with('totalStories', $totalStories);
 		}catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) { 
 			$organization = app('organization');
 		    return Redirect::to('/materials/')

@@ -37,6 +37,7 @@
   jQuery(document).ready(function($) {
     $( "#options" ).css('display', 'none');
     $('#organization').click(function() {
+      $( "#subMenuProject" ).css('display','none');
       $( "#options" ).toggle();
     });
   });
