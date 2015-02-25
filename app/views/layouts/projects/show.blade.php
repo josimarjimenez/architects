@@ -79,22 +79,20 @@ $( document ).ready(function() {
 			li += '<i class="topmenu-icon icon-globe"> </i>Resumen del proyecto';
 			li +='</a>';
 			li +='</li>';
-
-			//grupo de trabajo
+ 
+			//administracion proyecto
 			li +='<li>';
-			li +='<a href="projects/members/" title="Grupo de trabajo">';
+			li +='<a href="/projects/'+id+'/edit" title="">';
 			li +='<i class="topmenu-icon icon-glyph icon-cogs"></i>Administración del proyecto';
 			li +='</a>';
 			li +='</li>';
-			//administracion proyecto
+
+			//grupo de trabajo 
 			li +='<li>';
-			li +='<a href="/projects/project/adfadf/admin" title="Project Administration / Settings">';
+			li +='<a href="/projects/members/'+id+'" title="Grupo de trabajo">';
 			li +='<i class="topmenu-icon icon-glyph icon-cogs"></i>Grupo de trabajo';
 			li +='</a>';
 			li +='</li>';
-
-			
-
 			li += '</ul>';
 			li += '</div>';
 
