@@ -8,7 +8,10 @@ class GraphicsController extends BaseController{
  		 
  	}
 
-    public function create($id){  
+    /**
+    *
+    */
+    public function iterationSummary($id){  
  
     	$iteration = Iterations::findOrFail($id);
     	$issues = Issue::where('iterationid','=',$iteration->id)->get();
@@ -17,13 +20,10 @@ class GraphicsController extends BaseController{
     		$tasksId[] = $issue->id;
     	}
     	  
-
     	$tasks =  Task::whereIn('issueid',$tasksId)->get();
     	$countTODO = 0;
     	$countDOING =0; 
     	$countDONE = 0;
-
-
  
     	foreach ($tasks as $task) { 
     		switch ($task->scrumid) {
@@ -69,11 +69,10 @@ class GraphicsController extends BaseController{
 		$graph->yaxis->title->SetFont(FF_FONT1,FS_BOLD);
 		$graph->xaxis->title->SetFont(FF_FONT1,FS_BOLD);
  
-		$graph->xaxis->SetTickLabels($datax);
-		//$graph->xaxis->SetTextTickInterval(2);
+		$graph->xaxis->SetTickLabels($datax); 
 		
 		//Display the graph
-		 $graph->Stroke();
+		$graph->Stroke();
 
 	}
 }

@@ -18,10 +18,19 @@ class ProjectsController extends BaseController {
 			}
 			$stories= Issue::whereIn('iterationid', $idIterations)->get();
 			$totalStories = sizeof($stories);
+			$storiesCompleted = Issue::where('currentState','=','DONE')->
+								whereIn('iterationid', $idIterations)->get();
+			$storiesProgress = Issue::where('currentState','=','DOING')->
+								whereIn('iterationid', $idIterations)->get();
+///print_r($storiesProgress);
+	//							die();
 			$this->layout->content = View::make('layouts.projects.show')
 								->with('project', $project)
 								->with('iterations', $iterations)
-								->with('totalStories', $totalStories);
+								->with('totalStories', $totalStories)
+								->with('completed', $storiesCompleted)
+								->with('doing', $storiesProgress);
+
 		}catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) { 
 			$organization = app('organization');
 		    return Redirect::to('/materials/')
