@@ -143,7 +143,8 @@ class UsersController extends BaseController {
 		$user = User::where('mail', '=', $mail )->get()->first();
 
 		if ($user) {
-			$passwordTmp = substr( $user->name, 0, 4) . substr( $user->lastname, 0, 4); 
+			$passwordTmp = substr( $user->name, 0, 3) . substr( $user->lastname, 0, 3);
+
 			Mail::send('layouts.users.recoverpassword', array('name'=>$user->name, 'mail'=> $user->mail, 'password'=> $passwordTmp), function($message){
         		$message->to(Input::get('mail'))->subject('Bienvenido!!');
     		});
@@ -156,7 +157,7 @@ class UsersController extends BaseController {
 			return Redirect::to('users/recoverpassword')
 			->with('message', 'Tu email no se encuentra registrado.')
 			->withInput();
-		}       
+		}      
 	}
 
 }
