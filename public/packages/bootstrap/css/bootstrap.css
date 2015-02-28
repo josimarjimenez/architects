@@ -12,8 +12,8 @@ section, summary {
     display: block
 }
 
-audio, canvas, video {
-    display: inline-block
+audio, canvas, video { 
+   display: inline-block
 }
 
 audio:not([controls]) {
@@ -6426,7 +6426,7 @@ th.hidden-lg, td.hidden-lg {
     background-color:#1e1e1e;
     background:-webkit-gradient(linear, left top, left bottom, from(#464646), to(#1e1e1e));
     background:-moz-linear-gradient(top, #464646, #1e1e1e);
-    height:44px;
+    height:60px;
     padding-left:15px;
     color:#fff;
     border-bottom:1px solid #333;
@@ -6634,7 +6634,7 @@ th.hidden-lg, td.hidden-lg {
 #body {
     background-color: #fff;
     min-height: 600px;
-    padding-top: 15px;
+    padding-top: 50px;
 }
  
  #projects td{
@@ -7310,4 +7310,134 @@ a {
 }
 #navbar-project-menu{
     display: none;
+}
+
+#logo{
+    height:60px;
+    line-height:60px;
+    display:inline-block; 
+    position:fixed;
+    width: 26%;
+    font-family: 'Inconsolata';
+    font-weight: bold;
+    font-size: 30px;
+}
+#logo label{
+    font-family: 'Inconsolata';
+    font-weight: bold;
+    font-size: 30px;
+    color: teal;
+    display: inline-block;
+    margin-bottom: 0px !important
+}
+
+#login_login {
+    float: left;
+    width: 50%;
+}
+
+.login-option-box{ 
+  border: 1px solid #e6e6e6;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #aaa;
+    min-height: 420px;
+    padding: 5px 15px 15px;
+    width: 45% !important;
+}
+#body {
+    background-color: #fff;
+    min-height: 600px;
+    padding-top: 15px;
+}
+.narrow_body {
+    background-color: #ffffff;
+    margin: 0 auto;
+    padding: 9px 10px 10px;
+    width: 1100px !important;
+}
+#body {
+    background-color: #fff;
+    min-height: 600px;
+    padding-top: 15px;
+}
+.container {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.uniForm::after, .uniForm .buttonHolder::after, .uniForm .ctrlHolder::after, .uniForm .ctrlHolder .multiField::after, .uniForm .inlineLabel::after {
+    clear: both;
+    content: ".";
+    display: block;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    min-height: 0;
+    visibility: hidden;
+}
+
+.uniForm .ctrlHolder {
+    border-bottom: 1px solid #efefef;
+    padding: 1em !important;
+}
+.uniForm .ctrlHolder, .uniForm .buttonHolder {
+    clear: both;
+    margin: 0;
+    padding: 0;
+}
+
+.uniForm .inlineLabels label, .uniForm .inlineLabels .label {
+    float: left;
+    line-height: 1;
+    margin: 0.3em 2% 0 0;
+    padding: 0;
+    position: relative;
+    width: 32%;
+}
+
+.uniForm .inlineLabels .textInput, .uniForm .inlineLabels .fileUpload, .uniForm .inlineLabels .selectInput, .uniForm .inlineLabels select, .uniForm .inlineLabels textarea {
+    float: left;
+    width: 64%;
+}
+
+.uniForm .buttonHolder {
+    background: none repeat scroll 0 0 #efefef;
+    border-radius: 4px;
+    margin: 1.5em 0 0;
+    padding: 1.5em;
+    text-align: right;
+}
+
+.uniForm .textInput, .uniForm textarea {
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #ccc;
+    padding: 4px 2px;
+}
+.fixed-form-fields {
+    height: 280px !important;
+}
+.uniForm .secondaryAction {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    color: #777;
+    margin: 1.25em 0 0;
+    padding: 0;
+    text-decoration: none;
+}
+.uniForm .secondaryAction {
+    text-align: left;
+}
+.uniForm .secondaryAction {
+    float: left;
+}
+.login-option-box input[type="submit"] {
+    height: 35px;
+    width: 160px;
+}
+.inlineLabels h1, #login_new_user h1{
+    font-family: 'Open Sans', sans-serif;    
+}
+
+#login_new_user {
+    float: right;
 }
