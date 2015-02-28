@@ -2,9 +2,7 @@
 	<div class="project-body-header">
 		<h1 id="tour-project-name">
 			{{ $project->name }}
-		</h1>
-		{{ HTML::link('projects/members/'.$project->id,  'Grupo de trabajo', 
-		array('class'=>"btn btn-medium btn-info")) }}
+		</h1> 
 		<div class="project-body-header-stats">
 			<div class="stats-bubble">
 				Total de iteraciones
@@ -23,10 +21,8 @@
 				<h4>{{ $doing }}</h4>
 			</div>
 		</div>
-		
 	</div>
 	<br><br>
-
 	@if($iterations < 1)
 	{{ Form::open(array('url' => 'iterations/create', 'method'=>'GET','class' => 'pull-right')) }}
 	{{ Form::hidden('projectid', $project->id) }}
@@ -69,8 +65,6 @@ $( document ).ready(function() {
 			li +='</a>';
 			li +='</span></h3>';
 
-
-
 			li += '<div class="col_9">';
 			li += '<ul class="project-menu-horizontal-list">';
 			//resumen de proyecto
@@ -79,22 +73,20 @@ $( document ).ready(function() {
 			li += '<i class="topmenu-icon icon-globe"> </i>Resumen del proyecto';
 			li +='</a>';
 			li +='</li>';
-
-			//grupo de trabajo
+ 
+			//administracion proyecto
 			li +='<li>';
-			li +='<a href="projects/members/" title="Grupo de trabajo">';
+			li +='<a href="/projects/'+id+'/edit" title="">';
 			li +='<i class="topmenu-icon icon-glyph icon-cogs"></i>Administración del proyecto';
 			li +='</a>';
 			li +='</li>';
-			//administracion proyecto
+
+			//grupo de trabajo 
 			li +='<li>';
-			li +='<a href="/projects/project/adfadf/admin" title="Project Administration / Settings">';
+			li +='<a href="/projects/members/'+id+'" title="Grupo de trabajo">';
 			li +='<i class="topmenu-icon icon-glyph icon-cogs"></i>Grupo de trabajo';
 			li +='</a>';
 			li +='</li>';
-
-			
-
 			li += '</ul>';
 			li += '</div>';
 

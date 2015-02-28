@@ -18,7 +18,7 @@
 			@foreach ($organization->projects as $project)
 			<tr>
 				<td>
-					{{ HTML::link('projects/project/'.$project->nameAux,   $project->name  ) }}
+					{{ HTML::link('projects/'.$project->id,   $project->name  ) }}
 				</td>
 				<td>{{ $project->startDate }}</td>
 				<td>{{ $project->endDate }}</td>

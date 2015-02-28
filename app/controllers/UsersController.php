@@ -57,7 +57,12 @@ class UsersController extends BaseController {
 
 //  /users/login
 	public function getLogin() {
-		$this->layout->content = View::make('layouts.users.login');
+		if(Auth::check()){
+			return Redirect::to('users/dashboard')->with('message', '');
+		}else{
+			$this->layout->content = View::make('layouts.users.login');
+		}
+		
 	}
 
 // /users/sigin

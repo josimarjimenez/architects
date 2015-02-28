@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Proyecto arquitectos</title>
+  <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   {{ HTML::style('packages/bootstrap/css/bootstrap.css') }}
   {{ HTML::style('packages/bootstrap/css/bootstrap.min.css') }}
   {{ HTML::style('packages/bootstrap/css/datepicker3.css') }}
@@ -19,9 +21,12 @@
   <div class="navbar navbar-fixed-top">
     <div id="tabhead">
       <div class="megamenu_container">
-          <ul class="megamenu"> 
-            @include('layouts.menu') 
-        </ul>
+        <div id="logo">PROJARQ<label>MANAGEMENT</label></div>
+        <nav id="menu">
+            <ul class="megamenu"> 
+              @include('layouts.menu') 
+          </ul>
+         </nav>
       </div>
     </div>
   </div>
