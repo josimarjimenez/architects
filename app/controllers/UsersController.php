@@ -101,6 +101,8 @@ class UsersController extends BaseController {
 		//$user->fill(Input::all());
 		$user->name = Input::get('nombres'); 
 		$user->lastname = Input::get('apellidos');
+		$user->identification = Input::get('identificacion');
+		$user->phone = Input::get('telefono');
 		$user->mail = Input::get('mail');
 		$user->direction = Input::get('direccion');
 		$user->password = Hash::make(Input::get('password'));
@@ -144,7 +146,8 @@ class UsersController extends BaseController {
 
 		if ($user) {
 			$passwordTmp = substr( $user->name, 0, 3) . substr( $user->lastname, 0, 3);
-
+			$user->password = Hash::make($passwordTmp);
+			$user->save();
 			Mail::send('layouts.users.recoverpassword', array('name'=>$user->name, 'mail'=> $user->mail, 'password'=> $passwordTmp), function($message){
         		$message->to(Input::get('mail'))->subject('Bienvenido!!');
     		});
