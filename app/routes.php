@@ -54,7 +54,9 @@ Route::controller('projects', 'ProjectsController');
 Route::controller('users', 'UsersController');
 Route::get('/', 'UsersController@getLogin');
 Route::post('update/{id}', 'UsersController@update');
-Route::get('grafica/{id}', 'GraphicsController@create');
+
+
+Route::get('grafica/{id}', 'GraphicsController@iterationSummary');
 
 Route::post('task', function(){ 
 	if(Request::ajax()){ 
