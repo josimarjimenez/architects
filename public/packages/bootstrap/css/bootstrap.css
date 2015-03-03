@@ -6455,6 +6455,7 @@ th.hidden-lg, td.hidden-lg {
         border: medium none;
         float: left;
         margin: 0 12px 0 0;
+        line-height: 30px;
     }
     .megamenu li.right {
         float: right;
@@ -6498,7 +6499,7 @@ th.hidden-lg, td.hidden-lg {
     padding: 24px 0 10px;
     position: absolute;
     text-align: left;
-    top: 44px;
+    top: 59px;
     z-index: 1888;
 }
 
@@ -6527,6 +6528,7 @@ th.hidden-lg, td.hidden-lg {
 .megamenu h3 {
     font-size: 28px;
     line-height: 28px;
+    text-align: left;
 }
 .megamenu h1, .megamenu h2, .megamenu h3 {
     margin-bottom: 18px;
@@ -6542,7 +6544,7 @@ th.hidden-lg, td.hidden-lg {
 }
 
 .megamenu .drop8columns {
-    width: 640px;
+    width: 550px;
 }
 
 
@@ -6564,14 +6566,14 @@ th.hidden-lg, td.hidden-lg {
     padding: 0;
     position: relative;
     text-align: left;
+    margin-left:5px !important;
 }
 
 .project-menu-horizontal-list li {
     display: inline-block;
-    height: 20px;
     margin-bottom: 9px !important;
     vertical-align: top;
-    width: 180px;
+    width: 160px;
 }
 
 .project-menu-iteration-list-item {
@@ -6597,7 +6599,7 @@ th.hidden-lg, td.hidden-lg {
     font-size: 14px;
 }
  .megamenu .pull-left-450 {
-    margin-left: -548px;
+    margin-left: -454px;
 }
 .megamenu li ul {
     list-style: outside none none;
@@ -6613,15 +6615,7 @@ th.hidden-lg, td.hidden-lg {
     position: relative;
     text-align: left;
 }
-
-.project-menu-horizontal-list li {
-    display: inline-block;
-    height: 20px;
-    margin-bottom: 9px !important;
-    vertical-align: top;
-    width: 200px;
-}
-
+ 
 
 .megamenu h3 {
     font-size: 28px;
@@ -6631,11 +6625,6 @@ th.hidden-lg, td.hidden-lg {
     margin-bottom: 18px;
 }
 
-#body {
-    background-color: #fff;
-    min-height: 600px;
-    padding-top: 50px;
-}
  
  #projects td{
     text-align: right;
@@ -7344,11 +7333,7 @@ a {
     padding: 5px 15px 15px;
     width: 45% !important;
 }
-#body {
-    background-color: #fff;
-    min-height: 600px;
-    padding-top: 15px;
-}
+
 .narrow_body {
     background-color: #ffffff;
     margin: 0 auto;
@@ -7432,12 +7417,45 @@ a {
 }
 .login-option-box input[type="submit"] {
     height: 35px;
-    width: 160px;
-}
+    width: 160px;}
 .inlineLabels h1, #login_new_user h1{
     font-family: 'Open Sans', sans-serif;    
 }
 
 #login_new_user {
     float: right;
+}
+/** ICONOS MENU SUPERIOR ***/
+.icon-group{
+    background-position: -168px 0px !important;
+}
+.icon-material{
+    background-position: -264px 0px !important;
+}
+.icon-calendar-empty{
+    background-position: -192px -121px !important;
+}
+.icon-edit{
+    background-position: 0px -72px !important;
+}
+.icon-edit{
+    background-position: 0px -72px !important;
+}
+
+.report-tab-selected {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-top-colors:none;
+    border-right-colors:none;
+    border-left-colors:none;
+    border-bottom-colors:none;
+    background-color: #fff;
+    border-color: #d4d4d4 #d4d4d4 #fff;
+    border-image: none;
+    border-style: solid;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-width: 2px;
 }
