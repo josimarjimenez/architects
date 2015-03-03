@@ -15,15 +15,17 @@
 		<tbody>
 			<tr >
 				<th style="width: 180px;">Nombres</th>
-				<th style="width: 180px; text-align:right">Apellidos</th>
-				<th style="width: 180px; text-align:right">Email</th> 
-				<th style="width: 180px; text-align:right">Direccion</th> 
+				<th style="width: 180px;">Apellidos</th>
+				<th style="width: 180px;">Identificación</th>
+				<th style="width: 180px;">Email</th> 
+				<th style="width: 180px;">Direccion</th> 
 				<th style="width: 180px;"></th>
 			</tr>
 			@foreach ($users as $user)
 			<tr id="{{ $user->id }}">
 				<td>{{ $user->name }}</td>
 				<td>{{ $user->lastname }}</td>
+				<td>{{ $user->identification }}</td>
 				<td>{{ $user->mail }}</td>
 				<td>{{ $user->direction }}</td> 
 				<td>

@@ -23,6 +23,14 @@
 					{{ Form::text('apellidos', $user->lastname, array('class'=>'textInput textinput', 'placeholder'=>'Apellidos')) }}
 				</div>
 				<div class="ctrlHolder" id="div_id_name">
+					{{ Form::label('value', "Identificación", array('class' =>'requiredField'))}}
+					{{ Form::text('identificacion', $user->identification, array('class'=>'textInput textinput', 'placeholder'=>'Identificación'))}}
+				</div>
+				<div class="ctrlHolder" id="div_id_name">
+					{{ Form::label('value','Teléfono', array('class'=>'requiredField', ))}}
+					{{ Form::text('telefono', $user->phone, array('class'=>'textInput textInput', 'placeholder'=>'Teléfono'))}}
+				</div>
+				<div class="ctrlHolder" id="div_id_name">
 					{{ Form::label('value', 'Correo', array('class'=>'requiredField' )) }}
 					{{ Form::text('mail', $user->mail, array('class'=>'textInput textinput', 'placeholder'=>'Dirección de correo')) }}
 				</div>
