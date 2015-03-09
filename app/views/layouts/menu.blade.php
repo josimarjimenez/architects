@@ -8,7 +8,18 @@
 
 @else
 <li class="right">
-	{{ HTML::link('users/logout', 'Cerrar sesión',array('class'=>'drop megamenu-top-header')) }}
+
+	{{ HTML::link('#', 'Perfil',array('class'=>'drop megamenu-top-header', 'id'=>'perfilID')) }}
+	<div id="perfil" class="drop8columns dropcontent pull-left-450" style="left: auto; display: block; max-height: 639px;">
+		<h3 class="col_6">Bienvenido: {{ Auth::user()->name }} {{ Auth::user()->lastname }}</h3> 
+		<div style="clear:both"></div> 
+		<div class="col_6">
+			<ul class="project-menu-horizontal-list">
+				<li><a href="edit/{{ Auth::id(); }}"><i class="topmenu-icon icon-glyph icon-group"></i> Mi perfil </a></li>
+				<li>{{ HTML::link('users/logout', 'Cerrar sesión',array('class'=>'')) }}</li>
+			</ul>
+		</div> 
+	</div> 
 </li>
 <li id="navbar-project-menu" class="right" > 
 	
@@ -16,11 +27,4 @@
 <li id="navbar-organization-menu" class="right"> 
 	@include('layouts.menuOrg')
 </li>
-
-
-<!--
-<li id="navbar-project-menu" class="right"> 
-</li>
-
--->
 @endif

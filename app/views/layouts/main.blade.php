@@ -45,6 +45,14 @@
       $( "#subMenuProject" ).css('display','none');
       $( "#options" ).toggle();
     });
+
+
+    $('#perfilID').click(function() {
+      $( "#perfil" ).toggle();
+    });
+ 
+
+
     $(document).mouseup(function (e){
       var container = $("#options");
       if (!container.is(e.target) 
@@ -56,6 +64,12 @@
       if (!container1.is(e.target) 
           && container1.has(e.target).length === 0) {
           container1.hide();
+      }
+
+      var container2 = $("#perfil");
+       if (!container2.is(e.target) 
+          && container2.has(e.target).length === 0) {
+          container2.hide();
       }
     });
   });
