@@ -15,8 +15,7 @@ class UsersController extends BaseController {
 	}
 
     //users/register
-	public function getRegister() { 
-		//$this->layout->content = View::make('layouts.users.register');
+	public function getRegister() {  
 		$this->layout->content = View::make('layouts.users.form')
 		->with('organization', app('organization'))
 		->with('type', 'new');
@@ -57,7 +56,7 @@ class UsersController extends BaseController {
 		}
 	}
 
-//  /users/login
+	//  /users/login
 	public function getLogin() {
 		if(Auth::check()){
 			return Redirect::to('users/dashboard')->with('message', '');
@@ -67,7 +66,7 @@ class UsersController extends BaseController {
 		
 	}
 
-// /users/sigin
+	// /users/sigin
 	public function postSignin() 
 	{
 
@@ -123,15 +122,39 @@ class UsersController extends BaseController {
 
 
  
+ 	/**
+ 	* Get home after logged in
+ 	**/
 	public function getDashboard() {
 		$organization = app('organization');
 		$projectsCount = sizeof($organization->projects);
-		$iterationsCount = sizeof($organization->iterations);
+		$idProjects = array();
+
+		foreach($organization->projects as $project){
+			$idProjects[]=$project->id;
+		}
+
+		$iterations = Iterations::whereIn('projectid', $idProjects)->get();
+		$idIterations = array();
+
+		
+		foreach($iterations as $iteration){
+			$idIterations[]=$iteration->id;
+		}
+
+		$issues = Issue::whereIn('iterationid', $idIterations)->get();
+
+		$idStories = array();
+		foreach ($issues  as $issue) {
+			$idStories[] = $issue->id;
+		}
+		$tasks = Task::whereIn('issueid', $idStories)->get();
 	
 		$this->layout->content = View::make('layouts.users.dashboard')
     	->with('organization', $organization) 
     	->with('projectsCount', $projectsCount)
-    	->with('iterationsCount', $iterationsCount);
+    	->with('iterationsCount', count($iterations))
+    	->with('taskCount', count($tasks));
 	}
 
 	public function getLogout() {

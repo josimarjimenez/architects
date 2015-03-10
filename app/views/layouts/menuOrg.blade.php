@@ -1,7 +1,7 @@
 	{{ HTML::link('#', $organization->name, array('class'=>'drop megamenu-top-header','id'=>'organization')) }}
 	<div id="options" class="drop8columns dropcontent pull-left-450" style="left: auto; display: block; max-height: 639px;">
-		<h3 class="col_8">{{ $organization->name }}</h3>  
-		<div class="col_8"> 
+		<h3 class="col_6">{{ $organization->name }}</h3>  
+		<div class="col_6"> 
 			<ul class="project-menu-horizontal-list">
 				<li> 
 					<a href="/users/dashboard" title="Ver todas las iteraciones">
@@ -34,7 +34,7 @@
 
 				<li>
 					<a href="/materials" title="Lista de materiales en la organización">
-						<i class="topmenu-icon icon-glyph icon-group"></i> 
+						<i class="topmenu-icon icon-glyph icon-material"></i> 
 						Material 
 					</a>
 				</li>
@@ -46,16 +46,10 @@
 					</a>
 				</li>
 				
-				<li>
-					<a href="/taskBoard" title="Lista de materiales en la organización">
-						<i class="topmenu-icon icon-glyph icon-group"></i> 
-						Task board
-					</a>
-				</li>
 
 				<li>
 					<a href="/organization/{{ $organization->auxName }}/edit">
-						<i class="topmenu-icon icon-glyph icon-cogs"></i> 
+						<i class="topmenu-icon icon-glyph icon-edit"></i> 
 						Editar organización</a>
 				</li>
 

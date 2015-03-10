@@ -62,7 +62,6 @@
 			</div>
 			{{ Form::close() }}	
 		</div>
-		<img src="https://d11uy15xvlvge3.cloudfront.net/static/v105/scrumdo/images/ajax-loader.gif" id="loadingIcon">
 		<h1>Historia</h1>
 		<ul id="tour-story-list" class="story-list ui-sortable" style="">
 			@foreach ($issues as $issue)
