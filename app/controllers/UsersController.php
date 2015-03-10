@@ -37,6 +37,8 @@ class UsersController extends BaseController {
 			$user = new User;
 			$user->name = Input::get('nombres'); 
 			$user->lastname = Input::get('apellidos');
+			$user->identification = Input::get('identification');
+			$user->phone = Input::get('telefono');
 			$user->mail = Input::get('mail');
 			$user->direction = Input::get('direccion');
 			$user->password = Hash::make(Input::get('password'));
@@ -106,7 +108,7 @@ class UsersController extends BaseController {
 		//$user->fill(Input::all());
 		$user->name = Input::get('nombres'); 
 		$user->lastname = Input::get('apellidos');
-		$user->identification = Input::get('identificacion');
+		$user->identification = Input::get('identification');
 		$user->phone = Input::get('telefono');
 		$user->mail = Input::get('mail');
 		$user->direction = Input::get('direccion');

@@ -110,6 +110,10 @@ class ProjectsController extends BaseController {
 		$team = $project->team;
 		$users = User::all();
 		$members;
+
+		//echo 'Hoal mundo >>>>>>>>>>>>>>>>>>>>>>>>';
+		//die;
+
 		if($team != null){
 			$members = Teams::find($team->id)->users;
 			$members = array_pluck($members, 'id');
