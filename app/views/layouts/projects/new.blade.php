@@ -1,10 +1,12 @@
 <br><br>
 <div id="projectError">
-	<ul>
+	@if($errors->all())
+	<ul class="alert alert-error">
 		@foreach($errors->all() as $error)
 		<li>{{ $error }}</li>
 		@endforeach
 	</ul> 
+	@endif
 <h1>Crear/Editar proyecto</h1>
 	<div class="panel">
 		<?php 
@@ -24,8 +26,8 @@
 					{{ Form::text('startDate', null, array('type' => 'text', 'class' => 'textInput textinput datepicker input-block-level','placeholder' => 'Fecha inicio', 'id' => 'startDate')) }}
 				</div>
 				<div class="ctrlHolder" id="div_id_name">
-					{{ Form::label('endDate', 'Fecha fin', array('class'=>'requiredField' )) }}
-					{{ Form::text('endDate', null, array('type' => 'text', 'class' => 'textInput textinput datepicker input-block-level','placeholder' => 'Fecha fin', 'id' => 'endDate')) }}
+					{{ Form::label('endDate', 'Fecha de fin', array('class'=>'requiredField' )) }}
+					{{ Form::text('endDate', null, array('type' => 'text', 'class' => 'textInput textinput datepicker input-block-level','placeholder' => 'Fecha de fin', 'id' => 'endDate')) }}
 				</div>
 				<div class="ctrlHolder" id="div_id_name">
 					{{ Form::label('budgetEstimated', 'Presupuesto', array('class'=>'requiredField' )) }}

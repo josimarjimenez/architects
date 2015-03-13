@@ -46,7 +46,8 @@ class ProjectsController extends BaseController {
 
 	//save mew
 	public function store(){
-		$validator = Validator::make(Input::all(), Project::$rules);
+		//$validator = Validator::make(Input::all(), Project::$rules);
+		$validator = Validator::make(Input::all(), Project::$rules, Project::$messages);
 
 		if ($validator->passes()) { 
 
@@ -85,13 +86,43 @@ class ProjectsController extends BaseController {
 
 	public function update($id){
 		$project = Project::findOrFail($id);
-		$project->fill(Input::all());
-		$project->save();
-		$organization = app('organization');
-		return Redirect::to('organization/name/'.$organization->auxName.'/projects')
-			->with('message', 'Registro actualizado');
+
+		$validator = Validator::make(Input::all(), Project::$rules, Project::$messages);
+
+		if ($validator->passes()) { 
+
+			$project->fill(Input::all());
+			$project->save();
+			$organization = app('organization');
+			return Redirect::to('organization/name/'.$organization->auxName.'/projects')
+				->with('message', 'Registro actualizado');
+		}else{
+			return Redirect::to('projects/'.$id.'/edit')
+			->with('message', 'Ocurrieron los siguientes errores')
+			->withErrors($validator)
+			->withInput();   	
+		}
 	}
 
+	/*
+	'projects/'.$project->id.'/edit'
+	return Redirect::to('projects/edit'.$id)
+
+	 	public function update($id)
+    {
+        $user = User::find($id);
+        $validation = Validator::make($input, User::rolesUpdate($user->id));
+
+        if ($validation->passes())
+        {
+            $user->update($input);
+
+            return Redirect::route('admin.user.show', $id);
+        }
+
+        return Redirect::route('admin.user.edit', $id)->withInput()->withErrors($validation);
+    }
+	*/
 
 	public function destroy($id){
 		//project
