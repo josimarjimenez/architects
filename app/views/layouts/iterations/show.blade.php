@@ -49,18 +49,22 @@
 	</div>	
 </div>
 <div class="container wide_body" id="body">
+	@if($hasmembers)
 	<div style="margin-left:auto; margin-right:auto; width:100%;">
 		<div id="story_form" class="story_form" style="margin-left:auto; margin-right:auto">
 			<ul id="createdStories">
 			</ul>
 			<div id="addStoryFormOnProgress" class="hidden">Guardando historia.  Por favor espere...</div> 
-			{{ Form::open(array('url'=>'issue','class'=>'uniForm', 'id'=>'addStoryForm')) }}
-			<textarea id="summary" rows="1" cols="50" name="summary" maxlength="5000"></textarea>
-			<button id="add_button" type="submit" class="btn">Agregar historia</button>
-			<div class="iteration-app">
-				@include('layouts.issue.form')
-			</div>
-			{{ Form::close() }}	
+
+
+			
+				{{ Form::open(array('url'=>'issue','class'=>'uniForm', 'id'=>'addStoryForm')) }}
+				<textarea id="summary" rows="1" cols="50" name="summary" maxlength="5000"></textarea>
+				<button id="add_button" type="submit" class="btn">Agregar historia</button>
+				<div class="iteration-app">
+					@include('layouts.issue.form')
+				</div>
+				{{ Form::close() }}
 		</div>
 		<h1>Historia</h1>
 		<ul id="tour-story-list" class="story-list ui-sortable" style="">
@@ -95,13 +99,17 @@
 						href="#">
 						{{ $issue->currentState }}
 					</a>
+
+					@if($hasmembers)
 					<span class="tasks-holder">
 						<span>
 							<a class="open-tasks-link show_tasks_link" href="#myModal" onclick="mostrarTaskboard({{ $issue->id }})">
 								Tareas
 							</a>
 						</span>
-					</span> |
+					</span>
+					@endif
+					|
 					<span class="comments-holder">
 						<a class="comments-link" href="#">
 							0&nbsp;Comments
@@ -112,7 +120,12 @@
 		</li>
 		@endforeach
 	</ul>
-</div>
+	</div>
+	@else
+		<div class="alert alert-warning alert-dismissable"> 
+			<strong>Advertencia!</strong>  No tiene usuarios asignados al proyecto. <a href="/projects/members/{{ $project->id }}">Asignar</a>	
+		</div>	
+	@endif
 </div>
 <div class="modal" id="myModal" style="margin-top: 0px; width: 1340px; margin-left: -670px; height: 496px;">
 	@include('layouts.task.taskboard')

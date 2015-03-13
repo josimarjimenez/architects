@@ -19,6 +19,11 @@ class IterationsController extends BaseController {
 			$idCategory = 0;
 			$totalPoints = $issues->sum('points'); 
 			$materiales = Material::all();
+			$team = Teams::where('projectid','=',$project->id)->get()->first(); 
+			$members = DB::table('memberof')->where('teamid','=', $team->id)->get();
+			$hasmembers = (sizeof($members)>0)? true : false;
+			
+ 
 			$this->layout->content = View::make('layouts.iterations.show')
 								->with('iteration', $iteration)
 								->with('iterations', $iterations)
@@ -29,6 +34,8 @@ class IterationsController extends BaseController {
 								->with('totalPoints', $totalPoints)
 								->with('project', $project)
 								->with('materiales', $materiales)
+								->with('hasmembers', $hasmembers)
+								->with('members', $members)
 								->with('message', '');
 		}catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) { 
 		    return Redirect::to('/projects/')
