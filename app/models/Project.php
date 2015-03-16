@@ -10,9 +10,16 @@ class Project extends Eloquent implements UserInterface, RemindableInterface, Js
 	use UserTrait, RemindableTrait;
 	public static $rules = array(
 	    'name'=>'required|alpha_spaces|min:2', 
-	    'startDate'=>'date', 
-	    'endDate'=>'date'
+	    'startDate'=>'date|required|before:endDate', 
+	    'endDate'=>'date|required'
     );
+
+	public static $messages = array(
+		'name.required' => 'El nombre es obligatorio',
+		'startDate.required' => 'La fecha de inicio es obligatoria',
+		'endDate.required' => 'La fecha de finalización es obligatoria',
+		'startDate.before' => 'La fecha de inicio debe ser menor a la fecha de fin'
+	);
 
     protected $appends = array('auxName');
 

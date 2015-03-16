@@ -30,8 +30,9 @@
 				<td>{{ $user->direction }}</td> 
 				<td>
 					{{ HTML::link('users/edit/'.$user->id,  'Editar', array('class'=>"btn btn-medium btn-info")  ) }}
-
+					@if($user->id != Auth::user()->id)
 					 <button type="button" onclick="eliminarUsuario({{ $user->id }})" class="btn btn-danger btn-medium">Eliminar</button> 
+					@endif
 				</td>
 			</tr>
 			@endforeach  
