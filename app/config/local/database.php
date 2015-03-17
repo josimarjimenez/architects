@@ -25,7 +25,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'architectProjectDB',
 			'username'  => 'root',
-			'password'  => 'root',
+			'password'  => '',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_general_ci',
 			'prefix'    => '',
