@@ -184,7 +184,7 @@ function mostrarTaskboard(id){
 
                 var tasks = data.tasks; 
                 $.each( tasks, function( key, value ) { 
-                	alert(value);
+
                 	li = '';
                 	li += '<li class="task-view" id="'+value.id+'" >';
 	                li += '<span class="task-toolbar">';
