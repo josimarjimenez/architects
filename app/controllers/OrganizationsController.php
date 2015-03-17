@@ -75,6 +75,16 @@ class OrganizationsController extends BaseController {
 
 	}
 
+
+	/**
+	*Edit organization
+	**/
+	public function getEdit(){
+		$organization = app('organization');
+		$this->layout->content = View::make('layouts.organizations.organizationEdit')
+								->with('organization', $organization) ;
+	}
+
 	/**
 	* Replace accents 
 	**/
