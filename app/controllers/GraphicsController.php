@@ -1,5 +1,4 @@
 <?php 
- 
 
 class GraphicsController extends BaseController{
 
