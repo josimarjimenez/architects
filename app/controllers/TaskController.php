@@ -27,6 +27,8 @@ class TaskController  {
 		$task->timeRemaining = Input::get("hours");
 		$task->scrumid = 1; //estado todo ...quemado por código
 		$task->issueid = Input::get("issueid"); 
+		$task->userid =  Input::get("selAssignee");
+		
 		$task->save();
 		//die;
 	}

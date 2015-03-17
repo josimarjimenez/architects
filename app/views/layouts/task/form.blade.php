@@ -1,50 +1,55 @@
 <div class="modal-header">    
-    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+    <button aria-hidden="true" data-dismiss="modal" class="close1" id="cerrarTarea" type="button">×</button>
     <h3 class="title-label">Nueva Tarea</h3>
 </div>
 <div class="modal-body edit-story-body" style="height: 218px; max-height: 218px;">
-    {{ Form::open(array('url' => 'task', 'id' => 'formularioTarea')) }}  
-        <div class="control-group">
+    {{ Form::open(array('url' => 'task', 'id' => 'formularioTarea', 'class'=>'uniForm')) }}  
+    <fieldset class="inlineLabels">
+        <div id="div_id_name" class="ctrlHolder">
             <label for="name" class="control-label">Nombre</label>
             <div class="controls">
               <input type="text" value="" style="width:300px" name="name" id="name"> 
             </div>
         </div>
 
-         <div class="control-group">
+        <div id="div_id_name" class="ctrlHolder">
             <label for="summary" class="control-label">Resumen</label>
             <div class="controls">
             	<textarea  style="width:300px" name="summary" id="summary"></textarea>
             </div>
         </div>
 
-        <div class="control-group">
+         <div id="div_id_name" class="ctrlHolder">
             <label for="inputEmail" class="control-label">Puntos</label>
             <div class="controls">
               <input type="text" value="" name="tags" id="txtTags">
             </div>
         </div>
 
-        <div class="control-group">
+         <div id="div_id_name" class="ctrlHolder">
             <label for="inputEmail" class="control-label">Estimado</label>
             <div class="controls">
               <input type="text" value="0" placeholder="00" name="timeEstimated" id="timeEstimated">
             </div>
         </div>
 
-        <div class="control-group">
+         <div id="div_id_name" class="ctrlHolder">
             <label for="inputEmail" class="control-label">Asignar a:</label>
             <div class="controls">
-              <select style="width:120px" id="selAssignee" name="assignee">
+              <select style="width:120px" id="selAssignee" name="selAssignee">
                 <option></option>                
-                <option value="macartuche">macartuche</option>
+                @foreach($users as $user)
+                    <option value="{{ $user->id }}">{{ $user->name }} {{ $user->lastname }}</option>    
+                @endforeach
               </select>
             </div>
         </div>
+
         <input type="hidden" name="issueid" id="issueid" value="">
         <div class="modal-footer">            
-        {{ Form::submit('Guardar', array('class' => 'button expand round')) }}   
+        {{ Form::submit('Guardar', array('class' => 'button expand round', 'id'=>'guardarTarea')) }}   
     </div>
+    </fieldset>
    {{ Form::close() }}
 </div>
 
@@ -108,8 +113,16 @@
                     $('.errors_form').html(errors);
                 }
             });
-       return false;
-    });
+            return false;
+        });
+
+        $('#cerrarTarea').click(function(){
+            $('#myModal').css('z-index','9000');
+        });
+
+         $('#guardarTarea').click(function(){
+            $('#myModal').css('z-index','9000');
+        });
 	});
 	
 </script>

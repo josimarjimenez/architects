@@ -16,7 +16,7 @@
 		<div class="col_6">
 			<ul class="project-menu-horizontal-list">
 				<li><a href="edit/{{ Auth::id(); }}"><i class="topmenu-icon icon-glyph icon-group"></i> Mi perfil </a></li>
-				<li>{{ HTML::link('users/logout', 'Cerrar sesión',array('class'=>'')) }}</li>
+				<li>{{ HTML::link('users/logout', 'Cerrar sesión',array('class'=>'drop megamenu-top-header')) }}</li>
 			</ul>
 		</div> 
 	</div> 

@@ -127,16 +127,21 @@
 		</div>	
 	@endif
 </div>
-<div class="modal" id="myModal" style="margin-top: 0px; width: 1340px; margin-left: -670px; height: 496px;">
-	@include('layouts.task.taskboard')
-</div> 
-<div class="modal" id="taskForm" style="margin-top: 0px; width: 600px; margin-left: -300px; height: 358px;">
+<div sytle="clear:both"></div>
+<div class="modal" id="taskForm" style="margin-top: 0px; width: 600px; margin-left: -300px; height: 358px; z-index:9100">
 	@include('layouts.task.form')
 </div>
-
+<div sytle="clear:both"></div>
 <div class="modal" id="editTaskForm" style="margin-top: 0px; width: 800px; margin-left: -300px; height: 358px;">
 	@include('layouts.task.editForm')
 </div>
+<div class="modal" id="myModal" style="margin-top: 0px; width: 1340px; margin-left: -670px; height: 496px; z-index:9000">
+	@include('layouts.task.taskboard')
+</div> 
+
+
+
+
 <script type="text/javascript">
 $(document).ready(function() { 
 	$("#summary").keypress(function() { 
@@ -179,6 +184,7 @@ function mostrarTaskboard(id){
 
                 var tasks = data.tasks; 
                 $.each( tasks, function( key, value ) { 
+                	alert(value);
                 	li = '';
                 	li += '<li class="task-view" id="'+value.id+'" >';
 	                li += '<span class="task-toolbar">';
@@ -191,7 +197,7 @@ function mostrarTaskboard(id){
 	                li += '</span>';
 	                li += value.name+'<br >';
 	                li += value.summary;
-	                li += '<b> ('+value.userid+')</b>';
+	                li += '<b> ('+value.usernamere+')</b>';
 	                li += '</li>';
 
 					switch(value.scrumid){
@@ -217,17 +223,20 @@ function mostrarTaskboard(id){
             }
         });
 	  	$("#issueid").val(id);
-	  }
+	}
 
-	  function mostrarTaskForm(){
+	function mostrarTaskForm(){
 	  	$("#taskForm").modal({ // wire up the actual modal functionality and show the dialog
 	  		"backdrop" : "static",
 	  		"keyboard" : true,
 	    	"show" : true // ensure the modal is shown immediately
 	    }); 
-	  }
 
-	  function editTask(id){ 
+	    //esconder un panel y  mostrar otro
+	    $('#myModal').css('z-index','50');
+	}
+
+	function editTask(id){ 
 	  	//recover task data
 	  	$.ajax({
             type: 'GET',
@@ -254,6 +263,9 @@ function mostrarTaskboard(id){
 	  		"keyboard" : true,
 	    	"show" : true // ensure the modal is shown immediately
 	    }); 
-	  }
+
+	  	//esconder un panel y  mostrar otro
+	    $('#myModal').css('z-index','50');
+	}
 
 </script>
