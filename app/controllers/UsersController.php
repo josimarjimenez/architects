@@ -112,7 +112,7 @@ class UsersController extends BaseController {
 		$user->mail = Input::get('mail');
 		$user->direction = Input::get('direccion');
 
-		if(!empty(Input::get('password')){
+		if(!empty(Input::get('password'))){
 			$user->password = Hash::make(Input::get('password'));
 		}
 		

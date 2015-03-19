@@ -13,7 +13,7 @@ class OrganizationsController extends BaseController {
 		if ($validator->passes()) {
 
 			//Upload the logo 
-    		$file = Input::file('image');
+			$file = Input::file('image');
 			$upload_success = Input::file('image')
 			->move('public/uploads', $file->getClientOriginalName());
 
@@ -45,7 +45,7 @@ class OrganizationsController extends BaseController {
 	 * Show all projects of one enterprise 
 	 **/
 	public function getName($name){ 
- 
+
 
 		$organization = app('organization'); 
 		
@@ -59,7 +59,7 @@ class OrganizationsController extends BaseController {
 		}
 		
 		$this->layout->content = View::make('layouts.organizations.projects')
-								->with('organization', $organization);
+		->with('organization', $organization);
 	}
 
 
@@ -70,8 +70,8 @@ class OrganizationsController extends BaseController {
 		$organization = app('organization');
 		$users = User::all();
 		$this->layout->content = View::make('layouts.users.users')
-								->with('organization', $organization)
-								->with('users', $users);
+		->with('organization', $organization)
+		->with('users', $users);
 
 	}
 
@@ -82,25 +82,39 @@ class OrganizationsController extends BaseController {
 	public function getEdit(){
 		$organization = app('organization');
 		$this->layout->content = View::make('layouts.organizations.organizationEdit')
-								->with('organization', $organization) ;
+		->with('organization', $organization) ;
 	}
 
 	/**
 	*
 	**/
 	public function postUpdate(){
-		
+		 
+		$organization =   Organization::find(Input::get('id'));
+		$organization->name = Input::get('name');  
+
+		$file = Input::file('image');
+		if($file!=null){
+			$upload_success = Input::file('image')->move('public/uploads', $file->getClientOriginalName());
+			$organization->logo = $file->getClientOriginalName();
+		}
+
+		$organization->address = Input::get('address'); 
+		$organization->webPage = Input::get('webPage'); 
+		$organization->save();
+		return Redirect::to('organization/edit')
+		->with('message', 'Registro actualizado con exito'); 
 	}
 
 	/**
 	* Replace accents 
 	**/
 	private function stripAccents($str) {
-    	return strtr(utf8_decode($str), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
+		return strtr(utf8_decode($str), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
 	}
 
 	private function asDollars($value) {
-  		return '$' . number_format($value, 2);
+		return '$' . number_format($value, 2);
 	}
 }
 ?>
