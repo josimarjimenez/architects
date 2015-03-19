@@ -33,13 +33,10 @@ Route::get('users/delete', function(){
 		$id = Input::get("id");
 		$user = User::findOrFail($id); 
 		$organizations = sizeof(Organization::where('usersid','=', $id)->get());
-
- 
 		if($organizations>= 1){
 			return Response::json(array('succes'=>'false', 
 				'message'=>'No se puede borrar el registro. <br />El usuario es propietario de una organización'));
 		}
-
 		if($user->delete()){
 			return Response::json(array('succes'=>'true', 
 				'message'=>'Usuario eliminado exitosamente', 'gr'=>$user->organization()));
@@ -70,12 +67,16 @@ Route::post('task', function(){
 		$task->scrumid = 1; //estado todo ...quemado por código
 		$task->issueid = Input::get("issueid"); 
 		$task->userid =  Input::get("selAssignee");
+        unset($task->username);
 		$task->save();
 		if($task){  
+			$user = User::findOrFail($task->userid);
+			$username = $user->name.' '.$user->lastname;
 			return Response::json(array(
                     'success' => true,
                     'message' => 'Tarea registrada',
-                    'task' =>  $task
+                    'task' =>  $task,
+                    'username' => $username
             ));
 		}else{
 			 return Response::json(array(
@@ -105,8 +106,6 @@ Route::get('tareas/taskAll', function(){
 				$user = User::findOrFail($task->userid);
 				$task->username = $user->name.' '.$user->lastname;
 			}
-			
-
 		}
 		return Response::json(array('tasks'=>$tasks));
 	}

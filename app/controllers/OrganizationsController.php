@@ -86,6 +86,13 @@ class OrganizationsController extends BaseController {
 	}
 
 	/**
+	*
+	**/
+	public function postUpdate(){
+		
+	}
+
+	/**
 	* Replace accents 
 	**/
 	private function stripAccents($str) {

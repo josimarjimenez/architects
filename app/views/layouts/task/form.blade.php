@@ -96,7 +96,7 @@
                         li += '</span>';
                         li += task.name+'<br >';
                         li += task.summary;
-                        li += '<b> ('+task.userid+')</b>';
+                        li += '<b> ('+data.username+')</b>';
                         li += '</li>';
 
                     
