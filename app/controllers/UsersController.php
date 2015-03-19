@@ -111,7 +111,11 @@ class UsersController extends BaseController {
 		$user->phone = Input::get('telefono');
 		$user->mail = Input::get('mail');
 		$user->direction = Input::get('direccion');
-		$user->password = Hash::make(Input::get('password'));
+
+		if(!empty(Input::get('password')){
+			$user->password = Hash::make(Input::get('password'));
+		}
+		
 		$user->save();
 
 		$organization = app('organization');

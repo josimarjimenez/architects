@@ -55,9 +55,6 @@
 			<ul id="createdStories">
 			</ul>
 			<div id="addStoryFormOnProgress" class="hidden">Guardando historia.  Por favor espere...</div> 
-
-
-			
 				{{ Form::open(array('url'=>'issue','class'=>'uniForm', 'id'=>'addStoryForm')) }}
 				<textarea id="summary" rows="1" cols="50" name="summary" maxlength="5000"></textarea>
 				<button id="add_button" type="submit" class="btn">Agregar historia</button>
@@ -139,9 +136,6 @@
 	@include('layouts.task.taskboard')
 </div> 
 
-
-
-
 <script type="text/javascript">
 $(document).ready(function() { 
 	$("#summary").keypress(function() { 
@@ -181,10 +175,8 @@ function mostrarTaskboard(id){
                 $('#todo').empty();
                 $('#haciendo').empty();
                 $('#hecho').empty();
-
                 var tasks = data.tasks; 
                 $.each( tasks, function( key, value ) { 
-
                 	li = '';
                 	li += '<li class="task-view" id="'+value.id+'" >';
 	                li += '<span class="task-toolbar">';
@@ -197,7 +189,7 @@ function mostrarTaskboard(id){
 	                li += '</span>';
 	                li += value.name+'<br >';
 	                li += value.summary;
-	                li += '<b> ('+value.usernamere+')</b>';
+	                li += '<b> ('+value.username+')</b>';
 	                li += '</li>';
 
 					switch(value.scrumid){
