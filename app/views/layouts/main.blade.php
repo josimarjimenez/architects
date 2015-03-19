@@ -41,9 +41,10 @@
   <script type="text/javascript">
   jQuery(document).ready(function($) {
     $( "#options" ).css('display', 'none');
+     $( "#perfil" ).css('display', 'none');
     $('#organization').click(function() {
       $( "#subMenuProject" ).css('display','none');
-      $( "#options" ).toggle();
+      $( "#options" ).toggle(); 
     });
 
 

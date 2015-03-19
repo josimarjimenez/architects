@@ -48,7 +48,7 @@
 				
 
 				<li>
-					<a href="/organization/{{ $organization->auxName }}/edit">
+					<a href="/organization/edit">
 						<i class="topmenu-icon icon-glyph icon-edit"></i> 
 						Editar organización</a>
 				</li>

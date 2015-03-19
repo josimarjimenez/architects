@@ -69,6 +69,7 @@ Route::post('task', function(){
 		$task->timeRemaining = Input::get("timeEstimated");
 		$task->scrumid = 1; //estado todo ...quemado por código
 		$task->issueid = Input::get("issueid"); 
+		$task->userid =  Input::get("selAssignee");
 		$task->save();
 		if($task){  
 			return Response::json(array(
@@ -98,6 +99,15 @@ Route::get('tareas/taskAll', function(){
 	if(Request::ajax()){ 
 		$id = Input::get("id");
 		$tasks = Task::where('issueid','=', $id)->get();
+		foreach ($tasks as $task) {
+
+			if($task->userid !=null){
+				$user = User::findOrFail($task->userid);
+				$task->username = $user->name.' '.$user->lastname;
+			}
+			
+
+		}
 		return Response::json(array('tasks'=>$tasks));
 	}
 });
