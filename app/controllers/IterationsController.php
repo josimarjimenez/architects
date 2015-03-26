@@ -19,6 +19,7 @@ class IterationsController extends BaseController {
 			$idCategory = 0;
 			$totalPoints = $issues->sum('points'); 
 			$materiales = Material::all();
+			$personal = PersonalType::all();
 			$team = Teams::where('projectid','=',$project->id)->get()->first(); 
 			$members = DB::table('memberof')->where('teamid','=', $team->id)->get();
 			$hasmembers = (sizeof($members)>0)? true : false;
@@ -39,6 +40,7 @@ class IterationsController extends BaseController {
 								->with('totalPoints', $totalPoints)
 								->with('project', $project)
 								->with('materiales', $materiales)
+								->with('personal', $personal)
 								->with('hasmembers', $hasmembers)
 								->with('members', $members)
 								->with('users', $users)

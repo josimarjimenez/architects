@@ -1,6 +1,8 @@
-<div style="width:80%; margin: 0 auto;">
+<div style="width:95%; margin: 0 auto;">
+	<p></p>
 	<h1>Lista de materiales</h1>
-	<table class="table table-bordered table-striped" style="width:80%">
+	<p></p>
+	<table class="table table-striped"  >
 	<tr>
 		<td><h2>Nombre</h2></td>
 		<td><h2>Valor</h2></td>
