@@ -15,8 +15,11 @@ class Task extends Eloquent implements JsonSerializable{
 	    'points'=>'required|alpha_spaces|min:2',
 	    'value'=>'required|alpha_spaces|min:2',
     );
+  
 
-	protected $username='';
+  	protected $attributes = array(
+        'username' => '',
+    );
 
 
 	public function jsonSerialize(){
