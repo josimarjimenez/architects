@@ -13,7 +13,7 @@
 	    	<td>{{ $per->name }}</td>
 	    	<td align="right">$ {{ $per->hourCost }}</td>
 	    	<td>
-	    		<a href="#" onclick="udpateMaterial({{ $per->id }}, '{{ $per->name }}', {{ $per->hourCost }})">Seleccionar</a>
+	    		<a href="#" onclick="udpatePersonal({{ $per->id }}, '{{ $per->name }}', {{ $per->hourCost }})">Seleccionar</a>
 	    	</td>
 	    </tr>
 	@endforeach
