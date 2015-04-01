@@ -29,8 +29,9 @@ class UsersController extends BaseController {
 	//POST users/create
 	public function postCreate() { 
  
-		//$validator = Validator::make(Input::all(), User::$rules);
-		$validator = Validator::make(Input::all(), User::$rules, User::$messages);
+		$rules = User::$rules;
+		$rules['password'] .= '|required';
+		$validator = Validator::make(Input::all(), $rules, User::$messages);
 
 		if ($validator->passes()) {
 			$user = new User;
@@ -104,24 +105,34 @@ class UsersController extends BaseController {
 	public function postUpdate($id){
 
 		$user = User::findOrFail($id);
-		//$user->fill(Input::all());
-		$user->name = Input::get('nombres'); 
-		$user->lastname = Input::get('apellidos');
-		$user->identification = Input::get('identification');
-		$user->phone = Input::get('telefono');
-		$user->mail = Input::get('mail');
-		$user->direction = Input::get('direccion');
+		$rules = User::$rules;
+		$rules['identification'] .= ',identification,' . $id;
+		$rules['mail'] .= ',mail,' . $id;
+		$validator = Validator::make(Input::all(), $rules, User::$messages);
 
-		if(!empty(Input::get('password')){
-			$user->password = Hash::make(Input::get('password'));
-		}
-		
-		$user->save();
+		if($validator->passes()){
+			$user->name = Input::get('nombres'); 
+			$user->lastname = Input::get('apellidos');
+			$user->identification = Input::get('identification');
+			$user->phone = Input::get('telefono');
+			$user->mail = Input::get('mail');
+			$user->direction = Input::get('direccion');
 
-		$organization = app('organization');
-		return Redirect::to('/organization/members/'. $organization->auxName . '/all_members')
-			->with('message', 'Registro actualizado');
+			if(!empty(Input::get('password'))){
+				$user->password = Hash::make(Input::get('password'));
+			}
+			
+			$user->save();
+			$organization = app('organization');
+			return Redirect::to('/organization/members/'. $organization->auxName . '/all_members')
+				->with('message', 'Registro actualizado');
 
+		}else{
+			return Redirect::to('users/edit/'.$id)
+			->with('message', 'Ocurrieron los siguientes errores')
+			->withErrors($validator)
+			->withInput();
+		}		
 	}
 
 

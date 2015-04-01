@@ -169,10 +169,10 @@
 	          //Validamos que el digito validador sea igual al de la cedula
 	          if(digito_validador == ultimo_digito){
 	            console.log('la cedula:' + cedula + ' es correcta');
-	            alert('la cedula:' + cedula + ' es correcta');
+	            //alert('la cedula:' + cedula + ' es correcta');
 	          }else{
 	            console.log('la cedula:' + cedula + ' es incorrecta');
-	            alert('la cedula:' + cedula + ' es incorrecta');
+	            //alert('la cedula:' + cedula + ' es incorrecta');
 	            var cedula = $('#ident').val();
 	            $('#ident').val('');
 	          }
@@ -180,14 +180,14 @@
 	        }else{
 	          // imprimimos en consola si la region no pertenece
 	          console.log('Esta cedula no pertenece a ninguna region');
-	          alert('Esta cedula no pertenece a ninguna region');
+	          //alert('Esta cedula no pertenece a ninguna region');
 	          $('#ident').val('');
 	        }
 	    }else{
 	        //imprimimos en consola si la cedula tiene mas o menos de 10 digitos
 	        //console.log('Esta cedula tiene menos de 10 Digitos');
 	        console.log('Su cédula no contiene 10 dígitos');
-	        alert('Su cédula no contiene 10 dígitos');
+	        //alert('Su cédula no contiene 10 dígitos');
 	       	$('#ident').val('');
 	    }    
 	}
