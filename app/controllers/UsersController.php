@@ -109,7 +109,6 @@ class UsersController extends BaseController {
 		$rules['identification'] .= ',identification,' . $id;
 		$rules['mail'] .= ',mail,' . $id;
 		$validator = Validator::make(Input::all(), $rules, User::$messages);
-
 		if($validator->passes()){
 			$user->name = Input::get('nombres'); 
 			$user->lastname = Input::get('apellidos');

@@ -52,6 +52,7 @@
     </fieldset>
    {{ Form::close() }}
 </div>
+ 
 
 <script type="text/javascript">
 	$(document).ready(function() { 
@@ -120,9 +121,37 @@
             $('#myModal').css('z-index','9000');
         });
 
-         $('#guardarTarea').click(function(){
+        $('#guardarTarea').click(function(){
             $('#myModal').css('z-index','9000');
         });
+
+        //boton de agregar material
+        $('#addMaterial').click(function(){
+            $('#chooseMaterial').css('z-index','1500');
+            $('#editTaskForm').css('z-index','50');
+            
+        });
+
+        //cerrar dialogo de seleccion de material
+        $('#cerrarChoose').click(function(){
+            $('#chooseMaterial').removeClass('z-index');
+            $('#editTaskForm').css('z-index', '1500');
+            $("#chooseMaterial").modal('hide');
+        });
+
+         //cerrar dialogo de seleccion de material
+        $('#cerrarPersonal').click(function(){
+            $('#choosePersonal').removeClass('z-index');
+            $('#editTaskForm').css('z-index', '1500');
+            $("#cerrarPersonal").modal('hide');
+        });                                                                                                                                                                                                                                                                                     
+        //boton de agregar personal
+        $('#addPersonal').click(function(){
+            $('#choosePersonal').css('z-index','1800');
+            $('#editTaskForm').css('z-index','50');
+            
+        });
+        
 	});
 	
 </script>

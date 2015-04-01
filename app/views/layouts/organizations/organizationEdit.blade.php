@@ -19,8 +19,9 @@
 			</div>
 
 			<div class="ctrlHolder" id="div_id_name">
-			{{ Form::label('image', 'Logotipo') }}
-			{{ Form::file('image')  }}
+				{{ Form::label('image', 'Logotipo') }}
+				{{ Form::file('image')  }}	
+				<div style="text-align:center">Actualmente: {{ $organization->logo }}</div>
 			</div>
 
 			<div class="ctrlHolder" id="div_id_name">
@@ -30,7 +31,8 @@
 
 			<div class="ctrlHolder" id="div_id_name"> 
 			{{ Form::label('webPage', 'Sitio web') }}
-			{{ Form::url('webPage', 'http://') }}
+			{{ Form::url('webPage', $organization->webPage) }}
+			{{ Form::hidden('id', $organization->id) }}
 			</div>
 			{{ Form::submit('Guardar', array('class'=>'btn btn-large btn-primary btn-block'))}}
 
