@@ -71,7 +71,9 @@
         </table>
     </div>
     <div id="tabs-2">
-         <button type="button" id="addPersonal" onclick="abrirPersonal()" class="btn btn-primary btn-lg">Agregar personal</button>
+        <div class="text-right">
+          <button type="button" id="addPersonal" onclick="abrirPersonal()" class="btn btn-primary btn-lg">Agregar personal</button>
+        </div>
            <table id="listaPersonal" style="width:100%; display:none" class="table table-striped" >
             <thead>
                 <tr>
@@ -85,7 +87,18 @@
         </table>
     </div>
     <div id="tabs-3">
-        <p>33.</p>
+        <div class="text-right">
+          <button type="button" id="addAditionalSpent" onclick="abrirGasto()" class="btn btn-primary btn-lg">Agregar gasto adicional</button>
+        </div>
+           <table id="listaGasto" style="width:100%; display:none" class="table table-striped" >
+            <thead>
+                <tr>
+                    <th width="50%" >Descripcion</th>
+                    <th width="15%" >Precio</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
     </div>
 </div> 
 
@@ -153,16 +166,34 @@ return false;
 });
 });
 
+    /**
+    * Dialogo de materiales
+    **/
     function abrirMateriales(){
-        $("#chooseMaterial").modal({ // wire up the actual modal functionality and show the dialog
+        $("#chooseMaterial").modal({  
             "backdrop" : "static",
             "keyboard" : true,
             "show" : true // ensure the modal is shown immediately
         }); 
     }
 
+    /**
+    * Dialogo de personal
+    **/
     function abrirPersonal(){
-        $("#choosePersonal").modal({ // wire up the actual modal functionality and show the dialog
+        $("#choosePersonal").modal({ 
+            "backdrop" : "static",
+            "keyboard" : true,
+            "show" : true // ensure the modal is shown immediately
+        }); 
+    }
+
+
+    /**
+    * Dialogo de gastos adicionales
+    **/
+    function abrirGasto(){
+        $("#chooseGasto").modal({ 
             "backdrop" : "static",
             "keyboard" : true,
             "show" : true // ensure the modal is shown immediately
@@ -173,21 +204,21 @@ return false;
 
         $('#listaMateriales').css('display', "");
 
+      console.log("Ingreso a material");
         //chequear si existe el elemento
         if($("#cu_"+id).length == 0){
            var insert = '<tr>';
            insert += '<td>'+nombre+'</td>';
            insert += '<td class="text-left">'+valor+'</td>';
-           insert += '<td><input style="width:60px !important" type="text" name="cu_'+id+'" value="" id="cu_'+id+'" onkeyup="calcular('+id+', '+valor+');" /></td>';
+           insert += '<td><input style="width:60px !important" type="text" name="cuM_'+id+'" value="" id="cuM_'+id+'" onkeyup="calcular('+id+', '+valor+', \'Materiales\');" /></td>';
            insert += '<td>';
-           insert += '<input readonly style="width:60px !important"  type="text" value="" id="to_'+id+'" name="to_'+id+'" />';
+           insert += '<input readonly style="width:60px !important"  type="text" value="" id="toM_'+id+'" name="toM_'+id+'" />';
            insert += '<input type="hidden" value="'+id+'" name="name_'+id+'" id="id_'+id+'" />';
            insert += '</td>';
            insert += '</tr>';
            $('#listaMateriales tbody').append(insert);
 
            var valorId = $('#listaIDS').val();
-           console.log(id);
            valorId+= " "+id;
            $('#listaIDS').val(valorId);
 
@@ -197,17 +228,37 @@ return false;
 
 
     function udpatePersonal(id, nombre, valor){
-        console.log(1);
+      $('#listaPersonal').css('display', "");
+      console.log("Ingreso a personal");
+        //chequear si existe el elemento 
+        if($("#puP_"+id).length == 0){
+           var insert = '<tr>';
+           insert += '<td>'+nombre+'</td>';
+           insert += '<td class="text-left">'+valor+'</td>';
+           insert += '<td><input style="width:60px !important" type="text" name="cuP_'+id+'" value="" id="cuP_'+id+'" onkeyup="calcular('+id+', '+valor+', \'P\');" /></td>';
+           insert += '<td>';
+           insert += '<input readonly style="width:60px !important"  type="text" value="" id="toP_'+id+'" name="toP_'+id+'" />';
+           insert += '<input type="hidden" value="'+id+'" name="idP_'+id+'" id="idP_'+id+'" />';
+           insert += '</td>';
+           insert += '</tr>';
+           $('#listaPersonal tbody').append(insert);
+
+          // var valorId = $('#listaIDS').val();
+          // console.log(id);
+          // valorId+= " "+id;
+          // $('#listaIDS').val(valorId);
+
+       } 
     }
 
 
-   function calcular(id, valor){ 
-        var cantidad = $('#cu_'+id).val();
+   function calcular(id, valor, label){ 
+        var cantidad = $('#cu'+label+'_'+id).val();
         var total = cantidad * valor;
-        var totalSend = Number($('#total').val());
-        $('#to_'+id).val(total); 
-        totalSend += total;
-        $('#total').val(totalSend)
+        //var totalSend = Number($('#total').val());
+        $('#to'+label+'_'+id).val(total); 
+        //totalSend += total;
+        //$('#total').val(totalSend)
     }
 
 </script>

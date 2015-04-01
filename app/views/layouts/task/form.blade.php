@@ -129,7 +129,18 @@
         $('#addMaterial').click(function(){
             $('#chooseMaterial').css('z-index','1500');
             $('#editTaskForm').css('z-index','50');
-            
+        });
+
+        //boton de agregar personal
+        $('#addPersonal').click(function(){
+            $('#choosePersonal').css('z-index','1800');
+            $('#editTaskForm').css('z-index','50');
+        });
+
+        //boton de agregar gasto adicional
+        $('#addAditionalSpent').click(function(){
+            $('#chooseGasto').css('z-index','1500');
+            $('#editTaskForm').css('z-index','50');
         });
 
         //cerrar dialogo de seleccion de material
@@ -139,18 +150,20 @@
             $("#chooseMaterial").modal('hide');
         });
 
-         //cerrar dialogo de seleccion de material
+        //cerrar dialogo de seleccion de addMaterial
         $('#cerrarPersonal').click(function(){
             $('#choosePersonal').removeClass('z-index');
             $('#editTaskForm').css('z-index', '1500');
-            $("#cerrarPersonal").modal('hide');
-        });                                                                                                                                                                                                                                                                                     
-        //boton de agregar personal
-        $('#addPersonal').click(function(){
-            $('#choosePersonal').css('z-index','1800');
-            $('#editTaskForm').css('z-index','50');
-            
+            $("#choosePersonal").modal('hide');
         });
+
+        //cerrar dialogo de seleccion de addMaterial
+        $('#cerrarGasto').click(function(){
+            $('#chooseGasto').removeClass('z-index');
+            $('#editTaskForm').css('z-index', '1500');
+            $("#chooseGasto").modal('hide');
+        });                                                                                                           
+      
         
 	});
 	
