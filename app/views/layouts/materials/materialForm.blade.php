@@ -28,6 +28,22 @@
 					{{ Form::label('value', 'Precio unitario', array('class'=>'requiredField' )) }}
 					{{ Form::text('value', null, array('class'=>'textInput textinput', 'placeholder'=>'Precio unitario' , 'id'=>'price')) }}
 				</div>
+				<div class="ctrlHolder" id="div_id_name">
+					{{ Form::label('value', 'Código', array('class'=>'requiredField'))}}
+					{{ Form::text( 'code', null, array('class'=>'textInput textinput', 'placeholder'=>'Código',   'id' => 'code'))}}
+				</div>
+				<div class="ctrlHolder" id="div_id_name">
+					{{ Form::label('value', 'Dimensiones', array('class'=>'requiredField'))}}
+					{{ Form::text('dimensions', null, array('class'=>'textInput textinput', 'placeholder'=>'Dimensiones', 'id'=>'dimensions'))}}
+				</div>
+				<div class="ctrlHolder" id="div_id_name">
+					{{ Form::label('value', 'Peso', array('class'=>'requiredField'))}}
+					{{ Form::text('weight', null, array('class'=>'textInput textinput', 'placeholder'=>'Peso', 'id'=>'weight'))}}
+				</div>
+				<div class="ctrlHolder" id="div_id_name">
+					{{ Form::label('value', 'Obervaciones', array('class' => 'requiredField'))}}
+					{{ Form::textArea('observation', null, array('class'=>'textInput textinput', 'placeholder'=>'Observaciones acerca del material', 'id'=>'observation')) }}
+				</div>
 				<div class="buttonHolder">
 					{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
 				</div>

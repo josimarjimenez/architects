@@ -10,15 +10,15 @@
 			<tbody>
 				<tr>
 					<th style="width:180px;">Nombre</th>
-					<th style="width:180px; text-align:right">Descripcion</th>
-					<th style="width:180px; text.align:right">Costo / hora</th>
+					<th style="width:180px;">Descripcion</th>
+					<th style="width:180px;">Código</th>
 					<th style="width:180px;"></th>
 				</tr>
 				@foreach($personalTypes as $personalType)
 				<tr>
 					<td>{{$personalType->name}}</td>
 					<td>{{$personalType->description}}</td>
-					<td>{{$personalType->hourCost}}</td>
+					<td>{{$personalType->code}}</td>
 					<td>
 						<a class="btn btn-small btn-info" href="{{ URL::to('personalType/' . $personalType->id . '/edit') }}">Edit this Nerd</a>
 						{{HTML::link('personalType/' . $personalType->id . '/edit', 'Editar', array('class'=>"btn btn-medium btn-info") )}}
