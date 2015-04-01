@@ -38,13 +38,13 @@ class PersonalTypeController extends BaseController {
 	public function store()
 	{
 		$validator = Validator::make(Input::all(), PersonalType::$rules, PersonalType::$messages);
-
 		if ($validator->passes()) { 
-
 			$personalType = new PersonalType;
 			$personalType->name = Input::get('name'); 
 			$personalType->description = Input::get('description'); 
-			$personalType->hourCost = Input::get('hourCost');   
+			$personalType->hourCost = Input::get('hourCost');
+			$personalType->code = Input::get('code');
+			$personalType->organizationid = Input::get('organizationid');  
 			$personalType->save();
 			return Redirect::to('personalType')
 			->with('message', 'Registro creado con exito'); 
