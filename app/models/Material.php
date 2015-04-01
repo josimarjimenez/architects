@@ -11,13 +11,9 @@ class Material extends Eloquent{
 	
 	use UserTrait, RemindableTrait;
 	public static $rules = array(
-	    'name'=>'required|alpha_spaces|min:2', 
-	    'quantity'=>'required|alpha_spaces|min:2',
-	    'value'=>'required|alpha_spaces|min:2',
-	    'projectid'=>'required',
-	    'value'=>'required',
- 	    'startDate'=>'date', 
-	    'value'=>'required|foo|numeric',
+	    'name'=>'required|alpha_spaces|min:2',
+	    'value'=>'required|foo|numeric|min:2',
+	    'code'=>'alpha_num|unique:material',
 	    'startDate'=>'date',  
 	    'endDate'=>'date'
     );
@@ -27,6 +23,7 @@ class Material extends Eloquent{
       'name.min' => 'El nombre debe contener al menos dos caracteres.',
       'value.required' => 'El precio unitario es obligatorio.',
       'value.numeric' => 'El precio unitario debe ser decimal.',
+      'code.unique' => 'La código ingresado ya se encuentra registrado.',
       'value.foo' => 'Cantidad debe ser mayor a 3'
    	);
 
@@ -34,7 +31,6 @@ class Material extends Eloquent{
       $reglas = self::$rules;
       return Validator::make($data, $reglas);
    	}
-
 
 	protected $appends = array('auxName');
 

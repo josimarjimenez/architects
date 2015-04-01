@@ -22,8 +22,12 @@ class MaterialsController extends BaseController {
 		if($validator->passes()){
 			$material = new Material;
 			$material->name = Input::get('name'); 
-			$material->value = Input::get('value');  
-			$material->projectid = Input::get('projectid');
+			$material->value = Input::get('value');
+			$material->code = Input::get('code');
+			$material->dimensions = Input::get('dimensions');
+			$material->weight = Input::get('weight');
+			$material->observation = Input::get('observation');
+			//$material->projectid = Input::get('projectid');
 			$material->organizationid = Input::get('organizationid');  
 			$material->save();
 
@@ -57,15 +61,50 @@ class MaterialsController extends BaseController {
 	}
 
 	public function update($id){
+
 		$material = Material::findOrFail($id);
-		$material->fill(Input::all());
-		$material->save();
-		$organization = app('organization');
-		return Redirect::to('/materials')
-			->with('message', 'Registro actualizado')
-			->with('organization', $organization);
+        $rules = Material::$rules;
+		$rules['code'] .= ',code,' . $id;
+
+		$validator = Validator::make(Input::all(), $rules, Material::$messages);
+		if($validator->passes()){
+			$material->fill(Input::all());
+			$material->save();
+			$organization = app('organization');
+			return Redirect::to('/materials')
+				->with('message', 'Registro actualizado')
+				->with('organization', $organization);
+
+		}else{
+			return Redirect::to('materials/'.$id.'/edit')
+			->with('message', 'Ocurrieron los siguientes errores')
+			->withErrors($validator)
+			->withInput();
+		}		
 
 	}
+
+	/*
+	public function update($id){
+		$project = Project::findOrFail($id);
+
+		$validator = Validator::make(Input::all(), Project::$rules, Project::$messages);
+
+		if ($validator->passes()) { 
+
+			$project->fill(Input::all());
+			$project->save();
+			$organization = app('organization');
+			return Redirect::to('organization/name/'.$organization->auxName.'/projects')
+				->with('message', 'Registro actualizado');
+		}else{
+			return Redirect::to('projects/'.$id.'/edit')
+			->with('message', 'Ocurrieron los siguientes errores')
+			->withErrors($validator)
+			->withInput();   	
+		}
+	}
+	*/
 
 	public function destroy($id){
 		$material = Material::find($id);

@@ -38,13 +38,13 @@ class PersonalTypeController extends BaseController {
 	public function store()
 	{
 		$validator = Validator::make(Input::all(), PersonalType::$rules, PersonalType::$messages);
-
 		if ($validator->passes()) { 
-
 			$personalType = new PersonalType;
 			$personalType->name = Input::get('name'); 
 			$personalType->description = Input::get('description'); 
-			$personalType->hourCost = Input::get('hourCost');   
+			$personalType->hourCost = Input::get('hourCost');
+			$personalType->code = Input::get('code');
+			$personalType->organizationid = Input::get('organizationid');  
 			$personalType->save();
 			return Redirect::to('personalType')
 			->with('message', 'Registro creado con exito'); 
@@ -97,13 +97,26 @@ class PersonalTypeController extends BaseController {
 	public function update($id)
 	{
 		$personalType = PersonalType::findOrFail($id);
-		$personalType->fill(Input::all());
-		$personalType->save();
-		$organization=app('organization');
-		return Redirect::to('/personalType')
-			->with('message','Registro actualizado correctamente')
-			->with('organization',$organization);
 
+		$rules = PersonalType::$rules;
+		$rules['code'] .= ',code,' . $id;
+
+		$validator = Validator::make(Input::all(), $rules, PersonalType::$messages);
+
+		if ($validator->passes()) { 
+
+			$personalType->fill(Input::all());
+			$personalType->save();
+			$organization=app('organization');
+			return Redirect::to('/personalType')
+				->with('message','Registro actualizado correctamente')
+				->with('organization',$organization);
+		}else{
+			return Redirect::to('personalType/'.$id.'/edit')
+			->with('message', 'Ocurrieron los siguientes errores')
+			->withErrors($validator)
+			->withInput();   	
+		}
 	}
 
 	/**

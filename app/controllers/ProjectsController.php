@@ -104,26 +104,6 @@ class ProjectsController extends BaseController {
 		}
 	}
 
-	/*
-	'projects/'.$project->id.'/edit'
-	return Redirect::to('projects/edit'.$id)
-
-	 	public function update($id)
-    {
-        $user = User::find($id);
-        $validation = Validator::make($input, User::rolesUpdate($user->id));
-
-        if ($validation->passes())
-        {
-            $user->update($input);
-
-            return Redirect::route('admin.user.show', $id);
-        }
-
-        return Redirect::route('admin.user.edit', $id)->withInput()->withErrors($validation);
-    }
-	*/
-
 	public function destroy($id){
 		//project
 		$project = Project::find($id);

@@ -12,14 +12,16 @@ class PersonalType extends Eloquent{
 	public static $rules = array(
 	    'name'=>'required|alpha_spaces|min:3', 
 	    'description'=>'alpha_spaces|min:2',
-	    'hourCost' => 'required|foo|numeric'
+	    'hourCost' => 'required|foo|numeric',
+	    'code'=>'alpha_num|unique:personalType'
     );
 
 	public static $messages = array(
 		'name.required' => 'El nombre es obligatorio',
 		'name.min' => 'El nombre debe contener más de 3 caracteres',
 		'hourCost.required' => 'Costo / hora es requerido',
-		'hourCost.foo' => 'Costo / hora debe ser mayor a cero'
+		'hourCost.foo' => 'Costo / hora debe ser mayor a cero',
+		'code.unique' => 'El código ingresado ya se encuentra registrado'
 	);
 
 	protected $appends = array('auxName');

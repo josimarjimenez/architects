@@ -55,6 +55,9 @@ Route::post('update/{id}', 'UsersController@update');
 
 Route::get('grafica/{id}', 'GraphicsController@iterationSummary');
 
+Route::get('graphic/{id}', 'GraphicSummaryController@summary');
+
+
 Route::post('task', function(){ 
 	if(Request::ajax()){ 
 		$task = new Task; 

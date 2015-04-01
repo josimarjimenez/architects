@@ -7474,3 +7474,11 @@ a {
     max-height: none !important;
     height: auto !important;
 }
+
+.textarea1{
+    height: 60px;
+}
+
+.bold{
+    font-weight: bold;
+}
