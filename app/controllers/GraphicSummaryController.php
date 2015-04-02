@@ -24,9 +24,11 @@ class GraphicSummaryController extends BaseController{
 
         $theme_class=new UniversalTheme;
 
+        $numberDays = numberDaysBetweenTwoDates('2012-07-01','2012-07-18');
+
         $graph->SetTheme($theme_class);
         $graph->img->SetAntiAliasing(false);
-        $graph->title->Set('Evolución de pedidos');
+        $graph->title->Set('Evolución de pedidos' . $numberDays);
         $graph->SetBox(false);
 
         $graph->img->SetAntiAliasing();
@@ -65,4 +67,15 @@ class GraphicSummaryController extends BaseController{
 
 	}
 }
+
+
+public function numberDaysBetweenTwoDates($dateStart, $dateEnd){
+    $days = (strtotime($dateStart)-strtotime($dateEnd))/86400;
+    $days = abs($days); $days = floor($days);     
+    return $days;
+}
+
+
+
+
 ?>

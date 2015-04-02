@@ -20,8 +20,8 @@
 					<td>{{$personalType->description}}</td>
 					<td>{{$personalType->code}}</td>
 					<td>
-						<a class="btn btn-small btn-info" href="{{ URL::to('personalType/' . $personalType->id . '/edit') }}">Edit this Nerd</a>
 						{{HTML::link('personalType/' . $personalType->id . '/edit', 'Editar', array('class'=>"btn btn-medium btn-info") )}}
+						&nbsp
 						{{ Form::open(array('url' => 'personalType/' . $personalType->id, 'class' => 'pull-right')) }}
 							{{ Form::hidden('_method', 'DELETE') }}
 							{{ Form::submit('Eliminar', array('class' => 'btn btn-danger')) }}
