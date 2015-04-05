@@ -9,8 +9,9 @@
 			{{ Form::textarea('description', null, ['class' => 'textarea1 textinput datepicker input-block-level']) }}
 		</div>
 		<div class="ctrlHolder" id="div_id_name">
-			{{ Form::label('price', 'Precio', array('class'=>'requiredField bold' )) }}
-			{{ Form::text('price', null, ['class' => 'textInput  datepicker input-block-level']) }}
+			{{ Form::label('total', 'Precio', array('class'=>'requiredField bold' )) }}
+			{{ Form::text('total', null, ['class' => 'textInput  datepicker input-block-level']) }}
 		</div>
+		{{ Form::hidden('taskid', '', array('id' => 'taskid')) }}
 	</fieldset>
 </div>

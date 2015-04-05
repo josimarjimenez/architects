@@ -41,5 +41,9 @@ class Task extends Eloquent implements JsonSerializable{
 	public function materials(){
 		return $this->belongsToMany('Material', 'used', 'taskid', 'materialid');
 	}
+
+	public function typePersonal(){
+		return $this->belongsToMany('Material', 'assigned', 'taskid', 'personlTypeid');
+	}
 }
 ?>

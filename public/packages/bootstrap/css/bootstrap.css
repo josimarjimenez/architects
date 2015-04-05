@@ -7482,3 +7482,39 @@ a {
 .bold{
     font-weight: bold;
 }
+
+.blanco{
+    color: white !important;
+}
+.control-group{
+    font-size: 11px !important;
+}
+
+#chooseGasto h1, #chooseMaterial h1, #choosePersonal h1{
+    font-size: 14px !important;
+}
+#chooseGasto h2, #chooseMaterial h2, #choosePersonal h2{
+    font-size: 12px !important;
+    line-height: normal;
+}
+
+#myModal .icon-trash {
+    background-position: -456px 0 !important;
+}
+#myModal .icon-edit {
+    background-position: -96px -72px;
+}
+#myModal [class^="icon-"], #myModal [class*=" icon-"] {
+    background-image: url("../img/glyphicons-halflings.png");
+    background-position: 14px 14px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 14px;
+    line-height: 14px;
+    margin-top: 1px;
+    vertical-align: text-top;
+    width: 14px;
+}
+
+
+

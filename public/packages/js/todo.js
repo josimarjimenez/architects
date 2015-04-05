@@ -10,6 +10,8 @@ User data is extracted from local storage and saved in variable todo.data
 Otherwise, comments are provided at appropriate places
 */
 
+
+//-------------------------------------- TASKBOARD ------- ///
 var todo = todo || {},
     data = JSON.parse(localStorage.getItem("todoData"));
 
@@ -41,21 +43,7 @@ data = data || {};
             generateElement(params);
         });
 
-        /*generateElement({
-            id: "123",
-            code: "1",
-            title: "asd",
-            date: "22/12/2013",
-            description: "Blah Blah"
-        });*/
-
-        /*removeElement({
-            id: "123",
-            code: "1",
-            title: "asd",
-            date: "22/12/2013",
-            description: "Blah Blah"
-        });*/
+        
 
         // Adding drop function to each category of task
         $.each(codes, function (index, value) {
