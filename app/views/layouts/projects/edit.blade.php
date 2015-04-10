@@ -1,4 +1,5 @@
 <br><br>
+@if(Auth::user()->role=='Administrator')
 <div id="asdf">
 	<ul>
 		@foreach($errors->all() as $error)
@@ -40,6 +41,9 @@
 		{{ Form::close() }}
 	</div>
 </div>
+@else
+	<div class="text-center">No tienen permisos para acceder</div>
+@endif
 <script type="text/javascript">
 $(document).ready(function() {
 
