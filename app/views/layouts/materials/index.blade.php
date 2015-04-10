@@ -1,3 +1,4 @@
+@if(Auth::user()->rol=='Administrator')
 <div id="body" class="container ">
 	<a href="/materials/create" style="text-decoration:none; vertical-align:middle" 
 	class="btn btn-success pull-right">
@@ -20,6 +21,7 @@
 				<td>{{ $material->value }}</td>
 				<td>{{ $material->code }}</td>
 				<td>
+
 					{{ HTML::link('materials/'.$material->id.'/edit',  'Editar', array('class'=>"btn btn-medium btn-info")  ) }} 
 					&nbsp
 					{{ Form::open(array('url' => 'materials/' . $material->id, 'class' => 'pull-right')) }}
@@ -32,3 +34,4 @@
 		</tbody>
 	</table>
 </div>
+@endif

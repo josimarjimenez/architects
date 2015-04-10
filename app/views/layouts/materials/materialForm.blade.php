@@ -2,6 +2,7 @@
 <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
 <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
 
+@if(Auth::user()->rol=='Administrator')
 <div id="projectError">
 	@if($errors->all())
 	<ul class="alert alert-error">
@@ -52,7 +53,9 @@
 			{{ Form::close() }}
 		</div>
 	</div>
-
+@else
+	<div class="text-center">No tienen permisos para acceder</div>
+@endif
 
 	<script type="text/javascript">
 	
