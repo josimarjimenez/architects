@@ -39,7 +39,7 @@
 		</div>
 	</div>
 	<div style="text-align:center; margin-top:20px;" id="burnup_chart">
- 
+
 		@if($iteration->issues()->count() > 1)
 			<img src="{{ action('GraphicsController@iterationSummary', array('iteration' =>  $iteration->id  )) }}">
 			
@@ -62,13 +62,13 @@
 			<ul id="createdStories">
 			</ul>
 			<div id="addStoryFormOnProgress" class="hidden">Guardando historia.  Por favor espere...</div> 
-				{{ Form::open(array('url'=>'issue','class'=>'uniForm', 'id'=>'addStoryForm')) }}
-				<textarea id="summary" rows="1" cols="50" name="summary" maxlength="5000"></textarea>
-				<button id="add_button" type="submit" class="btn">Agregar historia</button>
-				<div class="iteration-app">
-					@include('layouts.issue.form')
-				</div>
-				{{ Form::close() }}
+			{{ Form::open(array('url'=>'issue','class'=>'uniForm', 'id'=>'addStoryForm')) }}
+			<textarea id="summary" rows="1" cols="50" name="summary" maxlength="5000"></textarea>
+			<button id="add_button" type="submit" class="btn">Agregar historia</button>
+			<div class="iteration-app">
+				@include('layouts.issue.form')
+			</div>
+			{{ Form::close() }}
 		</div>
 		<h1>Historia</h1>
 		<ul id="tour-story-list" class="story-list ui-sortable" style="">
@@ -124,182 +124,27 @@
 		</li>
 		@endforeach
 	</ul>
-	</div>
-	@else
-		<div class="alert alert-warning alert-dismissable"> 
-			<strong>Advertencia!</strong>  No tiene usuarios asignados al proyecto. <a href="/projects/members/{{ $project->id }}">Asignar</a>	
-		</div>	
-	@endif
+</div>
+@else
+<div class="alert alert-warning alert-dismissable"> 
+	<strong>Advertencia!</strong>  No tiene usuarios asignados al proyecto. <a href="/projects/members/{{ $project->id }}">Asignar</a>	
+</div>	
+@endif
 </div>
 <div sytle="clear:both"></div>
 
 <!-- DIALOGOS: MATERIAL, PERSONAL, GASTOS ADICIONALES, TAREAS -->
-
-<!-- DIALOGOS: GASTOS ADICIONALES -->
-<div class="modal" id="chooseGasto" style="margin-top: 0px; width: 600px; margin-left: -300px; height: 358px;">
-	<form class="uniForm"> 
-	    @include('layouts.task.aditionalSpent')
-	    <div class="text-right" style="margin-right:20px; padding-top:10px">
-	    	{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
-	    	<button  class="btn btn-default" id="cerrarGasto">Cerrar</button>
-	    </div> 
-	</form>
-</div>
-<!-- DIALOGOS: MATERIAL -->
-<div class="modal" id="chooseMaterial" style="margin-top: 0px; width: 600px; margin-left: -300px; height: 358px;">
-    @include('layouts.materials.choose')
-    <div class="text-right" style="margin-right:20px;">
-    	<button  class="btn btn-default" id="cerrarChoose">Cerrar</button>
-    </div> 
-</div>
-<!-- DIALOGOS: PERSONAL -->
-<div class="modal" id="choosePersonal" style="margin-top: 0px; width: 600px; margin-left: -300px; height: 358px;">
-    @include('layouts.personalTypes.choose')
-    <div class="text-right" style="margin-right:20px;">
-    	<button  class="btn btn-default" id="cerrarPersonal">Cerrar</button>
-    </div> 
-</div>
-
-<!-- DIALOGOS: TAREA-NEW -->
-<div class="modal" id="taskForm" style="margin-top: 0px; width: 600px; margin-left: -300px; height: 358px; z-index:9100">
-	@include('layouts.task.form')
-</div>
-<div sytle="clear:both"></div>
-
-<!-- DIALOGOS: TAREA-EDITAR -->
-<div class="modal" id="editTaskForm" style="margin-top: 0px; width: 800px; margin-left: -300px; height: 558px;">
-	@include('layouts.task.editForm')
-</div>
-
-
-<!-- DIALOGOS: TASKBOARD -->
-<div class="modal" id="myModal" style="margin-top: 0px; width: 1340px; margin-left: -670px; height: 496px; z-index:9000">
-	@include('layouts.task.taskboard')
-</div> 
-
-
-
-
+@include('layouts.iterations.dialogs')
+<!-- Permite manejar el evento de teclado para aparicion de formulario de nueva historia -->
 <script type="text/javascript">
-$(document).ready(function() { 
-	$("#summary").keypress(function() { 
-		$("#story_details").show( "slow" );
-	});	
+$("#summary").keypress(function() { 
+	$("#story_details").show( "slow" );
+});	
 
-	
-	$(".add_category_link").click(function() {
-		$( this ).css('display', 'none');
-		$("#categoryid").css( "display","none" );
-		$(".category_name").css( "display","block" ); 
-	});
+$(".add_category_link").click(function() {
+	$(this).css('display', 'none');
+	$("#categoryid").css( "display","none" );
+	$(".category_name").css( "display","block" ); 
 });
-
-
-function mostrarTaskboard(id){
-	  	$("#myModal").modal({
-	  		// wire up the actual modal functionality and show the dialog
-	  		"backdrop" : "static",
-	  		"keyboard" : true,
-	    	"show" : true 
-	    	// ensure the modal is shown immediately
-	    });  
-		var li = '';
-		$.ajax({
-            type: 'GET',
-            url:  'http://localhost:8000/tareas/taskAll',
-            data: 'id='+id,
-
-            success: function (data) {
-            	$('.before').hide();
-                $('.errors_form').html('');
-                $('.success_message').hide().html(''); 
-                    
-                $('#todo').empty();
-                $('#haciendo').empty();
-                $('#hecho').empty();
-                var tasks = data.tasks; 
-                $.each( tasks, function( key, value ) { 
-                	li = '';
-                	li += '<li class="task-view" id="'+value.id+'" >';
-	                li += '<span class="task-toolbar">';
-	                li += '<a href="#" class="edit-link" onclick="editTask('+value.id+')"> ';
-	                li += '<i class="icon-glyph icon-edit" title="Editar tarea"></i>';
-	                li += '</a>'
-	                li += '<a href="#" class="delete-link">';
-	                li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
-	                li += '</a>';
-	                li += '</span>';
-	                li += value.name+'<br >';
-	                li += value.summary;
-	                li += '<b> ('+value.username+')</b>';
-	                li += '</li>';
-
-					switch(value.scrumid){
-						case 1:
-						//todo
-						$('#todo').append(li);    
-						break;
-						case 2:
-						//haciendo
-						$('#haciendo').append(li);    
-						break;
-						case 3:
-						//hecho
-						$('#hecho').append(li); 
-						break;
-					} 
-				});       
-            },
-            error: function(errors){
-                $('.before').hide();
-                $('.errors_form').html('');
-                $('.errors_form').html(errors);
-            }
-        });
-	  	$("#issueid").val(id);
-	}
-
-	function mostrarTaskForm(){
-	  	$("#taskForm").modal({ // wire up the actual modal functionality and show the dialog
-	  		"backdrop" : "static",
-	  		"keyboard" : true,
-	    	"show" : true // ensure the modal is shown immediately
-	    }); 
-
-	    //esconder un panel y  mostrar otro
-	    $('#myModal').css('z-index','50');
-	}
-
-	function editTask(id){ 
-	  	//recover task data
-	  	$.ajax({
-            type: 'GET',
-            url:  'http://localhost:8000/tareas/getTask',
-            data: 'id='+id,
-            success: function (data) {
-            	//alert(data.task.id); 
-            	$('#editFormTask #name').val(data.task.name);
-            	$('#editFormTask #summary').val(data.task.summary);
-            	$('#editFormTask #tags').val(data.task.points);
-            	$('#editFormTask #timeEstimated').val(data.task.timeEstimated);
-            	$('#editFormTask #issueid').val(data.task.issueid);
-            	$('#editFormTask #id').val(data.task.id);	
-            },
-            error: function(errors){
-                $('.before').hide();
-                $('.errors_form').html('');
-                $('.errors_form').html(errors);
-            }
-        });
-
-	  	$("#editTaskForm").modal({ // wire up the actual modal functionality and show the dialog
-	  		"backdrop" : "static",
-	  		"keyboard" : true,
-	    	"show" : true // ensure the modal is shown immediately
-	    }); 
-
-	  	//esconder un panel y  mostrar otro
-	    $('#myModal').css('z-index','50');
-	}
 
 </script>

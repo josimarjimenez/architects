@@ -1,4 +1,6 @@
 <br><br>
+
+@if(Auth::user()->rol=='Administrator')
 <div id="materialError">
 	<ul>
 		@foreach( $errors->all() as $error)
@@ -45,4 +47,7 @@
 		{{ Form::close() }}
 
 	</div>
-</div>		
+</div>	
+@else
+	<div class="text-center">No tienen permisos para acceder</div>
+@endif	

@@ -97,7 +97,18 @@ Route::get('tareas/getTask', function(){
 	if(Request::ajax()){ 
 		$id = Input::get("id");
 		$task = Task::findOrFail($id);
-		return Response::json(array('task'=>$task));
+
+		//obtener los responsables de la tarea
+		$issue = Issue::findOrFail($task->issueid);
+		$iteration = Iterations::findOrFail($issue->iterationid);
+		$project = Project::findOrFail($iteration->projectid);
+		$team = Teams::where('projectid','=',$project->id)->get()->first(); 
+		$members = DB::table('memberof')->where('teamid','=', $team->id)->get();
+		$users = array();
+		foreach($members as $member){
+			$users[] = User::findOrFail($member->usersid);
+		}
+		return Response::json(array('task'=>$task, 'users'=>$users));
 	}
 });
 
@@ -140,6 +151,7 @@ Route::get('tareas/updateTaks', function(){
 	}
 });
 
+//editar tarea
 Route::post('tareas/editTask', function(){ 
 	if(Request::ajax()){ 
 		$id = Input::get("id");
@@ -148,42 +160,125 @@ Route::post('tareas/editTask', function(){
 		$task->summary = Input::get("summary");
 		$task->points = Input::get("tags");
 		$task->timeEstimated = Input::get("timeEstimated");
-		
-
-
-		//vincular materiales a tarea
-		$idsMaterial =  Input::get("listaIDS");
-		$ids = explode(" ", $idsMaterial);
-		foreach ($ids as $id) {
-			if($id==''){
-				continue;
-			}
-			$cantidad 	=  Input::get("cu_".$id); 
-			$total  	=  Input::get("to_".$id);
-			$idMaterial =  Input::get("id_".$id); 
-			  
-			$task->materials()->attach([$id => ['quantity'=>$cantidad, 'total'=>$total]]);
-		}
- 
+		$task->userid =  Input::get("selAssignee");
 		$task->save();
+		$final="no";
+		//validar si existen ingresados gastos(material, personal, adicionales)
+		if(Input::get("canRegisterSpent")==1){
+			//vincular materiales a tarea
+			$idsMaterial =  Input::get("listaIDS_M");
+			$ids = explode(" ", $idsMaterial);
+			$totalMaterial=0;
+			foreach ($ids as $id) {
+				if($id==''){
+					continue;
+				}
+				$cantidad 	=  Input::get("cuM_".$id); 
+				$total  	=  Input::get("toM_".$id);
+				$totalMaterial += $total;
+
+				$task->materials()->attach([$id => ['quantity'=>$cantidad, 'total'=>$total]]);
+			}
+			//vincular personal a tarea
+			$idsMaterial =  Input::get("listaIDS_P");
+	 		$ids = explode(" ", $idsMaterial);
+	 		$totalPersonal=0;
+			foreach ($ids as $id) {
+				if($id==''){
+					continue;
+				}
+				$cantidad 	=  Input::get("cuP_".$id); 
+				$total  	=  Input::get("toP_".$id); 
+				$totalPersonal += $total;
+
+				$task->typePersonal()->attach([$id => ['quantity'=>$cantidad, 'total'=>$total]]);
+			}
 
 
-		$issue = Issue::findOrFail($task->issueid);
-		$iteration = Iterations::findOrFail($issue->iterationid);
-		$project = Project::findOrFail($iteration->projectid);
-		$totalSpent = Input::get("total");
-		/*
-		$iteration->summaryBudgets = $iteration->summaryBudgets + $totalSpent;
-		$iteration->save();
+			//obtener los gastos adicionales de la tarea
+			$gastos = AdditionalCost::where('taskid','=', $id)->get();
+			$totalSpent=0;
+			if(count($gastos)>0){
+				foreach ($gastos as $gasto) {
+					$totalSpent += $gasto->total;
+				}
+			}
 
-		$project->budgetSummary = $project->budgetSummary +$totalSpent;
-		$project->save();
-		*/
-		return Response::json(array('succes'=>'1'));
+			//actualizar la iteracion y el proyecto
+			$totalTask = $totalMaterial + $totalPersonal + $totalSpent; 
+			$issue = Issue::findOrFail($task->issueid);
+			$iteration = Iterations::findOrFail($issue->iterationid);
+			$project = Project::findOrFail($iteration->projectid);
+			//iteracion
+			$iteration->summaryBudgets = $iteration->summaryBudgets + $totalTask;
+			$iteration->save();
+
+			//proyecto
+			$project->budgetSummary = $project->budgetSummary +$totalTask;
+			$project->save();
+			$final="yes";
+		}
+		$user = User::findOrFail($task->userid);
+		return Response::json(
+			array('succes'=>'1', 
+				  'task'=>$task, 
+				  'user'=>$user,
+				  'final'=>$final));
+	}
+});
+
+/**
+* grabar un gasto adicional de la tarea 
+**/
+Route::get('tareas/delete', function(){ 
+	if(Request::ajax()){  
+		$id = Input::get("id");
+		if( !empty( Input::get("id") ) ) {
+			$task = Task::find($id);
+			$task->delete();
+		}
+		return Response::json( array('succes'=>'1') );
+	}
+});
+
+/**
+* grabar un gasto adicional de la tarea 
+**/
+Route::get('aditionalCost/save', function(){ 
+	if(Request::ajax()){  
+		$aditionalCost = "";
+		if(!empty(Input::get("description")) && Input::get("total")){
+			$aditionalCost = new AdditionalCost;
+			$aditionalCost->description = Input::get("description"); 
+			$aditionalCost->total = Input::get("total");
+			$aditionalCost->taskid = Input::get("taskid"); ; 
+			$aditionalCost->save(); 
+		}
+		return Response::json(array('succes'=>'', 'aditionalCost'=>$aditionalCost));
 	}
 });
 
 
+
+/**
+* grabar un gasto adicional de la tarea 
+**/
+Route::get('aditionalCost/delete', function(){ 
+	if(Request::ajax()){  
+		$id = Input::get("id");
+		if( !empty( Input::get("id") ) ) {
+			$additionalCost = AdditionalCost::find($id);
+			$additionalCost->delete();  
+		}
+		return Response::json( array('succes'=>'1') );
+	}
+});
+
+
+
+/**
+ * 
+ */
 Route::get('ajax/getProject', function(){ 
 	if(Request::ajax()){ 
 		$id = Input::get("id");

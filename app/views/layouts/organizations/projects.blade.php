@@ -1,4 +1,5 @@
 <div id="body" class="container ">
+@if(Auth::user()->rol=='Administrator')
 	<a href="/projects/create" style="text-decoration:none; vertical-align:middle" 
 	class="btn btn-success pull-right">
 	<i class="icon-plus-sign"></i> 
@@ -35,4 +36,7 @@
 			@endforeach  
 		</tbody>
 	</table>
+@else
+	<div class="text-center">No tienen permisos para acceder</div>
+@endif
 </div>

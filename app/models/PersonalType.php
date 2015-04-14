@@ -26,9 +26,9 @@ class PersonalType extends Eloquent{
 
 	protected $appends = array('auxName');
 
-	//used
-	public function used(){
-		return $this->belongsToMany('Assigned', 'materialid');
+	//assigned
+	public function tasks(){
+		return $this->belongsToMany('Task', 'assigned', 'personlTypeid', 'taskid');
 	}
 }
 ?>
