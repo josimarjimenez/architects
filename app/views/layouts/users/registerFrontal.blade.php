@@ -40,10 +40,12 @@
 						{{ Form::password('password_confirmation', array('class'=>'textInput textinput', 'placeholder'=>'Confirm contraseña')) }}
 					</div>
 				</div>
-				<div class="buttonHolder">
-					{{ Form::submit('Guardar  ', array('class'=>'btn btn-success'))}}
-				</div>
-				{{ Form::hidden('organizationid', $organization->id) }}
+				
+					<div class="buttonHolder">
+						{{ Form::submit('Guardar  ', array('class'=>'btn btn-success'))}}
+					</div>
+					{{ Form::hidden('organizationid', $organization->id) }}
+					
 			</fieldset>
 			{{ Form::close() }}
 		</div>

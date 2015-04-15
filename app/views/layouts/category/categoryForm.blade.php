@@ -1,3 +1,4 @@
+@if(Auth::user()->rol=='Administrator')
 
 <div id="selectCategory">
 
@@ -14,3 +15,5 @@
  	</div>
 
  </div>
+ 
+ @endif

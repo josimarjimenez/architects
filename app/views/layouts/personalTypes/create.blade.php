@@ -34,9 +34,15 @@
 					{{ Form::label('description', 'Descripcion' , array('class'=>'requiredField' )) }}
 					{{ Form::text('description', null, array('class'=>'textInput textinput', 'placeholder'=>'Descripción')) }}
 				</div>
-				<div class="buttonHolder">
-					{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
-				</div>
+
+				@if(Auth::user()->rol=='Administrator')
+					<div class="buttonHolder">
+						{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
+					</div>
+				@else
+					<div class="text-center">No tienen permisos para acceder</div>
+				@endif
+				
 				{{ Form::hidden('organizationid', $organization->id) }}
 			</fieldset>
 		{{ Form::close() }}

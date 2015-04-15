@@ -45,9 +45,15 @@
 					{{ Form::label('value', 'Obervaciones', array('class' => 'requiredField'))}}
 					{{ Form::textArea('observation', null, array('class'=>'textInput textinput', 'placeholder'=>'Observaciones acerca del material', 'id'=>'observation')) }}
 				</div>
-				<div class="buttonHolder">
-					{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
-				</div>
+				
+				@if(Auth::user()->rol=='Administrator')
+					<div class="buttonHolder">
+						{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
+					</div>
+				@else
+					<div class="text-center">No tienen permisos para acceder</div>
+				@endif
+
 				{{ Form::hidden('organizationid', $organization->id) }}
 			</fieldset>
 			{{ Form::close() }}

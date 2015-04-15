@@ -32,10 +32,12 @@
 	<div style="margin-left:auto; margin-right:auto" class="story_form" id="story_form">
 		<ul id="createdStories"></ul>
 		<div class="hidden" id="addStoryFormOnProgress">Guardando historia. Por favor espere...</div>
-		<form id="addStoryForm" method="POST">
-			<textarea maxlength="5000" name="summary" cols="50" rows="1" id="id_summary" style="height: 50px;"></textarea>    
+		@if(Auth::user()->rol=='Administrator')
+			<form id="addStoryForm" method="POST">
+				<textarea maxlength="5000" name="summary" cols="50" rows="1" id="id_summary" style="height: 50px;"></textarea>    
 			<button class="btn" type="submit" id="add_button">Agregar historia</button>
-		</form>
+			</form>
+		@endif
 	</div>
 	<div style="width: 940px; height: 300px; margin-left: auto; margin-right: auto; padding: 0px; position: relative;" id="overallBurndown">
 		<?php echo HTML::image('images/graficoProy.png'); ?> 
