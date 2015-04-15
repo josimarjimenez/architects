@@ -46,14 +46,10 @@
 					{{ Form::textArea('observation', null, array('class'=>'textInput textinput', 'placeholder'=>'Observaciones acerca del material', 'id'=>'observation')) }}
 				</div>
 				
-				@if(Auth::user()->rol=='Administrator')
-					<div class="buttonHolder">
-						{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
-					</div>
-				@else
-					<div class="text-center">No tienen permisos para acceder</div>
-				@endif
-
+				<div class="buttonHolder">
+					{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
+				</div>
+				
 				{{ Form::hidden('organizationid', $organization->id) }}
 			</fieldset>
 			{{ Form::close() }}

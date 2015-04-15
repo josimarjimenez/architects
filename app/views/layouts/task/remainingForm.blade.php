@@ -1,3 +1,4 @@
+@if(Auth::user()->rol=='Administrator')
 <br><br>
 <div id="personalTypeError">
 	<ul>
@@ -37,3 +38,4 @@
 		{{ Form::close() }}
 	</div>
 </div>
+@endif

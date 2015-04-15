@@ -104,8 +104,6 @@
   </tbody>
 </table>
 </div>
-@else
-  <div class="text-center">No tienen permisos para acceder</div>
 @endif
 <script type="text/javascript">
 $(document).ready(function() { 

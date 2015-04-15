@@ -1,3 +1,4 @@
+@if(Auth::user()->rol=='Administrator')
 <div class="main-content">
 	<div class="project-body-header">
 		<h1 id="tour-project-name">
@@ -44,6 +45,8 @@
 	</div>
 	@endif 
 </div>
+@endif
+
 <script type="text/javascript">
 $( document ).ready(function() { 
 	var pathname = window.location.pathname.split("/");
