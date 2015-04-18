@@ -118,7 +118,7 @@ Route::get('tareas/taskAll', function(){
 
 			if($task->userid !=null){
 				$user = User::findOrFail($task->userid);
-				$task->username = $user->name.' '.$user->lastname;
+				$task->username = $user->name;
 			}
 		}
 		return Response::json(array('tasks'=>$tasks));

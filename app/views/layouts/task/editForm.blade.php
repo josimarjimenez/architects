@@ -10,14 +10,14 @@
       <div class="ctrlHolder">
         <label for="name" class="control-label">Nombre</label>
         <div class="controls">
-          <input type="text" value="" style="width:300px" name="name" id="name"> 
+          <input type="text" value="" class="inputTask" name="name" id="name"> 
         </div>
       </div>
 
       <div class="ctrlHolder">
         <label for="summary" class="control-label">Resumen</label>
         <div class="controls">
-         <textarea  style="width:300px" name="summary" id="summary"></textarea>
+         <textarea  class="inputTask" name="summary" id="summary"></textarea>
        </div>
      </div>
 
@@ -38,14 +38,13 @@
     <div class="ctrlHolder">
       <label for="inputEmail" class="control-label">Asignar a:</label>
       <div class="controls">
-        <select style="width:200px" id="selAssignee" name="selAssignee">
+        <select class="inputTask" id="selAssignee" name="selAssignee">
         </select>
       </div>
     </div>
     <input type="hidden" name="issueid" id="issueid" value="">
     <input type="hidden" name="id" id="id" value="">
     <div class="control-group" style="display:none">
-
       <div id="tabs">
         <ul>
           <li><a href="#tabs-1">Materiales</a></li>
@@ -60,8 +59,8 @@
           <thead>
             <tr>
               <th width="50%" >Nombre</th>
-              <th width="15%" >Precio <br>unitario</th>
-              <th>Cantidad</th>
+              <th width="15%" >P.U.
+              <th>Cant.</th>
               <th>Total</th>
             </tr>
           </thead>
@@ -77,8 +76,8 @@
           <thead>
             <tr>
               <th width="50%" >Nombre</th>
-              <th width="15%" >Precio <br>hora</th>
-              <th>Cantidad</th>
+              <th width="15%" >P. H.
+              <th>Cant.</th>
               <th>Total</th>
             </tr>
           </thead>
@@ -106,7 +105,7 @@
  {{ Form::hidden('canRegisterSpent', '0', array('id' => 'canRegisterSpent')) }}
   </div>
   <div class="modal-footer">
-    {{ Form::submit('Guardar', array('class' => 'button expand round')) }}   
+    {{ Form::submit('Guardar', array('class' => 'button expand round', 'id'=>'guardarEditTF')) }}   
    {{ Form::button('Cancelar', array('class' => 'button expand round', 'id'=>'cancelarEdit')) }}  
  </div>
 </fieldset>
