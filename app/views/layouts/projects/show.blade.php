@@ -23,7 +23,7 @@
 			</div>
 		</div>
 	</div>
-	<br><br>
+	<br>
 	@if($iterations < 1)
 	{{ Form::open(array('url' => 'iterations/create', 'method'=>'GET','class' => 'pull-right')) }}
 	{{ Form::hidden('projectid', $project->id) }}
@@ -40,7 +40,7 @@
 			</form>
 		@endif
 	</div>
-	<div style="width: 940px; height: 300px; margin-left: auto; margin-right: auto; padding: 0px; position: relative;" id="overallBurndown">
+	<div style="margin-left: auto; margin-right: auto; padding: 0px; position: relative;" id="overallBurndown">
 		<?php echo HTML::image('images/graficoProy.png'); ?> 
 	</div>
 	@endif 

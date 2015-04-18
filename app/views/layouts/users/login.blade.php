@@ -1,4 +1,4 @@
-<div class="container narrow_body" id="body">
+<div class="" id="">
 	{{ Form::open(array('url'=>'users/signin', 'class'=>'uniForm login-option-box', 'id'=>'login_login')) }}
 	<fieldset class="inlineLabels">
 		<div class="fixed-form-fields">

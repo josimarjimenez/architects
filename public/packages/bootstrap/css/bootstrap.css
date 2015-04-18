@@ -7516,5 +7516,197 @@ a {
     width: 14px;
 }
 
+.editTask{
+    margin-top: 0px;
+    width: 800px;
+    margin-left: -300px;
+    height: 558px;
+}
+
+.inputTask{
+    width:300px;
+}
+
+.newTask, .materialForm, .chooseGasto{
+    margin-top: 0px; 
+    width: 600px; 
+    margin-left: -300px; 
+    height: 358px; 
+
+}
+
+.chooseGasto{ 
+     z-index: 1500;    
+}
+
+.newTask{
+    z-index:9100
+} 
+
+ 
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px){
+    ul.megamenu >li:first{ 
+        display:none;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  11eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee;
+    }
+
+    #menu{
+        display: block;
+    }
+
+    #logo{
+        width: 100%;
+    }
+    #login_new_user{
+        display: none;
+    }
+    .narrow_body{
+        width: auto !important;
+    }
+
+    h1 {
+        font-size: 24px !important;
+    }
+
+    .login-option-box{
+        width: 100% !important;
+         min-height: 315px;
+    }
+
+    .fixed-form-fields{
+        height: 175px !important;
+    }
+
+    .uniForm .buttonHolder{
+        padding: 0.6em;
+    }
+
+    #report{
+        min-width: 100%;
+    }
+
+    .stats-bubble{
+        margin: 0 0 10px;
+    }
+
+    .stats-bubble h4{
+        width: auto !important;
+    }
+
+
+    .dash-iter-table td:nth-child(2) { 
+        display: none;
+    }
+
+    .dash-iter-table img{
+        display:block;
+        height: auto;
+        max-width: 50%;
+    }
+
+    #logo, #logo label{
+        font-size: 20px;
+    }
+
+    #logo{
+        width: 70%;
+    }
+
+    .megamenu .drop8columns{
+        width: 100%;
+    }
+
+    .megamenu .pull-left-450{
+        margin-left: 0px;
+    }
+
+    #overallBurndown img{
+        /*max-width: 50%;*/
+    }
+
+    .project-body-header{
+        width: auto;
+    }
+
+    .stats-bubble h4{
+        font-size: 25px;
+        line-height: 25px;
+    }
+
+    .main-content{
+        padding-right: 0px;
+    }
+
+    .main-content{
+        min-height: auto;
+    }
+
+    .tag_holder{
+        min-width: 100px;
+    }
+
+    #categoryid{
+        width: auto !important;
+    }
+
+
+    .container{
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+
+    #detail, .tag_holder, #iterationid{
+        width: 90%;
+    }
+
+    .story-summary p, .story_number {
+        font-size: 16px;
+    }
+
+    #myModal{
+        width: 320px !important;
+        margin-left: -160px !important;
+    }
+
+    #todo li, #haciendo li, #hecho li{
+        font-size: 10px !important;
+    }
+
+    .task-window .tasks-header-table, .task-window .tasks-table{
+        table-layout: inherit;
+    }
+
+    .editTask, .newTask, .materialForm, .chooseGasto{
+        margin-top: 0px;
+        width: 300px !important;
+        margin-left: -150px !important;
+    }
+
+    .materialForm, .chooseGasto{
+        font-size: 12px !important;
+    }
+    .editTask, .chooseGasto{
+        height: auto;
+    }
+
+    .inputTask{
+        width:auto;
+    }
+
+    #guardarEditTF, #cancelarEdit{
+        width: 80px;
+    }
+
+    .modal-body{
+        max-height: auto !important;
+    }
+
+    .ui-tabs .ui-tabs-panel{
+        padding: 0 !important;
+    }
+
+}
 
 

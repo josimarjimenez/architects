@@ -1,3 +1,4 @@
+{{ Auth::user()->rol }}
   <h1 id="tour-org-name">{{ $organization->name }}</h1>
   <div id="report">
     <div class="report-tab-holder">
@@ -63,14 +64,15 @@
          <i class="dash-iter-dates">{{ $iteration->start }} - {{  $iteration->end }}</i>
          <span class="right-aligned-links">
            <a href="/iterations/{{ $iteration->id }}" title="" class="tooltip-enabled" data-original-title="lista de historias"><i class="icon-glyph icon-reorder"></i></a>
-           <a href="/iterations/{{ $iteration->id }}/board" title="" class="tooltip-enabled" data-original-title="Scrum Board"><i class="icon-glyph icon-th"></i></a>
+           <a href="/iterations/{{ $iteration->id }}/board" title="" class="tooltip-enabled" data-original-title="Scrum Board">
+            <i class="icon-glyph icon-th"></i></a>
          </span>
        </div>
        <table class="dash-iter-table">
          <tbody>
           <tr>
            <td class="dash-iter-left">
-            {{ HTML::image('images/sprint1.png') }}
+            {{ HTML::image('images/sprint1.png', 'class="img-responsive"') }}
           </td>
           <td class="dash-iter-right">
             <span class="recent-stories" style="display: inline;">Modificados recientemente:</span>
