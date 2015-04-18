@@ -104,9 +104,10 @@
     </div> 
  {{ Form::hidden('canRegisterSpent', '0', array('id' => 'canRegisterSpent')) }}
   </div>
-  <div class="modal-footer">
+
+  <div class="modal-footer"> 
     {{ Form::submit('Guardar', array('class' => 'button expand round', 'id'=>'guardarEditTF')) }}   
-   {{ Form::button('Cancelar', array('class' => 'button expand round', 'id'=>'cancelarEdit')) }}  
+   {{ Form::button('Cancelar', array('class' => 'button expand round', 'id'=>'cancelarEdit')) }} 
  </div>
 </fieldset>
 </form>

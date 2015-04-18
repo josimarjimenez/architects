@@ -7,7 +7,7 @@
 		<li>{{ $error }}</li>
 		@endforeach
 	</ul>
-<h1>Crear/Editar tipo pesonal</h1>
+<h1>Crear/Editar tipo personal</h1>
 	<div class="panel">
 		<?php 
 			if($type == "new"){
@@ -48,6 +48,4 @@
 
 	</div>
 </div>	
-@else
-	<div class="text-center">No tienen permisos para acceder</div>
 @endif	

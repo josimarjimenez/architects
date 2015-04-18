@@ -1,7 +1,6 @@
  
  <div id="selectOrganization">
 
-
  	<div class="panel panel-default">
 
 		{{ Form::open(array('url'=>'organizacion/crear', 'class'=>'form-signup')) }}
