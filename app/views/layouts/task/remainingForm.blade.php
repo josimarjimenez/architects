@@ -1,4 +1,3 @@
-@if(Auth::user()->rol=='Administrator')
 <br><br>
 <div id="personalTypeError">
 	<ul>
@@ -27,15 +26,12 @@
 					{{ Form::text('hourCost', null, array('class'=>'textInput textinput', 'placeholder'=>'Costo por hora trabajada')) }}
 				</div>
 
-				 @if(Auth::user()->rol=='Administrator')
+				@if(Auth::user()->rol=='Administrator')
 					<div class="buttonHolder">
 						{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
 					</div>
-				 @else
-				 	<div class="text-center">No tienen permisos para acceder</div>
-				 @endif
+				@endif
 			</fieldset>
 		{{ Form::close() }}
 	</div>
 </div>
-@endif

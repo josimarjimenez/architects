@@ -36,6 +36,7 @@ $( "#editFormTask" ).submit(function( event ) {
 		                li += '<a href="#" class="edit-link" onclick="editTask('+data.task.id+')">';
 		                li +='<i class="icon-glyph icon-edit" title="Editar tarea"></i>';
 		                li += '</a>';
+					// el administrador elimina la tarea	   
 		                li += '<a href="#" class="delete-link" onclick="deleteTask('+data.task.id+')">';
 		                li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
 		                li += '</a>';

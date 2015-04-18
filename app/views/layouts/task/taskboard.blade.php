@@ -51,14 +51,14 @@
 				</tbody>
 			</table>
 	</div>
+
 	@if(Auth::user()->rol=='Administrator')
 		<div class="modal-footer">
         	<a class="btn btn-success new-task-button" href="#taskForm" onclick="mostrarTaskForm()">Nueva Tarea</a>        
         	<a class="btn" data-dismiss="modal" href="#">Cerrar</a>        
 		</div>
-	@else
-		<div class="text-center">No tienen permisos para acceder</div>
 	@endif
+	
 </div>
 <script type="text/javascript">
 	$(function() {

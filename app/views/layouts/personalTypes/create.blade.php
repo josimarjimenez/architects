@@ -1,4 +1,3 @@
-@if(Auth::user()->rol=='Administrator')
 <br><br>
 <div id="personalTypeError">
 
@@ -36,13 +35,14 @@
 					{{ Form::text('description', null, array('class'=>'textInput textinput', 'placeholder'=>'Descripción')) }}
 				</div>
 
-				<div class="buttonHolder">
+				@if(Auth::user()->rol=='Administrator')
+					<div class="buttonHolder">
 						{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
 					</div>
-								
+				@endif
+
 				{{ Form::hidden('organizationid', $organization->id) }}
 			</fieldset>
 		{{ Form::close() }}
 	</div>
 </div>
-@endif
