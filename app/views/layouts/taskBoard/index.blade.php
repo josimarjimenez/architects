@@ -28,10 +28,11 @@
                 </form>
 
                 <input type="button" class="btn btn-primary" value="Clear Data" onclick="todo.clear();" />
-
-                <div id="delete-div">
-                    Mover aqui para borrar
-                </div>
+               
+                    <div id="delete-div">
+                        Mover aqui para borrar
+                    </div>
+               
             </div>
 
             <div style="clear:both;"></div>

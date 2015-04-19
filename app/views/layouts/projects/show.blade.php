@@ -1,4 +1,3 @@
-@if(Auth::user()->rol=='Administrator')
 <div class="main-content">
 	<div class="project-body-header">
 		<h1 id="tour-project-name">
@@ -8,6 +7,7 @@
 			<div class="stats-bubble">
 				Total de iteraciones
 				<h4>{{ $iterations }}</h4>
+
 			</div>
 			<div class="stats-bubble">
 				Total historias
@@ -45,12 +45,14 @@
 	</div>
 	@endif 
 </div>
-@endif
 
 <script type="text/javascript">
 $( document ).ready(function() { 
 	var pathname = window.location.pathname.split("/");
 	var id = pathname[pathname.length-1];
+
+	var rol = "<?php echo  Auth::user()->rol; ?>" ;
+	console.log(rol);
  	$.ajax({
 		type: 'GET',
 		url:  'http://localhost:8000/ajax/getProject',

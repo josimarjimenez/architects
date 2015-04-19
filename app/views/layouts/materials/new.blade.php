@@ -1,6 +1,5 @@
 <br><br>
 
-@if(Auth::user()->rol=='Administrator')
 <div id="materialError">
 	<ul>
 		@foreach( $errors->all() as $error)
@@ -40,12 +39,15 @@
 				</div>
 
 				{{ Form::hidden('organizationid', $organization->id) }}
-				<div class="buttonHolder">
-					{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
-				</div>
+
+				@if(Auth::user()->rol=='Administrator')
+					<div class="buttonHolder">
+						{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
+					</div>
+				@endif
+
 			</fieldset>
 		{{ Form::close() }}
 
 	</div>
 </div>	
-@endif	
