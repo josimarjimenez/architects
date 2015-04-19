@@ -7320,7 +7320,6 @@ a {
     font-family: 'Inconsolata';
     font-weight: bold;
     font-size: 30px;
-    margin-left: 30px;
 }
 #logo label{
     font-family: 'Inconsolata';
@@ -7700,7 +7699,7 @@ h3.name{
     }
 
     #guardarEditTF, #cancelarEdit{
-        width: 80px;
+        width: 100px;
     }
 
     .modal-body{
@@ -7710,18 +7709,32 @@ h3.name{
     .ui-tabs .ui-tabs-panel{
         padding: 0 !important;
     }
+    #logo{
+        margin-left: 30px;
+    }
 
 } 
-.sb-left{
-    padding-top: 80px !important;
-} 
+ 
 
+.menuResp{
+    padding: 0 !important;
+    margin: 0 !important;
+}
 .menuResp li{
     list-style: none;
+     width: 100%;
+    padding: 0px;
+    margin: 0px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .menuResp a{
     color: #fff;
+    width: 100%;
+display: inline-block;
+padding: 1em;
+color: #F2F2F2;
 }
 
 .menuResp a:hover{
@@ -7745,4 +7758,12 @@ h3.name{
     width: 58px;
     float: left;
     padding: 14px;
+}
+
+.navbar-left{
+    display: none;
+}
+
+.sb-menu li {
+   
 }

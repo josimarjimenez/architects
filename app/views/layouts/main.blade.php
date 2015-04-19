@@ -24,7 +24,7 @@
   <div class="navbar navbar-fixed-top">
     <div id="tabhead">
       <div class="megamenu_container ">
-        <div id="logo">PROJARQ<label>MANAGEMENT</label></div>
+       <div id="logo">PROJARQ<label>MANAGEMENT</label></div>
          <div class="sb-toggle-left navbar-left">
             <div class="navicon-line"></div>
             <div class="navicon-line"></div>
@@ -58,7 +58,12 @@
     //menu para moviles
     $.slidebars();
     var width = $( window ).width(); 
-    if(width < 490){
+    $('.sb-toggle-left').click(function() {
+        $('.options').css('display', 'block');
+      });
+   if(width < 490){
+ 
+      $( ".navbar-left" ).css('display', 'block');
       $( "nav#menu" ).css('display', 'none');
       $( ".subPerfil" ).css('display', 'none');      
       $( ".organizacionSub" ).css('display', 'none');
@@ -74,6 +79,9 @@
       $('#proyectosResp').click(function() {
         $('.proyectoSub').toggle(); 
       });
+ 
+
+      
     }else{
       $( "#options" ).css('display', 'none');
       $( "#perfil" ).css('display', 'none');
