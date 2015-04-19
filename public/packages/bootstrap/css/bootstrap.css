@@ -7320,6 +7320,7 @@ a {
     font-family: 'Inconsolata';
     font-weight: bold;
     font-size: 30px;
+    margin-left: 30px;
 }
 #logo label{
     font-family: 'Inconsolata';
@@ -7543,6 +7544,9 @@ a {
     z-index:9100
 } 
 
+h3.name{
+    font-size: 15px !important;
+}
  
 
 @media only screen 
@@ -7707,6 +7711,38 @@ a {
         padding: 0 !important;
     }
 
+} 
+.sb-left{
+    padding-top: 80px !important;
+} 
+
+.menuResp li{
+    list-style: none;
 }
 
+.menuResp a{
+    color: #fff;
+}
 
+.menuResp a:hover{
+    color: #fff;
+    text-decoration: underline;
+}
+
+.menuResp a:visited{
+    color: #fff; 
+}
+
+.navicon-line {
+    width: 24px;
+    height: 4px;
+    border-radius: 1px;
+    margin-bottom: 3px;
+    background-color: #FFF;
+}
+
+.navbar .sb-toggle-left {
+    width: 58px;
+    float: left;
+    padding: 14px;
+}
