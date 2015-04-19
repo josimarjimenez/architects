@@ -6,6 +6,8 @@
 		<li>{{ $error }}</li>
 		@endforeach
 	</ul>
+
+@if(Auth::user()->rol=='Administrator')
 <h1>Crear/Editar tipo personal</h1>
 	<div class="panel">
 		<?php 
@@ -51,3 +53,4 @@
 
 	</div>
 </div>	
+@endif

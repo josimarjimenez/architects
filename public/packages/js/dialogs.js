@@ -28,6 +28,10 @@
       $('#haciendo').empty();
       $('#hecho').empty();
       var tasks = data.tasks; 
+
+      var rol = "{{  Auth::user()->rol; }}" ;
+      console.log(rol);
+
       $.each( tasks, function( key, value ) { 
         li = '';
         li += '<li class="task-view" id="'+value.id+'" >';
@@ -35,10 +39,16 @@
         li += '<a href="#" class="edit-link" onclick="editTask('+value.id+')"> ';
         li += '<i class="icon-glyph icon-edit" title="Editar tarea"></i>';
         li += '</a>'
-        li += '<a href="#" class="delete-link" onclick="deleteTask('+value.id+')">';
-        li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
-        li += '</a>';
-        li += '</span>';
+        li += '</span>'
+
+        if(rol=='Administrator'){
+          li += '<span class="task-toolbar">';
+          li += '<a href="#" class="delete-link" onclick="deleteTask('+value.id+')">';
+          li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
+          li += '</a>';
+          li += '</span>';
+        }
+        
         li += value.name+'<br >';
         li += value.summary;
         li += '<b> ('+value.username+')</b>';

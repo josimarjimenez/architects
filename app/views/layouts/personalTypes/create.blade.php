@@ -8,6 +8,8 @@
 		@endforeach
 	</ul>
 	@endif 
+
+@if(Auth::user()->rol=='Administrator')	
 <h1>Crear / Editar tipo de personal</h1>
 	<div class="panel">
 		<?php 
@@ -46,3 +48,4 @@
 		{{ Form::close() }}
 	</div>
 </div>
+@endif
