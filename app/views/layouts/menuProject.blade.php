@@ -121,7 +121,6 @@
         </a>
       </li>
     </ul>
-    @if(Auth::user()->rol==)
     <a style="padding: 10px 20px;" class="button green large" href="/projects/project/adfadf/iteration_create">Nueva iteracion</a>
     </div>
 </div><!-- End Item Container -->

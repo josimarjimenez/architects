@@ -1,4 +1,4 @@
-{{ Auth::user()->rol }}
+
   <h1 id="tour-org-name">{{ $organization->name }}</h1>
   <div id="report">
     <div class="report-tab-holder">

@@ -31,17 +31,26 @@ $( "#editFormTask" ).submit(function( event ) {
     				$('li#'+data.task.id).html('');
     				
     				var li = '';
+    				var rol = "{{  Auth::user()->rol; }}" ;
+    				console.log(rol);
+
     				if(data.final=='no'){
 	    				li += '<span class="task-toolbar">';
 		                li += '<a href="#" class="edit-link" onclick="editTask('+data.task.id+')">';
 		                li +='<i class="icon-glyph icon-edit" title="Editar tarea"></i>';
 		                li += '</a>';
-					// el administrador elimina la tarea	   
-		                li += '<a href="#" class="delete-link" onclick="deleteTask('+data.task.id+')">';
-		                li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
-		                li += '</a>';
-		                li += '</span>';
+		                li += '</span>'
+		            
+					 // el administrador elimina la tarea	
+						if(rol=='Administrator'){
+					 		li += '<span class="task-toolbar">';   
+		                	li += '<a href="#" class="delete-link" onclick="deleteTask('+data.task.id+')">';
+		                	li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
+		                	li += '</a>';
+		                	li += '</span>';
+		             	}
 	                }
+	                
 	                li += data.task.name+'<br >';
 	                li += data.task.summary;
 	                li += '<b> ('+data.user.name+')</b>';
