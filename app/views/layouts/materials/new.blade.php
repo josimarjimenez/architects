@@ -1,13 +1,14 @@
 <br><br>
 
-@if(Auth::user()->rol=='Administrator')
 <div id="materialError">
 	<ul>
 		@foreach( $errors->all() as $error)
 		<li>{{ $error }}</li>
 		@endforeach
 	</ul>
-<h1>Crear/Editar tipo pesonal</h1>
+
+@if(Auth::user()->rol=='Administrator')
+<h1>Crear/Editar tipo personal</h1>
 	<div class="panel">
 		<?php 
 			if($type == "new"){
@@ -40,14 +41,16 @@
 				</div>
 
 				{{ Form::hidden('organizationid', $organization->id) }}
-				<div class="buttonHolder">
-					{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
-				</div>
+
+				@if(Auth::user()->rol=='Administrator')
+					<div class="buttonHolder">
+						{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
+					</div>
+				@endif
+
 			</fieldset>
 		{{ Form::close() }}
 
 	</div>
 </div>	
-@else
-	<div class="text-center">No tienen permisos para acceder</div>
-@endif	
+@endif

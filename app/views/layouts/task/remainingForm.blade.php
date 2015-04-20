@@ -26,9 +26,11 @@
 					{{ Form::text('hourCost', null, array('class'=>'textInput textinput', 'placeholder'=>'Costo por hora trabajada')) }}
 				</div>
 
-				<div class="buttonHolder">
-					{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
-				</div>
+				@if(Auth::user()->rol=='Administrator')
+					<div class="buttonHolder">
+						{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
+					</div>
+				@endif
 			</fieldset>
 		{{ Form::close() }}
 	</div>

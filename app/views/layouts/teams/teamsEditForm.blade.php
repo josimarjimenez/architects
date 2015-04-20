@@ -5,6 +5,7 @@
 		<li>{{ $error }}</li>
 		@endforeach
 	</ul> 
+@if(Auth::user()->rol=='Administrator')
 <h1>Editar Equipo</h1>
 	<div class="panel">
 		{{ Form::model($teams, array('route' => 'teams.udpate', $teams->id)) }}	
@@ -17,6 +18,7 @@
 		{{ Form::close() }}
 	</div>
 </div>
+@endif
 
 <script type="text/javascript">
 //$(document).ready(function() {

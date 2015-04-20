@@ -1,3 +1,4 @@
+@if(Auth::user()->rol=='Administrator')
 <div id="selectRol">
 
  	<div class="panel panel-default">
@@ -15,3 +16,4 @@
  	</div>
 
  </div>
+ @endif

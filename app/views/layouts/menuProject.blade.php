@@ -1,7 +1,6 @@
 {{ HTML::link('#', '##', array('class'=>'drop project-dropdown-menu megamenu-top-header','id'=>'projectMenu')) }}
 
 <div id="subMenuProject" class="drop8columns dropcontent pull-left-450 white-dropdown" style="left: auto; display: none; max-height: 644px;"><!-- Begin Item Container -->
-
    
  <div class="col_8">
   <ul class="project-menu-horizontal-list">
@@ -94,17 +93,19 @@
         Export Iteration
       </a>
     </li>
+    
     <li>
       <a href="/projects/project/adfadf/iteration/117851/import" rel="facebox">
         <i class="topmenu-icon icon-glyph icon-cloud-upload"></i> Import Iteration
       </a>
     </li>
+
     <li>
       <a href="/projects/project/adfadf/iteration/117851/report" target="_blank"><i class="topmenu-icon icon-glyph icon-print"></i> Print
       </a>
     </li>
-    <li>
-      <a href="/projects/project/adfadf/iteration/117851/admin">
+    <li> 
+     <a href="/projects/project/adfadf/iteration/117851/admin">
         <i class="topmenu-icon icon-glyph icon-cogs"></i> Iteration Admin
       </a>
     </li>
@@ -120,6 +121,6 @@
         </a>
       </li>
     </ul>
-   <a style="padding: 10px 20px;" class="button green large" href="/projects/project/adfadf/iteration_create">Nueva iteracion</a>
-  </div>
+    <a style="padding: 10px 20px;" class="button green large" href="/projects/project/adfadf/iteration_create">Nueva iteracion</a>
+    </div>
 </div><!-- End Item Container -->

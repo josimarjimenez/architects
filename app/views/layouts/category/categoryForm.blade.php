@@ -1,3 +1,4 @@
+@if(Auth::user()->rol=='Administrator')
 
 <div id="selectCategory">
 
@@ -12,5 +13,5 @@
  		{{ Form::close() }}
 
  	</div>
-
  </div>
+@endif

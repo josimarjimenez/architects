@@ -51,10 +51,14 @@
 				</tbody>
 			</table>
 	</div>
-	<div class="modal-footer">
-        <a class="btn btn-success new-task-button" href="#taskForm" onclick="mostrarTaskForm()">Nueva Tarea</a>        
-        <a class="btn" data-dismiss="modal" href="#">Cerrar</a>        
-	</div>
+
+	@if(Auth::user()->rol=='Administrator')
+		<div class="modal-footer">
+        	<a class="btn btn-success new-task-button" href="#taskForm" onclick="mostrarTaskForm()">Nueva Tarea</a>        
+        	<a class="btn" data-dismiss="modal" href="#">Cerrar</a>        
+		</div>
+	@endif
+	
 </div>
 <script type="text/javascript">
 	$(function() {
@@ -74,7 +78,7 @@
         		//actiualizacion ajax
         		$.ajax({
 		            type: 'GET',
-		            url:  'http://localhost:8000/tareas/updateTaks',
+		            url:  'http://192.168.1.2:8000/tareas/updateTaks',
 		            data: 'id='+id+'&state='+state,
 		            success: function (data) {
 		            },

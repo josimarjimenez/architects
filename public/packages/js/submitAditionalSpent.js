@@ -4,7 +4,7 @@ $( "#acForm" ).submit(function( event ) {
   event.preventDefault();
   $.ajax({
     type: 'GET',
-    url:  'http://localhost:8000/aditionalCost/save',
+    url:  'http://192.168.1.2:8000/aditionalCost/save',
     data: $(this).serialize(),
     success: function (data) { 
         if(data.aditionalCost!=""){
@@ -46,7 +46,7 @@ function deleteSpent(id){
   if (r == true) {
     $.ajax({
     type: 'GET',
-    url:  'http://localhost:8000/aditionalCost/delete',
+    url:  'http://192.168.1.2:8000/aditionalCost/delete',
     data: 'id='+id,
     success: function (data) { 
         $('#AS_'+id).remove();

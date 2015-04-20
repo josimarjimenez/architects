@@ -1,4 +1,4 @@
-
+@if(Auth::user()->rol=='Administrator')
  <div id="selectTeams">
 
  	<div class="panel panel-default">
@@ -13,3 +13,4 @@
  	</div>
 
  </div>
+@endif

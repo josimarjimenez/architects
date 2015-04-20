@@ -1,7 +1,6 @@
 
 <br><br>
 
-@if(Auth::user()->rol=='Administrator')
 <div id="projectError">
 	@if($errors->all())
 	<ul class="alert alert-error">
@@ -43,16 +42,18 @@
 				</div>
 
 				{{ Form::hidden('organizationid', $organization->id) }}
+
+				@if(Auth::user()->rol=='Administrator')
 				<div class="buttonHolder">
 					{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
 				</div>
+				@endif
+
 			</fieldset>
 		{{ Form::close() }}
 	</div>
 </div>
-@else
-	<div class="text-center">No tienen permisos para acceder</div>
-@endif
+
 <script type="text/javascript">
 $(document).ready(function() {
 

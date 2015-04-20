@@ -1,3 +1,4 @@
+@if(Auth::user()->rol=='Administrator')
 <div id="body" class="container">
 	<a href="/personalType/create" style="text-decoration:none; vertical-align:middle" 
 	class="btn btn-success pull-right">
@@ -32,3 +33,4 @@
 			</tbody>
 		</table>
 </div>
+@endif

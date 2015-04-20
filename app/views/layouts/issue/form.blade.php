@@ -1,3 +1,4 @@
+@if(Auth::user()->rol=='Adminsitrator')
 <div id="story_details" style="display: none;" >
   <table id="add_story_table">
     <tbody>
@@ -103,6 +104,7 @@
   </tbody>
 </table>
 </div>
+@endif
 <script type="text/javascript">
 $(document).ready(function() { 
   $('#addStoryForm').submit(function(event){  

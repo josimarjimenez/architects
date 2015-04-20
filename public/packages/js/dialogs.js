@@ -16,7 +16,7 @@
   var li = '';
   $.ajax({
     type: 'GET',
-    url:  'http://localhost:8000/tareas/taskAll',
+    url:  'http://192.168.1.2:8000/tareas/taskAll',
     data: 'id='+id,
 
     success: function (data) {
@@ -28,6 +28,10 @@
       $('#haciendo').empty();
       $('#hecho').empty();
       var tasks = data.tasks; 
+
+      var rol = "{{  Auth::user()->rol; }}" ;
+      console.log(rol);
+
       $.each( tasks, function( key, value ) { 
         li = '';
         li += '<li class="task-view" id="'+value.id+'" >';
@@ -35,10 +39,16 @@
         li += '<a href="#" class="edit-link" onclick="editTask('+value.id+')"> ';
         li += '<i class="icon-glyph icon-edit" title="Editar tarea"></i>';
         li += '</a>'
-        li += '<a href="#" class="delete-link" onclick="deleteTask('+value.id+')">';
-        li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
-        li += '</a>';
-        li += '</span>';
+        li += '</span>'
+
+        if(rol=='Administrator'){
+          li += '<span class="task-toolbar">';
+          li += '<a href="#" class="delete-link" onclick="deleteTask('+value.id+')">';
+          li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
+          li += '</a>';
+          li += '</span>';
+        }
+        
         li += value.name+'<br >';
         li += value.summary;
         li += '<b> ('+value.username+')</b>';
@@ -80,7 +90,7 @@ $("#issueid").val(id);
     if (r == true) {
       $.ajax({
         type: 'GET',
-        url:  'http://localhost:8000/tareas/delete',
+        url:  'http://192.168.1.2:8000/tareas/delete',
         data: 'id='+id,
         success: function (data) { 
           $('#'+id).remove();
@@ -246,7 +256,7 @@ $("#issueid").val(id);
   //recover task data
   $.ajax({
     type: 'GET',
-    url:  'http://localhost:8000/tareas/getTask',
+    url:  'http://192.168.1.2:8000/tareas/getTask',
     data: 'id='+id,
     success: function (data) {
       $('#editFormTask #name').val(data.task.name);

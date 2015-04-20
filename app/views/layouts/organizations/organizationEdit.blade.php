@@ -1,8 +1,6 @@
  
  <div id="selectOrganization">
  
- 
-
  	 <ul>
         @foreach($errors->all() as $error)
             <li>{{ $error }}</li>
@@ -33,8 +31,13 @@
 			{{ Form::label('webPage', 'Sitio web') }}
 			{{ Form::url('webPage', $organization->webPage) }}
 			{{ Form::hidden('id', $organization->id) }}
-			</div>
-			{{ Form::submit('Guardar', array('class'=>'btn btn-large btn-primary btn-block'))}}
+
+			@if(Auth::user()->rol=='Administrator')
+				</div>
+				{{ Form::submit('Guardar', array('class'=>'btn btn-large btn-primary btn-block'))}}
+			@else
+				<div class="text-center">No tienen permisos para acceder</div>
+			@endif
 
 		</fieldset>
  		{{ Form::close() }}

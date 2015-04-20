@@ -28,15 +28,18 @@
 	{{ Form::hidden('projectid', $project->id) }}
 	{{ Form::submit('Nueva iteración', array('class' => 'button green large')) }}
 	{{ Form::close() }}
-	@else
+	@else 
+
 	<div style="margin-left:auto; margin-right:auto" class="story_form" id="story_form">
+		@if(Auth::user()->rol=='Administrator')
 		<ul id="createdStories"></ul>
 		<div class="hidden" id="addStoryFormOnProgress">Guardando historia. Por favor espere...</div>
-		<form id="addStoryForm" method="POST">
-			<textarea maxlength="5000" name="summary" cols="50" rows="1" id="id_summary" style="height: 50px;"></textarea>    
-			<button class="btn" type="submit" id="add_button">Agregar historia</button>
-		</form>
-	</div>
+			<form id="addStoryForm" method="POST">
+				<textarea maxlength="5000" name="summary" cols="50" rows="1" id="id_summary" style="height: 50px;"></textarea>    
+				<button class="btn" type="submit" id="add_button">Agregar historia</button>
+			</form>
+		</div>
+		@endif
 	<div style="width: 940px; height: 300px; margin-left: auto; margin-right: auto; padding: 0px; position: relative;" id="overallBurndown">
 		<?php echo HTML::image('images/graficoProy.png'); ?> 
 	</div>
@@ -52,13 +55,17 @@
 	</div>	
 	@endif 
 </div>
+
 <script type="text/javascript">
 $( document ).ready(function() { 
 	var pathname = window.location.pathname.split("/");
 	var id = pathname[pathname.length-1];
+
+	var rol = "{{  Auth::user()->rol; }}" ;
+	console.log(rol);
  	$.ajax({
 		type: 'GET',
-		url:  'http://localhost:8000/ajax/getProject',
+		url:  'http://192.168.1.2:8000/ajax/getProject',
 		data: 'id='+id,
 		beforeSend: function(){
 		},
@@ -100,7 +107,6 @@ $( document ).ready(function() {
 			li += '</ul>';
 			li += '</div>';
 
-
 			li += '<h3 class="col_8">Iteraciones</h3>';
 			li += '<div class="col_6">';
 			li += '<ul class="project-menu-iteration-list" id="iteracionesList">';
@@ -115,13 +121,16 @@ $( document ).ready(function() {
 
 			li += '</ul>'; 
 			li += '</div>';
-			li += '<div style="clear:both"></div>'
-			li += '<div style="margin-left:10px">'
-				li += '<form action="/iterations/create" method="get" class="pull-left">';
-				li += '<input type="hidden" name="projectid" value="'+project.id+'" />';
-				li += '<input type="submit"   value="Nueva iteración" class="button green large" />';
-				li +='</form>';
-			li +='</div>'
+			li += '<div style="clear:both"></div>';
+			if(rol=='Administrator'){
+				li += '<div style="margin-left:10px">';
+					li += '<form action="/iterations/create" method="get" class="pull-left">';
+					li += '<input type="hidden" name="projectid" value="'+project.id+'" />';
+					li += '<input type="submit"   value="Nueva iteración" class="button green large" />';
+					li +='</form>';
+				li +='</div>';
+			}
+
 			li += '</div>';
 
 			$('#navbar-project-menu').append(li);
@@ -134,8 +143,5 @@ $( document ).ready(function() {
 			});
 		}
 	});
-
-	
 });
-
 </script>

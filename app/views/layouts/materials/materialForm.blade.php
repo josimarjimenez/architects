@@ -2,7 +2,6 @@
 <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
 <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
 
-@if(Auth::user()->rol=='Administrator')
 <div id="projectError">
 	@if($errors->all())
 	<ul class="alert alert-error">
@@ -10,7 +9,8 @@
 		<li>{{ $error }}</li>
 		@endforeach
 	</ul>
-	@endif 
+	
+@if(Auth::user()->rol=='Administrator')	
 	<h1>Crear/Editar material</h1>
 	<div class="panel">
 		<?php 
@@ -45,19 +45,20 @@
 					{{ Form::label('value', 'Obervaciones', array('class' => 'requiredField'))}}
 					{{ Form::textArea('observation', null, array('class'=>'textInput textinput', 'placeholder'=>'Observaciones acerca del material', 'id'=>'observation')) }}
 				</div>
+				
+				@if(Auth::user()->rol=='Administrator')
 				<div class="buttonHolder">
 					{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
 				</div>
+				@endif
 				{{ Form::hidden('organizationid', $organization->id) }}
 			</fieldset>
 			{{ Form::close() }}
 		</div>
 	</div>
-@else
-	<div class="text-center">No tienen permisos para acceder</div>
 @endif
 
-	<script type="text/javascript">
+<script type="text/javascript">
 	
 	$(function() {
 		
@@ -68,4 +69,4 @@
 			}   
 		});
 	});
-	</script>
+</script>

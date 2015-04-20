@@ -1,3 +1,4 @@
+@if(Auth::user()->rol=='Administrator')
 <br><br>
 <div id="rolError">
 	<ul>
@@ -18,6 +19,7 @@
 		{{ Form::close() }}
 	</div>
 </div>
+@endif
 
 <script type="text/javascript">
 $(document).ready(function() {
