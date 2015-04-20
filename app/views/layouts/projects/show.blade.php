@@ -40,6 +40,16 @@
 	<div style="width: 940px; height: 300px; margin-left: auto; margin-right: auto; padding: 0px; position: relative;" id="overallBurndown">
 		<?php echo HTML::image('images/graficoProy.png'); ?> 
 	</div>
+	<div style="text-align:center; margin-top:20px;" id="burnup_chart">
+			<img src="{{ action('GraphicsTestController@summary', array('project' =>  $project->id)) }}">
+
+			<img src="{{ action('GraphicsIterationController@bar_time', array('project' =>  $project->id)) }}">
+
+			<img src="{{ action('GraphicsIterationController@bar_budget', array('project' =>  $project->id)) }}">
+			
+			<img src="{{ action('GraphicsIterationController@line_budget', array('project' =>  $project->id)) }}">
+
+	</div>	
 	@endif 
 </div>
 <script type="text/javascript">

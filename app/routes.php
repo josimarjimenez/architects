@@ -61,6 +61,12 @@ Route::get('graphic_spending/{id}', 'GraphicsSpendingController@summary');
 
 Route::get('graphictest/{id}', 'GraphicsTestController@summary');
 
+Route::get('graphic_bar_time/{id}', 'GraphicsIterationController@bar_time');
+
+Route::get('graphic_bar_budget/{id}', 'GraphicsIterationController@bar_budget');
+
+Route::get('graphic_line_budget/{id}', 'GraphicsIterationController@line_budget');
+
 Route::post('task', function(){ 
 	if(Request::ajax()){ 
 		$task = new Task; 
