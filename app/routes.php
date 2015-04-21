@@ -55,8 +55,17 @@ Route::post('update/{id}', 'UsersController@update');
 
 Route::get('grafica/{id}', 'GraphicsController@iterationSummary');
 
-Route::get('graphic/{id}', 'GraphicSummaryController@summary');
+Route::get('graphic/{id}', 'GraphicsSummaryController@summary');
 
+Route::get('graphic_spending/{id}', 'GraphicsSpendingController@summary');
+
+Route::get('graphictest/{id}', 'GraphicsTestController@summary');
+
+Route::get('graphic_bar_time/{id}', 'GraphicsIterationController@bar_time');
+
+Route::get('graphic_bar_budget/{id}', 'GraphicsIterationController@bar_budget');
+
+Route::get('graphic_line_budget/{id}', 'GraphicsIterationController@line_budget');
 
 Route::post('task', function(){ 
 	if(Request::ajax()){ 
