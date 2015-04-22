@@ -1,7 +1,7 @@
 
 <!-- DIALOGOS: GASTOS ADICIONALES -->
 <div class="modal chooseGasto" id="chooseGasto">
-	<form class="uniForm" id="acForm" action="http://192.168.1.2:8000/aditionalCost/save" > 
+	<form class="uniForm" id="acForm" action="http://localhost:8000/aditionalCost/save" > 
 	    @include('layouts.task.aditionalSpent')
 	    <div class="text-right" style="margin-right:20px; padding-top:10px">
 	    	{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary', 'id'=>'aditionalBTN'))}}

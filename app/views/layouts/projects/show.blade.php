@@ -55,7 +55,7 @@ $( document ).ready(function() {
 	console.log(rol);
  	$.ajax({
 		type: 'GET',
-		url:  'http://192.168.1.2:8000/ajax/getProject',
+		url:  'http://localhost:8000/ajax/getProject',
 		data: 'id='+id,
 		beforeSend: function(){
 		},
@@ -127,6 +127,36 @@ $( document ).ready(function() {
 			$('#navbar-project-menu').css('display', 'block');
 			$('#subMenuProject').css('display', 'none');
 
+
+			var responsive = '<li><a id="projectMenu" class="drop project-dropdown-menu megamenu-top-header" href="#">'+project.name+'</a>';
+
+			responsive += '<ul class="project-menu-horizontal-list">';
+			//resumen de proyecto
+			responsive += '<li>';
+			responsive += '<a id="summaryProject" href="/projects/'+id+'">';
+			responsive += '<i class="topmenu-icon icon-home"> </i> Resumen';
+			responsive +='</a>';
+			responsive +='</li>';
+ 
+			//administracion proyecto
+			responsive +='<li>';
+			responsive +='<a href="/projects/'+id+'/edit" title="">';
+			responsive +='<i class="topmenu-icon icon-glyph icon-edit"></i> Admin. del proyecto';
+			responsive +='</a>';
+			responsive +='</li>';
+
+			//grupo de trabajo
+			responsive +='<li>';
+			responsive +='<a href="/projects/members/'+id+'" title="Grupo de trabajo">';
+			responsive +='<i class="topmenu-icon icon-glyph icon-group"></i> Grupo de trabajo';
+			responsive +='</a>';
+			responsive +='</li>';
+			responsive += '</ul>';
+			responsive += '</li>';
+
+
+			//poner en el menu responsive tambien
+			$('.menuResp').append(responsive);
 			$('#projectMenu').click(function() {
 			    $( "#subMenuProject" ).toggle(); 
 				$('#options').css('display', 'none');
