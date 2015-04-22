@@ -160,6 +160,18 @@ $( document ).ready(function() {
 			responsive +='<i class="topmenu-icon icon-glyph icon-group"></i> Grupo de trabajo';
 			responsive +='</a>';
 			responsive +='</li>';
+			responsive +='<li>Iteraciones';
+			responsive += '<ul class="" id="iteracionesList">';
+			$.each( iterations, function( key, value ){
+
+				responsive += '<li class=" ">';
+				responsive += '<a href="/iterations/'+value.id+'">'+value.name+'<br>';
+				responsive += '<i></i>';
+				responsive += '</a>';
+				responsive += '</li>'; 
+			});
+			li += '</ul>';
+			li += '</li>';  
 			responsive += '</ul>';
 			responsive += '</li>';
 
