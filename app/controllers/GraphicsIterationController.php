@@ -184,8 +184,8 @@ class GraphicsIterationController extends BaseController{
         $dataRealTime = array();
         $dataIterationName = array();
 
-        $dataTimeEstimated[] = 0;
-        $dataTimeReal[] = 0;
+        $dataEstimatedTime[] = 0;
+        $dataRealTime[] = 0;
         $dataIterationName[] = '';
 
         foreach ($iterations as $var) {
