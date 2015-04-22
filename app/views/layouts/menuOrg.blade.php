@@ -17,7 +17,8 @@
 					</a>
 				</li>
 				@endif
-
+				
+				<!--
 				@if(Auth::user()->rol=='Administrator')
 				<li>
 					<a href="/projects/{{ $organization->auxName }}/releases" title="Roll up work across projects into releases.">
@@ -25,6 +26,7 @@
 					</a>
 				</li>
 				@endif
+				-->
 
 				@if(Auth::user()->rol=='Administrator')
 				<li>

@@ -46,7 +46,11 @@ function deleteSpent(id){
   if (r == true) {
     $.ajax({
     type: 'GET',
+<<<<<<< HEAD
     url:  'http://localhost:8000/aditionalCost/delete',
+=======
+    url:  'http://192.168.0.16:8000/aditionalCost/delete',
+>>>>>>> 5e7ce14b54e3cc7fea202b4961ff775a7b03ab51
     data: 'id='+id,
     success: function (data) { 
         $('#AS_'+id).remove();

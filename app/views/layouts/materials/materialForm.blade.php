@@ -9,7 +9,10 @@
 		<li>{{ $error }}</li>
 		@endforeach
 	</ul>
-	
+	@endif
+</div>
+
+
 @if(Auth::user()->rol=='Administrator')	
 	<h1>Crear/Editar material</h1>
 	<div class="panel">
@@ -55,7 +58,6 @@
 			</fieldset>
 			{{ Form::close() }}
 		</div>
-	</div>
 @endif
 
 <script type="text/javascript">
