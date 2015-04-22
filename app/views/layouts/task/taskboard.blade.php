@@ -78,7 +78,7 @@
         		//actiualizacion ajax
         		$.ajax({
 		            type: 'GET',
-		            url:  'http://192.168.1.3:8000/tareas/updateTaks',
+		            url:  'http://192.168.0.16:8000/tareas/updateTaks',
 		            data: 'id='+id+'&state='+state,
 		            success: function (data) {
 		            },

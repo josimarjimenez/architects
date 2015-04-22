@@ -16,7 +16,7 @@
   var li = '';
   $.ajax({
     type: 'GET',
-    url:  'http://192.168.1.3:8000/tareas/taskAll',
+    url:  'http://192.168.0.16:8000/tareas/taskAll',
     data: 'id='+id,
 
     success: function (data) {
@@ -90,7 +90,7 @@ $("#issueid").val(id);
     if (r == true) {
       $.ajax({
         type: 'GET',
-        url:  'http://192.168.1.3:8000/tareas/delete',
+        url:  'http://192.168.0.16:8000/tareas/delete',
         data: 'id='+id,
         success: function (data) { 
           $('#'+id).remove();
@@ -256,7 +256,7 @@ $("#issueid").val(id);
   //recover task data
   $.ajax({
     type: 'GET',
-    url:  'http://192.168.1.3:8000/tareas/getTask',
+    url:  'http://192.168.0.16:8000/tareas/getTask',
     data: 'id='+id,
     success: function (data) {
       $('#editFormTask #name').val(data.task.name);
