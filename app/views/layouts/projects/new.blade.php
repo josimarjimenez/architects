@@ -9,7 +9,8 @@
 		@endforeach
 	</ul> 
 	@endif
-<h1>Crear/Editar proyecto</h1>
+</div>
+	<h1>Crear/Editar proyecto</h1>
 	<div class="panel">
 		<?php 
 			if($type == "new"){
@@ -52,7 +53,7 @@
 			</fieldset>
 		{{ Form::close() }}
 	</div>
-</div>
+
 
 <script type="text/javascript">
 $(document).ready(function() {

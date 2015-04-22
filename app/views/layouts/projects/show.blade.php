@@ -44,7 +44,7 @@
 		<?php echo HTML::image('images/graficoProy.png'); ?> 
 	</div>
 	<div style="text-align:center; margin-top:20px;" id="burnup_chart">
-			<img src="{{ action('GraphicsTestController@summary', array('project' =>  $project->id)) }}">
+			<!--<img src="{{ action('GraphicsTestController@summary', array('project' =>  $project->id)) }}">-->
 
 			<img src="{{ action('GraphicsIterationController@bar_time', array('project' =>  $project->id)) }}">
 
