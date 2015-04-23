@@ -40,13 +40,12 @@
 			</form>
 		</div>
 		@endif
-	<div style="width: 940px; height: 300px; margin-left: auto; margin-right: auto; padding: 0px; position: relative;" id="overallBurndown">
-		<?php echo HTML::image('images/graficoProy.png'); ?> 
-	</div>
 	<div style="text-align:center; margin-top:20px;" id="burnup_chart">
-			<img src="{{ action('GraphicsTestController@summary', array('project' =>  $project->id)) }}">
+			<!--<img src="{{ action('GraphicsTestController@summary', array('project' =>  $project->id)) }}">-->
 
 			<img src="{{ action('GraphicsIterationController@bar_time', array('project' =>  $project->id)) }}">
+
+			<img src="{{ action('GraphicsIterationController@line_time', array('project' =>  $project->id)) }}">
 
 			<img src="{{ action('GraphicsIterationController@bar_budget', array('project' =>  $project->id)) }}">
 			
@@ -137,6 +136,48 @@ $( document ).ready(function() {
 			$('#navbar-project-menu').css('display', 'block');
 			$('#subMenuProject').css('display', 'none');
 
+
+			var responsive = '<li><a id="projectMenu" class="drop project-dropdown-menu megamenu-top-header" href="#">'+project.name+'</a>';
+
+			responsive += '<ul class="project-menu-horizontal-list">';
+			//resumen de proyecto
+			responsive += '<li>';
+			responsive += '<a id="summaryProject" href="/projects/'+id+'">';
+			responsive += '<i class="topmenu-icon icon-home"> </i> Resumen';
+			responsive +='</a>';
+			responsive +='</li>';
+ 
+			//administracion proyecto
+			responsive +='<li>';
+			responsive +='<a href="/projects/'+id+'/edit" title="">';
+			responsive +='<i class="topmenu-icon icon-glyph icon-edit"></i> Admin. del proyecto';
+			responsive +='</a>';
+			responsive +='</li>';
+
+			//grupo de trabajo
+			responsive +='<li>';
+			responsive +='<a href="/projects/members/'+id+'" title="Grupo de trabajo">';
+			responsive +='<i class="topmenu-icon icon-glyph icon-group"></i> Grupo de trabajo';
+			responsive +='</a>';
+			responsive +='</li>';
+			responsive +='<li>Iteraciones';
+			responsive += '<ul class="" id="iteracionesList">';
+			$.each( iterations, function( key, value ){
+
+				responsive += '<li class=" ">';
+				responsive += '<a href="/iterations/'+value.id+'">'+value.name+'<br>';
+				responsive += '<i></i>';
+				responsive += '</a>';
+				responsive += '</li>'; 
+			});
+			li += '</ul>';
+			li += '</li>';  
+			responsive += '</ul>';
+			responsive += '</li>';
+
+
+			//poner en el menu responsive tambien
+			$('.menuResp').append(responsive);
 			$('#projectMenu').click(function() {
 			    $( "#subMenuProject" ).toggle(); 
 				$('#options').css('display', 'none');

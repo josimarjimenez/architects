@@ -15,6 +15,16 @@
 		<div class="panel">
 			<?php 
 			if($type == "new"){
+	@endif
+</div>
+
+
+@if(Auth::user()->rol=='Administrator')	
+	<h1>Crear/Editar material</h1>
+	<div class="panel">
+		<?php 
+		if($type == "new"){
+
 			?>
 			{{ Form::open(array('url'=>'materials','class'=>'uniForm')) }}
 			<?php }else { ?>
@@ -54,8 +64,11 @@
 			</fieldset>
 			{{ Form::close() }}
 		</div>
+
 	@endif
 </div>
+
+@endif
 
 <script type="text/javascript">
 	

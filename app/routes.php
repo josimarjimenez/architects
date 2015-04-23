@@ -65,6 +65,8 @@ Route::get('graphic_bar_time/{id}', 'GraphicsIterationController@bar_time');
 
 Route::get('graphic_bar_budget/{id}', 'GraphicsIterationController@bar_budget');
 
+Route::get('graphic_line_time/{id}', 'GraphicsIterationController@line_time');
+
 Route::get('graphic_line_budget/{id}', 'GraphicsIterationController@line_budget');
 
 Route::post('task', function(){ 
