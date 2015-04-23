@@ -6,7 +6,7 @@
  * @param  {[type]} id [description]
  * @return {[type]}    [description]
  */
- function mostrarTaskboard(id, idUser){
+ function mostrarTaskboard(id, idUser, rol){
 
 
   $("#myModal").modal({
@@ -30,9 +30,6 @@
       $('#haciendo').empty();
       $('#hecho').empty();
       var tasks = data.tasks; 
-
-      var rol = "{{  Auth::user()->rol; }}" ;
-      console.log(rol);
 
       $.each( tasks, function( key, value ) { 
         li = '';

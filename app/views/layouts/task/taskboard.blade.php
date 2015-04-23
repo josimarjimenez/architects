@@ -74,7 +74,7 @@
 	        	var id= ui.item.attr('id');
 	        	var state = $(this).attr('id'); 
         	 	//params = 'c=' + $(this).attr('id') + '&id=' + ui.item.attr('id');
-        		console.log(id);
+
         		//actiualizacion ajax
         		$.ajax({
 		            type: 'GET',
