@@ -1,6 +1,8 @@
 <br><br>
+<!--
 <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
 <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+-->
 
 <div id="projectError">
 	@if($errors->all())
@@ -10,6 +12,7 @@
 		@endforeach
 	</ul>
 	@endif
+
 </div>
 
 
@@ -17,6 +20,7 @@
 	<h1>Crear/Editar material</h1>
 	<div class="panel">
 		<?php 
+
 		if($type == "new"){
 			?>
 			{{ Form::open(array('url'=>'materials','class'=>'uniForm')) }}

@@ -12,7 +12,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public static $rules = array(
 	    'nombres'=>'required|alpha_spaces|min:2',
 	    'apellidos'=>'required|alpha_spaces|min:2',
-	    'identification'=>'required|numeric|unique:users',
+	    'identification'=>'required|numeric|check_identification|unique:users',
+	    //'identification'=>'required|numeric|unique:users',
 	    'mail'=>'required|email|unique:users',
 	    'password'=>'alpha_num|between:6,12|confirmed',
 	    'password_confirmation'=>'alpha_num',
@@ -24,6 +25,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     	'apellidos.required' => 'El apellido es obligatorio',
     	'identification.required' => 'La identificación es obligatoria',
     	'identification.numeric' => 'La identificación es un valor numérico',
+    	'identification.check_identification' => 'El número de cédula es inválido',
     	'identification.unique' => 'La identificación ingresada ya se encuentra registrada',
     	'mail.required' => 'El email es obligatorio',
     	'mail.email' => 'El correo registrado no es válido',

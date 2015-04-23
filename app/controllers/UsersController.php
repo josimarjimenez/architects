@@ -206,7 +206,7 @@ class UsersController extends BaseController {
 			->withInput();
 		}      
 	}
-
+/*
 	public function postPassword()
     {
         $rules = array(
@@ -249,6 +249,6 @@ class UsersController extends BaseController {
 
         }
     }
-
+	*/
 }
 ?>

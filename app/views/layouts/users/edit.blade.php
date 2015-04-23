@@ -26,7 +26,7 @@
 				</div>
 				<div class="ctrlHolder" id="div_id_name">
 					{{ Form::label('value', "Identificación", array('class' =>'requiredField'))}}
-					{{ Form::text('identification', $user->identification, array('class'=>'textInput textinput', 'placeholder'=>'Identificación', 'onblur'=>'validate()', 'id'=>'ident'))}}
+					{{ Form::text('identification', $user->identification, array('class'=>'textInput textinput', 'placeholder'=>'Identificación'))}}
 				</div>
 				<div class="ctrlHolder" id="div_id_name">
 					{{ Form::label('value','Teléfono', array('class'=>'requiredField', ))}}
@@ -46,9 +46,11 @@
 				</div>
 				<div class="ctrlHolder" id="div_id_name">
 					{{ Form::label('value', 'Password confirmación', array('class'=>'requiredField' )) }}
-					{{ Form::password('password_confirmation', array('class'=>'textInput textinput', 'placeholder'=>'Confirm contraseña')) }}
+					{{ Form::password('password_confirmation', array('class'=>'textInput textinput', 'placeholder'=>'Confirmar contraseña')) }}
 				</div>
 				<div class="buttonHolder">
+					{{ link_to(URL::previous(), 'Cancelar', ['class' => 'btn btn-danger btn-sm']) }}
+
 					{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
 				</div>
 				{{ Form::hidden('organizationid', $organization->id) }}

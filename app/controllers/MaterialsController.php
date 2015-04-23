@@ -53,7 +53,6 @@ class MaterialsController extends BaseController {
 			->with('message', 'No existe el material');
 		}
 		
-		 
 		$this->layout->content = View::make('layouts.materials.materialForm')
 								->with('organization', $material->organization)
 								->with('material', $material)

@@ -42,7 +42,6 @@
 
 					@if(Auth::user()->rol=='Administrator')
 						<div class="buttonHolder">
-							{{Helper::isPremium($organization->id)}}
 
 							{{ HTML::link('personalType/',  'Cancelar', array('class'=>"btn btn-danger btn-sm")  ) }} 
 
