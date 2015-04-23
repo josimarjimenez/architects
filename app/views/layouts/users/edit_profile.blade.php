@@ -1,6 +1,7 @@
 <br><br>
 <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
 <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
 
 <div id="projectError">
@@ -13,39 +14,31 @@
 	@endif 
 	<h1>Crear/Editar Usuarios</h1>
 	<div class="panel">
-		<?php 
-		if($type == "new"){
-			?>
-			{{ Form::open(array('url'=>'users/create','class'=>'uniForm')) }}
-			
-			<?php }else { ?>
-				{{ Form::open(array('url'=>'users/edit/'.$user->id,'class'=>'uniForm')) }}
-			<?php } ?>
+		{{ Form::open(array('url'=>'users/update/'.$user->id,'class'=>'uniForm')) }}
 			<fieldset class="inlineLabels">
 				<div class="ctrlHolder" id="div_id_name">
 					{{ Form::label('name', 'Nombre' , array('class'=>'requiredField' )) }}
-					{{ Form::text('nombres', null, array('class'=>'textInput textinput', 'placeholder'=>'Nombres')) }}
+					{{ Form::text('nombres', $user->name , array('class'=>'textInput textinput', 'placeholder'=>'Nombres')) }}
 				</div>
 				<div class="ctrlHolder" id="div_id_name">
 					{{ Form::label('value', 'Apellidos', array('class'=>'requiredField' )) }}
-					{{ Form::text('apellidos', null, array('class'=>'textInput textinput', 'placeholder'=>'Apellidos')) }}
+					{{ Form::text('apellidos', $user->lastname, array('class'=>'textInput textinput', 'placeholder'=>'Apellidos')) }}
 				</div>
 				<div class="ctrlHolder" id="div_id_name">
-					{{ Form::label('value','Identificación', array('class'=>'requiredField'))}}
-					{{ Form::text('identification',null,array('classs'=>'textInput textinput', 'placeholder'=>'Identificación',
-					'onblur'=>'validate()', 'id'=>'ident'))}}
+					{{ Form::label('value', "Identificación", array('class' =>'requiredField'))}}
+					{{ Form::text('identification', $user->identification, array('class'=>'textInput textinput', 'placeholder'=>'Identificación', 'onblur'=>'validate()', 'id'=>'ident'))}}
 				</div>
 				<div class="ctrlHolder" id="div_id_name">
-					{{ Form::label('value','Teléfono', array('class'=>'requiredField'))}}
-					{{ Form::text('telefono', null, array('class'=>'textInput textinput', 'placeholder'=> 'Teléfono'))}}
+					{{ Form::label('value','Teléfono', array('class'=>'requiredField', ))}}
+					{{ Form::text('telefono', $user->phone, array('class'=>'textInput textInput', 'placeholder'=>'Teléfono'))}}
 				</div>
 				<div class="ctrlHolder" id="div_id_name">
 					{{ Form::label('value', 'Correo', array('class'=>'requiredField' )) }}
-					{{ Form::text('mail', null, array('class'=>'textInput textinput', 'placeholder'=>'Dirección de correo')) }}
+					{{ Form::text('mail', $user->mail, array('class'=>'textInput textinput', 'placeholder'=>'Dirección de correo')) }}
 				</div>
 				<div class="ctrlHolder" id="div_id_name">
 					{{ Form::label('value', 'Dirección', array('class'=>'requiredField' )) }}
-					{{ Form::text('direccion', null, array('class'=>'textInput textinput', 'placeholder'=>'Dirección')) }}
+					{{ Form::text('direccion', $user->direction, array('class'=>'textInput textinput', 'placeholder'=>'Dirección')) }}
 				</div>
 				<div class="ctrlHolder" id="div_id_name">
 					{{ Form::label('value', 'Password', array('class'=>'requiredField' )) }}
@@ -56,9 +49,6 @@
 					{{ Form::password('password_confirmation', array('class'=>'textInput textinput', 'placeholder'=>'Confirm contraseña')) }}
 				</div>
 				<div class="buttonHolder">
-					
-					{{ HTML::link('/organization/members/' . $organization->auxName . '/all_members/',  'Cancelar', array('class'=>"btn btn-danger btn-sm")  ) }} 
-
 					{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
 				</div>
 				{{ Form::hidden('organizationid', $organization->id) }}
@@ -78,16 +68,24 @@
 			}   
 		});
 
-		$('#ident').keyup(function (){
-            this.value = (this.value + '').replace(/[^0-9]/g, '');
-        });
-
-		$('#telefono').keyup(function (){
+        $('#ident').keyup(function (){
             this.value = (this.value + '').replace(/[^0-9]/g, '');
         });
 
 	});
+
+	function muestraMensaje() {
+//		var phone = document.getElemen
+//		var phone = document.getElementById('phone');
+
+//		document.getElementsByName("phone")
+		var valor = $('#ident').val();
+
+		alert('Gracias por pinchar ' + valor);
+	}
+
 	</script>
+
 
 
 	<script type="text/javascript">
@@ -171,10 +169,10 @@
 	          //Validamos que el digito validador sea igual al de la cedula
 	          if(digito_validador == ultimo_digito){
 	            console.log('la cedula:' + cedula + ' es correcta');
-	            alert('la cedula:' + cedula + ' es correcta');
+	            //alert('la cedula:' + cedula + ' es correcta');
 	          }else{
 	            console.log('la cedula:' + cedula + ' es incorrecta');
-	            alert('la cedula:' + cedula + ' es incorrecta');
+	            //alert('la cedula:' + cedula + ' es incorrecta');
 	            var cedula = $('#ident').val();
 	            $('#ident').val('');
 	          }
@@ -182,14 +180,14 @@
 	        }else{
 	          // imprimimos en consola si la region no pertenece
 	          console.log('Esta cedula no pertenece a ninguna region');
-	          alert('Esta cedula no pertenece a ninguna region');
+	          //alert('Esta cedula no pertenece a ninguna region');
 	          $('#ident').val('');
 	        }
 	    }else{
 	        //imprimimos en consola si la cedula tiene mas o menos de 10 digitos
 	        //console.log('Esta cedula tiene menos de 10 Digitos');
 	        console.log('Su cédula no contiene 10 dígitos');
-	        alert('Su cédula no contiene 10 dígitos');
+	        //alert('Su cédula no contiene 10 dígitos');
 	       	$('#ident').val('');
 	    }    
 	}

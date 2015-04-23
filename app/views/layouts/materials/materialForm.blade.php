@@ -51,12 +51,16 @@
 				
 				@if(Auth::user()->rol=='Administrator')
 				<div class="buttonHolder">
+					
+					{{ HTML::link('materials/',  'Cancelar', array('class'=>"btn btn-danger btn-sm")  ) }} 
+	
 					{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
 				</div>
 				@endif
 				{{ Form::hidden('organizationid', $organization->id) }}
 			</fieldset>
 			{{ Form::close() }}
+			
 		</div>
 @endif
 

@@ -36,12 +36,16 @@
 					</div>
 
 					<div class="ctrlHolder" id="div_id_name">
-						{{ Form::label('description', 'Descripcion' , array('class'=>'requiredField' )) }}
-						{{ Form::text('description', null, array('class'=>'textInput textinput', 'placeholder'=>'Descripción')) }}
+						{{ Form::label('description', 'Descripción', array('class'=>'requiredField' )) }}
+						{{ Form::textArea('description', null, array('class'=>'textInput textinput', 'placeholder'=>'Descripción del tipo de personal')) }}
 					</div>
 
 					@if(Auth::user()->rol=='Administrator')
 						<div class="buttonHolder">
+							{{Helper::isPremium($organization->id)}}
+
+							{{ HTML::link('personalType/',  'Cancelar', array('class'=>"btn btn-danger btn-sm")  ) }} 
+
 							{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
 						</div>
 					@endif

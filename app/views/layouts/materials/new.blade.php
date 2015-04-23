@@ -43,7 +43,10 @@
 	
 					@if(Auth::user()->rol=='Administrator')
 						<div class="buttonHolder">
-							{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
+							{{ Form::submit('Cancelar  ', array('class'=>'btn btn-danger btn-sm'))}}
+						</div>
+						<div class="buttonHolder">
+							{{ Form::submit('Guardar .. ', array('class'=>'btn btn-primary'))}}
 						</div>
 					@endif
 

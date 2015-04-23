@@ -46,6 +46,9 @@
 
 				@if(Auth::user()->rol=='Administrator')
 				<div class="buttonHolder">
+
+					{{ HTML::link('/organization/name/' . $organization->auxName . '/projects/',  'Cancelar', array('class'=>"btn btn-danger btn-sm")  ) }} 
+
 					{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
 				</div>
 				@endif
