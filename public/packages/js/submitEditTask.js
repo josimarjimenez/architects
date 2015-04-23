@@ -48,7 +48,7 @@ $( "#editFormTask" ).submit(function( event ) {
 		                	li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
 		                	li += '</a>';
 		                	li += '</span>';
-		             	}
+			        	}
 	                }
 	                
 	                li += data.task.name+'<br >';

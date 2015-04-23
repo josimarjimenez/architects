@@ -25,16 +25,24 @@ $( "#formularioTarea" ).submit(function( event ) {
 
             }else{
                 var task = data.task; 
+                var rol = "{{  Auth::user()->rol; }}" ;
+                console.log(rol);
                 //fijar en la parte de atras la tarea
                 var li = '<li class="task-view" data-task-id="'+task.id+'">';
                 li += '<span class="task-toolbar">';
                 li += '<a href="#" class="edit-link">';
                 li +='<i class="icon-glyph icon-edit" title="Editar tarea"></i>';
                 li += '</a>';
-                li += '<a href="#" class="delete-link">';
-                li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
-                li += '</a>';
                 li += '</span>';
+                
+                if(rol=='Administrator'){
+                    li += '<span class="task-toolbar">';
+                    li += '<a href="#" class="delete-link">';
+                    li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
+                    li += '</a>';
+                    li += '</span>';
+                }    
+                
                 li += task.name+'<br >';
                 li += task.summary;
                 li += '<b> ('+data.username+')</b>';

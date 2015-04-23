@@ -41,13 +41,13 @@
         li += '</a>'
         li += '</span>'
 
-        if(rol=='Administrator'){
-          li += '<span class="task-toolbar">';
-          li += '<a href="#" class="delete-link" onclick="deleteTask('+value.id+')">';
-          li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
-          li += '</a>';
-          li += '</span>';
-        }
+         if(rol=='Administrator'){
+            li += '<span class="task-toolbar">';
+            li += '<a href="#" class="delete-link" onclick="deleteTask('+value.id+')">';
+            li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
+            li += '</a>';
+            li += '</span>';
+         }
         
         li += value.name+'<br >';
         li += value.summary;
@@ -69,7 +69,7 @@
             break;
           } 
         });       
-},
+      },
 error: function(errors){
   $('.before').hide();
   $('.errors_form').html('');

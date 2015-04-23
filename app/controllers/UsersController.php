@@ -42,6 +42,7 @@ class UsersController extends BaseController {
 			$user->mail = Input::get('mail');
 			$user->direction = Input::get('direccion');
 			$user->password = Hash::make(Input::get('password'));
+			$user->rol = 'User';
 			$user->save();
 
 			Mail::send('layouts.users.welcome', array('firstname'=>Input::get('nombres'), 'mail'=>Input::get('mail'), 'password'=>Input::get('password')), function($message){

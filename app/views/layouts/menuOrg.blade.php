@@ -22,12 +22,11 @@
 				@if(Auth::user()->rol=='Administrator')
 				<li>
 					<a href="/projects/{{ $organization->auxName }}/releases" title="Roll up work across projects into releases.">
-						<!--<i class="topmenu-icon icon-glyph icon-calendar-empty"></i> Entregables-->
+						<i class="topmenu-icon icon-glyph icon-calendar-empty"></i> Entregables
 					</a>
 				</li>
-				@endif
-				-->
-
+				@endif-->
+			
 				@if(Auth::user()->rol=='Administrator')
 				<li>
 					<a href="/organization/members/{{ $organization->auxName }}/all_members" title="Get a listing of all members of the organization.">
