@@ -115,7 +115,7 @@
 					@if($hasmembers)
 					<span class="tasks-holder">
 						<span>
-							<a class="open-tasks-link show_tasks_link" href="#myModal" onclick="mostrarTaskboard({{ $issue->id }})">
+							<a class="open-tasks-link show_tasks_link" href="#myModal" onclick="mostrarTaskboard({{ $issue->id }}, {{ Auth::user()->id }}, '{{ Auth::user()->rol }}')">
 								Tareas
 							</a>
 						</span>
