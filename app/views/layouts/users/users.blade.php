@@ -11,6 +11,7 @@
 		<li id="message_1"><a onclick="$('#message_1').fadeOut(); return false;" href="#"><small>Limpiar</small></a><div id="mensaje"></div></li>
 	</ul>
 <br />
+<div class="table-responsive">
 	<table id="users" class="table table-bordered table-striped">
 		<tbody>
 			<tr >
@@ -38,6 +39,7 @@
 			@endforeach  
 		</tbody>
 	</table>
+</div>
 	<div id="dialog-confirm"></div>
 </div>
 <script type="text/javascript">

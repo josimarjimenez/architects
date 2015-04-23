@@ -7719,7 +7719,6 @@ h3.name{
 .menuResp{
     padding: 0 !important;
     margin: 0 !important;
-    margin-top: 80px !important;
 }
 .menuResp li{
     list-style: none;
@@ -7733,9 +7732,9 @@ h3.name{
 .menuResp a{
     color: #fff;
     width: 100%;
-display: inline-block;
-padding: 1em;
-color: #F2F2F2;
+    display: inline-block;
+    padding: 1em;
+    color: #F2F2F2;
 }
 
 .menuResp a:hover{
