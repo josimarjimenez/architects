@@ -53,7 +53,7 @@
             "Yes": function () {
             	$.ajax({
 		            type: 'GET',
-		            url:  'http://192.168.0.16:8000/users/delete',
+		            url:  'http://localhost:8000/users/delete',
 		            data: 'id='+id,
 		            success: function (data) { 
 		            	if(data.succes=='true'){

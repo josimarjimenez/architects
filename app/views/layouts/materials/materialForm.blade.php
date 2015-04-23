@@ -10,15 +10,15 @@
 		@endforeach
 	</ul>
 	
-@if(Auth::user()->rol=='Administrator')	
-	<h1>Crear/Editar material</h1>
-	<div class="panel">
-		<?php 
-		if($type == "new"){
+	@if(Auth::user()->rol=='Administrator')	
+		<h1>Crear/Editar material</h1>
+		<div class="panel">
+			<?php 
+			if($type == "new"){
 			?>
 			{{ Form::open(array('url'=>'materials','class'=>'uniForm')) }}
 			<?php }else { ?>
-			{{ Form::model($material,array('action' => array('MaterialsController@update', $material->id), 'method' => 'PUT', 'class'=>'uniForm')) }}	
+			{{ Form::model($material,array('action' => array('MaterialsController@update', $material->id) 'method' => 'PUT', 'class'=>'uniForm')) }}	
 			<?php } ?>
 			<fieldset class="inlineLabels">
 				<div class="ctrlHolder" id="div_id_name">
@@ -45,18 +45,17 @@
 					{{ Form::label('value', 'Obervaciones', array('class' => 'requiredField'))}}
 					{{ Form::textArea('observation', null, array('class'=>'textInput textinput', 'placeholder'=>'Observaciones acerca del material', 'id'=>'observation')) }}
 				</div>
-				
 				@if(Auth::user()->rol=='Administrator')
-				<div class="buttonHolder">
+					<div class="buttonHolder">
 					{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
-				</div>
-				@endif
+					</div>
+				@endif		
 				{{ Form::hidden('organizationid', $organization->id) }}
 			</fieldset>
 			{{ Form::close() }}
 		</div>
-	</div>
-@endif
+	@endif
+</div>
 
 <script type="text/javascript">
 	
@@ -69,4 +68,5 @@
 			}   
 		});
 	});
+
 </script>
