@@ -38,6 +38,7 @@
       </div>
     </div>
   </div>
+ 
   <div id="sb-site">
     <div class="container">
       <div class="container narrow_body" id="body">
@@ -48,11 +49,13 @@
       </div>
     </div>
   </div>
+ 
+ </div>
   <div class="sb-slidebar sb-left">
       <ul class="menuResp"> 
         @include('layouts.menuResponsive') 
       </ul>
-    </div>
+  </div> 
   <script type="text/javascript">
   jQuery(document).ready(function($) {
     //menu para moviles
@@ -79,7 +82,9 @@
       $('#proyectosResp').click(function() {
         $('.proyectoSub').toggle(); 
       });
- 
+      
+      //eliminar menu 
+      $('#menu').empty();
 
       
     }else{

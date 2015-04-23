@@ -6,7 +6,9 @@
  * @param  {[type]} id [description]
  * @return {[type]}    [description]
  */
- function mostrarTaskboard(id){
+ function mostrarTaskboard(id, idUser, rol){
+
+
   $("#myModal").modal({
     "backdrop" : "static",
     "keyboard" : true,
@@ -17,9 +19,9 @@
   $.ajax({
     type: 'GET',
     url:  'http://localhost:8000/tareas/taskAll',
-    data: 'id='+id,
+    data: 'id='+id+"&idUser="+idUser,
 
-    success: function (data) {
+    success: function (data) { 
       $('.before').hide();
       $('.errors_form').html('');
       $('.success_message').hide().html(''); 
@@ -28,9 +30,6 @@
       $('#haciendo').empty();
       $('#hecho').empty();
       var tasks = data.tasks; 
-
-      var rol = "{{  Auth::user()->rol; }}" ;
-      console.log(rol);
 
       $.each( tasks, function( key, value ) { 
         li = '';

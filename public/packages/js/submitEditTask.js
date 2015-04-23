@@ -32,8 +32,7 @@ $( "#editFormTask" ).submit(function( event ) {
     				
     				var li = '';
     				var rol = "{{  Auth::user()->rol; }}" ;
-    				console.log(rol);
-
+    				 
     				if(data.final=='no'){
 	    				li += '<span class="task-toolbar">';
 		                li += '<a href="#" class="edit-link" onclick="editTask('+data.task.id+')">';

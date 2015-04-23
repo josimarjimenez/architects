@@ -7,6 +7,7 @@
 	</a>
 	<h1>Projecto de: {{ $organization->name }}</h1>
 	<br>
+	<div class="table-responsive">
 	<table id="projects" class="table table-bordered table-striped">
 		<tbody>
 			<tr>
@@ -36,6 +37,7 @@
 			@endforeach  
 		</tbody>
 	</table>
+	</div>
 @else
 	<div class="text-center">No tienen permisos para acceder</div>
 @endif

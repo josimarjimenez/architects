@@ -126,7 +126,18 @@ Route::get('tareas/getTask', function(){
 Route::get('tareas/taskAll', function(){ 
 	if(Request::ajax()){ 
 		$id = Input::get("id");
+		$idUser = Input::get("idUser");
 		$tasks = Task::where('issueid','=', $id)->get();
+
+		$userLoggedIn = User::findOrFail($idUser);
+		 
+		 
+		if($userLoggedIn->rol != 'Administrator'){
+			$tasks = Task::where('issueid','=', $id)
+    					->where('userid', '=', $userLoggedIn->id)
+						->get();
+		}
+
 		foreach ($tasks as $task) {
 
 			if($task->userid !=null){

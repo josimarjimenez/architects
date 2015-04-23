@@ -29,6 +29,7 @@ class IterationsController extends BaseController {
 				$users[] = User::findOrFail($member->usersid);
 			}
  
+ 	
  		
 			$this->layout->content = View::make('layouts.iterations.show')
 								->with('iteration', $iteration)

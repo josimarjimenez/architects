@@ -6,6 +6,7 @@
 	</a>
 	<h1>Materiales de: {{ $organization->name }}</h1>
 	<br>
+	<div class="table-responsive">
 	<table id="projects" style="width:80% !important" class="table table-bordered table-striped">
 		<tbody>
 			<tr>
@@ -32,4 +33,5 @@
 			@endforeach  
 		</tbody>
 	</table>
+	</div>
 </div>
