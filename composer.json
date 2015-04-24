@@ -38,7 +38,8 @@
 			"app/database/seeds",
 			"app/tests/TestCase.php",
 			"app/libraries/jpgraph/docs/src/jpgraph.php",
-			"app/libraries/jpgraph/docs/src/jpgraph_line.php"
+			"app/libraries/jpgraph/docs/src/jpgraph_line.php",
+			"app/class"
 		]
 	},
 	"scripts": {

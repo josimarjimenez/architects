@@ -207,6 +207,49 @@ class UsersController extends BaseController {
 			->withInput();
 		}      
 	}
+/*
+	public function postPassword()
+    {
+        $rules = array(
+            'password' => 'required',
+            'newpassword' => 'required|min:5',
+            'repassword' => 'required|same:newpassword'
+        );
 
+        $messages = array(
+                'required' => 'El campo :attribute es obligatorio.',
+                'min' => 'El campo :attribute no puede tener menos de :min carácteres.'
+        );
+
+        $validation = Validator::make(Input::all(), $rules, $messages);
+        if ($validation->fails())
+        {
+            return Redirect::to('password')->withErrors($validation)->withInput();
+        }
+        else{
+            if (Hash::check(Input::get('password'), Auth::user()->Password))
+            {
+                $cliente = new cliente();
+                $cliente = Auth::user();
+                $cliente->Password = Hash::make(Input::get('newpassword'));
+                $cliente->save();
+               
+                   
+                   if($cliente->save()){
+                        return Redirect::to('password')->with('notice', 'Nueva contraseña guardada correctamente');
+                   }
+                   else
+                   {
+                       return Redirect::to('password')->with('notice', 'No se ha podido guardar la nueva contaseña');
+                    }
+            }
+            else
+            {
+                return Redirect::to('password')->with('notice', 'La contraseña actual no es correcta')->withInput();
+            }
+
+        }
+    }
+	*/
 }
 ?>

@@ -64,7 +64,7 @@ $( document ).ready(function() {
 	console.log(rol);
  	$.ajax({
 		type: 'GET',
-		url:  'http://localhost:8000/ajax/getProject',
+		url:  'http://192.168.0.12:8000/ajax/getProject',
 		data: 'id='+id,
 		beforeSend: function(){
 		},

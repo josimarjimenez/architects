@@ -12,4 +12,18 @@ Validator::extend('foo', function($field,$value,$parameters){
 	return $value > 3;
 });
 
+Validator::extend('amount_major_cero', function($field,$value,$parameters){
+	return $value > 0;
+});
+
+Validator::extend('check_identification', function($field,$value,$parameters){
+
+	$help = new Helper();
+	if($help->validarCedula($value)){
+		return true;
+	}else{
+		return false;
+	}
+});
+
 ?>
