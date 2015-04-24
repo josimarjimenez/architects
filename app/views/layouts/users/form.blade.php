@@ -56,6 +56,9 @@
 					{{ Form::password('password_confirmation', array('class'=>'textInput textinput', 'placeholder'=>'Confirm contraseña')) }}
 				</div>
 				<div class="buttonHolder">
+					
+					{{ HTML::link('/organization/members/' . $organization->auxName . '/all_members/',  'Cancelar', array('class'=>"btn btn-danger btn-sm")  ) }} 
+
 					{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
 				</div>
 				{{ Form::hidden('organizationid', $organization->id) }}

@@ -53,6 +53,8 @@ Route::get('/', 'UsersController@getLogin');
 Route::post('update/{id}', 'UsersController@update');
 
 
+Route::get('edit/{id}', 'GraphicsController@iterationSummary');
+
 Route::get('grafica/{id}', 'GraphicsController@iterationSummary');
 
 Route::get('graphic/{id}', 'GraphicsSummaryController@summary');

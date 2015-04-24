@@ -1,6 +1,8 @@
 <br><br>
+<!--
 <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
 <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+-->
 
 <div id="projectError">
 	@if($errors->all())
@@ -10,6 +12,7 @@
 		@endforeach
 	</ul>
 	@endif
+
 </div>
 
 
@@ -17,6 +20,7 @@
 	<h1>Crear/Editar material</h1>
 	<div class="panel">
 		<?php 
+
 		if($type == "new"){
 			?>
 			{{ Form::open(array('url'=>'materials','class'=>'uniForm')) }}
@@ -51,12 +55,16 @@
 				
 				@if(Auth::user()->rol=='Administrator')
 				<div class="buttonHolder">
+					
+					{{ HTML::link('materials/',  'Cancelar', array('class'=>"btn btn-danger btn-sm")  ) }} 
+	
 					{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
 				</div>
 				@endif
 				{{ Form::hidden('organizationid', $organization->id) }}
 			</fieldset>
 			{{ Form::close() }}
+			
 		</div>
 @endif
 
