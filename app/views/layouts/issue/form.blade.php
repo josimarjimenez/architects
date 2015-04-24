@@ -1,4 +1,4 @@
-@if(Auth::user()->rol=='Adminsitrator')
+@if(Auth::user()->rol=='Administrator')
   <div id="story_details" style="display: none;" >
     <table id="add_story_table">
       <tbody>
