@@ -145,6 +145,7 @@
 @include('layouts.iterations.dialogs')
 <!-- Permite manejar el evento de teclado para aparicion de formulario de nueva historia -->
 <script type="text/javascript">
+
 $("#summary").keypress(function() { 
 	$("#story_details").show( "slow" );
 });	

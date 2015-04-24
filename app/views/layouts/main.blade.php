@@ -88,6 +88,7 @@
 
       
     }else{
+      //$("#sb-site").css('padding-top', '60px');
       $( "#options" ).css('display', 'none');
       $( "#perfil" ).css('display', 'none');
       $('#organization').click(function() {
