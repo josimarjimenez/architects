@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\View;
 
 class MessagesController extends BaseController
 {
+
+    protected $layout = "layouts.main";
+
     /**
      * Just for testing - the user should be logged in. In a real
      * app, please use standard authentication practices
@@ -36,7 +39,7 @@ class MessagesController extends BaseController
         
         $currentUser = Auth::user();
         $currentUserId = $currentUser->id;
-        echo 'User id -> ' . $currentUserId;
+        //echo 'User id -> ' . $currentUserId;
         // All threads, ignore deleted/archived participants
         //$threads = Thread::getAllLatest()->get();
         $threads = $currentUser->threads();
@@ -53,7 +56,10 @@ class MessagesController extends BaseController
         // All threads that user is participating in, with new messages
         // $threads = Thread::forUserWithNewMessages($currentUserId)->latest('updated_at')->get();
 
-        return View::make('layouts.messages.index', compact('threads', 'currentUserId'));
+       // return View::make('layouts.messages.index', compact('threads', 'currentUserId'));
+
+        $this->layout->content = View::make('layouts.messages.index', compact('threads', 'currentUserId'));
+
     }
 
     /**
@@ -81,7 +87,8 @@ class MessagesController extends BaseController
 
         $thread->markAsRead($userId);
 
-        return View::make('layouts.messages.show', compact('thread', 'users'));
+        //return View::make('layouts.messages.show', compact('thread', 'users'));
+        $this->layout->content = View::make('layouts.messages.show', compact('thread', 'users'));
     }
 
     /**
@@ -93,7 +100,8 @@ class MessagesController extends BaseController
     {
         $users = User::where('id', '!=', Auth::id())->get();
 
-        return View::make('layouts.messages.create', compact('users'));
+        //return View::make('layouts.messages.create', compact('users'));
+        $this->layout->content = View::make('layouts.messages.create', compact('users'));
     }
 
     /**

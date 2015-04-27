@@ -1,5 +1,11 @@
-
-
+    <a href="/messages/create" style="text-decoration:none; vertical-align:middle" 
+    class="btn btn-success pull-right">
+    <i class="icon-plus-sign"></i> 
+    Nuevo mensaje
+    </a>
+    <br>
+    <h2>Lista de mensajes</h2>
+    <br>
 
     @if (Session::has('error_message'))
         <div class="alert alert-danger" role="alert">

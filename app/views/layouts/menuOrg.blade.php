@@ -18,14 +18,15 @@
 				</li>
 				@endif
 				
-				<!--
-				@if(Auth::user()->rol=='Administrator')
 				<li>
-					<a href="/projects/{{ $organization->auxName }}/releases" title="Roll up work across projects into releases.">
-						<i class="topmenu-icon icon-glyph icon-calendar-empty"></i> Entregables
+					<a href="/messages" title="Lista de mensajes">
+					<i class="glyphicon glyphicon-envelope"></i> 
+						Mensajes 
+					<span class="badge">10</span>
 					</a>
+			
 				</li>
-				@endif-->
+				
 			
 				@if(Auth::user()->rol=='Administrator')
 				<li>
