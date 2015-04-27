@@ -157,4 +157,6 @@ $(".add_category_link").click(function() {
 	$(".category_name").css( "display","block" ); 
 });
 
+var rol = "{{  Auth::user()->rol; }}" ;
+createProjMenu("{{ $project->id }}", rol);
 </script>

@@ -10,7 +10,7 @@
 <li class="right">
 
 	{{ HTML::link('#', 'Perfil',array('class'=>'drop megamenu-top-header', 'id'=>'perfilID')) }}
-	<div id="perfil" class="drop8columns dropcontent pull-left-450" style="left: auto; display: block; max-height: 639px;">
+	<div id="perfil" class="drop8columns dropcontent pull-left-450" style="left: auto; display: none; max-height: 639px;">
 		<h3 class="col_6">Bienvenido: {{ Auth::user()->name }} {{ Auth::user()->lastname }}</h3> 
 		<div style="clear:both"></div> 
 		<div class="col_6">

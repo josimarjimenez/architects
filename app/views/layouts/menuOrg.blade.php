@@ -1,5 +1,5 @@
 	{{ HTML::link('#', $organization->name, array('class'=>'drop megamenu-top-header','id'=>'organization')) }}
-	<div id="options" class="drop8columns dropcontent pull-left-450" style="left: auto; display: block; max-height: 639px;">
+	<div id="options" class="drop8columns dropcontent pull-left-450" style="left: auto; display: none; max-height: 639px;">
 		<h3 class="col_6">{{ $organization->name }}</h3>  
 		<div class="col_6"> 
 			<ul class="project-menu-horizontal-list">
