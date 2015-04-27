@@ -379,3 +379,134 @@ $(document).ready(function() {
     $('#myModal').css('z-index','9000');
   }); 
 });  
+
+/**
+ * [createProjMenu description]
+ * @param  {[type]} idProj [description]
+ * @param  {[type]} rol    [description]
+ * @return {[type]}        [description]
+ */
+function createProjMenu(idProj, rol){
+$.ajax({
+    type: 'GET',
+    url:  'http://localhost:8000/ajax/getProject',
+    data: 'id='+idProj,
+    beforeSend: function(){
+    },
+    success: function (data) { 
+      var project = data.project;
+      var iterations = data.iterations;
+
+      $('#navbar-project-menu').html('');
+      var li =  '<a id="projectMenu" class="drop project-dropdown-menu megamenu-top-header" href="#">'+project.name+'</a>';
+      li += '<div id="subMenuProject" class="drop8columns dropcontent pull-left-450 white-dropdown" style="margin-left: -380px !important; left: auto; display: block; max-height: 385px;">'; 
+      li +='<h3 class="col_8">'+project.name+'<span style="float:right">';
+      li +='<a remove_url="/favorites/remove/1/44062" add_url="/favorites/add/1/44062" href="#" class="black-link favorite_link" title="Toggles whether or not this project is watched."> ';
+      li += ' <i class="icon-eye-close"></i>';
+      li +='</a>';
+      li +='</span></h3>';
+
+      li += '<div class="col_6">';
+      li += '<ul class="project-menu-horizontal-list">';
+      //resumen de proyecto
+      li += '<li>';
+      li += '<a id="summaryProject" href="/projects/'+idProj+'">';
+      li += '<i class="topmenu-icon icon-home"> </i> Resumen';
+      li +='</a>';
+      li +='</li>';
+ 
+      //administracion proyecto
+      li +='<li>';
+      li +='<a href="/projects/'+idProj+'/edit" title="">';
+      li +='<i class="topmenu-icon icon-glyph icon-edit"></i> Admin. del proyecto';
+      li +='</a>';
+      li +='</li>';
+
+      //grupo de trabajo 
+      li +='<li>';
+      li +='<a href="/projects/members/'+idProj+'" title="Grupo de trabajo">';
+      li +='<i class="topmenu-icon icon-glyph icon-group"></i> Grupo de trabajo';
+      li +='</a>';
+      li +='</li>';
+      li += '</ul>';
+      li += '</div>';
+
+      li += '<h3 class="col_8">Iteraciones</h3>';
+      li += '<div class="col_6">';
+      li += '<ul class="project-menu-iteration-list" id="iteracionesList">';
+      $.each( iterations, function( key, value ){
+
+        li += '<li class="project-menu-iteration-list-item ">';
+        li += '<a href="/iterations/'+value.id+'">'+value.name+'<br>';
+        li += '<i></i>';
+        li += '</a>';
+        li += '</li>'; 
+      });
+
+      li += '</ul>'; 
+      li += '</div>';
+      li += '<div style="clear:both"></div>';
+      if(rol=='Administrator'){
+        li += '<div style="margin-left:10px">';
+          li += '<form action="/iterations/create" method="get" class="pull-left">';
+          li += '<input type="hidden" name="projectid" value="'+project.id+'" />';
+          li += '<input type="submit"   value="Nueva iteración" class="button green large" />';
+          li +='</form>';
+        li +='</div>';
+      }
+
+      li += '</div>';
+
+      $('#navbar-project-menu').append(li);
+      $('#navbar-project-menu').css('display', 'block');
+      $('#subMenuProject').css('display', 'none');
+
+
+      var responsive = '<li><a id="projectMenu" class="drop project-dropdown-menu megamenu-top-header" href="#">'+project.name+'</a>';
+
+      responsive += '<ul class="project-menu-horizontal-list">';
+      //resumen de proyecto
+      responsive += '<li>';
+      responsive += '<a id="summaryProject" href="/projects/'+idProj+'">';
+      responsive += '<i class="topmenu-icon icon-home"> </i> Resumen';
+      responsive +='</a>';
+      responsive +='</li>';
+ 
+      //administracion proyecto
+      responsive +='<li>';
+      responsive +='<a href="/projects/'+idProj+'/edit" title="">';
+      responsive +='<i class="topmenu-icon icon-glyph icon-edit"></i> Admin. del proyecto';
+      responsive +='</a>';
+      responsive +='</li>';
+
+      //grupo de trabajo
+      responsive +='<li>';
+      responsive +='<a href="/projects/members/'+idProj+'" title="Grupo de trabajo">';
+      responsive +='<i class="topmenu-icon icon-glyph icon-group"></i> Grupo de trabajo';
+      responsive +='</a>';
+      responsive +='</li>';
+      responsive +='<li>Iteraciones';
+      responsive += '<ul class="" id="iteracionesList">';
+      $.each( iterations, function( key, value ){
+
+        responsive += '<li class=" ">';
+        responsive += '<a href="/iterations/'+value.id+'">'+value.name+'<br>';
+        responsive += '<i></i>';
+        responsive += '</a>';
+        responsive += '</li>'; 
+      });
+      li += '</ul>';
+      li += '</li>';  
+      responsive += '</ul>';
+      responsive += '</li>';
+
+
+      //poner en el menu responsive tambien
+      $('.menuResp').append(responsive);
+      $('#projectMenu').click(function() {
+          $( "#subMenuProject" ).toggle(); 
+        $('#options').css('display', 'none');
+      });
+    }
+  });
+}

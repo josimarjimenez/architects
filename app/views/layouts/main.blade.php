@@ -64,7 +64,7 @@
     $('.sb-toggle-left').click(function() {
         $('.options').css('display', 'block');
       });
-   if(width < 490){
+   /*if(width < 490){
  
       $( ".navbar-left" ).css('display', 'block');
       $( "nav#menu" ).css('display', 'none');
@@ -87,7 +87,7 @@
       $('#menu').empty();
 
       
-    }else{
+    }else{ */
       //$("#sb-site").css('padding-top', '60px');
       $( "#options" ).css('display', 'none');
       $( "#perfil" ).css('display', 'none');
@@ -118,7 +118,7 @@
             container2.hide();
         }
       });
-    }
+    //}
     
   });
   </script>
