@@ -61,6 +61,8 @@ $( document ).ready(function() {
 	var id = pathname[pathname.length-1];
 
 	var rol = "{{  Auth::user()->rol; }}" ;
+ 
 	createProjMenu(id, rol);
+ 
 });
 </script>

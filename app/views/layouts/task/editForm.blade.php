@@ -4,7 +4,7 @@
   <h3 class="title-label">Editar tarea</h3>
 </div>
 <div class="modal-body edit-story-body" style="height: 218px; max-height: 218px;">
-  <form action="http://localhost:8000/tareas/editTask" id="editFormTask" class="uniForm">
+  <form action="http://192.168.0.12:8000/tareas/editTask" id="editFormTask" class="uniForm">
     <fieldset class="inlineLabels">
 
       <div class="ctrlHolder">

@@ -6,11 +6,11 @@
 @endif
 <div class="project-body-header">
 	@if(Auth::user()->rol=='Administrator')
-	<span class="iteration-board-link">
-		<a href="/projects/project/k-gestion/iteration/117871/board">
-			<i class="icon-th"></i>Pizarra scrum
-		</a>
-	</span>
+		<span class="iteration-board-link">
+			<a href="/projects/project/k-gestion/iteration/117871/board">
+				<i class="icon-th"></i>Pizarra scrum
+			</a>
+		</span>
 	@endif
 	<h1 id="tour-iteration-name">
 		{{ $iteration->name }} 
@@ -63,21 +63,20 @@
 	@if($hasmembers)
 	<div style="margin-left:auto; margin-right:auto; width:100%;">
 		@if(Auth::user()->rol=='Administrator')
-		<div id="story_form" class="story_form" style="margin-left:auto; margin-right:auto">
-			<ul id="createdStories">
-			</ul>
-			<div id="addStoryFormOnProgress" class="hidden">Guardando historia.  Por favor espere...</div> 
-			{{ Form::open(array('url'=>'issue','class'=>'uniForm', 'id'=>'addStoryForm')) }}
-			<textarea id="summary" rows="1" cols="50" name="summary" maxlength="5000"></textarea>
-			@if(Auth::user()->rol=='Administrator')
-			<button id="add_button" type="submit" class="btn">Agregar historia</button>
-			@endif
-			<div class="iteration-app">
-				{{ Auth::user()->rol }}
-				@include('layouts.issue.form')
+			<div id="story_form" class="story_form" style="margin-left:auto; margin-right:auto">
+				<ul id="createdStories">
+				</ul>
+				<div id="addStoryFormOnProgress" class="hidden">Guardando historia.  Por favor espere...</div> 
+				{{ Form::open(array('url'=>'issue','class'=>'uniForm', 'id'=>'addStoryForm')) }}
+				<textarea id="summary" rows="1" cols="50" name="summary" maxlength="5000"></textarea>
+				@if(Auth::user()->rol=='Administrator')
+					<button id="add_button" type="submit" class="btn">Agregar historia</button>
+				@endif
+				<div class="iteration-app">
+					@include('layouts.issue.form')
+				</div>
+				{{ Form::close() }}
 			</div>
-			{{ Form::close() }}
-		</div>
 		@endif
 		<h1>Historia</h1>
 		<ul id="tour-story-list" class="story-list ui-sortable" style="">

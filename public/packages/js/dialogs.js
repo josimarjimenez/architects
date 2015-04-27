@@ -18,7 +18,7 @@
   var li = '';
   $.ajax({
     type: 'GET',
-    url:  'http://localhost:8000/tareas/taskAll',
+    url:  'http://192.168.0.12:8000/tareas/taskAll',
     data: 'id='+id+"&idUser="+idUser,
 
     success: function (data) { 
@@ -40,13 +40,13 @@
         li += '</a>'
         li += '</span>'
 
-        if(rol=='Administrator'){
-          li += '<span class="task-toolbar">';
-          li += '<a href="#" class="delete-link" onclick="deleteTask('+value.id+')">';
-          li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
-          li += '</a>';
-          li += '</span>';
-        }
+         if(rol=='Administrator'){
+            li += '<span class="task-toolbar">';
+            li += '<a href="#" class="delete-link" onclick="deleteTask('+value.id+')">';
+            li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
+            li += '</a>';
+            li += '</span>';
+         }
         
         li += value.name+'<br >';
         li += value.summary;
@@ -68,7 +68,7 @@
             break;
           } 
         });       
-},
+      },
 error: function(errors){
   $('.before').hide();
   $('.errors_form').html('');
@@ -89,7 +89,7 @@ $("#issueid").val(id);
     if (r == true) {
       $.ajax({
         type: 'GET',
-        url:  'http://localhost:8000/tareas/delete',
+        url:  'http://192.168.0.12:8000/tareas/delete',
         data: 'id='+id,
         success: function (data) { 
           $('#'+id).remove();
@@ -255,7 +255,7 @@ $("#issueid").val(id);
   //recover task data
   $.ajax({
     type: 'GET',
-    url:  'http://localhost:8000/tareas/getTask',
+    url:  'http://192.168.0.12:8000/tareas/getTask',
     data: 'id='+id,
     success: function (data) {
       $('#editFormTask #name').val(data.task.name);
