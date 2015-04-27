@@ -27,7 +27,8 @@
 		"twbs/bootstrap": "*",
 		"twitter/bootstrap": "*",
 		"way/generators": "2.*",
-		"jpgraph/jpgraph": "dev-master"
+		"jpgraph/jpgraph": "dev-master",
+		"cmgmyr/messenger": "~1.0"
 	},
 	"autoload": {
 		"classmap": [
@@ -58,8 +59,5 @@
 	"config": {
 		"preferred-install": "dist"
 	},
-	"minimum-stability": "stable",
-	"require-dev": {
-		"codecepcion/codeception": "*"
-	}
+	"minimum-stability": "stable"
 }
