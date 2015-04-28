@@ -59,15 +59,14 @@ class ProjectsController extends BaseController {
 			$project->organizationid = Input::get('organizationid'); 
 			$project->save();
 
-			$project = Project::findOrFail($project->id);
-
+			//$project = Project::findOrFail($project->id);
+			
 			if($project){
 				$team = new Teams();
 				$team->name = 'Grupo - ' . $project->name;
 				$team->projectid = $project->id;
 				$team->save();
 			}
-
 			$organization = app('organization');
 			return Redirect::to('organization/name/'.$organization->auxName.'/projects')
 			->with('message', 'Registro creado con exito'); 
