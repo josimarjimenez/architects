@@ -65,8 +65,8 @@
 		position_updated = false; //flag bit
 
 		$( "#todo, #haciendo, #hecho" ).sortable({
-	    	connectWith: ".connectedSortable"
-	    	//items: "li:not(.ui-state-disabled)"
+	    	connectWith: ".connectedSortable",
+	    	items: "li:not(.ui-state-disabled)",
 		    start: function(event, ui) {
 	            var start_pos = ui.item.index();
 	            ui.item.data('start_pos', start_pos);

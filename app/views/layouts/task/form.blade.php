@@ -1,6 +1,6 @@
 <div class="modal-header">    
     <button aria-hidden="true" data-dismiss="modal" class="close1" id="cerrarTarea" type="button">×</button>
-    <h3 class="title-label">Nueva Tarea</h3>
+    <h3 class="title-label">Nueva Tarea {{ Auth::user()->rol }}</h3>
 </div>
 <div class="modal-body edit-story-body">
     {{ Form::open(array('url' => 'task', 'id' => 'formularioTarea', 'class'=>'uniForm')) }}  
@@ -46,10 +46,12 @@
 </div>
 
 <input type="hidden" name="issueid" id="issueid" value="">
+<input type="hidden" name="rolId" id="rolId" value="{{Auth::user()->rol}}">
 <div class="modal-footer">            
     {{ Form::submit('Guardar', array('class' => 'button expand round', 'id'=>'guardarTarea')) }}   
 </div>
 </fieldset>
 {{ Form::close() }}
 </div>
+
 {{ HTML::script('packages/js/submitNewTask.js') }}

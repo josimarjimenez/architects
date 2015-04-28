@@ -2,6 +2,8 @@
 
 $( "#formularioTarea" ).submit(function( event ) { 
     event.preventDefault(); 
+ 
+    var rol =$('#rolId').val();
     $.ajax({
         type: 'POST',
         url:  $(this).attr('action'),
@@ -24,20 +26,18 @@ $( "#formularioTarea" ).submit(function( event ) {
                 $('.errors_form').html(errores)
 
             }else{
-                var task = data.task; 
-                var rol = "{{  Auth::user()->rol; }}" ;
-                console.log(rol);
+                var task = data.task;  
                 //fijar en la parte de atras la tarea
                 var li = '<li class="task-view" data-task-id="'+task.id+'">';
                 li += '<span class="task-toolbar">';
-                li += '<a href="#" class="edit-link">';
+                li += '<a href="#" class="edit-link" onclick="editTask('+task.id+')">';
                 li +='<i class="icon-glyph icon-edit" title="Editar tarea"></i>';
                 li += '</a>';
                 li += '</span>';
-                
+                 
                 if(rol=='Administrator'){
                     li += '<span class="task-toolbar">';
-                    li += '<a href="#" class="delete-link">';
+                    li += '<a href="#" class="delete-link"  onclick="deleteTask('+task.id+')">';
                     li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
                     li += '</a>';
                     li += '</span>';
