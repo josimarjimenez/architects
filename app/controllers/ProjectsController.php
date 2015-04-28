@@ -16,19 +16,36 @@ class ProjectsController extends BaseController {
 			foreach ($project->iterations as $iteration) {
 				$idIterations[] = $iteration->id;
 			}
-			$stories= Issue::whereIn('iterationid', $idIterations)->get();
-			$totalStories = sizeof($stories);
-			$storiesCompleted = Issue::whereIn('iterationid', $idIterations)->
+
+			if($iterations==0){
+				$totalStories=0;
+				$storiesCompleted=0;
+				$storiesProgress=0;
+				$this->layout->content = View::make('layouts.projects.show')
+								->with('project', $project)
+								->with('iterations', $iterations)
+								->with('totalStories', $totalStories)
+								->with('completed', $storiesCompleted)
+								->with('doing', $storiesProgress);
+			}else{
+				$stories= Issue::whereIn('iterationid', $idIterations)->get();
+				$totalStories = sizeof($stories);
+				$storiesCompleted = Issue::whereIn('iterationid', $idIterations)->
 								where('currentState', 'TO-DO')->get();
-			$storiesProgress = Issue::whereIn('iterationid', $idIterations)->
+				$storiesProgress = Issue::whereIn('iterationid', $idIterations)->
 								where('currentState', 'DOING')->get();
- 
-			$this->layout->content = View::make('layouts.projects.show')
+								$this->layout->content = View::make('layouts.projects.show')
 								->with('project', $project)
 								->with('iterations', $iterations)
 								->with('totalStories', $totalStories)
 								->with('completed', count($storiesCompleted))
 								->with('doing', count($storiesProgress));
+			}
+
+
+			
+ 
+			
 
 		}catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) { 
 			$organization = app('organization');
