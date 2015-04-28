@@ -63,7 +63,6 @@
 		            	}
 		            	$('#messages').css('display','block');
 		            	$('#mensaje').html(data.message);
-
 		            	 
 		            },
 		            error: function(errors){ 
