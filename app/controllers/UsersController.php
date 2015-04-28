@@ -102,14 +102,36 @@ class UsersController extends BaseController {
 			//->with('type', "edit");
 	}
 
+	public function getEditprofile(){
+
+		try {
+			$user = Auth::user();
+		}catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) { 
+			$organization = app('organization');
+		    return Redirect::to('/organization/members/'. $organization->auxName . '/all_members')
+			->with('message', 'No existe el usuario');
+		}
+		
+		$this->layout->content = View::make('layouts.users.editprofile')
+	//		->with('organization', app('organization'))
+			->with('user', $user)
+			->with('type', "edit");
+			//->with('type', "edit");
+	}	
 
 	public function postUpdate($id){
+
+		
 
 		$user = User::findOrFail($id);
 		$rules = User::$rules;
 		$rules['identification'] .= ',identification,' . $id;
 		$rules['mail'] .= ',mail,' . $id;
 		$validator = Validator::make(Input::all(), $rules, User::$messages);
+
+		//var_dump($rules);
+		//die();
+
 		if($validator->passes()){
 			$user->name = Input::get('nombres'); 
 			$user->lastname = Input::get('apellidos');
@@ -124,8 +146,18 @@ class UsersController extends BaseController {
 			
 			$user->save();
 			$organization = app('organization');
-			return Redirect::to('/organization/members/'. $organization->auxName . '/all_members')
+
+			if( isset($_POST['myprofile']) ){
+
+			//if(Input::get('myprofile')){	
+				return Redirect::to('/users/dashboard')
 				->with('message', 'Registro actualizado');
+			}else{
+				return Redirect::to('/organization/members/'. $organization->auxName . '/all_members')
+				->with('message', 'Registro actualizado');	
+			}
+
+			
 
 		}else{
 			return Redirect::to('users/edit/'.$id)

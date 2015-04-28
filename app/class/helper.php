@@ -15,6 +15,20 @@ class Helper {
         return 'Hola.....';
     }
 
+    public static function messagesNumber(){
+        $currentUser = Auth::user();
+        $currentUserId = $currentUser->id;
+        $threads = $currentUser->threads()->get();
+        $counter = 0;
+        foreach ($threads as $thread) {
+           if($thread->isUnread($currentUserId)){
+            $counter = $counter + 1;
+           }
+        }
+
+        return $counter;
+    }
+
     public function test() {
         return 'Josimar' . $this->aux();
     }

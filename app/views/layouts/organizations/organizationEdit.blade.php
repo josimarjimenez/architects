@@ -32,8 +32,10 @@
 			{{ Form::url('webPage', $organization->webPage) }}
 			{{ Form::hidden('id', $organization->id) }}
 			</div>
+
 			@if(Auth::user()->rol=='Administrator')
 				<div class="buttonHolder">
+				{{ HTML::link('/users/dashboard/' . $organization->auxName ,  'Cancelar', array('class'=>"btn btn-danger btn-sm")  ) }} 
 				{{ Form::submit('Guardar', array('class'=>'btn btn-primary'))}}
 				</div>
 			@else

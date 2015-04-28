@@ -56,17 +56,24 @@ class IterationsController extends BaseController {
 	public function create(){   
 		$projectid = Input::get('projectid');
 		$project = Project::findOrFail($projectid);  
+		$iterations =sizeof($project->iterations);
+		$members = sizeof($project->team->users); 
+		if($iterations < 1 and $members < 1){
+			return Redirect::to('/projects/'.$project->id)
+			->with('error', 'No se han agregado miembros a equipo del proyecto.');
+		}else{
+			$this->layout->content = View::make('layouts.iterations.form')
+				->with('project', $project) 
+				->with('type',  'new');	
+		}
+
 		
-		$this->layout->content = View::make('layouts.iterations.form')
-		->with('project', $project) 
-		->with('type',  'new');
 	}
 
 	//date validator
 	public function validarFecha($inicio, $fin){
 		 
 		if($inicio > $fin){
- 
 			return false;
 		}else{ 
 			return true;

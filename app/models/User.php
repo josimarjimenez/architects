@@ -4,11 +4,12 @@ use Illuminate\Auth\UserTrait;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
+use Cmgmyr\Messenger\Traits\Messagable;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	//views
-	use UserTrait, RemindableTrait;
+	use UserTrait, RemindableTrait, Messagable;
 	public static $rules = array(
 	    'nombres'=>'required|alpha_spaces|min:2',
 	    'apellidos'=>'required|alpha_spaces|min:2',
@@ -71,6 +72,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	public function organization(){
 		return $this->belongsTo('Organization', 'usersid');
+	}
+
+
+	public function threads(){
+		return $this->belongsToMany('Cmgmyr\Messenger\Models\Thread', 'participants', 'user_id', 'thread_id')
+        ->withPivot('updated_at')
+        ->orderBy('updated_at', 'desc');;
+	}
+
+
+	public function numberThreads(){
+		return $this->belongsToMany('Cmgmyr\Messenger\Models\Thread', 'participants', 'user_id', 'thread_id')
+        ->withPivot('updated_at')
+        ->orderBy('updated_at', 'desc');;
 	}
 
 }
