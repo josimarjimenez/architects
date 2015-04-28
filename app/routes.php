@@ -44,9 +44,11 @@ Route::get('users/delete', function(){
 			return Response::json(array('succes'=>'false', 
 				'message'=>'No se puede borrar el registro. <br />El usuario es propietario de una organización'));
 		}
+		
 		if($user->delete()){
 			return Response::json(array('succes'=>'true', 
 				'message'=>'Usuario eliminado exitosamente', 'gr'=>$user->organization()));
+
 		}else{
 			return Response::json(array('succes'=>'false', 
 				'message'=>'Error, claves foráneas'));

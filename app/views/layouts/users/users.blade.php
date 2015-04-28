@@ -23,7 +23,7 @@
 				<th style="width: 180px;"></th>
 			</tr>
 			@foreach ($users as $user)
-			<tr id="{{ $user->id }}">
+			<tr id="U{{ $user->id }}">
 				<td>{{ $user->name }}</td>
 				<td>{{ $user->lastname }}</td>
 				<td>{{ $user->identification }}</td>
@@ -59,7 +59,7 @@
 		            data: 'id='+id,
 		            success: function (data) { 
 		            	if(data.succes=='true'){
-		            		$("#users tr:eq("+id+")").remove();	
+		            		$("table#users tr#U"+id).remove();	
 		            	}
 		            	$('#messages').css('display','block');
 		            	$('#mensaje').html(data.message);

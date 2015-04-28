@@ -17,6 +17,8 @@
 		<span class="iteration-title-date">
 			{{ $iteration->start }} - {{ $iteration->end }}
 		</span>
+
+		Cerrar iteracion
 	</h1>
 	<div id="iteration_stats" class="project-body-header-stats">
 		<div class="stats-bubble">
