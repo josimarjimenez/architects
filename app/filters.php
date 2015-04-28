@@ -23,6 +23,11 @@ App::before(function($request)
         return $organization;
     });
  
+	App::bind('foo', function($app)
+	{
+    	return new FooBar;
+	});
+
 	View::share('organization', app('organization'));
 });
 

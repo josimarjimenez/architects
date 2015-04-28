@@ -3,7 +3,7 @@
 
         @foreach($thread->messages as $message)
             <div class="media">
-                <a class="pull-left" href="#">
+                <a class="pull-left" href="/messages/{{$thread->id}}">
                     <img src="//www.gravatar.com/avatar/{{$message->user->email}}?s=64" alt="{{$message->user->name}}" class="img-circle">
                 </a>
                 <div class="media-body">
@@ -22,16 +22,17 @@
         </div>
 
         @if($users->count() > 0)
-        <div class="checkbox">
+        <div class="form-group" style="overflow:hidden">
             @foreach($users as $user)
-                <label title="{{$user->name}} {{$user->lastname}}"><input type="checkbox" name="recipients[]" value="{{$user->id}}">{{$user->name}}</label>
+                <label style="float:left;" title="{{$user->name}} {{$user->lastname}}"><input type="checkbox" name="recipients[]" value="{{$user->id}}">{{$user->name}}</label>
             @endforeach
         </div>
         @endif
 
         <!-- Submit Form Input -->
         <div class="form-group">
-            {{ Form::submit('Submit', ['class' => 'btn btn-primary form-control']) }}
+            {{ link_to(URL::previous(), 'Cancelar', ['class' => 'btn btn-danger btn-sm']) }}
+            {{ Form::submit('Enviar', ['class' => 'btn btn-primary form-control']) }}
         </div>
         {{Form::close()}}
     </div>

@@ -22,7 +22,7 @@
 					<a href="/messages" title="Lista de mensajes">
 					<i class="glyphicon glyphicon-envelope"></i> 
 						Mensajes 
-					<span class="badge">10</span>
+					<span class="badge">{{Helper::messagesNumber()}}</span>
 					</a>
 			
 				</li>

@@ -82,4 +82,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 
+	public function numberThreads(){
+		return $this->belongsToMany('Cmgmyr\Messenger\Models\Thread', 'participants', 'user_id', 'thread_id')
+        ->withPivot('updated_at')
+        ->orderBy('updated_at', 'desc');;
+	}
+
 }

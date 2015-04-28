@@ -59,6 +59,15 @@ class ProjectsController extends BaseController {
 			$project->organizationid = Input::get('organizationid'); 
 			$project->save();
 
+			$project = Project::findOrFail($project->id);
+
+			if($project){
+				$team = new Teams();
+				$team->name = 'Grupo - ' . $project->name;
+				$team->projectid = $project->id;
+				$team->save();
+			}
+
 			$organization = app('organization');
 			return Redirect::to('organization/name/'.$organization->auxName.'/projects')
 			->with('message', 'Registro creado con exito'); 
@@ -107,12 +116,21 @@ class ProjectsController extends BaseController {
 	public function destroy($id){
 		//project
 		$project = Project::find($id);
+		$organization = app('organization');
 		if( sizeof($project->iterations) < 1 ){
+			$team = $project->team();
+			$team->delete();
 			$project->delete();
+			return Redirect::to('organization/name/'.$organization->auxName.'/projects')
+				->with('message', 'Registro eliminado correctamente');
+		}else{
+			return Redirect::to('organization/name/'.$organization->auxName.'/projects')
+			->with('error', 'El proyecto ya se encuentra iniciado.');
+//			->withInput();   	
 		}
 
-		$organization = app('organization');
-		return Redirect::to('organization/name/'.$organization->auxName.'/projects')->with('message', 'Registro eliminado');
+		
+		
 	}
 
 	public function getMembers($id){

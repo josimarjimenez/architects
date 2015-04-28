@@ -44,12 +44,20 @@
       <div class="container narrow_body" id="body">
         @if(Session::has('message'))
         <p class="alert">{{ Session::get('message') }}</p>
+        @else
+          @if(Session::has('error'))
+             <div class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                {{ Session::get('error') }}
+            </div>
+          @endif
         @endif
         {{ $content }}
       </div>
     </div>
   </div>
- 
+
  </div>
   <div class="sb-slidebar sb-left">
       <ul class="menuResp"> 
