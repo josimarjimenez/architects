@@ -23,12 +23,15 @@
 		</div>
 	</div>
 	<br><br>
+
 	@if($iterations < 1)
-	{{ Form::open(array('url' => 'iterations/create', 'method'=>'GET','class' => 'pull-center')) }}
-	{{ Form::hidden('projectid', $project->id) }}
-	<h2>Aún no has creado iteraciones, crea tu primer iteración ;)</h2>
-	{{ Form::submit('Nueva iteración', array('class' => 'button green large')) }}
-	{{ Form::close() }}
+		<h2>Crea un grupo de trabajo par empezar!</h2>
+		{{ HTML::link('/projects/members/'.$project->id, 'Grupo de trabajo', array('class' => 'button green large', 'id' =>'newGroup'))}}
+		{{ Form::open(array('url' => 'iterations/create', 'method'=>'GET','class' => 'pull-center')) }}
+		{{ Form::hidden('projectid', $project->id) }}
+		<h2>Aún no has creado iteraciones para crear tu primer iteración ;)</h2>
+		{{ Form::submit('Nueva iteración', array('class' => 'button green large')) }}
+		{{ Form::close() }}
 	@else 
 <!--
 	<div style="margin-left:auto; margin-right:auto" class="story_form" id="story_form">

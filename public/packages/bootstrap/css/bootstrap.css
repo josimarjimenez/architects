@@ -7771,3 +7771,7 @@ h3.name{
 .menuResp{
     overflow: scroll;
 }
+a#newGroup:hover{
+    color: #fff;
+    text-decoration: none
+}
