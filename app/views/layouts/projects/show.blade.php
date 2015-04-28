@@ -24,8 +24,9 @@
 	</div>
 	<br><br>
 	@if($iterations < 1)
-	{{ Form::open(array('url' => 'iterations/create', 'method'=>'GET','class' => 'pull-right')) }}
+	{{ Form::open(array('url' => 'iterations/create', 'method'=>'GET','class' => 'pull-center')) }}
 	{{ Form::hidden('projectid', $project->id) }}
+	<h2>Aún no has creado iteraciones, Crea tu primer iteración ;)</h2>
 	{{ Form::submit('Nueva iteración', array('class' => 'button green large')) }}
 	{{ Form::close() }}
 	@else 
