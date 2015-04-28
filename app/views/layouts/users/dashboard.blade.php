@@ -53,7 +53,7 @@
       <div class="dash-proj-title">
        {{ $project->name }}
        <span class="right-aligned-links">
-        <a href="/projects/project/{{$project->name}}/summary"><i data-original-title="resumen proyecto" class="icon-globe tooltip-enabled" title=""></i></a>
+        <a href="/projects/{{$project->id}}"><i data-original-title="resumen proyecto" class="icon-globe tooltip-enabled" title=""></i></a>
       </span>
     </div>
     <ul class="dash-iteration-list">

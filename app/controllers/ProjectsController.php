@@ -142,7 +142,7 @@ class ProjectsController extends BaseController {
 		//echo 'Hoal mundo >>>>>>>>>>>>>>>>>>>>>>>>';
 		//die;
 
-		if($team != null){
+		if($team == null){
 			$members = Teams::find($team->id)->users;
 			$members = array_pluck($members, 'id');
 			$this->layout->content = View::make('layouts.projects.addMembers')
