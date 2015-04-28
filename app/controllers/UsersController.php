@@ -46,10 +46,10 @@ class UsersController extends BaseController {
 			$user->save();
 
 			Mail::send('layouts.users.welcome', array('firstname'=>Input::get('nombres'), 'mail'=>Input::get('mail'), 'password'=>Input::get('password')), function($message){
-        	$message->to(Input::get('mail'), Input::get('nombres').' '.Input::get('apellidos'))->subject('Bienvenido!!');
+        		$message->to(Input::get('mail'), Input::get('nombres').' '.Input::get('apellidos'))->subject('Bienvenido!!');
     		});
-
-			return Redirect::to('users/login')->with('message', 'Gracias por registrarse');
+			$organization = app('organization');
+			return Redirect::to('/organization/members/'.$organization->auxName . '/all_members')->with('message', 'Gracias por registrarse');
 		} else {
 			return Redirect::to('users/register')
 			->with('message', 'Ocurrieron los siguientes errores')
