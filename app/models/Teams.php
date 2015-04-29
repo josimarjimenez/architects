@@ -26,7 +26,7 @@ class Teams extends Eloquent {
 
 	//public function project()
     //{
-    //    return $this->belongsTo('Project','proyectid');
+    //    return $this->belongsTo('Project','projectid');
     //}
 
 	//public function project()

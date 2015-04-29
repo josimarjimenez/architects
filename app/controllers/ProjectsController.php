@@ -72,7 +72,7 @@ class ProjectsController extends BaseController {
 			if($project->save()){
 				$team = new Teams;
 				$team->name = 'Grupo - ' . $project->name;
-				$team->proyectid = $project->id;
+				$team->projectid = $project->id;
 				$team->save();
 			}
 			$organization = app('organization');
