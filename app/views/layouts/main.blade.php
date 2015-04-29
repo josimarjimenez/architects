@@ -16,6 +16,7 @@
   {{ HTML::script('packages/js/jquery.ui.min.js') }}
   {{ HTML::script('packages/js/dialogs.js') }}
   {{ HTML::script('packages/js/todo.js') }}
+  {{ HTML::script('packages/js/bootstrap-alert.js') }}
   {{ HTML::script('packages/bootstrap/js/bootstrap-datepicker.js') }}
   {{ HTML::script('packages/bootstrap/js/bootstrap-modal.js') }}
   {{ HTML::script('packages/bootstrap/js/slidebars.js') }}
@@ -43,14 +44,16 @@
     <div class="container">
       <div class="container narrow_body" id="body">
         @if(Session::has('message'))
-        <p class="alert">{{ Session::get('message') }}</p>
+          <div class="alert alert-success">  
+            <a class="close" data-dismiss="alert">×</a>  
+            <strong>Correcto! </strong>{{ Session::get('message') }}  
+          </div>  
         @else
           @if(Session::has('error'))
-             <div class="alert alert-danger" role="alert">
-                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                <span class="sr-only">Error:</span>
-                {{ Session::get('error') }}
-            </div>
+            <div class="alert alert-error">  
+              <a class="close" data-dismiss="alert">×</a>  
+              <strong>Error! </strong>{{ Session::get('error') }}
+            </div>  
           @endif
         @endif
         {{ $content }}

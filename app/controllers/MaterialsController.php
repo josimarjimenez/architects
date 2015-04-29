@@ -16,9 +16,7 @@ class MaterialsController extends BaseController {
 
 
 	public function store(){ 
-	
 		$validator = Validator::make(Input::all(), Material::$rules, Material::$messages);
-
 		if($validator->passes()){
 			$material = new Material;
 			$material->name = Input::get('name'); 
@@ -36,7 +34,7 @@ class MaterialsController extends BaseController {
 								->with('message', "Material ingresado con exito");
 		}else{
 			return Redirect::to('materials/create')
-			->with('message', 'Ocurrieron los siguientes errores')
+			->with('error', 'Ocurrieron los siguientes errores')
 			->withErrors($validator)
 			->withInput();
 		}
@@ -76,41 +74,25 @@ class MaterialsController extends BaseController {
 
 		}else{
 			return Redirect::to('materials/'.$id.'/edit')
-			->with('message', 'Ocurrieron los siguientes errores')
+			->with('error', 'Ocurrieron los siguientes errores')
 			->withErrors($validator)
 			->withInput();
 		}		
 
 	}
 
-	/*
-	public function update($id){
-		$project = Project::findOrFail($id);
-
-		$validator = Validator::make(Input::all(), Project::$rules, Project::$messages);
-
-		if ($validator->passes()) { 
-
-			$project->fill(Input::all());
-			$project->save();
-			$organization = app('organization');
-			return Redirect::to('organization/name/'.$organization->auxName.'/projects')
-				->with('message', 'Registro actualizado');
-		}else{
-			return Redirect::to('projects/'.$id.'/edit')
-			->with('message', 'Ocurrieron los siguientes errores')
-			->withErrors($validator)
-			->withInput();   	
-		}
-	}
-	*/
-
 	public function destroy($id){
 		$material = Material::find($id);
-		$material->delete();  
-		return Redirect::to('/materials')
-		->with('message', 'Registro eliminado')
-		->with('organization', app('organization'));
+
+		if( sizeof($material->tasks) < 1 ){
+			$material->delete();  
+			return Redirect::to('/materials')
+			->with('message', 'Registro eliminado')
+			->with('organization', app('organization'));
+		}else{
+			return Redirect::to('/materials')
+			->with('error', 'El registro ya se encuentra como gasto dentro de las actividades.');
+		}
 	}
 
 	public function show($id){

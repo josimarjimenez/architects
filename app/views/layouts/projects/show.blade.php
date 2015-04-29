@@ -45,19 +45,35 @@
 			</form>
 		@endif
 		</div>-->
-		
-	<div style="text-align:center; margin-top:20px;" id="burnup_chart">
-			<!--<img src="{{ action('GraphicsTestController@summary', array('project' =>  $project->id)) }}">-->
 
-			<img src="{{ action('GraphicsIterationController@bar_time', array('project' =>  $project->id)) }}">
+		<div id="graphics">
+		    <div class="report-tab-holder">
+		      <div class="report-tab">
+		        <a href="#" id="yourstats">Gráfico respecto al tiempo</a>
+		      </div>
+		      <div class="report-tab report-tab report-tab-selected">
+		        <a href="#" id="summary">Gráfico respecto al presupuesto</a></div>
+		      </div>
 
-			<img src="{{ action('GraphicsIterationController@line_time', array('project' =>  $project->id)) }}">
+		    <div id="report_areaTE" style="min-height: 92px; text-align:center">
+				<img src="{{ action('GraphicsIterationController@bar_time', array('project' =>  $project->id)) }}">
 
-			<img src="{{ action('GraphicsIterationController@bar_budget', array('project' =>  $project->id)) }}">
+				<img src="{{ action('GraphicsIterationController@line_time', array('project' =>  $project->id)) }}">
+		    </div>
+
+		    <div id="report_areaEO" style="min-height: 92px; text-align:center">
+		      	<img src="{{ action('GraphicsIterationController@bar_budget', array('project' =>  $project->id)) }}">
+					
+				<img src="{{ action('GraphicsIterationController@line_budget', array('project' =>  $project->id)) }}">
+		    </div>
+		</div>
+
+		<div id="summary">
+			<h2>Resumen del proyecto</h2>
 			
-			<img src="{{ action('GraphicsIterationController@line_budget', array('project' =>  $project->id)) }}">
 
-	</div>	
+		</div>
+
 	@endif 
 </div>
 
@@ -68,5 +84,24 @@ $( document ).ready(function()
 	var id = pathname[pathname.length-1];
 	var rol = "{{  Auth::user()->rol; }}" ;
 	createProjMenu(id, rol); 
+
+	$("#report_areaTE").css( "display", "block" );
+    $("#report_areaEO").css( "display", "none" );
+
+    $("#yourstats").click(function() { 
+      $(this).parent().addClass( "report-tab-selected" );
+      $("#summary").parent().removeClass( "report-tab-selected" );
+      $("#report_areaTE").css( "display", "block" );
+      $("#report_areaEO").css( "display", "none" );
+    });
+
+    $("#summary").click(function() { 
+      $(this).parent().addClass( "report-tab-selected" );
+      $("#yourstats").parent().removeClass( "report-tab-selected" );
+      $("#report_areaTE").css( "display", "none" );
+      $("#report_areaEO").css( "display", "block" );
+    });
+
 });
 </script>
+

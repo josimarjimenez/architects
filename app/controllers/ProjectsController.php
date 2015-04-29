@@ -42,11 +42,6 @@ class ProjectsController extends BaseController {
 								->with('doing', count($storiesProgress));
 			}
 
-
-			
- 
-			
-
 		}catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) { 
 			$organization = app('organization');
 		    return Redirect::to('/materials/')
@@ -76,10 +71,8 @@ class ProjectsController extends BaseController {
 			$project->organizationid = Input::get('organizationid'); 
 			$project->save();
 
-			//$project = Project::findOrFail($project->id);
-			
 			if($project){
-				$team = new Teams();
+				$team = new Teams;
 				$team->name = 'Grupo - ' . $project->name;
 				$team->projectid = $project->id;
 				$team->save();
@@ -89,7 +82,7 @@ class ProjectsController extends BaseController {
 			->with('message', 'Registro creado con exito'); 
 		}else{
 			return Redirect::to('projects/create')
-			->with('message', 'Ocurrieron los siguientes errores')
+			->with('error', 'Ocurrieron los siguientes errores')
 			->withErrors($validator)
 			->withInput();   	
 		}
@@ -123,7 +116,7 @@ class ProjectsController extends BaseController {
 				->with('message', 'Registro actualizado');
 		}else{
 			return Redirect::to('projects/'.$id.'/edit')
-			->with('message', 'Ocurrieron los siguientes errores')
+			->with('error', 'Ocurrieron los siguientes errores')
 			->withErrors($validator)
 			->withInput();   	
 		}

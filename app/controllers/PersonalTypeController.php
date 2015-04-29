@@ -50,7 +50,7 @@ class PersonalTypeController extends BaseController {
 			->with('message', 'Registro creado con exito'); 
 		}else{
 			return Redirect::to('personalType/create')
-			->with('message', 'Ocurrieron los siguientes errores')
+			->with('error', 'Ocurrieron los siguientes errores')
 			->withErrors($validator)
 			->withInput();   	
 		}
@@ -113,7 +113,7 @@ class PersonalTypeController extends BaseController {
 				->with('organization',$organization);
 		}else{
 			return Redirect::to('personalType/'.$id.'/edit')
-			->with('message', 'Ocurrieron los siguientes errores')
+			->with('error', 'Ocurrieron los siguientes errores')
 			->withErrors($validator)
 			->withInput();   	
 		}
@@ -128,10 +128,17 @@ class PersonalTypeController extends BaseController {
 	public function destroy($id)
 	{
 		$personalType = PersonalType::find($id);
-		$personalType->delete();
-		return Redirect::to('/personalType')
-		->with('message', 'Registro eliminado')
-		->with('organizacion', app('organization'));
+		if(sizeof($personalType->tasks) < 1){
+			$personalType->delete();
+			return Redirect::to('/personalType')
+			->with('message', 'Registro eliminado')
+			->with('organizacion', app('organization'));
+		}else{
+			return Redirect::to('/personalType')
+			->with('error', 'El registro ya se encuentra como gasto dentro de las actividades.');
+		}
+
+		
 	}
 
 }

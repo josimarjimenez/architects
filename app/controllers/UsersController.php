@@ -28,7 +28,7 @@ class UsersController extends BaseController {
 
 	//POST users/create
 	public function postCreate() { 
- 
+ 		$organization = app('organization');  
 		$rules = User::$rules;
 		$rules['password'] .= '|required';
 		$validator = Validator::make(Input::all(), $rules, User::$messages);
@@ -44,15 +44,17 @@ class UsersController extends BaseController {
 			$user->password = Hash::make(Input::get('password'));
 			$user->rol = 'User';
 			$user->save();
-
+/*
 			Mail::send('layouts.users.welcome', array('firstname'=>Input::get('nombres'), 'mail'=>Input::get('mail'), 'password'=>Input::get('password')), function($message){
         		$message->to(Input::get('mail'), Input::get('nombres').' '.Input::get('apellidos'))->subject('Bienvenido!!');
     		});
-			$organization = app('organization');
-			return Redirect::to('/organization/members/'.$organization->auxName . '/all_members')->with('message', 'Gracias por registrarse');
+*/
+			return Redirect::to('/organization/members/'. $organization->auxName .'/all_members')
+							->with('message', 'Gracias por registrarse');
+
 		} else {
 			return Redirect::to('users/register')
-			->with('message', 'Ocurrieron los siguientes errores')
+			->with('error', 'Ocurrieron los siguientes errores')
 			->withErrors($validator)
 			->withInput();   
 		}
@@ -161,7 +163,7 @@ class UsersController extends BaseController {
 
 		}else{
 			return Redirect::to('users/edit/'.$id)
-			->with('message', 'Ocurrieron los siguientes errores')
+			->with('error', 'Ocurrieron los siguientes errores')
 			->withErrors($validator)
 			->withInput();
 		}		
