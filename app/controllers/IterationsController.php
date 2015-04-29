@@ -107,7 +107,7 @@ class IterationsController extends BaseController {
 			$iterations->name = Input::get('name'); 
 			$iterations->start = Input::get('start'); 
 			$iterations->end = Input::get('end');   
-			$iterations->realBudget = Input::get('realBudget');  
+			$iterations->estimatedBudget = Input::get('estimatedBudget');  
 			$iterations->projectid = Input::get('projectid'); 
 			$iterations->save();
 

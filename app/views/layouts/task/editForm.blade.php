@@ -1,12 +1,12 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <div class="modal-header">    
-  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+  <!--<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>-->
   <h3 class="title-label">Editar tarea</h3>
 </div>
 <div class="modal-body edit-story-body" style="height: 218px; max-height: 218px;">
   <form action="http://localhost:8000/tareas/editTask" id="editFormTask" class="uniForm">
     <fieldset class="inlineLabels">
-
+      {{ Form::hidden('state', '0', array('id' => 'state')) }}
       <div class="ctrlHolder">
         <label for="name" class="control-label">Nombre</label>
         <div class="controls">
@@ -29,9 +29,16 @@
     </div>
 
     <div class="ctrlHolder">
-      <label for="inputEmail" class="control-label">Estimado</label>
+      <label for="inputEmail" class="control-label">Tiempo estimado (horas)</label>
       <div class="controls">
-        <input type="text" value="0" placeholder="00" name="timeEstimated" id="timeEstimated">
+          <input type="text" value="0" placeholder="00" name="timeEstimated" id="timeEstimated" readonly="true">
+      </div>
+    </div>
+
+    <div class="ctrlHolder">
+      <label for="inputEmail" class="control-label">Tiempo trabajado (horas)</label>
+      <div class="controls">
+        <input type="text" value="0" placeholder="00" name="timeReal" id="timeReal">
       </div>
     </div>
 

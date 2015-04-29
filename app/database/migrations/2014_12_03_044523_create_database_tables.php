@@ -81,7 +81,7 @@ class CreateDatabaseTables extends Migration {
 			$table->string('name');
 			$table->date('startDate');
 			$table->date('endDate');
-			$table->decimal('budgetSummary',5,2);
+			$table->decimal('budgetReal',5,2);
 			$table->decimal('budgetEstimated',5,2);
 			$table->string('observation',250); 
 			$table->integer('organizationid')->unsigned();
@@ -110,7 +110,7 @@ class CreateDatabaseTables extends Migration {
 			$table->date('start');
 			$table->date('end');
 			$table->integer('summaryPoints');
-			$table->decimal('summaryBudgets', 6,4);
+			$table->decimal('estimatedBudget', 6,4);
 			$table->decimal('realBudget', 6, 4); 
 			$table->integer('projectid')->unsigned();
 			$table->timestamps();

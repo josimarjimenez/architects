@@ -28,8 +28,16 @@ class TaskController  {
 		$task->scrumid = 1; //estado todo ...quemado por código
 		$task->issueid = Input::get("issueid"); 
 		$task->userid =  Input::get("selAssignee");
-		
 		$task->save();
+
+		$issue = Issue::findOrFail($task->issueid);
+		echo $issue->id;
+		die();
+		$iteration = $issue->iteration;
+		$iteration->estimatedTime = $iteration->estimatedTime + $task->timeEstimated;
+		$iteration->save();
+
+
 		//die;
 	}
 

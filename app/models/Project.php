@@ -9,7 +9,8 @@ class Project extends Eloquent implements UserInterface, RemindableInterface, Js
 	protected $guarded = ['id', 'created_at', 'updated_at'];
 	use UserTrait, RemindableTrait;
 	public static $rules = array(
-	    'name'=>'required|alpha_num_spaces|min:2', 
+	    'name'=>'required|alpha_num_spaces|min:2',
+	    'budgetEstimated' => 'required',
 	    'startDate'=>'date|required|before:endDate', 
 	    'endDate'=>'date|required'
     );
@@ -18,6 +19,7 @@ class Project extends Eloquent implements UserInterface, RemindableInterface, Js
 		'name.required' => 'El nombre es obligatorio',
 		'name.min' => 'El nombre debe contener al menos dos caracteres.',
 		'name.alpha_num_spaces' => 'El nombre debe contener solamente letras y números',
+		'budgetEstimated.required' => 'El presupuesto estimado es obligatorio',
 		'startDate.required' => 'La fecha de inicio es obligatoria',
 		'endDate.required' => 'La fecha de finalización es obligatoria',
 		'startDate.before' => 'La fecha de inicio debe ser menor a la fecha de fin'
@@ -32,7 +34,7 @@ class Project extends Eloquent implements UserInterface, RemindableInterface, Js
              'name' => $this->name,
              'startDate' => $this->startDate,
              'endDate' => $this->endDate,
-             'budgetSummary' => $this->budgetSummary,
+             'budgetReal' => $this->budgetReal,
              'budgetEstimated' => $this->budgetEstimated,
              'id' => $this->id
         );

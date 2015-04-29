@@ -33,8 +33,8 @@
 					{{ Form::text('endDate', null, array('type' => 'text', 'class' => 'textInput textinput datepicker input-block-level','placeholder' => 'Fecha de fin', 'id' => 'endDate')) }}
 				</div>
 				<div class="ctrlHolder" id="div_id_name">
-					{{ Form::label('budgetEstimated', 'Presupuesto', array('class'=>'requiredField' )) }}
-					{{ Form::text('budgetEstimated', null, array('class'=>'textInput textinput', 'placeholder'=>'Presupuesto del proyecto')) }}
+					{{ Form::label('budgetEstimated', 'Presupuesto estimado', array('class'=>'requiredField' )) }}
+					{{ Form::text('budgetEstimated', null, array('class'=>'textInput textinput', 'placeholder'=>'Presupuesto estimado del proyecto')) }}
 				</div>
 
 				<div class="ctrlHolder" id="div_id_name">

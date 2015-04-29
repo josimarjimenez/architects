@@ -1,3 +1,5 @@
+<h1>Crear/Editar iteración</h1>
+
 @if($type == 'new')
 {{ Form::open(array('url'=>'iterations','class'=>'uniForm')) }}
 @else
@@ -16,8 +18,8 @@
 	{{ Form::text('end', null, array('type' => 'text', 'class' => 'textInput textinput datepicker input-block-level','placeholder' => 'Fecha fin', 'id' => 'end')) }}
 </div>
 <div class="ctrlHolder" id="div_id_name">
-	{{ Form::label('realBudget', 'Presupuesto', array('class'=>'requiredField' )) }}
-	{{ Form::text('realBudget', null, array('class'=>'textInput textinput', 'placeholder'=>'Presupuesto para la iteración')) }}
+	{{ Form::label('estimatedBudget', 'Presupuesto estimado', array('class'=>'requiredField' )) }}
+	{{ Form::text('estimatedBudget', null, array('class'=>'textInput textinput', 'placeholder'=>'Presupuesto estimado para la iteración')) }}
 </div>
 <div class="buttonHolder">
 	{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
