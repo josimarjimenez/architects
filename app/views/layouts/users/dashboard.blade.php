@@ -43,8 +43,7 @@
         <h4>{{ $taskCount }}</h4> 
       </div> 
     </div>
-</div>
-
+</div> 
 <div class="my-dashboard-holder">
 	<div class="mydashboard">
 		<ul class="dash-project-list">
