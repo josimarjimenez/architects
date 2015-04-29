@@ -203,14 +203,14 @@ Route::post('tareas/editTask', function(){
 		$timeReal = $task->timeReal;
 		$task->timeReal = $timeReal + Input::get("timeReal"); 
 		$task->userid =  Input::get("selAssignee");
-		$task->save();
+		$task->save(); 
+		$final="no";  
 
 		$issue = Issue::findOrFail($task->issueid);
 		$iteration = $issue->iteration;
 		$iteration->realTime = $iteration->realTime + Input::get("timeReal"); 
 		$iteration->save();
-
-		$final="no";
+ 
 		//validar si existen ingresados gastos(material, personal, adicionales)
 		if(Input::get("canRegisterSpent")==1){
 			//vincular materiales a tarea
@@ -218,9 +218,11 @@ Route::post('tareas/editTask', function(){
 			$ids = explode(" ", $idsMaterial);
 			$totalMaterial=0;
 			foreach ($ids as $id) {
+
 				if($id==''){
 					continue;
 				}
+				
 				$cantidad 	=  Input::get("cuM_".$id); 
 				$total  	=  Input::get("toM_".$id);
 				$totalMaterial += $total;
