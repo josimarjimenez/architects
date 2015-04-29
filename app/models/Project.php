@@ -53,7 +53,7 @@ class Project extends Eloquent implements UserInterface, RemindableInterface, Js
 
 	public function team()
     {
-      return $this->hasOne('Teams', 'proyectid');
+      return $this->hasOne('Teams', 'projectid');
     }
 
 	//teams
@@ -61,9 +61,5 @@ class Project extends Eloquent implements UserInterface, RemindableInterface, Js
 	//	return $this->belongsToMany('Teams', 'workIn', 'projectid', 'teamsid');
 	//}
 
-//	public function team()
-  //  {
-   //     return $this->hasOne('Teams','proyectid');
-    //}
 }
 ?>

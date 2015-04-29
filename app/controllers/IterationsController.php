@@ -21,7 +21,7 @@ class IterationsController extends BaseController {
 			$materiales = Material::all();
 			$personal = PersonalType::all();
 
-			$team = Teams::where('proyectid','=',$project->id)->get()->first(); 
+			$team = Teams::where('projectid','=',$project->id)->get()->first(); 
 
 			$members = DB::table('memberof')->where('teamid','=', $team->id)->get();
 

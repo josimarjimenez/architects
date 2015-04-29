@@ -49,7 +49,7 @@ class Iterations extends Eloquent implements JsonSerializable{
 	}
 
 	public function issues(){ 
-		return $this->hasMany('Issue','iterationid');
+		return $this->hasMany('Issue', 'iterationid');
 	}
 }
 ?>
