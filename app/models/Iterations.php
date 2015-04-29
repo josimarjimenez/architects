@@ -10,12 +10,22 @@ class Iterations extends Eloquent implements JsonSerializable{
 
 	use UserTrait, RemindableTrait;
 	public static $rules = array(
-	    'name'=>'required|alpha_spaces|min:2', 
+		'name'=>'required|alpha_num_spaces|min:2',
 	    'start'=>'required',
 	    'end'=>'required',
+	    'estimatedBudget' => 'required',
 	    'projectid'=>'required'
 	);
  
+	public static $messages = array(
+      'name.required' => 'El nombre es obligatorio.',
+      'name.min' => 'El nombre debe contener al menos dos caracteres.',
+      'name.alpha_num_spaces' => 'El nombre debe contener solamente letras y números',
+      'start.required' => 'La fecha de inicio es obligatoria.',
+      'end.required' => 'La fecha de fin es obligatoria',
+      'estimatedBudget.required' => 'El presupuesto estimado es obligatorio.'
+   	);
+
  	public function jsonSerialize(){ 
 		//return (object) get_object_vars($this);
 		return array(
@@ -24,7 +34,7 @@ class Iterations extends Eloquent implements JsonSerializable{
              'start' => $this->start,
              'end' => $this->end,
              'summaryPoints' => $this->summaryPoints,
-             'summaryBudgets' => $this->summaryBudgets,
+             'estimatedBudget' => $this->estimatedBudget,
              'realBudget' => $this->realBudget,
              'projectid' => $this->projectid
         );

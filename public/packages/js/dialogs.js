@@ -262,7 +262,9 @@ $("#issueid").val(id);
       $('#editFormTask #summary').val(data.task.summary);
       $('#editFormTask #tags').val(data.task.points);
       $('#editFormTask #timeEstimated').val(data.task.timeEstimated);
+      $('#editFormTask #timeReal').val(data.task.timeReal);
       $('#editFormTask #issueid').val(data.task.issueid);
+      $('#editFormTask #state').val(data.task.scrumid); 
       $('#editFormTask #id').val(data.task.id); 
 
       //vaciar el select

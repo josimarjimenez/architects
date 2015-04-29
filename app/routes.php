@@ -94,6 +94,12 @@ Route::post('task', function(){
 		$task->userid =  Input::get("selAssignee");
         unset($task->username);
 		$task->save();
+
+		$issue = Issue::findOrFail($task->issueid);
+		$iteration = $issue->iteration;
+		$iteration->estimatedTime = $iteration->estimatedTime + $task->timeEstimated;
+		$iteration->save();
+
 		if($task){  
 			$user = User::findOrFail($task->userid);
 			$username = $user->name.' '.$user->lastname;
@@ -121,7 +127,11 @@ Route::get('tareas/getTask', function(){
 		$issue = Issue::findOrFail($task->issueid);
 		$iteration = Iterations::findOrFail($issue->iterationid);
 		$project = Project::findOrFail($iteration->projectid);
-		$team = Teams::where('projectid','=',$project->id)->get()->first(); 
+		//echo $project->id;
+		//die() ;
+		//$team = Teams::where('projectid','=',$project->id)->get()->first();
+		$team = $project->team;
+
 		$members = DB::table('memberof')->where('teamid','=', $team->id)->get();
 		$users = array();
 		foreach($members as $member){
@@ -190,9 +200,17 @@ Route::post('tareas/editTask', function(){
 		$task->summary = Input::get("summary");
 		$task->points = Input::get("tags");
 		$task->timeEstimated = Input::get("timeEstimated");
+		$timeReal = $task->timeReal;
+		$task->timeReal = $timeReal + Input::get("timeReal"); 
 		$task->userid =  Input::get("selAssignee");
-		$task->save();
-		$final="no"; 
+		$task->save(); 
+		$final="no";  
+
+		$issue = Issue::findOrFail($task->issueid);
+		$iteration = $issue->iteration;
+		$iteration->realTime = $iteration->realTime + Input::get("timeReal"); 
+		$iteration->save();
+ 
 		//validar si existen ingresados gastos(material, personal, adicionales)
 		if(Input::get("canRegisterSpent")==1){
 			//vincular materiales a tarea
@@ -208,7 +226,6 @@ Route::post('tareas/editTask', function(){
 				$cantidad 	=  Input::get("cuM_".$id); 
 				$total  	=  Input::get("toM_".$id);
 				$totalMaterial += $total;
-
 				$task->materials()->attach([$id => ['quantity'=>$cantidad, 'total'=>$total]]);
 			}
 			//vincular personal a tarea
@@ -242,11 +259,11 @@ Route::post('tareas/editTask', function(){
 			$iteration = Iterations::findOrFail($issue->iterationid);
 			$project = Project::findOrFail($iteration->projectid);
 			//iteracion
-			$iteration->summaryBudgets = $iteration->summaryBudgets + $totalTask;
+			$iteration->realBudget = $iteration->realBudget + $totalTask;
 			$iteration->save();
 
 			//proyecto
-			$project->budgetSummary = $project->budgetSummary +$totalTask;
+			$project->budgetReal = $project->budgetReal +$totalTask;
 			$project->save();
 			$final="yes";
 		}
