@@ -7775,3 +7775,30 @@ a#newGroup:hover{
     color: #fff;
     text-decoration: none
 }
+
+.iterationTitle{
+    font-size: 14px;
+    text-transform: uppercase;
+    text-align: left;
+    font-weight: bold
+}
+
+.headerTitle{
+    font-weight: bold;
+}
+
+.totalIter{
+    font-weight: bold;
+    text-align: right !important;
+    background: #D3EFFF
+}
+
+#summaryTable .issueTable{
+    font-weight: bold;
+    padding-left: 20px !important;
+}
+#summaryTable .taskTable{
+    font-weight: bold;
+    padding-left: 30px !important;
+    font-size: 12px;
+}

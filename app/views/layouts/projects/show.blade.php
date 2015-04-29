@@ -52,8 +52,12 @@
 		        <a href="#" id="yourstats">Gráfico respecto al tiempo</a>
 		      </div>
 		      <div class="report-tab report-tab report-tab-selected">
-		        <a href="#" id="summary">Gráfico respecto al presupuesto</a></div>
+		        <a href="#" id="summary">Gráfico respecto al presupuesto</a>
 		      </div>
+		      <div class="report-tab report-tab">
+		        <a href="#" id="historial">Resumen del proyecto</a></div>
+		  </div>
+		      
 
 		    <div id="report_areaTE" style="min-height: 92px; text-align:center">
 				<img src="{{ action('GraphicsIterationController@bar_time', array('project' =>  $project->id)) }}">
@@ -66,20 +70,123 @@
 					
 				<img src="{{ action('GraphicsIterationController@line_budget', array('project' =>  $project->id)) }}">
 		    </div>
+
+		    <div id="report_areaRP" style="min-height: 92px; text-align:center">
+		    	 <br>
+		    	@if ( !empty($project->iterations()))
+			    	<div class="table-responsive">
+			    		<table width="100%" class="table table-hover" id="summaryTable">
+			    			<tr>
+			    				<td rowspan="2"></td>
+			    				<td colspan="3" align="center" class="headerTitle">Materiales</td>
+			    				<td colspan="3" align="center" class="headerTitle">Personal</td>
+			    				<td colspan="3" align="center" class="headerTitle">Gastos adicionales</td>
+			    				<td rowspan="2" align="center" class="headerTitle">Total</td>
+			    			</tr>
+			    			<tr>
+			    				<td align="center" class="headerTitle">Unidad</td>
+			    				<td align="center" class="headerTitle">Cant.</td>
+			    				<td align="center" class="headerTitle">Total</td>
+
+			    				<td align="center" class="headerTitle">Unidad</td>
+			    				<td align="center" class="headerTitle">Cant.</td>
+			    				<td align="center" class="headerTitle">Total</td>
+
+			    				<td align="center" class="headerTitle">Descript.</td>
+			    				<td align="center" class="headerTitle">Total</td>
+			    			</tr>
+			    		@foreach($project->iterations()->get() as $iteration)
+			    			<tr>
+			    				<td class="iterationTitle">{{ $iteration->name }} <br>
+			    					({{ $iteration->start}} al {{ $iteration->end}})</td>
+			    				<td>&nbsp</td>
+			    				<td>&nbsp</td>
+			    				<td>&nbsp</td>
+			    				<td>&nbsp</td>
+			    				<td>&nbsp</td>
+			    				<td>&nbsp</td>
+			    				<td>&nbsp</td>
+			    				<td>&nbsp</td> 
+			    				<td>&nbsp</td> 
+			    				<td>&nbsp</td>
+			    			</tr>
+			    			
+			    			@foreach($iteration->issues()->get() as $issue)
+								<tr>
+			    					<td align="left" class="issueTable">{{ $issue->summary }}</td>
+			    					<td>&nbsp</td>
+				    				<td>&nbsp</td>
+				    				<td>&nbsp</td>
+				    				<td>&nbsp</td>
+				    				<td>&nbsp</td>
+				    				<td>&nbsp</td>
+				    				<td>&nbsp</td>
+				    				<td>&nbsp</td>
+				    				<td>&nbsp</td>
+				    				<td>&nbsp</td>
+			    				</tr>
+			    				@foreach($issue->tasks()->get() as $task)
+									<tr>
+										<td align="left" class="taskTable">{{ $task->name }}</td>
+										<!-- Materiales -->
+										<td colspan="3">
+											<table width="100%">
+												@foreach($task->materials as $material)
+												 	<tr>
+												 		<td width="50%">{{ $material->name }}</td>
+												 		<td width="15%">{{ $material->pivot->quantity }}</td>
+												 		<td>{{ $material->pivot->total }}</td>
+												 	</tr>
+												@endforeach
+											</table>
+										</td>
+										<!-- Personal -->
+					    				<td colspan="3">
+					    					<table width="100%">
+												@foreach($task->typePersonal as $personal)
+												 	<tr>
+												 		<td width="50%">{{ $personal->name }}</td>
+												 		<td width="15%">{{ $personal->pivot->quantity }}</td>
+												 		<td>{{ $personal->pivot->total }}</td>
+												 	</tr>
+												@endforeach
+											</table>
+					    				</td>
+					    				<!-- Gastos personales -->
+					    				<td colspan="2">
+					    					<table width="100%">
+												@foreach($task->additionalCost as $aditional)
+												 	<tr>
+												 		<td width="50%">{{ $aditional->description }}</td>
+												 		<td width="15%">{{ $aditional->total }}</td>
+												 		<td></td>
+												 	</tr>
+												@endforeach
+											</table>
+					    				</td>
+					    				<td>&nbsp</td>
+					    				<td>&nbsp</td>
+									</tr>
+
+								@endforeach
+								<tr>
+									<td colspan="11" class="totalIter">$ {{ $iteration->realBudget }}</td>
+								</tr>
+			    			@endforeach
+
+			    		@endforeach
+			    		</table>
+			    	</div>
+		    	@endif
+		    </div>
 		</div>
-
-		<div id="summary">
-			<h2>Resumen del proyecto</h2>
-			
-
-		</div>
-
 	@endif 
 </div>
 
 <script type="text/javascript">
 $( document ).ready(function() 
 { 
+
 	var pathname = window.location.pathname.split("/");
 	var id = pathname[pathname.length-1];
 	var rol = "{{  Auth::user()->rol; }}" ;
@@ -87,19 +194,37 @@ $( document ).ready(function()
 
 	$("#report_areaTE").css( "display", "block" );
     $("#report_areaEO").css( "display", "none" );
+    $("#report_areaRP").css( "display", "none" );
 
     $("#yourstats").click(function() { 
       $(this).parent().addClass( "report-tab-selected" );
       $("#summary").parent().removeClass( "report-tab-selected" );
+      $("#historial").parent().removeClass( "report-tab-selected" );
+
       $("#report_areaTE").css( "display", "block" );
       $("#report_areaEO").css( "display", "none" );
+      $("#report_areaRP").css( "display", "none" );
     });
 
     $("#summary").click(function() { 
       $(this).parent().addClass( "report-tab-selected" );
       $("#yourstats").parent().removeClass( "report-tab-selected" );
+      $("#historial").parent().removeClass( "report-tab-selected" );
+
       $("#report_areaTE").css( "display", "none" );
       $("#report_areaEO").css( "display", "block" );
+      $("#report_areaRP").css( "display", "none" );
+    });
+
+
+    $("#historial").click(function() { 
+      $(this).parent().addClass( "report-tab-selected" );
+      $("#yourstats").parent().removeClass( "report-tab-selected" );
+      $("#summary").parent().removeClass( "report-tab-selected" );
+
+      $("#report_areaTE").css( "display", "none" );
+      $("#report_areaEO").css( "display", "none" );
+      $("#report_areaRP").css( "display", "block" );
     });
 
 });

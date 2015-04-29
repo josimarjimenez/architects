@@ -25,7 +25,9 @@ class AdditionalCost extends Eloquent{
       //	'quantity.numeric' => 'La cantidad debe ser un entero o decimal'
 	);
 
-
+	public function task() {
+		return $this->belongsTo('Task','taskid');
+	}
 
 }
 
