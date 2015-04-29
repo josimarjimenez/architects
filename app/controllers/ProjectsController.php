@@ -69,9 +69,8 @@ class ProjectsController extends BaseController {
 			$project->endDate = Input::get('endDate');   
 			$project->budgetEstimated = Input::get('budgetEstimated');  
 			$project->organizationid = Input::get('organizationid'); 
-			$project->save();
-
-			if($project){
+			
+			if($project->save()){
 				$team = new Teams;
 				$team->name = 'Grupo - ' . $project->name;
 				$team->projectid = $project->id;

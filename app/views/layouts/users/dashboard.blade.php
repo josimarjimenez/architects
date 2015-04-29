@@ -8,10 +8,8 @@
       <div class="report-tab report-tab report-tab-selected">
         <a href="#" id="summary">Estadísticas de la organización</a></div>
       </div>
-
     <div id="report_areaTE" style="min-height: 92px; text-align:center">
-
-      <div class="stats-bubble">
+      <div cdlass="stats-bubble">
         Tus puntos
         <h4>0</h4> 
       </div>

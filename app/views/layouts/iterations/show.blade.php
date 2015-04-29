@@ -5,19 +5,12 @@
 </ul>
 @endif
 <div class="project-body-header">
-	@if(Auth::user()->rol=='Administrator')
-		<span class="iteration-board-link">
-			<a href="/projects/project/k-gestion/iteration/117871/board">
-				<i class="icon-th"></i>Pizarra scrum
-			</a>
-		</span>
-	@endif
+	 	
 	<h1 id="tour-iteration-name">
 		{{ $iteration->name }} 
 		<span class="iteration-title-date">
 			{{ $iteration->start }} - {{ $iteration->end }}
 		</span>
-		Cerrar iteracion
 	</h1>
 	<div id="iteration_stats" class="project-body-header-stats">
 		<div class="stats-bubble">

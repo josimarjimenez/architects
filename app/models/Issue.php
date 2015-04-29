@@ -1,4 +1,4 @@
-<?php 
+                                        <?php 
 use Illuminate\Auth\UserTrait;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
@@ -21,12 +21,17 @@ class Issue extends Eloquent{
 	    'endDate'=>'date'
 	);  
 
-	public function project(){ 
+	public function iteration(){ 
 		return $this->belongsTo('Iterations','iterationid');
 	}
 
 	public function category(){
 		return $this->hasOne('Category');
 	}
+ 
+ 	public function tasks(){
+		return $this->hasMany('Task', 'issueid');
+	}
+ 
 }
 ?>
