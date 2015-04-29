@@ -10,7 +10,7 @@ class Iterations extends Eloquent implements JsonSerializable{
 
 	use UserTrait, RemindableTrait;
 	public static $rules = array(
-	    'name'=>'required|alpha_spaces|min:2', 
+		'name'=>'required|alpha_num_spaces|min:2',
 	    'start'=>'required',
 	    'end'=>'required',
 	    'projectid'=>'required'

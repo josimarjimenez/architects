@@ -33,11 +33,6 @@
 <!-- DIALOGOS: TAREA-EDITAR -->
 <div class="modal editTask" id="editTaskForm">
 	@include('layouts.task.editForm')
-	
-</div>
-
-<div class="modal editTask" id="registerTaskRealTime">
-	<!--@inclede('registerTaskRealTime.blade');-->
 </div>
 
 <!-- DIALOGOS: TASKBOARD -->

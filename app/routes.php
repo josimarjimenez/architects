@@ -121,7 +121,11 @@ Route::get('tareas/getTask', function(){
 		$issue = Issue::findOrFail($task->issueid);
 		$iteration = Iterations::findOrFail($issue->iterationid);
 		$project = Project::findOrFail($iteration->projectid);
-		$team = Teams::where('projectid','=',$project->id)->get()->first(); 
+		//echo $project->id;
+		//die() ;
+		//$team = Teams::where('projectid','=',$project->id)->get()->first();
+		$team = $project->team;
+
 		$members = DB::table('memberof')->where('teamid','=', $team->id)->get();
 		$users = array();
 		foreach($members as $member){
