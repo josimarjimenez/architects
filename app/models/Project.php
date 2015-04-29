@@ -9,13 +9,15 @@ class Project extends Eloquent implements UserInterface, RemindableInterface, Js
 	protected $guarded = ['id', 'created_at', 'updated_at'];
 	use UserTrait, RemindableTrait;
 	public static $rules = array(
-	    'name'=>'required|alpha_spaces|min:2', 
+	    'name'=>'required|alpha_num_spaces|min:2', 
 	    'startDate'=>'date|required|before:endDate', 
 	    'endDate'=>'date|required'
     );
 
 	public static $messages = array(
 		'name.required' => 'El nombre es obligatorio',
+		'name.min' => 'El nombre debe contener al menos dos caracteres.',
+		'name.alpha_num_spaces' => 'El nombre debe contener solamente letras y números',
 		'startDate.required' => 'La fecha de inicio es obligatoria',
 		'endDate.required' => 'La fecha de finalización es obligatoria',
 		'startDate.before' => 'La fecha de inicio debe ser menor a la fecha de fin'
@@ -47,13 +49,19 @@ class Project extends Eloquent implements UserInterface, RemindableInterface, Js
 		return $this->hasMany('Iterations','projectid');
 	}
 
+	public function team()
+    {
+      return $this->hasOne('Teams', 'proyectid');
+    }
+
 	//teams
 	//public function teams(){
 	//	return $this->belongsToMany('Teams', 'workIn', 'projectid', 'teamsid');
 	//}
 
-	public function team(){
-		return $this->hasOne('Teams','projectid');
-	}
+//	public function team()
+  //  {
+   //     return $this->hasOne('Teams','proyectid');
+    //}
 }
 ?>

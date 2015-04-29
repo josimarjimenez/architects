@@ -20,13 +20,21 @@ class IterationsController extends BaseController {
 			$totalPoints = $issues->sum('points'); 
 			$materiales = Material::all();
 			$personal = PersonalType::all();
-			$team = Teams::where('projectid','=',$project->id)->get()->first(); 
+
+			$team = Teams::where('proyectid','=',$project->id)->get()->first(); 
+
 			$members = DB::table('memberof')->where('teamid','=', $team->id)->get();
+
+
+
 			$hasmembers = (sizeof($members)>0)? true : false;
 			
 			$users = array();
 			foreach($members as $member){
+				
 				$users[] = User::findOrFail($member->usersid);
+				echo $hasmembers;
+
 			}
  
  	
@@ -102,6 +110,7 @@ class IterationsController extends BaseController {
 			$iterations->realBudget = Input::get('realBudget');  
 			$iterations->projectid = Input::get('projectid'); 
 			$iterations->save();
+
 
 			$organization = app('organization');
 			return Redirect::to('/iterations/'.$iterations->id)
