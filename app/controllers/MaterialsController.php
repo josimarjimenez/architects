@@ -16,9 +16,7 @@ class MaterialsController extends BaseController {
 
 
 	public function store(){ 
-	
 		$validator = Validator::make(Input::all(), Material::$rules, Material::$messages);
-
 		if($validator->passes()){
 			$material = new Material;
 			$material->name = Input::get('name'); 
@@ -85,10 +83,16 @@ class MaterialsController extends BaseController {
 
 	public function destroy($id){
 		$material = Material::find($id);
-		$material->delete();  
-		return Redirect::to('/materials')
-		->with('message', 'Registro eliminado')
-		->with('organization', app('organization'));
+
+		if( sizeof($material->tasks) < 1 ){
+			$material->delete();  
+			return Redirect::to('/materials')
+			->with('message', 'Registro eliminado')
+			->with('organization', app('organization'));
+		}else{
+			return Redirect::to('/materials')
+			->with('error', 'El registro ya se encuentra como gasto dentro de las actividades.');
+		}
 	}
 
 	public function show($id){

@@ -21,7 +21,7 @@ class Material extends Eloquent{
     public static $messages = array(
       'name.required' => 'El nombre es obligatorio.',
       'name.min' => 'El nombre debe contener al menos dos caracteres.',
-      'name.alpha_num_spaces' => 'Ingrese solamente letras y números',
+      'name.alpha_num_spaces' => 'El nombre debe contener solamente letras y números',
       'code.unique' => 'La código ingresado ya se encuentra registrado.',
       'value.required' => 'El precio unitario es obligatorio.',
       'value.numeric' => 'El precio unitario debe ser decimal.',

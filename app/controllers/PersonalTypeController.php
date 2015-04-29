@@ -128,10 +128,17 @@ class PersonalTypeController extends BaseController {
 	public function destroy($id)
 	{
 		$personalType = PersonalType::find($id);
-		$personalType->delete();
-		return Redirect::to('/personalType')
-		->with('message', 'Registro eliminado')
-		->with('organizacion', app('organization'));
+		if(sizeof($personalType->tasks) < 1){
+			$personalType->delete();
+			return Redirect::to('/personalType')
+			->with('message', 'Registro eliminado')
+			->with('organizacion', app('organization'));
+		}else{
+			return Redirect::to('/personalType')
+			->with('error', 'El registro ya se encuentra como gasto dentro de las actividades.');
+		}
+
+		
 	}
 
 }
