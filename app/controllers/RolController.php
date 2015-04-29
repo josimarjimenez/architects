@@ -31,7 +31,7 @@ class RolController extends BaseController {
 			->with('message', 'Rol creado con exito'); 
 		}else{
 			return Redirect::to('rol/create')
-			->with('message', 'Ocurrieron los siguientes errores')
+			->with('eror', 'Ocurrieron los siguientes errores')
 			->withErrors($validator)
 			->withInput();   	
 		}

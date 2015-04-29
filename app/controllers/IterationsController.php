@@ -109,7 +109,7 @@ class IterationsController extends BaseController {
 			
 		}else{
 			return Redirect::to('iterations/create?projectid='.Input::get('projectid'))
-			->with('message', 'Ocurrieron los siguientes errores')
+			->with('error', 'Ocurrieron los siguientes errores')
 			->withErrors($validator)
 			->withInput();
 		}

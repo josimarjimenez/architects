@@ -50,7 +50,7 @@ class PersonalTypeController extends BaseController {
 			->with('message', 'Registro creado con exito'); 
 		}else{
 			return Redirect::to('personalType/create')
-			->with('message', 'Ocurrieron los siguientes errores')
+			->with('error', 'Ocurrieron los siguientes errores')
 			->withErrors($validator)
 			->withInput();   	
 		}
@@ -113,7 +113,7 @@ class PersonalTypeController extends BaseController {
 				->with('organization',$organization);
 		}else{
 			return Redirect::to('personalType/'.$id.'/edit')
-			->with('message', 'Ocurrieron los siguientes errores')
+			->with('error', 'Ocurrieron los siguientes errores')
 			->withErrors($validator)
 			->withInput();   	
 		}

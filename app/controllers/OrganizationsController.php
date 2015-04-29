@@ -30,7 +30,7 @@ class OrganizationsController extends BaseController {
 
 		}else{
 			return Redirect::to('organization/new')
-			->with('message', 'Ocurrieron los siguientes errores')
+			->with('error', 'Ocurrieron los siguientes errores')
 			->withErrors($validator)
 			->withInput();   	
 		}

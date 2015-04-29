@@ -54,7 +54,7 @@ class UsersController extends BaseController {
 
 		} else {
 			return Redirect::to('users/register')
-			->with('message', 'Ocurrieron los siguientes errores')
+			->with('error', 'Ocurrieron los siguientes errores')
 			->withErrors($validator)
 			->withInput();   
 		}
@@ -163,7 +163,7 @@ class UsersController extends BaseController {
 
 		}else{
 			return Redirect::to('users/edit/'.$id)
-			->with('message', 'Ocurrieron los siguientes errores')
+			->with('error', 'Ocurrieron los siguientes errores')
 			->withErrors($validator)
 			->withInput();
 		}		

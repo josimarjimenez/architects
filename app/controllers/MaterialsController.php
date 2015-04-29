@@ -36,7 +36,7 @@ class MaterialsController extends BaseController {
 								->with('message', "Material ingresado con exito");
 		}else{
 			return Redirect::to('materials/create')
-			->with('message', 'Ocurrieron los siguientes errores')
+			->with('error', 'Ocurrieron los siguientes errores')
 			->withErrors($validator)
 			->withInput();
 		}
@@ -76,34 +76,12 @@ class MaterialsController extends BaseController {
 
 		}else{
 			return Redirect::to('materials/'.$id.'/edit')
-			->with('message', 'Ocurrieron los siguientes errores')
+			->with('error', 'Ocurrieron los siguientes errores')
 			->withErrors($validator)
 			->withInput();
 		}		
 
 	}
-
-	/*
-	public function update($id){
-		$project = Project::findOrFail($id);
-
-		$validator = Validator::make(Input::all(), Project::$rules, Project::$messages);
-
-		if ($validator->passes()) { 
-
-			$project->fill(Input::all());
-			$project->save();
-			$organization = app('organization');
-			return Redirect::to('organization/name/'.$organization->auxName.'/projects')
-				->with('message', 'Registro actualizado');
-		}else{
-			return Redirect::to('projects/'.$id.'/edit')
-			->with('message', 'Ocurrieron los siguientes errores')
-			->withErrors($validator)
-			->withInput();   	
-		}
-	}
-	*/
 
 	public function destroy($id){
 		$material = Material::find($id);

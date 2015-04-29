@@ -31,7 +31,7 @@ class TeamsController extends BaseController {
 			->with('message', 'Equipo creado con exito'); 
 		}else{
 			return Redirect::to('teams/create')
-			->with('message', 'Ocurrieron los siguientes errores')
+			->with('error', 'Ocurrieron los siguientes errores')
 			->withErrors($validator)
 			->withInput();   	
 		}
