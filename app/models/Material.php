@@ -11,7 +11,7 @@ class Material extends Eloquent{
 	
 	use UserTrait, RemindableTrait;
 	public static $rules = array(
-	    'name'=>'required|alpha_num_spaces|min:2',
+	    'name'=>'required|latino|min:2',
 	    'code'=>'alpha_num|unique:material',
 	    'value'=>'required|amount_major_cero|numeric',
 	    'startDate'=>'date',  
@@ -21,7 +21,7 @@ class Material extends Eloquent{
     public static $messages = array(
       'name.required' => 'El nombre es obligatorio.',
       'name.min' => 'El nombre debe contener al menos dos caracteres.',
-      'name.alpha_num_spaces' => 'El nombre debe contener solamente letras y números',
+      'name.latino' => 'El nombre debe contener solamente letras y números',
       'code.unique' => 'La código ingresado ya se encuentra registrado.',
       'value.required' => 'El precio unitario es obligatorio.',
       'value.numeric' => 'El precio unitario debe ser decimal.',

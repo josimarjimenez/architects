@@ -10,7 +10,7 @@ class Task extends Eloquent implements JsonSerializable{
 	
 	use UserTrait, RemindableTrait;
 	public static $rules = array(
-	    'name'=>'required|alpha_spaces|min:2', 
+	    'name'=>'required|latino|min:2', 
 	    'summary'=>'required|alpha_spaces|min:2', 
 	    'points'=>'required|alpha_spaces|min:2',
 	    'value'=>'required|alpha_spaces|min:2',

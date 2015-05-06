@@ -14,6 +14,7 @@ class IterationsController extends BaseController {
 			$iterations = Iterations::where('projectid','=', $iteration->projectid)->get();
 			$project = Project::findOrFail($iteration->projectid);
 			$issues = Issue::where('iterationid','=', $id)->get();  
+			//$issues = $iteration->issues;
 			$countIssues = sizeof($issues);
 			$categories = Category::all();
 			$idCategory = 0;

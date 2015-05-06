@@ -29,6 +29,15 @@ class Helper {
         return $counter;
     }
 
+    public function searchIssues($id){
+        $iteration = Iterations::findOrFail($id); 
+        $iterations = Iterations::where('projectid','=', $iteration->projectid)->get();
+        $aux = Project::findOrFail($iteration->projectid);
+        //$aux = Issue::where('iterationid','=', $id)->get();  
+        return $aux;
+        //return $project;
+    }
+
     public function test() {
         return 'Josimar' . $this->aux();
     }

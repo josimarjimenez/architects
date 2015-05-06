@@ -72,6 +72,8 @@ Route::get('graphic_spending/{id}', 'GraphicsSpendingController@summary');
 
 Route::get('graphictest/{id}', 'GraphicsTestController@summary');
 
+Route::get('graphic_bar_task/{id}', 'GraphicsTaskController@bar_task');
+
 Route::get('graphic_bar_time/{id}', 'GraphicsIterationController@bar_time');
 
 Route::get('graphic_bar_budget/{id}', 'GraphicsIterationController@bar_budget');

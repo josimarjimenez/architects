@@ -10,7 +10,7 @@ class Issue extends Eloquent{
 
 	//use UserTrait, RemindableTrait;
 	public static $rules = array(
-	    'summary'=>'required|alpha_spaces|min:2', 
+	    'summary'=>'required|latino|min:2', 
 	    'detail'=>'required|alpha_spaces|min:2',
 	    'budget'=>'required|alpha_spaces|min:2',
 	    'currentState'=>'required|alpha_spaces|min:2',
@@ -29,11 +29,9 @@ class Issue extends Eloquent{
 		return $this->hasMany('Task', 'issueid');
 	}
  	
-	public function iteration()
-    {
-        return $this->belongsTo('Iterations', 'iterationid');
-    }
-
+    public function iterations() {
+		return $this->belongsTo('Iterations','iterationid');
+	}
 
 }
 ?>

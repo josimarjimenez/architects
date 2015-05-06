@@ -50,7 +50,7 @@ class UsersController extends BaseController {
     		});
 */
 			return Redirect::to('/organization/members/'. $organization->auxName .'/all_members')
-							->with('message', 'Gracias por registrarse');
+							->with('message', 'Gracias por registrarse, está pendiente el envió de datos a su cuenta.');
 
 		} else {
 			return Redirect::to('users/register')
@@ -227,12 +227,12 @@ class UsersController extends BaseController {
 			$passwordTmp = substr( $user->name, 0, 3) . substr( $user->lastname, 0, 3);
 			$user->password = Hash::make($passwordTmp);
 			$user->save();
-			Mail::send('layouts.users.recoverpassword', array('name'=>$user->name, 'mail'=> $user->mail, 'password'=> $passwordTmp), function($message){
-        		$message->to(Input::get('mail'))->subject('Bienvenido!!');
-    		});
+			//Mail::send('layouts.users.recoverpassword', array('name'=>$user->name, 'mail'=> $user->mail, 'password'=> $passwordTmp), function($message){
+        	//	$message->to(Input::get('mail'))->subject('Bienvenido!!');
+    		//});
 
 			return Redirect::to('users/login')
-			->with('message', 'Se ha generado un constraseña temporal y se ha enviado a su correo.')
+			->with('message', 'Se ha generado un constraseña temporal, está pendiente el envío a su correo.')
 			->withInput();
 
 		} else {
