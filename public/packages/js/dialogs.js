@@ -18,7 +18,7 @@
   var li = '';
   $.ajax({
     type: 'GET',
-    url:  'http://localhost:8000/tareas/taskAll',
+    url:  '/tareas/taskAll',
     data: 'id='+id+"&idUser="+idUser,
 
     success: function (data) { 
@@ -32,18 +32,32 @@
       var tasks = data.tasks; 
 
       $.each( tasks, function( key, value ) { 
+        console.log(value.name+'-'+value.closed);
         li = '';
-        li += '<li class="task-view" id="'+value.id+'" >';
+        var cssClass='';
+        var style='';
+        if(value.closed=='SI'){
+          cssClass='ui-state-disabled';
+          style='display:none';
+        }
+        li += '<li class="task-view '+cssClass+'" id="'+value.id+'" >';
         li += '<span class="task-toolbar">';
-        li += '<a href="#" class="edit-link" onclick="editTask('+value.id+')"> ';
+        li += '<a  style="'+style+'" href="#" class="edit-link" onclick="editTask('+value.id+')"> ';
         li += '<i class="icon-glyph icon-edit" title="Editar tarea"></i>';
         li += '</a>'
         li += '</span>'
 
          if(rol=='Administrator'){
-            li += '<span class="task-toolbar">';
-            li += '<a href="#" class="delete-link" onclick="deleteTask('+value.id+')">';
-            li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
+            var css=""; 
+            if(value.scrumid==1){
+              css="display:inline-block";
+            } else{
+              css="display:none";
+            }
+
+            li += '<span class="task-toolbar" >';
+            li += '<a href="#" style="'+css+'" class="delete-link" onclick="deleteTask('+value.id+')">';
+              li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
             li += '</a>';
             li += '</span>';
          }
@@ -253,6 +267,10 @@ $("#issueid").val(id);
  */
  function editTask(id){ 
   //recover task data
+  //
+  $('#listaIDS_M').val('');
+  $('#listaIDS_P').val('');
+
   $.ajax({
     type: 'GET',
     url:  'http://localhost:8000/tareas/getTask',

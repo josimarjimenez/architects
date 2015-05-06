@@ -6,9 +6,9 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class Issue extends Eloquent{
 	protected $table = 'issue';
-	//protected $guarded = ['id', 'create_at', 'update_at'];
+	protected $guarded = ['id', 'create_at', 'update_at'];
 
-	//use UserTrait, RemindableTrait;
+	use UserTrait, RemindableTrait;
 	public static $rules = array(
 	    'summary'=>'required|latino|min:2', 
 	    'detail'=>'required|alpha_spaces|min:2',

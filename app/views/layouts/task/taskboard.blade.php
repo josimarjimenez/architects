@@ -78,9 +78,14 @@
         		//actiualizacion ajax
         		$.ajax({
 		            type: 'GET',
-		            url:  'http://localhost:8000/tareas/updateTaks',
+		            url:  '/tareas/updateTaks',
 		            data: 'id='+id+'&state='+state,
-		            success: function (data) {
+		            success: function (data) { 
+		            	if(state=='todo'){
+		            		$('#'+id+' .delete-link').css('display', 'inline-block');
+		            	}else{
+		            		$('#'+id+' .delete-link').css('display', 'none');
+		            	}
 		            },
 		            error: function(errors){
 		                $('.before').hide();

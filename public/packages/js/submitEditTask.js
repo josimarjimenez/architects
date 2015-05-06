@@ -29,10 +29,8 @@ $( "#editFormTask" ).submit(function( event ) {
 
     				//actualizar el taskboard
     				$('li#'+data.task.id).html('');
-    				
     				var li = '';
     				var rol = "{{  Auth::user()->rol; }}" ;
-    				 
     				if(data.final=='no'){
 	    				li += '<span class="task-toolbar">';
 		                li += '<a href="#" class="edit-link" onclick="editTask('+data.task.id+')">';
@@ -42,12 +40,20 @@ $( "#editFormTask" ).submit(function( event ) {
 		            
 					 // el administrador elimina la tarea	
 						if(rol=='Administrator'){
-					 		li += '<span class="task-toolbar">';   
-		                	li += '<a href="#" class="delete-link" onclick="deleteTask('+data.task.id+')">';
+							var css="";
+							if(data.task.scrumid==1){
+								css="display:inline-block";
+							}
+					 		li += '<span class="task-toolbar" >';   
+		                	li += '<a href="#" class="delete-link" style="'+css+'" onclick="deleteTask('+data.task.id+')">';
 		                	li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
 		                	li += '</a>';
 		                	li += '</span>';
 			        	}
+
+	                }else{
+	                	$('li#'+data.task.id).addClass('ui-state-disabled');
+	                	$('li#'+data.task.id+' .edit-link').css('display', 'none');
 	                }
 	                
 	                li += data.task.name+'<br >';
