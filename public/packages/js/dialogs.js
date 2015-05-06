@@ -32,8 +32,13 @@
       var tasks = data.tasks; 
 
       $.each( tasks, function( key, value ) { 
+        console.log(value.name+'-'+value.closed);
         li = '';
-        li += '<li class="task-view" id="'+value.id+'" >';
+        var cssClass='';
+        if(value.closed=='SI'){
+          cssClass='ui-state-disabled';
+        }
+        li += '<li class="task-view '+cssClass+'" id="'+value.id+'" >';
         li += '<span class="task-toolbar">';
         li += '<a href="#" class="edit-link" onclick="editTask('+value.id+')"> ';
         li += '<i class="icon-glyph icon-edit" title="Editar tarea"></i>';
@@ -41,8 +46,7 @@
         li += '</span>'
 
          if(rol=='Administrator'){
-            var css="";
-            console.log(value.id+"-"+value.scrumid);
+            var css=""; 
             if(value.scrumid==1){
               css="display:inline-block";
             } else{
@@ -260,6 +264,10 @@ $("#issueid").val(id);
  */
  function editTask(id){ 
   //recover task data
+  //
+  $('#listaIDS_M').val('');
+  $('#listaIDS_P').val('');
+
   $.ajax({
     type: 'GET',
     url:  'http://localhost:8000/tareas/getTask',

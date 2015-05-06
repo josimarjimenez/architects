@@ -98,7 +98,7 @@ Route::post('task', function(){
 		$task->save();
 
 		$issue = Issue::findOrFail($task->issueid);
-		$iteration = $issue->iteration;
+		$iteration = $issue->iterations;
 		$iteration->estimatedTime = $iteration->estimatedTime + $task->timeEstimated;
 		$iteration->save();
 
@@ -209,7 +209,10 @@ Route::post('tareas/editTask', function(){
 		$final="no";  
 
 		$issue = Issue::findOrFail($task->issueid);
-		$iteration = $issue->iteration;
+		$iteration = $issue->iterations;
+
+		
+		//$iteration = $issue->iteration;
 		$iteration->realTime = $iteration->realTime + Input::get("timeReal"); 
 		$iteration->save();
  
@@ -268,6 +271,10 @@ Route::post('tareas/editTask', function(){
 			$project->budgetReal = $project->budgetReal +$totalTask;
 			$project->save();
 			$final="yes";
+
+			//actualizar a finalizado la tarea
+			$task->closed='SI';
+			$task->save(); 
 		}
 		$user = User::findOrFail($task->userid);
 		return Response::json(

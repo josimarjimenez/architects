@@ -36,7 +36,8 @@ class Iterations extends Eloquent implements JsonSerializable{
              'summaryPoints' => $this->summaryPoints,
              'estimatedBudget' => $this->estimatedBudget,
              'realBudget' => $this->realBudget,
-             'projectid' => $this->projectid
+             'projectid' => $this->projectid,
+             'realTime' => $this->realTime
         );
 	} 
 

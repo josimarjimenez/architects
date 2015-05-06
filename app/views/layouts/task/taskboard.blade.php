@@ -80,8 +80,7 @@
 		            type: 'GET',
 		            url:  '/tareas/updateTaks',
 		            data: 'id='+id+'&state='+state,
-		            success: function (data) {
- 						console.log(state);
+		            success: function (data) { 
 		            	if(state=='todo'){
 		            		$('#'+id+' .delete-link').css('display', 'inline-block');
 		            	}else{

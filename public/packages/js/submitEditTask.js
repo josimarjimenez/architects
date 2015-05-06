@@ -29,10 +29,8 @@ $( "#editFormTask" ).submit(function( event ) {
 
     				//actualizar el taskboard
     				$('li#'+data.task.id).html('');
-    				
     				var li = '';
     				var rol = "{{  Auth::user()->rol; }}" ;
-    				 
     				if(data.final=='no'){
 	    				li += '<span class="task-toolbar">';
 		                li += '<a href="#" class="edit-link" onclick="editTask('+data.task.id+')">';
@@ -52,6 +50,9 @@ $( "#editFormTask" ).submit(function( event ) {
 		                	li += '</a>';
 		                	li += '</span>';
 			        	}
+
+	                }else{
+	                	$('li#'+data.task.id).addClass('ui-state-disabled');
 	                }
 	                
 	                li += data.task.name+'<br >';

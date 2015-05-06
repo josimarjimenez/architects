@@ -33,9 +33,10 @@
 			Dias restantes
 			<h4>2</h4> 
 		</div>
+		 ul>li*5000
 	</div>
 	<div style="text-align:center; margin-top:20px;" id="burnup_chart">
-		{{$iteration->id}}
+ 
 		@if($iteration->issues()->count() > 1)  
 
 			<img src="{{ action('GraphicsController@iterationSummary', array('iteration' =>  $iteration->id  )) }}">
