@@ -35,8 +35,11 @@
 		</div>
 	</div>
 	<div style="text-align:center; margin-top:20px;" id="burnup_chart">
-
+		{{$iteration->id}}
 		@if($iteration->issues()->count() > 1)
+
+			<img src="{{ action('GraphicsController@iterationSummary', array('iteration' =>  $iteration->id  )) }}">
+
 			<img src="{{ action('GraphicsController@iterationSummary', array('iteration' =>  $iteration->id  )) }}">
 			
 			<img src="{{ action('GraphicsSummaryController@summary', array('iteration' =>  $iteration->id  )) }}">

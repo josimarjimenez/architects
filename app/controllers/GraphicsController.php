@@ -10,8 +10,7 @@ class GraphicsController extends BaseController{
     /**
     *
     */
-    public function iterationSummary($id){  
- 
+    public function iterationSummary($id){   
     	$iteration = Iterations::findOrFail($id);
     	$issues = Issue::where('iterationid','=',$iteration->id)->get();
     	$tasksId=array();
@@ -39,8 +38,6 @@ class GraphicsController extends BaseController{
     		} 
     	}
 
-
-    	
     	JpGraph\JpGraph::load();
     	JpGraph\JpGraph::module('bar');
 
@@ -78,5 +75,38 @@ class GraphicsController extends BaseController{
 		//Display the graph
 		$graph->Stroke();
 	}
+
+
+ public function iterationSummary2($id){   
+        $iteration = Iterations::findOrFail($id);
+        $issues = Issue::where('iterationid','=',$iteration->id)->get();
+
+        $tasksId=array();
+    
+        foreach ($issues as $issue) { 
+            $tasksId[] = $issue->id;
+
+        }
+        
+        $tasks =  Task::whereIn('issueid',$tasksId)->get(); 
+        $countTODO = 0;
+        $countDOING =0; 
+        $countDONE = 0;
+ 
+        foreach ($tasks as $task) { 
+            switch ($task->scrumid) {
+                case 1: 
+                    $countTODO++;
+                    break;
+                case 2: 
+                    $countDOING++;
+                    break;
+                case 3: 
+                    $countDONE++;
+                    break; 
+            } 
+        }
+         
+    }
 }
 ?>

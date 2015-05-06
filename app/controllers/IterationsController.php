@@ -38,7 +38,9 @@ class IterationsController extends BaseController {
 			}
  
  	
- 		
+ 			$gc = new GraphicsController;
+ 			$gc->iterationSummary2(20);
+
 			$this->layout->content = View::make('layouts.iterations.show')
 								->with('iteration', $iteration)
 								->with('iterations', $iterations)
