@@ -11,8 +11,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	//views
 	use UserTrait, RemindableTrait, Messagable;
 	public static $rules = array(
-	    'nombres'=>'required|alpha_spaces|min:2',
-	    'apellidos'=>'required|alpha_spaces|min:2',
+	    'nombres'=>'required|latino|min:2',
+	    'apellidos'=>'required|latino|min:2',
 	    'identification'=>'required|numeric|check_identification|unique:users',
 	    //'identification'=>'required|numeric|unique:users',
 	    'mail'=>'required|email|unique:users',

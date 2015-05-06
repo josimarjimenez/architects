@@ -23,20 +23,6 @@ class Teams extends Eloquent {
          return $this->belongsTo('Project');
     }
 
-
-	//public function project()
-    //{
-    //    return $this->belongsTo('Project','projectid');
-    //}
-
-	//public function project()
-    //{
-    //    return $this->belongsTo('Project');
-    //}
-	//project
-	//public function projects(){
-	//	return $this->belongsToMany('Project', 'workIn', 'teamsid', 'projectid');
-	//}
 }
 
 ?>

@@ -11,15 +11,16 @@ class GraphicsController extends BaseController{
     *
     */
     public function iterationSummary($id){   
-    	$iteration = Iterations::findOrFail($id);
-    	$issues = Issue::where('iterationid','=',$iteration->id)->get();
+    	$iteration = Iterations::findOrFail($id); 
+    	$issues = Issue::where('iterationid','=',$iteration->id)->get();  
+ 
     	$tasksId=array();
     
     	foreach ($issues as $issue) { 
     		$tasksId[] = $issue->id;
     	}
     	
-    	$tasks =  Task::whereIn('issueid',$tasksId)->get();
+    	$tasks =  Task::whereIn('issueid',$tasksId)->get();  
     	$countTODO = 0;
     	$countDOING =0; 
     	$countDONE = 0;
@@ -37,7 +38,9 @@ class GraphicsController extends BaseController{
     				break; 
     		} 
     	}
+  
 
+  
     	JpGraph\JpGraph::load();
     	JpGraph\JpGraph::module('bar');
 
