@@ -40,6 +40,7 @@
 			<img src="{{ action('GraphicsTaskController@bar_task', array('iteration' =>  $iteration->id)) }}">
 		@else
 			<!--<img src="https://d11uy15xvlvge3.cloudfront.net/static/v105/scrumdo/images/burndown.png"> -->
+			<img src="{{ action('GraphicsTaskController@bar_task', array('iteration' =>  $iteration->id)) }}">
 		@endif
 
 	</div>	

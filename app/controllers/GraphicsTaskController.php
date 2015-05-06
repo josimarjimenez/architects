@@ -10,7 +10,7 @@ class GraphicsTaskController extends BaseController{
     public function bar_task($id){
 
     	$help = new Helper();
-        $issues = $help->searchIssues($id);
+        //$issues = $help->searchIssues($id);
 
 
     	//foreach ($issues as $issue) {
