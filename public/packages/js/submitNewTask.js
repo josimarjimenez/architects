@@ -36,8 +36,13 @@ $( "#formularioTarea" ).submit(function( event ) {
                 li += '</span>';
                  
                 if(rol=='Administrator'){
-                    li += '<span class="task-toolbar">';
-                    li += '<a href="#" class="delete-link"  onclick="deleteTask('+task.id+')">';
+                    var css="";
+                    if(data.task.scrumid==1){
+                        css="display:inline-block";
+                    }
+                    
+                    li += '<span class="task-toolbar" >';
+                    li += '<a href="#" class="delete-link"  style="'+css+'" onclick="deleteTask('+task.id+')">';
                     li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
                     li += '</a>';
                     li += '</span>';

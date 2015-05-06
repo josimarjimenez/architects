@@ -36,19 +36,10 @@
 	</div>
 	<div style="text-align:center; margin-top:20px;" id="burnup_chart">
 		{{$iteration->id}}
-		@if($iteration->issues()->count() > 1) 
+		@if($iteration->issues()->count() > 1)  
 
 			<img src="{{ action('GraphicsController@iterationSummary', array('iteration' =>  $iteration->id  )) }}">
-
-			<img src="{{ action('GraphicsController@iterationSummary', array('iteration' =>  $iteration->id  )) }}">
-			
-			<img src="{{ action('GraphicsSummaryController@summary', array('iteration' =>  $iteration->id  )) }}">
-
-			<img src="{{ action('GraphicsTestController@summary', array('iteration' =>  $iteration->id  )) }}">
-
-			<img src="{{ action('GraphicsSpendingController@summary', array('iteration' =>  $iteration->id  )) }}">
- 
-			<img src="{{ action('GraphicsTaskController@bar_task', array('iteration' =>  $iteration->id)) }}"> 
+		 
 		@else
 			<!--<img src="https://d11uy15xvlvge3.cloudfront.net/static/v105/scrumdo/images/burndown.png"> -->
 		@endif

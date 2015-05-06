@@ -18,7 +18,7 @@
   var li = '';
   $.ajax({
     type: 'GET',
-    url:  'http://localhost:8000/tareas/taskAll',
+    url:  '/tareas/taskAll',
     data: 'id='+id+"&idUser="+idUser,
 
     success: function (data) { 
@@ -41,9 +41,16 @@
         li += '</span>'
 
          if(rol=='Administrator'){
-            li += '<span class="task-toolbar">';
-            li += '<a href="#" class="delete-link" onclick="deleteTask('+value.id+')">';
-            li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
+            var css="";
+            console.log(value.id+"-"+value.scrumid);
+            if(value.scrumid==1){
+              css="display:inline-block";
+            } else{
+              css="display:none";
+            }
+            li += '<span class="task-toolbar" >';
+            li += '<a href="#" style="'+css+'" class="delete-link" onclick="deleteTask('+value.id+')">';
+              li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
             li += '</a>';
             li += '</span>';
          }

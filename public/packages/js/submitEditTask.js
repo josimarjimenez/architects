@@ -42,8 +42,12 @@ $( "#editFormTask" ).submit(function( event ) {
 		            
 					 // el administrador elimina la tarea	
 						if(rol=='Administrator'){
-					 		li += '<span class="task-toolbar">';   
-		                	li += '<a href="#" class="delete-link" onclick="deleteTask('+data.task.id+')">';
+							var css="";
+							if(data.task.scrumid==1){
+								css="display:inline-block";
+							}
+					 		li += '<span class="task-toolbar" >';   
+		                	li += '<a href="#" class="delete-link" style="'+css+'" onclick="deleteTask('+data.task.id+')">';
 		                	li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
 		                	li += '</a>';
 		                	li += '</span>';
