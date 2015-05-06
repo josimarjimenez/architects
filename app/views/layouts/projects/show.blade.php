@@ -48,10 +48,10 @@
 
 		<div id="graphics">
 		    <div class="report-tab-holder">
-		      <div class="report-tab">
+		      <div class="report-tab report-tab-selected">
 		        <a href="#" id="yourstats">Gráfico respecto al tiempo</a>
 		      </div>
-		      <div class="report-tab report-tab report-tab-selected">
+		      <div class="report-tab report-tab ">
 		        <a href="#" id="summary">Gráfico respecto al presupuesto</a>
 		      </div>
 		      <div class="report-tab report-tab">
