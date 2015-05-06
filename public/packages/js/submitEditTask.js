@@ -53,6 +53,7 @@ $( "#editFormTask" ).submit(function( event ) {
 
 	                }else{
 	                	$('li#'+data.task.id).addClass('ui-state-disabled');
+	                	$('li#'+data.task.id+' .edit-link').css('display', 'none');
 	                }
 	                
 	                li += data.task.name+'<br >';

@@ -35,12 +35,14 @@
         console.log(value.name+'-'+value.closed);
         li = '';
         var cssClass='';
+        var style='';
         if(value.closed=='SI'){
           cssClass='ui-state-disabled';
+          style='display:none';
         }
         li += '<li class="task-view '+cssClass+'" id="'+value.id+'" >';
         li += '<span class="task-toolbar">';
-        li += '<a href="#" class="edit-link" onclick="editTask('+value.id+')"> ';
+        li += '<a  style="'+style+'" href="#" class="edit-link" onclick="editTask('+value.id+')"> ';
         li += '<i class="icon-glyph icon-edit" title="Editar tarea"></i>';
         li += '</a>'
         li += '</span>'
@@ -52,6 +54,7 @@
             } else{
               css="display:none";
             }
+
             li += '<span class="task-toolbar" >';
             li += '<a href="#" style="'+css+'" class="delete-link" onclick="deleteTask('+value.id+')">';
               li += '<i class="icon-glyph icon-trash" title="Borrar tarea"></i>';
