@@ -10,8 +10,8 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-Route::get('projects/{id}/finalize', function(){
-		die('2323223');
+Route::get('iterations/{id}/finalize', function(){
+	//die('2323223');
 });
 
 Route::group(array('before' => 'auth'), function()
@@ -220,35 +220,40 @@ Route::post('tareas/editTask', function(){
 		$iteration->save();
  
 		//validar si existen ingresados gastos(material, personal, adicionales)
+		
 		if(Input::get("canRegisterSpent")==1){
 			//vincular materiales a tarea
 			$idsMaterial =  Input::get("listaIDS_M");
 			$ids = explode(" ", $idsMaterial);
 			$totalMaterial=0;
-			foreach ($ids as $id) {
+			if(!empty($idsMaterial)){
+				foreach ($ids as $id) {
+					if($id==''){
+						continue;
+					}
 
-				if($id==''){
-					continue;
+					$cantidad 	=  Input::get("cuM_".$id); 
+					$total  	=  Input::get("toM_".$id);
+					$totalMaterial += $total;
+					$task->materials()->attach([$id => ['quantity'=>$cantidad, 'total'=>$total]]);
 				}
-				
-				$cantidad 	=  Input::get("cuM_".$id); 
-				$total  	=  Input::get("toM_".$id);
-				$totalMaterial += $total;
-				$task->materials()->attach([$id => ['quantity'=>$cantidad, 'total'=>$total]]);
 			}
+			
 			//vincular personal a tarea
-			$idsMaterial =  Input::get("listaIDS_P");
-	 		$ids = explode(" ", $idsMaterial);
-	 		$totalPersonal=0;
-			foreach ($ids as $id) {
-				if($id==''){
-					continue;
-				}
-				$cantidad 	=  Input::get("cuP_".$id); 
-				$total  	=  Input::get("toP_".$id); 
-				$totalPersonal += $total;
+			$totalPersonal=0;
+			if(!empty($idsMaterial)){
+				$idsMaterial =  Input::get("listaIDS_P");
+		 		$ids = explode(" ", $idsMaterial);
+				foreach ($ids as $id) {
+					if($id==''){
+						continue;
+					}
+					$cantidad 	=  Input::get("cuP_".$id); 
+					$total  	=  Input::get("toP_".$id); 
+					$totalPersonal += $total;
 
-				$task->typePersonal()->attach([$id => ['quantity'=>$cantidad, 'total'=>$total]]);
+					$task->typePersonal()->attach([$id => ['quantity'=>$cantidad, 'total'=>$total]]);
+				}
 			}
 
 

@@ -31,11 +31,14 @@
 				<td>{{ $user->direction }}</td> 
 				<td>
 					{{ HTML::link('users/edit/'.$user->id,  'Editar', array('class'=>"btn btn-medium btn-info")  ) }}
-					@if($user->id != Auth::user()->id)
-					
-					{{ HTML::link('users/destroy/'.$user->id,  'Eliminar', array('class'=>"btn btn-danger btn-medium")  ) }}
-
+					@if($user->active==1)
+						@if($user->id != Auth::user()->id)
+						{{ HTML::link('users/inactivate/'.$user->id,  'Inactivar', array('class'=>"btn btn-danger btn-medium")  ) }}
+						@endif
+					@else
+						{{ HTML::link('users/activate/'.$user->id,  'Activar', array('class'=>"btn btn-info btn-medium")  ) }}
 					@endif
+
 				</td>
 			</tr>
 			@endforeach  
