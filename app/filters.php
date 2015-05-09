@@ -14,7 +14,7 @@
 App::before(function($request)
 { 
 	App::singleton('organization', function(){
-        $organization = Organization::where('name', 'Unesco')->get()->first(); 
+        $organization = Organization::where('name', 'Arquinova')->get()->first(); 
 		$organization->auxName = str_replace(" ",'-', $organization->name);
 	 	foreach ($organization->projects as $project) {
 	 		$project->auxName = str_replace(" ",'-', $project->name);
