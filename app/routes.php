@@ -10,7 +10,9 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
+Route::get('projects/{id}/finalize', function(){
+		die('2323223');
+});
 
 Route::group(array('before' => 'auth'), function()
 {
@@ -25,6 +27,7 @@ Route::group(array('before' => 'auth'), function()
 	Route::resource('iterations', 'IterationsController');
 	//Route::resource('task', 'TaskController');
 	Route::resource('personalType', 'PersonalTypeController');
+
 });
 
 Route::group(['prefix' => 'messages'], function () {
