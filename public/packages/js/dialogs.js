@@ -449,15 +449,17 @@ $.ajax({
       li +='<i class="topmenu-icon icon-glyph icon-group"></i> Grupo de trabajo';
       li +='</a>';
       li +='</li>';
-      li += '</ul>';
-      li += '</div>';
 
+      
        //finalizar proyecto
       li +='<li>';
       li +='<a href="/projects/'+idProj+'/finalize" title="">';
-      li +='<i class="topmenu-icon icon-glyph icon-edit"></i> Finalizar proyecto';
+      li +='<i class="topmenu-icon icon-glyph glyphicon glyphicon-lock"></i> Finalizar proyecto';
       li +='</a>';
       li +='</li>';
+      li += '</ul>';
+      li += '</div>';
+
 
 
       li += '<h3 class="col_8">Iteraciones</h3>';
