@@ -43,6 +43,7 @@ class UsersController extends BaseController {
 			$user->direction = Input::get('direccion');
 			$user->password = Hash::make(Input::get('password'));
 			$user->rol = 'User';
+			$user->active = 1;
 			$user->save();
 /*
 			Mail::send('layouts.users.welcome', array('firstname'=>Input::get('nombres'), 'mail'=>Input::get('mail'), 'password'=>Input::get('password')), function($message){
@@ -75,7 +76,8 @@ class UsersController extends BaseController {
 	{
 
 		$data =array('mail'=>Input::get('mail'), 
-				'password'=>Input::get('password'));
+				'password'=>Input::get('password'),
+				'active'=>1);
 		
 		if (Auth::attempt($data)) {
 			return Redirect::to('users/dashboard')->with('message', 'Ha iniciado sesión');
