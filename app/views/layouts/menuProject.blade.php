@@ -6,7 +6,7 @@
   <ul class="project-menu-horizontal-list">
     <li>
       <a id="summaryProject" href="/projects/project/">
-        <i class="topmenu-icon icon-globe"> </i>Resumen del proyecto
+        <i class="topmenu-icon icon-globe"> </i>Resumen del proyecto...
       </a>
     </li>
     <li>

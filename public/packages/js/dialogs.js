@@ -63,7 +63,8 @@
          }
         
         li += value.name+'<br >';
-        li += value.summary;
+        li += value.summary+'<br >';
+        li += 'Tiempo trabajado: '+value.timeReal;
         li += '<b> ('+value.username+')</b>';
         li += '</li>';
 
@@ -450,6 +451,14 @@ $.ajax({
       li +='</li>';
       li += '</ul>';
       li += '</div>';
+
+       //finalizar proyecto
+      li +='<li>';
+      li +='<a href="/projects/'+idProj+'/finalize" title="">';
+      li +='<i class="topmenu-icon icon-glyph icon-edit"></i> Finalizar proyecto';
+      li +='</a>';
+      li +='</li>';
+
 
       li += '<h3 class="col_8">Iteraciones</h3>';
       li += '<div class="col_6">';

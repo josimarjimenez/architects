@@ -181,5 +181,9 @@ class ProjectsController extends BaseController {
  		return Redirect::to('projects/members/'.$project_id)->with('message', 'Se han asignado los miembros correctamente.');
 	}
 
+	public function postFinalize($id){
+
+	}
+
 }
 ?>
