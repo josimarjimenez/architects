@@ -26,16 +26,6 @@
           <td id="points_section">
             <ul>
               <li>
-                <label for="id_points_1">
-                  <input type="radio" name="points" value="0" id="id_points_1"> 0
-                </label>
-              </li>
-              <li>
-                <label for="id_points_2">
-                  <input id="id_points_2" value="0.5" name="points" type="radio"> 0.5
-                </label>
-              </li>
-              <li>
                 <label for="id_points_3">
                   <input id="id_points_3" value="1" name="points" type="radio"> 1
                 </label>
@@ -63,11 +53,6 @@
               <li>
                 <label for="id_points_8">
                   <input id="id_points_8" value="13" name="points" type="radio"> 13
-                </label>
-              </li>
-              <li>
-                <label for="id_points_9">
-                  <input id="id_points_9" value="20" name="points" type="radio"> 20
                 </label>
               </li>
             </ul>
@@ -102,6 +87,9 @@
         </tr>
       </tbody>
     </table>
+    <div class="buttonHolder">
+      {{ HTML::link('/iterations/' . $iteration->id,  'Cancelar', array('class'=>"btn btn-danger btn-sm")  ) }} 
+    </div>
   </div>
 @endif
 

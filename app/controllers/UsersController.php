@@ -45,13 +45,16 @@ class UsersController extends BaseController {
 			$user->rol = 'User';
 			$user->active = 1;
 			$user->save();
-/*
+
 			Mail::send('layouts.users.welcome', array('firstname'=>Input::get('nombres'), 'mail'=>Input::get('mail'), 'password'=>Input::get('password')), function($message){
         		$message->to(Input::get('mail'), Input::get('nombres').' '.Input::get('apellidos'))->subject('Bienvenido!!');
     		});
-*/
-			return Redirect::to('/organization/members/'. $organization->auxName .'/all_members')
+
+    		return Redirect::to('/organization/members/'. $organization->auxName .'/all_members')
 							->with('message', 'Gracias por registrarse, está pendiente el envió de datos a su cuenta.');
+
+//			return Redirect::to('/organization/members/'. $organization->auxName .'/all_members')
+//							->with('message', 'Gracias por registrarse, está pendiente el envió de datos a su cuenta.');
 
 		} else {
 			return Redirect::to('users/register')
@@ -229,19 +232,42 @@ class UsersController extends BaseController {
 			$passwordTmp = substr( $user->name, 0, 3) . substr( $user->lastname, 0, 3);
 			$user->password = Hash::make($passwordTmp);
 			$user->save();
-			//Mail::send('layouts.users.recoverpassword', array('name'=>$user->name, 'mail'=> $user->mail, 'password'=> $passwordTmp), function($message){
-        	//	$message->to(Input::get('mail'))->subject('Bienvenido!!');
-    		//});
+			Mail::send('layouts.users.recoverpassword', array('name'=>$user->name, 'mail'=> $user->mail, 'password'=> $passwordTmp), function($message){
+        		$message->to(Input::get('mail'))->subject('Nuevo password!!');
+    		});
 
-			return Redirect::to('users/login')
-			->with('message', 'Se ha generado un constraseña temporal, está pendiente el envío a su correo.')
+    		return Redirect::to('users/login')
+			->with('message', 'Se ha generado un constraseña temporal, revise su cuenta de correo.')
 			->withInput();
+
+//			return Redirect::to('users/login')
+//			->with('message', 'Se ha generado un constraseña temporal, está pendiente el envío a su correo.')
+//			->withInput();
 
 		} else {
 			return Redirect::to('users/recoverpassword')
 			->with('message', 'Tu email no se encuentra registrado.')
 			->withInput();
 		}      
+	}
+
+	public function getDestroy($id){
+		$user = User::findOrFail($id); 
+		$organizations = sizeof(Organization::where('usersid','=', $id)->get());
+		$organization = app('organization');
+		if(sizeof($user->teams()->get()) < 1 ){
+			$user->delete();
+			return Redirect::to('/organization/members/'. $organization->auxName . '/all_members')
+			->with('message', 'Registro eliminado')
+			->with('organization', app('organization'));
+		}else{
+			return Redirect::to('/organization/members/'. $organization->auxName . '/all_members')
+				->with('error', 'El usuario se encuentra registrado en proyectos');	
+		}
+	}
+
+	public function postFinalize($id){
+
 	}
 /*
 	public function postPassword()

@@ -49,7 +49,8 @@ $( "#formularioTarea" ).submit(function( event ) {
                 }    
                 
                 li += task.name+'<br >';
-                li += task.summary;
+                li += task.summary+'<br >';
+                li += task.timeReal;
                 li += '<b> ('+data.username+')</b>';
                 li += '</li>';
 

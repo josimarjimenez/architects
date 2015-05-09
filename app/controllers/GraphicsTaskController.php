@@ -67,8 +67,15 @@ class GraphicsTaskController extends BaseController{
 		$graph->yaxis->title->SetFont(FF_FONT1,FS_BOLD);
 		$graph->xaxis->title->SetFont(FF_FONT1,FS_BOLD);
 		 
-		// Display the graph
-		$graph->Stroke();
+		//$graph->Stroke();
+
+		//$response = Response::make(
+               //     $graph->Stroke()
+    	//);
+
+//    	$response->header('content-type', 'image/png');
+
+  //  	return $response;
 
     }
 
