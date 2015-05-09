@@ -43,6 +43,7 @@ class UsersController extends BaseController {
 			$user->direction = Input::get('direccion');
 			$user->password = Hash::make(Input::get('password'));
 			$user->rol = 'User';
+			$user->active = 1;
 			$user->save();
 
 			Mail::send('layouts.users.welcome', array('firstname'=>Input::get('nombres'), 'mail'=>Input::get('mail'), 'password'=>Input::get('password')), function($message){
@@ -78,7 +79,8 @@ class UsersController extends BaseController {
 	{
 
 		$data =array('mail'=>Input::get('mail'), 
-				'password'=>Input::get('password'));
+				'password'=>Input::get('password'),
+				'active'=>1);
 		
 		if (Auth::attempt($data)) {
 			return Redirect::to('users/dashboard')->with('message', 'Ha iniciado sesión');
@@ -249,20 +251,49 @@ class UsersController extends BaseController {
 		}      
 	}
 
-	public function getDestroy($id){
-		$user = User::findOrFail($id); 
-		$organizations = sizeof(Organization::where('usersid','=', $id)->get());
+	//INACTIVAR
+	public function getInactivate($id){
+		$user = $this->actualizar($id,0);
 		$organization = app('organization');
-		if(sizeof($user->teams()->get()) < 1 ){
-			$user->delete();
+		if($user->save()){ 
+			 
 			return Redirect::to('/organization/members/'. $organization->auxName . '/all_members')
-			->with('message', 'Registro eliminado')
-			->with('organization', app('organization'));
+			->with('message', 'Registro actualizado')
+			->with('organization', $organization);
 		}else{
+
+			die("12121");
 			return Redirect::to('/organization/members/'. $organization->auxName . '/all_members')
-				->with('error', 'El usuario se encuentra registrado en proyectos');	
+				->with('error', 'Error al actualizar');	
 		}
 	}
+
+	//Activar
+	public function getActivate($id){
+		$user = $this->actualizar($id,1);
+		$organization = app('organization');
+		if($user->save()){ 
+			 
+			return Redirect::to('/organization/members/'. $organization->auxName . '/all_members')
+			->with('message', 'Registro actualizado')
+			->with('organization', $organization);
+		}else{
+
+			die("12121");
+			return Redirect::to('/organization/members/'. $organization->auxName . '/all_members')
+				->with('error', 'Error al actualizar');	
+		}
+	}
+
+	private function actualizar($id, $active){
+		$user = User::findOrFail($id); 
+		$user->active=$active;
+		
+		return $user;
+		
+	}
+
+
 
 	public function postFinalize($id){
 

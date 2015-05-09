@@ -68,7 +68,7 @@ class OrganizationsController extends BaseController {
 	**/
 	public function getMembers($name){
 		$organization = app('organization');
-		$users = User::all();
+		$users = User::all(); 
 		$this->layout->content = View::make('layouts.users.users')
 		->with('organization', $organization)
 		->with('users', $users);
