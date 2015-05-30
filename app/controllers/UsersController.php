@@ -44,21 +44,29 @@ class UsersController extends BaseController {
 			$user->password = Hash::make(Input::get('password'));
 			$user->rol = 'User';
 			$user->active = 1;
-			$user->save();
+			if($user->save()){
+				try
+				{
+			    	// try
+			    	Mail::send('layouts.users.welcome', array('firstname'=>Input::get('nombres'), 'mail'=>Input::get('mail'), 'password'=>Input::get('password')), function($message){
+        				$message->to(Input::get('mail'), Input::get('nombres').' '.Input::get('apellidos'))->subject('Bienvenido!!');
+    					});
 
-			Mail::send('layouts.users.welcome', array('firstname'=>Input::get('nombres'), 'mail'=>Input::get('mail'), 'password'=>Input::get('password')), function($message){
-        		$message->to(Input::get('mail'), Input::get('nombres').' '.Input::get('apellidos'))->subject('Bienvenido!!');
-    		});
+    				return Redirect::to('/organization/members/'. $organization->auxName .'/all_members')
+						->with('message', 'Cuenta creada exitósamente, revise los datos de su cuenta en su correo.');
 
-    		return Redirect::to('/organization/members/'. $organization->auxName .'/all_members')
-							->with('message', 'Gracias por registrarse, está pendiente el envió de datos a su cuenta.');
-
-//			return Redirect::to('/organization/members/'. $organization->auxName .'/all_members')
-//							->with('message', 'Gracias por registrarse, está pendiente el envió de datos a su cuenta.');
-
+				}
+				catch(Exception $e)
+				{
+			    	// fail
+			    	return Redirect::to('/organization/members/'. $organization->auxName .'/all_members')
+						->with('message', 'Cuenta creada exitósamente, no se pudieron enviar los datos de su cuenta al correo.');
+				}	
+			}
+		
 		} else {
 			return Redirect::to('users/register')
-			->with('error', 'Ocurrieron los siguientes errores')
+			->with('error', 'Ocurrieron los siguientes errores.')
 			->withErrors($validator)
 			->withInput();   
 		}
@@ -86,7 +94,7 @@ class UsersController extends BaseController {
 			return Redirect::to('users/dashboard')->with('message', 'Ha iniciado sesión');
 		} else {
 			return Redirect::to('users/login')
-			->with('message', 'Tu email/password es incorrecto')
+			->with('error', 'Tu email/password es incorrecto o la cuenta está inactiva.')
 			->withInput();
 		}      
 	}
