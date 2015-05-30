@@ -88,4 +88,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         ->orderBy('updated_at', 'desc');;
 	}
 
+	public function projects(){
+		$teams = $this->belongsToMany('Teams', 'memberof', 'usersid', 'teamid')->get();	
+		$projects = array();
+		foreach ($teams as $var) {
+			$projects[] = Project::findOrFail($var->id); 
+			//$project = Project::findOrFail($var->id)->get(); 
+			//print_r($project->name);
+			//print_r($var->id);
+			//die();
+		}
+
+		//print_r(count($projects));
+		//return count($teams);
+		return $projects;
+	}
+
 }

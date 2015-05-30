@@ -68,14 +68,24 @@
 
 		<h3 class="col_8">Proyectos</h3> 
 		<div class="col_8">
-			<ul>  
-				@foreach ($organization->projects as $project)
+			<ul> 
+			@if(Auth::user()->rol=='Administrator')
+		    	@foreach ($organization->projects as $project)
+		    	<li class="project-menu-iteration-list-item ">
+					<a id="proyectID" class="organization-project-link" href="/projects/{{ $project->id }}" >
+						{{ $project->name }}
+					</a>
+				</li>
+				@endforeach 
+			@else
+				@foreach (Auth::user()->projects() as $project)
 				<li class="project-menu-iteration-list-item ">
 					<a id="proyectID" class="organization-project-link" href="/projects/{{ $project->id }}" >
 						{{ $project->name }}
 					</a>
 				</li>
 				@endforeach 
+			@endif
 			</ul>
 		</div>   
 	</div>
