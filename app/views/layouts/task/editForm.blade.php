@@ -4,7 +4,7 @@
   <h3 class="title-label">Editar tarea</h3>
 </div>
 <div class="modal-body edit-story-body" style="height: 218px; max-height: 218px;">
-  <form action="http://localhost:8000/tareas/editTask" id="editFormTask" class="uniForm">
+  <form action="/tareas/editTask" id="editFormTask" class="uniForm">
     <fieldset class="inlineLabels">
       {{ Form::hidden('state', '0', array('id' => 'state')) }}
       <div class="ctrlHolder">

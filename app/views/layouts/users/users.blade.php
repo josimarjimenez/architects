@@ -60,7 +60,7 @@
             "Yes": function () {
             	$.ajax({
 		            type: 'GET',
-		            url:  'http://localhost:8000/users/delete',
+		            url:  '/users/delete',
 		            data: 'id='+id,
 		            success: function (data) { 
 		            	if(data.succes=='true'){

@@ -104,7 +104,7 @@ $("#issueid").val(id);
     if (r == true) {
       $.ajax({
         type: 'GET',
-        url:  'http://localhost:8000/tareas/delete',
+        url:  '/tareas/delete',
         data: 'id='+id,
         success: function (data) { 
           $('#'+id).remove();
@@ -274,7 +274,7 @@ $("#issueid").val(id);
 
   $.ajax({
     type: 'GET',
-    url:  'http://localhost:8000/tareas/getTask',
+    url:  '/tareas/getTask',
     data: 'id='+id,
     success: function (data) {
       $('#editFormTask #name').val(data.task.name);
@@ -410,7 +410,7 @@ $(document).ready(function() {
 function createProjMenu(idProj, rol){
 $.ajax({
     type: 'GET',
-    url:  'http://localhost:8000/ajax/getProject',
+    url:  '/ajax/getProject',
     data: 'id='+idProj,
     beforeSend: function(){
     },

@@ -269,8 +269,6 @@ class UsersController extends BaseController {
 			->with('message', 'Registro actualizado')
 			->with('organization', $organization);
 		}else{
-
-			die("12121");
 			return Redirect::to('/organization/members/'. $organization->auxName . '/all_members')
 				->with('error', 'Error al actualizar');	
 		}
