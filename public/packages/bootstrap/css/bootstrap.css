@@ -7802,3 +7802,7 @@ a#newGroup:hover{
     padding-left: 30px !important;
     font-size: 12px;
 }
+
+#iteracionesList{
+    margin-left: -4px !important;
+}
