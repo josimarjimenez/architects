@@ -15,7 +15,7 @@
 		</div>
 		<div class="form_block">
 			<div class="buttonHolder">
-				{{ HTML::link('users/recoverpassword', 'Olvidaste tu contraseña', array('class'=>'secondaryAction')) }}	
+				{{ HTML::link('users/recoverpassword', '¿Olvidaste tu contraseña?', array('class'=>'secondaryAction','style'=>'color:#3399FF;')) }}	
 				{{ Form::submit('Ingresar', array('class'=>'btn btn-success'))}}
 			</div>
 		</div>
@@ -23,7 +23,7 @@
 	{{ Form::close() }}
 
 	<!-- Importar el formulario de creacion de usuarios -->
-	<div class="login-option-box" id="login_new_user">
+	<!--<div class="login-option-box" id="login_new_user">
 		@include('layouts.users.registerFrontal')
-	</div>
+	</div> -->
 </div>	

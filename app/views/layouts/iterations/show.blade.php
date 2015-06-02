@@ -31,15 +31,12 @@
 		</div>	
 		<div class="stats-bubble">
 			Dias restantes
-			<h4>2</h4> 
+			<h4>3</h4> 
 		</div>
 	</div>
 	<div style="text-align:center; margin-top:20px;" id="burnup_chart">
- 
+ 		<img src="{{ action('GraphicsController@iterationSummary', array('iteration' =>  $iteration->id  )) }}">
 		<!--@if($iteration->issues()->count() > 1)  -->
-
-			<img src="{{ action('GraphicsController@iterationSummary', array('iteration' =>  $iteration->id  )) }}">
-		 
 		<!--@else
 			<img src="https://d11uy15xvlvge3.cloudfront.net/static/v105/scrumdo/images/burndown.png"> 
 			<img src="{{ action('GraphicsTaskController@bar_task', array('iteration' =>  $iteration->id)) }}">

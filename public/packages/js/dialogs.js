@@ -452,11 +452,11 @@ $.ajax({
 
       
        //finalizar proyecto
-      li +='<li>';
-      li +='<a href="/projects/'+idProj+'/finalize" title="">';
-      li +='<i class="topmenu-icon icon-glyph glyphicon glyphicon-lock"></i> Finalizar proyecto';
-      li +='</a>';
-      li +='</li>';
+      //li +='<li>';
+      //li +='<a href="/projects/'+idProj+'/finalize" title="">';
+      //li +='<i class="topmenu-icon icon-glyph glyphicon glyphicon-lock"></i> Finalizar proyecto';
+      //li +='</a>';
+      //li +='</li>';
       li += '</ul>';
       li += '</div>';
 

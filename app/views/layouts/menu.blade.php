@@ -1,7 +1,9 @@
 @if(!Auth::check())
+<!--
 <li class="right">
-	{{ HTML::link('users/register', 'Register', array('class'=>'drop megamenu-top-header')) }} 
+	{{ HTML::link('users/register', 'Register....', array('class'=>'drop megamenu-top-header')) }} 
 </li>
+-->
 <li class="right">
 	{{ HTML::link('users/login', 'Iniciar sesión', array('class'=>'drop megamenu-top-header')) }}
 </li>

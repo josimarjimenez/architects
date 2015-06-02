@@ -20,7 +20,7 @@
 				<td>{{ $material->name }}</td>
 				<td>{{ $material->value }}</td>
 				<td>{{ $material->code }}</td>
-				<td>	q
+				<td>	
 					{{ HTML::link('materials/'.$material->id.'/edit',  'Editar', array('class'=>"btn btn-medium btn-info")  ) }} 
 					&nbsp
 					{{ Form::open(array('url' => 'materials/' . $material->id, 'class' => 'pull-right')) }}
