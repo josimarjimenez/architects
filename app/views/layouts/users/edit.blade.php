@@ -14,7 +14,7 @@
 	@endif 
 	<h1>Crear/Editar Usuarios</h1>
 	<div class="panel">
-		{{ Form::open(array('url'=>'users/update/'.$user->id,'class'=>'uniForm')) }}
+		{{ Form::open(array('url'=>'users/update/'.$user->id, 'files'=>true, 'class'=>'uniForm')) }}
 			<fieldset class="inlineLabels">
 				<div class="ctrlHolder" id="div_id_name">
 					{{ Form::label('name', 'Nombre' , array('class'=>'requiredField' )) }}
@@ -44,10 +44,28 @@
 					{{ Form::label('value', 'Password', array('class'=>'requiredField' )) }}
 					{{ Form::password('password', array('class'=>'textInput textinput', 'placeholder'=>'Contraseña')) }}
 				</div>
+
+
 				<div class="ctrlHolder" id="div_id_name">
 					{{ Form::label('value', 'Password confirmación', array('class'=>'requiredField' )) }}
 					{{ Form::password('password_confirmation', array('class'=>'textInput textinput', 'placeholder'=>'Confirmar contraseña')) }}
 				</div>
+ 
+				<div class="ctrlHolder" id="logtipo">
+					{{ Form::label('image', 'Avatar',array('class'=>'requiredField' )) }}
+					@if ( !empty($user->avatar) )
+						{{ HTML::image("uploads/users/".$user->avatar,
+							'alt', 
+							array(
+								'width' => 120, 
+								'height' => 70 
+								)
+							)
+						 }}
+					@endif
+					{{ Form::file('image')  }}	 
+				</div>
+				<div style="clear:both"></div>
 				<div class="buttonHolder">
 					{{ link_to(URL::previous(), 'Cancelar', ['class' => 'btn btn-danger btn-sm']) }}
 
