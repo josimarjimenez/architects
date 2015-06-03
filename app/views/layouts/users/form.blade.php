@@ -16,7 +16,7 @@
 		<?php 
 		if($type == "new"){
 			?>
-			{{ Form::open(array('url'=>'users/create','class'=>'uniForm')) }}
+			{{ Form::open(array('url'=>'users/create','files'=>true,  'class'=>'uniForm')) }}
 			
 			<?php }else { ?>
 				{{ Form::open(array('url'=>'users/edit/'.$user->id,'class'=>'uniForm')) }}
@@ -55,6 +55,12 @@
 					{{ Form::label('value', 'Password confirmación', array('class'=>'requiredField' )) }}
 					{{ Form::password('password_confirmation', array('class'=>'textInput textinput', 'placeholder'=>'Confirm contraseña')) }}
 				</div>
+
+				<div class="ctrlHolder" id="div_id_name">
+					{{ Form::label('image', 'Logotipo') }}
+					{{ Form::file('image')  }}	 
+				</div>
+
 				<div class="buttonHolder">
 					
 					{{ HTML::link('/organization/members/' . $organization->auxName . '/all_members/',  'Cancelar', array('class'=>"btn btn-danger btn-sm")  ) }} 

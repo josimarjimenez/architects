@@ -14,6 +14,7 @@
   {{ HTML::style('css/todo.css')}}
   {{ HTML::script('packages/js/jquery-2.1.1.js') }}
   {{ HTML::script('packages/js/jquery.ui.min.js') }}
+  {{ HTML::script('packages/js/jquery.ui.touch-punch.js') }}
   {{ HTML::script('packages/js/dialogs.js') }}
   {{ HTML::script('packages/js/todo.js') }}
   {{ HTML::script('packages/js/bootstrap-alert.js') }}

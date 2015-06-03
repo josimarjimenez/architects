@@ -516,7 +516,7 @@ $.ajax({
       responsive +='<i class="topmenu-icon icon-glyph icon-group"></i> Grupo de trabajo';
       responsive +='</a>';
       responsive +='</li>';
-      responsive +='<li>Iteraciones';
+      responsive +='<li><h5 style="color:#fff;">Iteraciones</h5>';
       responsive += '<ul class="" id="iteracionesList">';
       $.each( iterations, function( key, value ){
 

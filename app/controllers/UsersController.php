@@ -34,6 +34,8 @@ class UsersController extends BaseController {
 		$validator = Validator::make(Input::all(), $rules, User::$messages);
 
 		if ($validator->passes()) {
+
+
 			$user = new User;
 			$user->name = Input::get('nombres'); 
 			$user->lastname = Input::get('apellidos');
@@ -44,6 +46,12 @@ class UsersController extends BaseController {
 			$user->password = Hash::make(Input::get('password'));
 			$user->rol = 'User';
 			$user->active = 1;
+			//upload de image
+			$file = Input::file('image'); 
+			if($file!=null){
+				$upload_success = $file->move('public/uploads/users/', $file->getClientOriginalName());
+				$user->avatar = $file->getClientOriginalName();
+			}
 			if($user->save()){
 				try
 				{
@@ -157,6 +165,13 @@ class UsersController extends BaseController {
 
 			if(!empty(Input::get('password'))){
 				$user->password = Hash::make(Input::get('password'));
+			}
+			
+			//upload de image
+			$file = Input::file('image'); 
+			if($file!=null){
+				$upload_success = $file->move('public/uploads/users/', $file->getClientOriginalName());
+				$user->avatar = $file->getClientOriginalName();
 			}
 			
 			$user->save();

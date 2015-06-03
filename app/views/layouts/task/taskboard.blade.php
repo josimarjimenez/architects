@@ -1,17 +1,20 @@
 <style type="text/css">
 #todo, #haciendo, #hecho {
     border: 1px solid #eee; 
-    min-height: 20px;
+    min-height: 120px;
     list-style-type: none;
     margin: 0;
     padding: 5px 0 0 0; 
     margin-right: 10px;
+    overflow: scroll;
+    max-height: 300px;
   }
   #todo li, #haciendo li, #hecho li {
     margin: 0 5px 5px 5px;
     padding: 5px;
     font-size: 1.2em; 
   }
+
 </style>
 <div class="task-window"   > 
 	<div class="modal-header">
