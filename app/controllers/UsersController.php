@@ -46,6 +46,12 @@ class UsersController extends BaseController {
 			$user->password = Hash::make(Input::get('password'));
 			$user->rol = 'User';
 			$user->active = 1;
+			//upload de image
+			$file = Input::file('image'); 
+			if($file!=null){
+				$upload_success = $file->move('public/uploads/users/', $file->getClientOriginalName());
+				$user->avatar = $file->getClientOriginalName();
+			}
 			if($user->save()){
 				try
 				{
