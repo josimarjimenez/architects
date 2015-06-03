@@ -16,7 +16,7 @@
 		<?php 
 		if($type == "new"){
 			?>
-			{{ Form::open(array('url'=>'users/create','class'=>'uniForm')) }}
+			{{ Form::open(array('url'=>'users/create','files'=>true,  'class'=>'uniForm')) }}
 			
 			<?php }else { ?>
 				{{ Form::open(array('url'=>'users/edit/'.$user->id,'class'=>'uniForm')) }}
