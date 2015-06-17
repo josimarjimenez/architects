@@ -28,6 +28,9 @@ class ProjectsController extends BaseController {
 								->with('completed', $storiesCompleted)
 								->with('doing', $storiesProgress);
 			}else{
+
+				$resultBudget = $this->getBudgetSummary($id);
+				$resultTime = $this->getTimeSummary($id);
 				$stories= Issue::whereIn('iterationid', $idIterations)->get();
 				$totalStories = sizeof($stories);
 				$storiesCompleted = Issue::whereIn('iterationid', $idIterations)->
@@ -35,6 +38,12 @@ class ProjectsController extends BaseController {
 				$storiesProgress = Issue::whereIn('iterationid', $idIterations)->
 								where('currentState', 'DOING')->get();
 								$this->layout->content = View::make('layouts.projects.show')
+								->with('estimatedBudget', $resultBudget['estimated_budget'])
+								->with('realBudget', $resultBudget['real_budget'])
+								->with('resultBudget', $resultBudget['result_budget'])
+								->with('estimatedTime', $resultTime['estimated_time'])
+								->with('realTime', $resultTime['real_time'])
+								->with('resultTime', $resultTime['result_time'])
 								->with('project', $project)
 								->with('iterations', $iterations)
 								->with('totalStories', $totalStories)
@@ -178,11 +187,137 @@ class ProjectsController extends BaseController {
  		$num = count($members) ;
 		$team = Teams::find($team_id);
     	$team->users()->sync($members);
- 		return Redirect::to('projects/members/'.$project_id)->with('message', 'Se han asignado los miembros correctamente.');
+ 		return Redirect::to('projects/members/'.$project_id)->with('message', 'Se han asignado los miembros  .' );
 	}
 
 	public function getFinalize($id){
+		try {
+			$project = Project::findOrFail($id); 
+			$iterations =sizeof($project->iterations);
+			$totalRealTime = 0;
+			$totalEstimatedTime = 0;
+			foreach ($project->iterations as $iteration) {
 
+				$totalEstimatedTime += $iteration->estimatedBudget;
+				$totalRealTime += $iteration->realBudget;
+
+			}
+
+			if($iterations==0){
+				
+			}else{
+				
+			}
+
+		}catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) { 
+			$organization = app('organization');
+			return Redirect::to('organization/name/'.$organization->auxName.'/projects')
+			->with('error', 'No existen iteraciones en el proyecto.');
+		}
+	}
+
+	public function getBudgetSummary($id){
+		try {
+			$project = Project::findOrFail($id); 
+			$iterations =sizeof($project->iterations);
+			$totalEstimatedBudget = 0;
+			$totalRealBudget = 0;
+			$diferencia = 0;
+			$resultado = 0;
+			$respuesta = '';
+			$result= array();
+			if(!$iterations==0){
+				foreach ($project->iterations as $iteration) {
+					$totalEstimatedBudget += $iteration->estimatedBudget;
+					$totalRealBudget += $iteration->realBudget;
+				}
+
+				//Aumento
+				if($totalEstimatedBudget > $totalRealBudget){
+					$respuesta = $respuesta . 'Existe una reducción del ';
+					$diferencia = $totalEstimatedBudget - $totalRealBudget;
+				//Reduccion
+				}else{
+					$respuesta = $respuesta . 'Existe un aumento del ';
+					$diferencia = $totalRealBudget - $totalEstimatedBudget;
+				}
+
+				$resultado = ($diferencia / $totalEstimatedBudget) * 100;
+				$resultado = round($resultado, 2);
+				$respuesta = $respuesta . $resultado . '%, referente al presupuesto.'; 
+
+				$result['estimated_budget'] = round($totalEstimatedBudget, 2);
+				$result['real_budget'] = round($totalRealBudget, 2);
+				$result['result_budget'] = $respuesta;
+
+				return $result;
+
+
+			}else{
+				
+				$result['estimated_budget'] = $totalEstimatedBudget;
+				$result['real_budget'] = $totalRealBudget;
+				$result['result_budget'] = $respuesta;	
+				return $result;		
+			}
+
+		}catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) { 
+			$organization = app('organization');
+			return Redirect::to('organization/name/'.$organization->auxName.'/projects')
+			->with('error', 'No existen iteraciones en el proyecto.');
+		}
+
+	}
+
+	public function getTimeSummary($id){
+		try {
+			$project = Project::findOrFail($id); 
+			$iterations =sizeof($project->iterations);
+			$totalEstimatedTime = 0;
+			$totalRealTime = 0;
+			$diferencia = 0;
+			$resultado = 0;
+			$respuesta = '';
+			$result= array();
+			if(!$iterations==0){
+				foreach ($project->iterations as $iteration) {
+					$totalEstimatedTime += $iteration->estimatedTime;
+					$totalRealTime += $iteration->realTime;
+				}
+
+				//Aumento
+				if($totalEstimatedTime > $totalRealTime){
+					$respuesta = $respuesta . 'Existe una reducción del ';
+					$diferencia = $totalEstimatedTime - $totalRealTime;
+				//Reduccion
+				}else{
+					$respuesta = $respuesta . 'Existe un aumento del ';
+					$diferencia = $totalRealTime - $totalEstimatedTime;
+				}
+
+				$resultado = ($diferencia / $totalEstimatedTime) * 100;
+				$resultado = round($resultado, 2);
+				$respuesta = $respuesta . $resultado . '%referente al tiempo.'; 
+
+				$result['estimated_time'] = round($totalEstimatedTime, 2);
+				$result['real_time'] = round($totalRealTime, 2);
+				$result['result_time'] = $respuesta;
+
+				return $result;
+
+			}else{
+				
+				$result['estimated_time'] = $totalEstimatedBudget;
+				$result['real_time'] = $totalRealBudget;
+				$result['result_time'] = $respuesta;	
+				return $result;		
+			}
+
+		}catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) { 
+			$organization = app('organization');
+			return Redirect::to('organization/name/'.$organization->auxName.'/projects')
+			->with('error', 'No existen iteraciones en el proyecto.');
+		}
 	}
 
 }

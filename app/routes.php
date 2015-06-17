@@ -301,6 +301,13 @@ Route::get('tareas/delete', function(){
 		$id = Input::get("id");
 		if( !empty( Input::get("id") ) ) {
 			$task = Task::find($id);
+			$issue = $task->issue;
+			$iteration = $issue->iterations;
+
+			$iteration->realTime =  $iteration->realTime - $task->timeReal;
+			$iteration->estimatedTime = $iteration->estimatedTime - $task->timeEstimated;
+			$iteration->save();
+
 			$task->delete();
 		}
 		return Response::json( array('succes'=>'1') );

@@ -99,7 +99,7 @@ class IterationsController extends BaseController {
 		$valido = $this->validarFecha($inicio, $end); 
 		if(!$valido){
 		return Redirect::to('iterations/create?projectid='.Input::get('projectid'))
-			->with('message', 'La fecha inicial es mayor que la final')
+			->with('error', 'La fecha inicial es mayor que la final')
 			->withErrors($validator)
 			->withInput();
 		}	
@@ -132,7 +132,7 @@ class IterationsController extends BaseController {
 		}catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) { 
 			$organization = app('organization');
 		    return Redirect::to('/organization/name/'.$organization->auxName.'/projects')
-			->with('message', 'No existe el proyecto');
+			->with('error', 'No existe el proyecto');
 		}
 		
 		 

@@ -59,19 +59,33 @@
 		  </div>
 		      
 
-		    <div id="report_areaTE" style="min-height: 92px; text-align:center">
+		    <div id="report_areaTE" class="print_areaTE" style="min-height: 92px; text-align:center">
 				<img src="{{ action('GraphicsIterationController@bar_time', array('project' =>  $project->id)) }}">
-
 				<img src="{{ action('GraphicsIterationController@line_time', array('project' =>  $project->id)) }}">
+				
+				<div style="text-align:left; font-weight: bold;">
+					<p>Tiempo estimado {{ $estimatedTime }}</p>
+					<p>Tiempo real {{ $realTime }}</p>
+					<p> {{ $resultTime }}</p>
+				</div>
+				<p><input type="button" id="printer_areaTE" class="btn btn-success" value="Imprimir"></p>
+
 		    </div>
 
-		    <div id="report_areaEO" style="min-height: 92px; text-align:center">
+		    <div id="report_areaEO" class="print_areaEO" style="min-height: 92px; text-align:center">
 		      	<img src="{{ action('GraphicsIterationController@bar_budget', array('project' =>  $project->id)) }}">
-					
 				<img src="{{ action('GraphicsIterationController@line_budget', array('project' =>  $project->id)) }}">
+				
+				<div style="text-align:left; font-weight: bold;">
+					<p>Presupuesto estimado {{ $estimatedBudget }}</p>
+					<p> Presupuesto real {{ $realBudget }}</p>
+					<p> {{ $resultBudget }}</p>
+				</div>
+				<p><input type="button" id="printer_areaEO" class="btn btn-success" value="Imprimir"></p>
+
 		    </div>
 
-		    <div id="report_areaRP" style="min-height: 92px; text-align:center">
+		    <div id="report_areaRP" class="print_areaRP" style="min-height: 92px; text-align:center">
 		    	 <br>
 		    	@if ( !empty($project->iterations()))
 			    	<div class="table-responsive">
@@ -178,6 +192,7 @@
 			    		</table>
 			    	</div>
 		    	@endif
+		        <p><input type="button" id="printer_areaRP" class="btn btn-success" value="Imprimir"></p>
 		    </div>
 		</div>
 	@endif 
@@ -230,3 +245,27 @@ $( document ).ready(function()
 });
 </script>
 
+<script type="text/javascript">
+	$( document ).ready(function()
+	{
+		//$( ".printer" ).click(function() {
+  		//	alert( "Handler for .click() called." );
+  		//	$(".print").printArea();
+		//});
+		$("#printer_areaRP").bind("click",function()
+		{
+			$(".print_areaRP").printArea();
+		});
+
+		$("#printer_areaEO").bind("click",function()
+		{
+			$(".print_areaEO").printArea();
+		});
+
+		$("#printer_areaTE").bind("click",function()
+		{
+			$(".print_areaTE").printArea();
+		});
+
+	});
+</script>
