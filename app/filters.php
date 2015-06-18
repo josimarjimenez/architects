@@ -19,7 +19,7 @@ App::before(function($request)
 	 	foreach ($organization->projects as $project) {
 	 		$project->auxName = str_replace(" ",'-', $project->name);
 	 		$project->auxName = stripAccents($project->auxName);
-	 	}
+	 	} 
         return $organization;
     });
  

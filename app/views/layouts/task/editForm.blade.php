@@ -69,6 +69,7 @@
               <th width="15%" >P.U.
               <th>Cant.</th>
               <th>Total</th>
+              <th></th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -86,6 +87,7 @@
               <th width="15%" >P. H.
               <th>Cant.</th>
               <th>Total</th>
+              <th></th>
             </tr>
           </thead>
           <tbody></tbody>

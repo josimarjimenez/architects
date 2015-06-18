@@ -63,7 +63,6 @@
 				</li>
 				@endif
 			</ul>
-
 		</div>
 
 		<h3 class="col_8">Proyectos</h3> 

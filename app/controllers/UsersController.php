@@ -206,7 +206,6 @@ class UsersController extends BaseController {
 		$organization = app('organization');
 		$projectsCount = sizeof($organization->projects);
 		$idProjects = array();
-
 		foreach($organization->projects as $project){
 			$idProjects[]=$project->id;
 		}
@@ -226,7 +225,7 @@ class UsersController extends BaseController {
 			$idStories[] = $issue->id;
 		}
 		$tasks = Task::whereIn('issueid', $idStories)->get();
-	
+		
 		$this->layout->content = View::make('layouts.users.dashboard')
     	->with('organization', $organization) 
     	->with('projectsCount', $projectsCount)

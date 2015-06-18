@@ -169,8 +169,8 @@ $("#issueid").val(id);
  function udpateMaterial(id, nombre, valor){
   $('#listaMateriales').css('display', "");
     //chequear si existe el elemento
-    if($("#cu_"+id).length == 0){
-     var insert = '<tr>';
+    if($("#cuM_"+id).length == 0){
+     var insert = '<tr id="l_'+id+'">';
      insert += '<td>'+nombre+'</td>';
      insert += '<td class="text-left">'+valor+'</td>';
      insert += '<td><input style="width:60px !important" type="text" name="cuM_'+id+'" value="" id="cuM_'+id+'" onkeyup="calcular('+id+', '+valor+', \'M\');" /></td>';
@@ -178,6 +178,9 @@ $("#issueid").val(id);
      insert += '<input readonly style="width:60px !important"  type="text" value="" id="toM_'+id+'" name="toM_'+id+'" />';
      insert += '<input type="hidden" value="'+id+'" name="name_'+id+'" id="id_'+id+'" />';
      insert += '</td>';
+
+     //agregar eliminar fila 
+     insert += '<td><a class="btn btn-danger blanco" href="#" onclick="$(this).closest(\'tr\').remove(); eliminarID('+id+')">Eliminar</a></td>';
      insert += '</tr>';
      $('#listaMateriales tbody').append(insert);
      var valorId = $('#listaIDS').val();
@@ -188,6 +191,15 @@ $("#issueid").val(id);
    $('#total').val(0)
  }
 
+/**
+ * Eliminar los ids de material del campo oculto
+ * @param  {[type]} id [description]
+ * @return {[type]}    [description]
+ */
+function eliminarID(id){
+    //remover si existe el id en el campo oculto
+     $('#listaIDS_M').val($('#listaIDS_M').val().replace(id, ''));
+}
 
 /**
  * [udpatePersonal actualizacion de tabla de personal luego de seleccion]
@@ -208,10 +220,22 @@ $("#issueid").val(id);
    insert += '<input readonly style="width:60px !important"  type="text" value="" id="toP_'+id+'" name="toP_'+id+'" />';
    insert += '<input type="hidden" value="'+id+'" name="idP_'+id+'" id="idP_'+id+'" />';
    insert += '</td>';
+   //agregar eliminar fila 
+   insert += '<td><a class="btn btn-danger blanco" href="#" onclick="$(this).closest(\'tr\').remove(); eliminarIDP('+id+')">Eliminar</a></td>';
    insert += '</tr>';
    $('#listaPersonal tbody').append(insert);
 
  } 
+}
+
+/**
+ * Eliminar el personal
+ * @param  {[type]} id [description]
+ * @return {[type]}    [description]
+ */
+function eliminarIDP(id){
+    //remover si existe el id en el campo oculto
+     $('#listaIDS_P').val($('#listaIDS_P').val().replace(id, ''));
 }
 
 /**
