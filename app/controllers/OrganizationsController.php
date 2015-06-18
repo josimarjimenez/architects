@@ -57,7 +57,7 @@ class OrganizationsController extends BaseController {
 			//$pricetotal = asDollars($pricetotal);
 			//$project->budgetEstimated = money_format('%(#10n',  $project->budgetEstimated);
 		}
-		
+		die();
 		$this->layout->content = View::make('layouts.organizations.projects')
 		->with('organization', $organization);
 	}

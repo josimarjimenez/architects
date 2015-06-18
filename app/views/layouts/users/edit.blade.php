@@ -95,10 +95,9 @@
 	});
 
 	function muestraMensaje() {
-//		var phone = document.getElemen
-//		var phone = document.getElementById('phone');
-
-//		document.getElementsByName("phone")
+		//var phone = document.getElemen
+		//var phone = document.getElementById('phone');
+		//document.getElementsByName("phone")
 		var valor = $('#ident').val();
 
 		alert('Gracias por pinchar ' + valor);
