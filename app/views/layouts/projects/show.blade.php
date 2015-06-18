@@ -184,10 +184,12 @@
 
 								@endforeach
 								<tr>
-									<td colspan="11" class="totalIter">$ {{ $iteration->realBudget }}</td>
+									<td colspan="11" class="totalIter"></td>
 								</tr>
 			    			@endforeach
-
+							<tr>
+									<td colspan="11" class="totalIter">$ {{ $iteration->realBudget }}</td>
+							</tr>
 			    		@endforeach
 			    		</table>
 			    	</div>

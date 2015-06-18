@@ -80,7 +80,7 @@
 							</a>  
 						</span>
 						<h1 class="formatted_story_text story-summary">
-							<span style="color:#555555;" class="story_number">#{{ $issue->id }}</span>
+							<span style="color:#555555;" class="story_number">#</span>
 							<p>{{ $issue->summary }}</p>
 						</h1>
 						<div class="formatted_story_text story_detail">
@@ -88,26 +88,15 @@
 						</div>
 					</div>	
 					<div class="story_footer">    
-						<a class="status-text label-task status-background-1 status-foreground-1" 
-						href="#">
-						{{ $issue->currentState }}
-					</a>
-
 					@if($hasmembers)
 					<span class="tasks-holder">
 						<span>
-							<a class="open-tasks-link show_tasks_link" href="#myModal" onclick="mostrarTaskboard({{ $issue->id }}, {{ Auth::user()->id }}, '{{ Auth::user()->rol }}')">
+							<a class="status-text label-task status-background-1 status-foreground-1" href="#myModal" onclick="mostrarTaskboard({{ $issue->id }}, {{ Auth::user()->id }}, '{{ Auth::user()->rol }}')">
 								Tareas
 							</a>
 						</span>
 					</span>
 					@endif
-					|
-					<span class="comments-holder">
-						<a class="comments-link" href="#">
-							0&nbsp;Comments
-						</a>
-					</span> 
 				</div>
 			</div>
 		</li>

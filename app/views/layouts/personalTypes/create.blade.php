@@ -9,7 +9,6 @@
 	</ul>
 	@endif 
 
-@if(Auth::user()->rol=='Administrator')	
 	<h1>Crear / Editar tipo de personal</h1>
 		<div class="panel">
 			<?php 
@@ -40,18 +39,15 @@
 						{{ Form::textArea('description', null, array('class'=>'textInput textinput', 'placeholder'=>'Descripción del tipo de personal')) }}
 					</div>
 
-					@if(Auth::user()->rol=='Administrator')
-						<div class="buttonHolder">
+					<div class="buttonHolder">
 
-							{{ HTML::link('personalType/',  'Cancelar', array('class'=>"btn btn-danger btn-sm")  ) }} 
+						{{ HTML::link('personalType/',  'Cancelar', array('class'=>"btn btn-danger btn-sm")  ) }} 
 
-							{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
-						</div>
-					@endif
-						{{ Form::hidden('organizationid', $organization->id) }}
+						{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
+					</div>
+					{{ Form::hidden('organizationid', $organization->id) }}
 
 				</fieldset>
 						{{ Form::close() }}
 		</div>
 	</div>
-@endif
