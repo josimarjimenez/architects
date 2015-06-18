@@ -7,7 +7,7 @@ class GraphicsController extends BaseController{
  		 
  	}
 
-    public function iterationSummary($id){
+    public function iterationSummaryAux($id){
         JpGraph\JpGraph::load();
         JpGraph\JpGraph::module('bar');
         
@@ -62,7 +62,7 @@ class GraphicsController extends BaseController{
     /**
     *
     */
-    public function iterationSummaryAux($id){   
+    public function iterationSummary($id){   
     	$iteration = Iterations::findOrFail($id); 
     	$issues = Issue::where('iterationid','=',$iteration->id)->get();  
  

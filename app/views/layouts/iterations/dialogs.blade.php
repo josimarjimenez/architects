@@ -11,14 +11,14 @@
 </div>
 <!-- DIALOGOS: MATERIAL -->
 <div class="modal materialForm" id="chooseMaterial">
-    @include('layouts.materials.choose')
+    @include('layouts.materials.materialChoose')
     <div class="text-right" style="margin-right:20px;">
     	<button  class="btn btn-default" id="cerrarChoose">Cerrar</button>
     </div> 
 </div>
 <!-- DIALOGOS: PERSONAL -->
 <div class="modal chooseGasto" id="choosePersonal">
-    @include('layouts.personalTypes.choose')
+    @include('layouts.personalTypes.personalTypeChoose')
     <div class="text-right" style="margin-right:20px;">
     	<button  class="btn btn-default" id="cerrarPersonal">Cerrar</button>
     </div> 
