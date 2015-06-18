@@ -23,39 +23,8 @@
         </tr>
         <tr>
           <td>Puntos:&nbsp;</td>
-          <td id="points_section">
-            <ul>
-              <li>
-                <label for="id_points_3">
-                  <input id="id_points_3" value="1" name="points" type="radio"> 1
-                </label>
-              </li>
-              <li>
-                <label for="id_points_4">
-                  <input id="id_points_4" value="2" name="points" type="radio"> 2
-                </label>
-              </li>
-              <li>
-                <label for="id_points_5">
-                  <input id="id_points_5" value="3" name="points" type="radio"> 3
-                </label>
-              </li>
-              <li>
-                <label for="id_points_6">
-                  <input id="id_points_6" value="5" name="points" type="radio"> 5
-                </label>
-              </li>
-              <li>
-                <label for="id_points_7">
-                  <input id="id_points_7" value="8" name="points" type="radio"> 8
-                </label>
-              </li>
-              <li>
-                <label for="id_points_8">
-                  <input id="id_points_8" value="13" name="points" type="radio"> 13
-                </label>
-              </li>
-            </ul>
+          <td>
+            <input name="points" id="points" type="text" />
           </td>
         </tr>
         <tr>
@@ -98,8 +67,9 @@ $(document).ready(function() {
   $('#addStoryForm').submit(function(event){  
      var summary = $('#summary').val();
      var detail = $('#detail').val();
-     var radio = $('input[name=points]:checked'); 
-     if(summary == '' ||  detail == '' || !radio.val()){
+//     var radio = $('input[name=points]:checked'); 
+     var radio = $('#points').val();
+     if(summary == '' ||  detail == '' || !radio){
        return false;
      }
      return true;
