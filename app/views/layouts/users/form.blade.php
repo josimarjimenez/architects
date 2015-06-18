@@ -54,12 +54,28 @@
 				<div class="ctrlHolder" id="div_id_name">
 					{{ Form::label('value', 'Password confirmación', array('class'=>'requiredField' )) }}
 					{{ Form::password('password_confirmation', array('class'=>'textInput textinput', 'placeholder'=>'Confirm contraseña')) }}
+				</div> 
+
+				<div class="ctrlHolder" id="logtipo">
+					{{ Form::label('image', 'Avatar',array('class'=>'requiredField' )) }}
+					@if ( !empty($user->avatar) )
+						{{ HTML::image("uploads/users/".$user->avatar,
+							'alt', 
+							array(
+								'width' => 120, 
+								'height' => 70 
+								)
+							)
+						 }}
+					@endif
+					{{ Form::file('image')  }}	 
 				</div>
 
 				<div class="ctrlHolder" id="div_id_name">
 					{{ Form::label('image', 'Logotipo') }}
 					{{ Form::file('image')  }}	 
 				</div>
+
 
 				<div class="buttonHolder">
 					

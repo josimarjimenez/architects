@@ -122,6 +122,7 @@ class UsersController extends BaseController {
 	//		->with('organization', app('organization'))
 			->with('user', $user)
 			->with('type', "edit");
+
 			//->with('type', "edit");
 	}
 
@@ -134,26 +135,18 @@ class UsersController extends BaseController {
 		    return Redirect::to('/organization/members/'. $organization->auxName . '/all_members')
 			->with('message', 'No existe el usuario');
 		}
-		
+
 		$this->layout->content = View::make('layouts.users.editprofile')
-	//		->with('organization', app('organization'))
 			->with('user', $user)
 			->with('type', "edit");
-			//->with('type', "edit");
 	}	
 
 	public function postUpdate($id){
-
-		
-
 		$user = User::findOrFail($id);
 		$rules = User::$rules;
 		$rules['identification'] .= ',identification,' . $id;
 		$rules['mail'] .= ',mail,' . $id;
 		$validator = Validator::make(Input::all(), $rules, User::$messages);
-
-		//var_dump($rules);
-		//die();
 
 		if($validator->passes()){
 			$user->name = Input::get('nombres'); 
@@ -168,7 +161,7 @@ class UsersController extends BaseController {
 			}
 			
 			//upload de image
-			$file = Input::file('image'); 
+			$file = Input::file('image');  
 			if($file!=null){
 				$upload_success = $file->move('public/uploads/users/', $file->getClientOriginalName());
 				$user->avatar = $file->getClientOriginalName();
