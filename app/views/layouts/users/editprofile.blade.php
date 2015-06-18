@@ -14,7 +14,7 @@
 	@endif 
 	<h1>Mi perfil</h1>
 	<div class="panel">
-		{{ Form::open(array('url'=>'users/update/'.$user->id,'class'=>'uniForm')) }}
+		{{ Form::open(array('url'=>'users/update/'.$user->id, 'files'=>true, 'class'=>'uniForm')) }}
 			<fieldset class="inlineLabels">
 				<div class="ctrlHolder" id="div_id_name">
 					{{ Form::label('name', 'Nombre' , array('class'=>'requiredField' )) }}
@@ -48,6 +48,22 @@
 					{{ Form::label('value', 'Password confirmación', array('class'=>'requiredField' )) }}
 					{{ Form::password('password_confirmation', array('class'=>'textInput textinput', 'placeholder'=>'Confirmar contraseña')) }}
 				</div>
+
+				<div class="ctrlHolder" id="logtipo">
+					{{ Form::label('image', 'Avatar',array('class'=>'requiredField' )) }}
+					@if ( !empty($user->avatar) )
+						{{ HTML::image("uploads/users/".$user->avatar,
+							'alt', 
+							array(
+								'width' => 120, 
+								'height' => 70 
+								)
+							)
+						 }}
+					@endif
+					{{ Form::file('image')  }}	 
+				</div>
+
 				<div class="buttonHolder">
 
 					{{ HTML::link('/users/dashboard',  'Cancelar', array('class'=>"btn btn-danger btn-sm")  ) }} 
