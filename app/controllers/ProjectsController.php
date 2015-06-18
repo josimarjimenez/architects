@@ -244,7 +244,7 @@ class ProjectsController extends BaseController {
 
 				$resultado = ($diferencia / $totalEstimatedBudget) * 100;
 				$resultado = round($resultado, 2);
-				$respuesta = $respuesta . $resultado . '%, referente al presupuesto.'; 
+				$respuesta = $respuesta . $resultado . '% referente al presupuesto estimado.'; 
 
 				$result['estimated_budget'] = round($totalEstimatedBudget, 2);
 				$result['real_budget'] = round($totalRealBudget, 2);
@@ -297,7 +297,7 @@ class ProjectsController extends BaseController {
 
 				$resultado = ($diferencia / $totalEstimatedTime) * 100;
 				$resultado = round($resultado, 2);
-				$respuesta = $respuesta . $resultado . '%referente al tiempo.'; 
+				$respuesta = $respuesta . $resultado . '% referente al tiempo estimado.'; 
 
 				$result['estimated_time'] = round($totalEstimatedTime, 2);
 				$result['real_time'] = round($totalRealTime, 2);
