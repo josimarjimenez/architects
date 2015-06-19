@@ -23,12 +23,13 @@
 					@if(empty(Auth::user()->avatar))
 						{{ HTML::link('users/editprofile', 'Mi perfil',array('class'=>'drop megamenu-top-header')) }}
 					@else
-						<a href="users/editprofile">{{ HTML::image("uploads/users/".Auth::user()->avatar,
+						{{ HTML::image("uploads/users/".Auth::user()->avatar,
 							'alt', 
 							array(
 								'width' => 48
 								)
-							) }} Mi perfil</a>
+							) }}
+						{{ HTML::link('users/editprofile', 'Mi perfilshh', array('class'=>'drop megamenu-top-header')) }}
 					@endif
 				</li>
 				<li>

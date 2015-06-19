@@ -7806,3 +7806,12 @@ a#newGroup:hover{
 #iteracionesList{
     margin-left: -4px !important;
 }
+
+
+#perfil li{
+    width: 180px;
+}
+
+#perfil li img , #perfil li a{
+    display: inline-block;
+}

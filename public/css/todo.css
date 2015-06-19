@@ -80,3 +80,8 @@ h3{
     line-height: 75px;
     text-align: center;
 }
+
+.space-buttons{
+    margin-left: 10px;
+    margin-right: 10px;
+}

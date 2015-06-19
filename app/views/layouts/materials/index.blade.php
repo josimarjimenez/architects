@@ -13,7 +13,7 @@
 				<th style="width:180px;">Nombre</th>
 				<th style="width:180px; text-align:right">Costo</th>
 				<th style="width:180px; text-align:right">Código</th>
-				<th styel="width:180px;"></th>
+				<th style="width:150px; text-align:left"></th>
 			</tr>
 			@foreach ($organization->materials as $material)
 			<tr>
@@ -23,7 +23,7 @@
 				<td>	
 					{{ HTML::link('materials/'.$material->id.'/edit',  'Editar', array('class'=>"btn btn-medium btn-info")  ) }} 
 					&nbsp
-					{{ Form::open(array('url' => 'materials/' . $material->id, 'class' => 'pull-right')) }}
+					{{ Form::open(array('url' => 'materials/' . $material->id, 'class' => 'pull-left')) }}
 						{{ Form::hidden('_method', 'DELETE') }}
 						{{ Form::submit('Eliminar', array('class' => 'btn btn-danger')) }}
 					{{ Form::close() }}

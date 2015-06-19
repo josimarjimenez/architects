@@ -12,7 +12,7 @@
 					<th style="width:180px;">Nombre</th>
 					<th style="width:180px;">Descripcion</th>
 					<th style="width:180px;">Código</th>
-					<th style="width:180px;"></th>
+					<th style="width:100px;"></th>
 				</tr>
 				@foreach($personalTypes as $personalType)
 				<tr>
@@ -21,12 +21,13 @@
 					<td>{{$personalType->code}}</td>
 					<td>
 						{{HTML::link('personalType/' . $personalType->id . '/edit', 'Editar', array('class'=>"btn btn-medium btn-info") )}}
-						&nbsp
+						&nbsp;
 						{{ Form::open(array('url' => 'personalType/' . $personalType->id, 'class' => 'pull-right')) }}
 							{{ Form::hidden('_method', 'DELETE') }}
-							{{ Form::submit('Eliminar', array('class' => 'btn btn-danger')) }}
+							{{ Form::submit('Eliminar', array('class' => 'btn btn-danger btn-medium')) }}
 						{{ Form::close() }}	
 					</td>
+					
 				</tr>
 				@endforeach
 			</tbody>

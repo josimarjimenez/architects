@@ -68,37 +68,37 @@
        <table class="dash-iter-table">
          <tbody>
           <tr>
-           <td class="dash-iter-left">
-            {{ HTML::image('images/sprint1.png', 'class="img-responsive"') }}
-          </td>
-          <td class="dash-iter-right">
+            <td class="dash-iter-left">
+              <img src="{{ action('GraphicsController@iterationSummary', array('iteration' =>  $iteration->id)) }}">
+            </td>
+            <td class="dash-iter-right">
             <span class="recent-stories" style="display: inline;">Modificados recientemente:</span>
             <ul class="dash-iter-stories">
              @foreach ($iteration->issues as $issue)
-             <li class="story-view story-style-list superboard-story story_block gripper-status-4" >
-               <div class="story-checkbox-holder" style="display: none;">
-                <input type="checkbox" class="story-checkbox">
-              </div>
-              <span 
-              class="story-icons">
-              <a href="#" class="edit-story-button">
-                <i class="icon-glyph icon-edit" title="Editar historia"></i>
-              </a>        
-            </span>
-            <h1 class="formatted_story_text">
-              <span style="color:#555555;" class="story_number">
-               #3
-             </span>
-             <p>{{ $issue->summary }}
-             </p>
-           </h1>
-         </li>
-         @endforeach 
-       </ul>
-     </td>
-   </tr>
- </tbody>
-</table>
+              <li class="story-view story-style-list superboard-story story_block gripper-status-4" >
+                <div class="story-checkbox-holder" style="display: none;">
+                  <input type="checkbox" class="story-checkbox">
+                </div>
+                <span 
+                class="story-icons">
+                  <a href="#" class="edit-story-button">
+                    <i class="icon-glyph icon-edit" title="Editar historia"></i>
+                  </a>        
+                </span>
+                <h1 class="formatted_story_text">
+                <span style="color:#555555;" class="story_number">
+                #
+                </span>
+                <p>{{ $issue->summary }}
+                </p>
+                </h1>
+              </li>
+            @endforeach 
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 </li>	
 @endforeach 
 </ul>
