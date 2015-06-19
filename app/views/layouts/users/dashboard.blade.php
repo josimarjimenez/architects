@@ -1,10 +1,9 @@
 
   <h1 id="tour-org-name">{{ $organization->name }}</h1>
+  @if(Auth::user()->rol=='Administrator' || Auth::user()->projects())
   <div id="report">
     <div class="report-tab-holder">
-      <div class="report-tab">
-        <a href="#" id="yourstats">Tus estadísticas</a>
-      </div>
+      
       <div class="report-tab report-tab report-tab-selected">
         <a href="#" id="summary">Estadísticas de la organización</a></div>
       </div>
@@ -41,71 +40,139 @@
         <h4>{{ $taskCount }}</h4> 
       </div> 
     </div>
-</div> 
+</div>
+@endif
+
 <div class="my-dashboard-holder">
 	<div class="mydashboard">
 		<ul class="dash-project-list">
-			@foreach ($organization->projects as $project)
-     <li class="dash-project">
-      <div class="dash-proj-title">
-       {{ $project->name }}
-       <span class="right-aligned-links">
-        <a href="/projects/{{$project->id}}"><i data-original-title="resumen proyecto" class="icon-globe tooltip-enabled" title=""></i></a>
-      </span>
-    </div>
-    <ul class="dash-iteration-list">
-      @foreach ($project->iterations as $iteration)
-      <li>
-        <div class="dash-iter-title">
-         <b class="dash-iter-name">{{ $iteration->name }}</b>
-         <i class="dash-iter-dates">{{ $iteration->start }} - {{  $iteration->end }}</i>
-         <span class="right-aligned-links">
-           <a href="/iterations/{{ $iteration->id }}" title="" class="tooltip-enabled" data-original-title="lista de historias"><i class="icon-glyph icon-reorder"></i></a>
-           <a href="/iterations/{{ $iteration->id }}/board" title="" class="tooltip-enabled" data-original-title="Scrum Board">
-            <i class="icon-glyph icon-th"></i></a>
-         </span>
-       </div>
-       <table class="dash-iter-table">
-         <tbody>
-          <tr>
-            <td class="dash-iter-left">
-              <img src="{{ action('GraphicsController@iterationSummary', array('iteration' =>  $iteration->id)) }}">
-            </td>
-            <td class="dash-iter-right">
-            <span class="recent-stories" style="display: inline;">Modificados recientemente:</span>
-            <ul class="dash-iter-stories">
-             @foreach ($iteration->issues as $issue)
-              <li class="story-view story-style-list superboard-story story_block gripper-status-4" >
-                <div class="story-checkbox-holder" style="display: none;">
-                  <input type="checkbox" class="story-checkbox">
-                </div>
-                <span 
-                class="story-icons">
-                  <a href="#" class="edit-story-button">
-                    <i class="icon-glyph icon-edit" title="Editar historia"></i>
-                  </a>        
+      
+          @if(Auth::user()->rol=='Administrator')
+                   @foreach ($organization->projects as $project)
+               <li class="dash-project">
+                <div class="dash-proj-title">
+                 {{ $project->name }}
+                 <span class="right-aligned-links">
+                  <a href="/projects/{{$project->id}}"><i data-original-title="resumen proyecto" class="icon-globe tooltip-enabled" title=""></i></a>
                 </span>
-                <h1 class="formatted_story_text">
-                <span style="color:#555555;" class="story_number">
-                #
+              </div>
+              <ul class="dash-iteration-list">
+                @foreach ($project->iterations as $iteration)
+                <li>
+                  <div class="dash-iter-title">
+                   <b class="dash-iter-name">{{ $iteration->name }}</b>
+                   <i class="dash-iter-dates">{{ $iteration->start }} - {{  $iteration->end }}</i>
+                   <span class="right-aligned-links">
+                     <a href="/iterations/{{ $iteration->id }}" title="" class="tooltip-enabled" data-original-title="lista de historias"><i class="icon-glyph icon-reorder"></i></a>
+                     <a href="/iterations/{{ $iteration->id }}/board" title="" class="tooltip-enabled" data-original-title="Scrum Board">
+                      <i class="icon-glyph icon-th"></i></a>
+                   </span>
+                 </div>
+                 <table class="dash-iter-table">
+                   <tbody>
+                    <tr>
+                      <td class="dash-iter-left">
+                        <img src="{{ action('GraphicsController@iterationSummary', array('iteration' =>  $iteration->id)) }}">
+                      </td>
+                      <td class="dash-iter-right">
+                      <span class="recent-stories" style="display: inline;">Modificados recientemente:</span>
+                      <ul class="dash-iter-stories">
+                       @foreach ($iteration->issues as $issue)
+                        <li class="story-view story-style-list superboard-story story_block gripper-status-4" >
+                          <div class="story-checkbox-holder" style="display: none;">
+                            <input type="checkbox" class="story-checkbox">
+                          </div>
+                          <span 
+                          class="story-icons">
+                            <a href="#" class="edit-story-button">
+                              <i class="icon-glyph icon-edit" title="Editar historia"></i>
+                            </a>        
+                          </span>
+                          <h1 class="formatted_story_text">
+                          <span style="color:#555555;" class="story_number">
+                          #
+                          </span>
+                          <p>{{ $issue->summary }}
+                          </p>
+                          </h1>
+                        </li>
+                      @endforeach 
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+          </li> 
+          @endforeach 
+          </ul>
+          </li> 
+          @endforeach 
+
+        @else
+            @foreach (Auth::user()->projects() as $project)
+               <li class="dash-project">
+                <div class="dash-proj-title">
+                 {{ $project->name }}
+                 <span class="right-aligned-links">
+                  <a href="/projects/{{$project->id}}"><i data-original-title="resumen proyecto" class="icon-globe tooltip-enabled" title=""></i></a>
                 </span>
-                <p>{{ $issue->summary }}
-                </p>
-                </h1>
-              </li>
-            @endforeach 
-            </ul>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-</li>	
-@endforeach 
-</ul>
-</li> 
-@endforeach 
-</ul>
-</div>
+              </div>
+              <ul class="dash-iteration-list">
+                @foreach ($project->iterations as $iteration)
+                <li>
+                  <div class="dash-iter-title">
+                   <b class="dash-iter-name">{{ $iteration->name }}</b>
+                   <i class="dash-iter-dates">{{ $iteration->start }} - {{  $iteration->end }}</i>
+                   <span class="right-aligned-links">
+                     <a href="/iterations/{{ $iteration->id }}" title="" class="tooltip-enabled" data-original-title="lista de historias"><i class="icon-glyph icon-reorder"></i></a>
+                     <a href="/iterations/{{ $iteration->id }}/board" title="" class="tooltip-enabled" data-original-title="Scrum Board">
+                      <i class="icon-glyph icon-th"></i></a>
+                   </span>
+                 </div>
+                 <table class="dash-iter-table">
+                   <tbody>
+                    <tr>
+                      <td class="dash-iter-left">
+                        <img src="{{ action('GraphicsController@iterationSummary', array('iteration' =>  $iteration->id)) }}">
+                      </td>
+                      <td class="dash-iter-right">
+                      <span class="recent-stories" style="display: inline;">Modificados recientemente:</span>
+                      <ul class="dash-iter-stories">
+                       @foreach ($iteration->issues as $issue)
+                        <li class="story-view story-style-list superboard-story story_block gripper-status-4" >
+                          <div class="story-checkbox-holder" style="display: none;">
+                            <input type="checkbox" class="story-checkbox">
+                          </div>
+                          <span 
+                          class="story-icons">
+                            <a href="#" class="edit-story-button">
+                              <i class="icon-glyph icon-edit" title="Editar historia"></i>
+                            </a>        
+                          </span>
+                          <h1 class="formatted_story_text">
+                          <span style="color:#555555;" class="story_number">
+                          #
+                          </span>
+                          <p>{{ $issue->summary }}
+                          </p>
+                          </h1>
+                        </li>
+                      @endforeach 
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+          </li> 
+          @endforeach 
+          </ul>
+          </li> 
+          @endforeach 
+     
+        @endif
+	
+    </ul>
+  </div>
 </div>
 <br>
 <script type="text/javascript">

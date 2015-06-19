@@ -29,7 +29,7 @@
 								'width' => 48
 								)
 							) }}
-						{{ HTML::link('users/editprofile', 'Mi perfilshh', array('class'=>'drop megamenu-top-header')) }}
+						{{ HTML::link('users/editprofile', 'Mi perfil', array('class'=>'drop megamenu-top-header')) }}
 					@endif
 				</li>
 				<li>

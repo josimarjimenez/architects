@@ -15,15 +15,20 @@ class Helper {
         return 'Hola.....';
     }
 
-    public static function checkFinishedProject($project_id) {
-        $current_date = new DateTime("now");
-        $project = Project::findOrFail($project_id);
+    public static function checkFinishedProject($id) {
+        $current_date = date("Y-m-d");
+        $project = Project::findOrFail($id);
         $end_date = $project->endDate;
+
         if($current_date > $end_date){
-            return true;
+        //if($current_date > '2016-05-31'){
+        //if('2017-05-31' > '2016-05-31'){
+             return 'MAYOR';
         }else{
-            return false;
-        }
+            return 'MENOR';    
+        } 
+
+        
         
     }
 

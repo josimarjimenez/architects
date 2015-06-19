@@ -43,7 +43,7 @@
 <div class="container wide_body" id="body">
 	@if($hasmembers)
 	<div style="margin-left:auto; margin-right:auto; width:100%;">
-		@if(Auth::user()->rol=='Administrator')
+		@if( Auth::user()->rol=='Administrator' && Helper::checkFinishedProject($iteration->projects->id)=='MENOR' )
 			<div id="story_form" class="story_form" style="margin-left:auto; margin-right:auto">
 				<!-- inicio -->
 				<div id="mainError" class="alert alert-error" style="visibility:hidden;">  
@@ -134,5 +134,5 @@ $(".add_category_link").click(function() {
 
 var rol = "{{  Auth::user()->rol; }}" ;
 var finished = "{{  Helper::checkFinishedProject($project->id); }}" ;
-createProjMenu("{{ $project->id }}", rol);
+createProjMenu("{{ $project->id }}", rol, finished);
 </script>

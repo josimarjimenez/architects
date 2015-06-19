@@ -55,7 +55,7 @@
 			</table>
 	</div>
 
-	@if(Auth::user()->rol=='Administrator')
+	@if(Auth::user()->rol=='Administrator' && Helper::checkFinishedProject($iteration->projects->id)=='MENOR' )
 		<div class="modal-footer">
         	<a class="btn btn-success new-task-button" href="#taskForm" onclick="mostrarTaskForm()">Nueva Tarea</a>        
         	<a class="btn" data-dismiss="modal" href="#">Cerrar</a>        

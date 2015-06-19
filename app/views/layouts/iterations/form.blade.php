@@ -33,6 +33,7 @@
 	{{ Form::text('estimatedBudget', null, array('class'=>'textInput textinput', 'placeholder'=>'Presupuesto estimado para la iteración')) }}
 </div>
 <div class="buttonHolder">
+	{{ HTML::link('projects/'. $project->id,  'Salir', array('class'=>"btn btn-danger btn-sm")  ) }} 
 	{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
 </div>
 	{{ Form::hidden('projectid', $project->id) }}

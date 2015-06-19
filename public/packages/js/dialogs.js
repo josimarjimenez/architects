@@ -431,7 +431,7 @@ $(document).ready(function() {
  * @param  {[type]} rol    [description]
  * @return {[type]}        [description]
  */
-function createProjMenu(idProj, rol){
+function createProjMenu(idProj, rol, finished){
 $.ajax({
     type: 'GET',
     url:  '/ajax/getProject',
@@ -501,7 +501,7 @@ $.ajax({
       li += '</ul>'; 
       li += '</div>';
       li += '<div style="clear:both"></div>';
-      if(rol=='Administrator'){
+      if(rol=='Administrator' && finished=='MENOR'){
         li += '<div style="margin-left:10px">';
           li += '<form action="/iterations/create" method="get" class="pull-left">';
           li += '<input type="hidden" name="projectid" value="'+project.id+'" />';

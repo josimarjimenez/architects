@@ -13,6 +13,23 @@ class ProjectsController extends BaseController {
 			$project = Project::findOrFail($id); 
 			$iterations =sizeof($project->iterations);
 			$idIterations = array();
+			/*			
+			$current_date = date("Y-m-d");
+			print_r($current_date);  
+			print_r(gettype($current_date));
+			print_r(' < ');  
+	        $project = Project::findOrFail($id);
+	        $end_date = $project->endDate;
+	        print_r($end_date);
+	        print_r(gettype($end_date));
+	        print_r(' >>> ');  
+	        if($current_date < $end_date){
+				 print_r('mayor');
+			}else{ 
+				 print_r('menor');
+			}
+			die();
+			*/
 			foreach ($project->iterations as $iteration) {
 				$idIterations[] = $iteration->id;
 			}
