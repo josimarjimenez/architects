@@ -7815,3 +7815,12 @@ a#newGroup:hover{
 #perfil li img , #perfil li a{
     display: inline-block;
 }
+
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px) {
+/* Styles */
+    #logo{
+            width: 60% !important;
+       }
+}
