@@ -1,3 +1,14 @@
+<div id="iterationError">
+	@if($errors->all())
+	<ul class="alert alert-error">
+		@foreach($errors->all() as $error)
+		<li>{{ $error }}</li>
+		@endforeach
+	</ul>
+	@endif
+
+</div>
+
 <h1>Crear/Editar iteración</h1>
 
 @if($type == 'new')

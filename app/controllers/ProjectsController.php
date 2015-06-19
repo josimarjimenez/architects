@@ -295,7 +295,11 @@ class ProjectsController extends BaseController {
 					$diferencia = $totalRealTime - $totalEstimatedTime;
 				}
 
-				$resultado = ($diferencia / $totalEstimatedTime) * 100;
+				if($diferencia > 0){
+					$resultado = ($diferencia / $totalEstimatedTime) * 100;	
+				}
+				
+				
 				$resultado = round($resultado, 2);
 				$respuesta = $respuesta . $resultado . '% referente al tiempo estimado.'; 
 

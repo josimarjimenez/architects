@@ -133,5 +133,6 @@ $(".add_category_link").click(function() {
 });
 
 var rol = "{{  Auth::user()->rol; }}" ;
+var finished = "{{  Helper::checkFinishedProject($project->id); }}" ;
 createProjMenu("{{ $project->id }}", rol);
 </script>

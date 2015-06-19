@@ -13,7 +13,7 @@ class Iterations extends Eloquent implements JsonSerializable{
 		'name'=>'required|latino|min:2',
 	    'start'=>'required',
 	    'end'=>'required',
-	    'estimatedBudget' => 'required',
+	    'estimatedBudget'=>'required|amount_major_cero|numeric',
 	    'projectid'=>'required'
 	);
  
@@ -23,7 +23,9 @@ class Iterations extends Eloquent implements JsonSerializable{
       'name.latino' => 'El nombre debe contener solamente letras y números',
       'start.required' => 'La fecha de inicio es obligatoria.',
       'end.required' => 'La fecha de fin es obligatoria',
-      'estimatedBudget.required' => 'El presupuesto estimado es obligatorio.'
+      'estimatedBudget.required' => 'El presupuesto estimado es obligatorio.',
+      'estimatedBudget.numeric' => 'El presupuesto estimado debe ser decimal.',
+      'estimatedBudget.amount_major_cero' => 'El presupuesto estimado debe ser mayor a 0'
    	);
 
  	public function jsonSerialize(){ 
