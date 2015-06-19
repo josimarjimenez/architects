@@ -45,11 +45,17 @@
 	<div style="margin-left:auto; margin-right:auto; width:100%;">
 		@if(Auth::user()->rol=='Administrator')
 			<div id="story_form" class="story_form" style="margin-left:auto; margin-right:auto">
+				<!-- inicio -->
+				<div id="mainError" class="alert alert-error" style="visibility:hidden;">  
+	            </div>  
+				<div id="issueError">
+				</div>
+				<!-- fin -->
 				<ul id="createdStories">
 				</ul>
 				<div id="addStoryFormOnProgress" class="hidden">Guardando historia.  Por favor espere...</div> 
 				{{ Form::open(array('url'=>'issue','class'=>'uniForm', 'id'=>'addStoryForm')) }}
-				<textarea id="summary" rows="1" cols="50" name="summary" maxlength="5000"></textarea>
+				<textarea id="summary" rows="1" cols="50" name="summary" maxlength="5000" placeholder="Resumen"></textarea>
 				@if(Auth::user()->rol=='Administrator')
 					<button id="add_button" type="submit" class="btn">Agregar historia</button>
 				@endif

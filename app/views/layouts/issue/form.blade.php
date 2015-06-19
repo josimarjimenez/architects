@@ -1,4 +1,5 @@
 @if(Auth::user()->rol=='Administrator')
+
   <div id="story_details" style="display: none;" >
     <table id="add_story_table">
       <tbody>
@@ -67,13 +68,48 @@ $(document).ready(function() {
   $('#addStoryForm').submit(function(event){  
      var summary = $('#summary').val();
      var detail = $('#detail').val();
+     
 //     var radio = $('input[name=points]:checked'); 
      var radio = $('#points').val();
-     if(summary == '' ||  detail == '' || !radio){
+     if(summary == '' ||  detail == '' || radio ==''){
+       jQuery('.remove-error-issue').remove();
+
+       var main = '<h class="remove-error-issue"><strong>Error! </strong> Existieron errores<h>';
+
+       var insert = '<ul class="remove-error-issue alert alert-error">';
+
+       if(summary == ''){
+        insert += '<li>'+ 'El resumen del ahistoria es obligatorio'+'</li>';
+       }
+
+       if(detail == ''){
+        insert += '<li>'+ 'El detalle de la historia es obligatorio'+'</li>';
+       }
+
+       if(radio ==''){
+        insert += '<li>'+ 'Los puntos para la historia es obligatorio'+'</li>';
+       }
+       
+       insert += '<ul>';
+       $("#mainError").css("visibility", "visible");
+       $('#mainError').append(main);
+       $('#issueError').append(insert);
        return false;
+     }else{
+      return true; 
      }
-     return true;
+     
   });   
 });
 
+</script>
+
+<script type="text/javascript">
+  
+  $(function() {
+    
+    $( "#points" ).keyup(function () { 
+      $(this).val($(this).val().replace(/[^0-9]/g,''));
+    });
+  });
 </script>
