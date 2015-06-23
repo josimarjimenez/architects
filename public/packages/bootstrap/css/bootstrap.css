@@ -7806,3 +7806,22 @@ a#newGroup:hover{
 #iteracionesList{
     margin-left: -4px !important;
 }
+
+/* iPads (portrait and landscape) ----------- */
+   @media only screen 
+   and (min-device-width : 768px) 
+   and (max-device-width : 1024px) {
+   /* Styles */
+   #logo{
+        width: 60% !important;
+   }
+
+   #body{
+        width: 90% !important;
+   }
+}
+
+#summaryTable{
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
