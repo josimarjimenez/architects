@@ -20,15 +20,17 @@
 				<li>
 					<!--<a href="edit/{{ Auth::id(); }}"><i class="topmenu-icon icon-glyph icon-group"></i>Mi perfil</a>
 					<a href="users/editProfile"><i class="topmenu-icon icon-glyph icon-group"></i>Mi perfil</a> -->
-					@if(!empty(Auth::user()->avatar))
+					@if(empty(Auth::user()->avatar))
+						{{ HTML::link('users/editprofile', 'Mi perfil',array('class'=>'drop megamenu-top-header')) }}
+					@else
 						{{ HTML::image("uploads/users/".Auth::user()->avatar,
 							'alt', 
 							array(
 								'width' => 48
 								)
 							) }}
-					@endif		
-					{{ HTML::link('users/editprofile', 'Mi perfil',array('class'=>'drop megamenu-top-header')) }}
+						{{ HTML::link('users/editprofile', 'Mi perfil', array('class'=>'drop megamenu-top-header')) }}
+					@endif
 				</li>
 				<li>
 					{{ HTML::link('users/logout', 'Cerrar sesión',array('class'=>'drop megamenu-top-header')) }}

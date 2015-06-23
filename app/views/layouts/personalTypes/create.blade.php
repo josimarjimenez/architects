@@ -9,7 +9,6 @@
 	</ul>
 	@endif 
 
-@if(Auth::user()->rol=='Administrator')	
 	<h1>Crear / Editar tipo de personal</h1>
 		<div class="panel">
 			<?php 
@@ -27,7 +26,7 @@
 
 					<div class="ctrlHolder" id="div_id_name">
 						{{ Form::label('hourCost', 'Costo / hora', array('class'=>'requiredField' )) }}
-						{{ Form::text('hourCost', null, array('class'=>'textInput textinput', 'placeholder'=>'Costo por hora trabajada')) }}
+						{{ Form::text('hourCost', null, array('class'=>'textInput textinput', 'placeholder'=>'Costo por hora trabajada', 'id'=>'cost')) }}
 					</div>
 
 					<div class="ctrlHolder" id="div_id_name">
@@ -40,18 +39,28 @@
 						{{ Form::textArea('description', null, array('class'=>'textInput textinput', 'placeholder'=>'Descripción del tipo de personal')) }}
 					</div>
 
-					@if(Auth::user()->rol=='Administrator')
-						<div class="buttonHolder">
+					<div class="buttonHolder">
 
-							{{ HTML::link('personalType/',  'Cancelar', array('class'=>"btn btn-danger btn-sm")  ) }} 
+						{{ HTML::link('personalType/',  'Cancelar', array('class'=>"btn btn-danger btn-sm")  ) }} 
 
-							{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
-						</div>
-					@endif
-						{{ Form::hidden('organizationid', $organization->id) }}
+						{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
+					</div>
+					{{ Form::hidden('organizationid', $organization->id) }}
 
 				</fieldset>
 						{{ Form::close() }}
 		</div>
 	</div>
-@endif
+
+<script type="text/javascript">
+	
+	$(function() {
+		
+		$( "#cost" ).keyup(function () { 
+			$(this).val($(this).val().replace(/[^0-9\.]/g,''));
+			if($(this).val().split(".")[2] != null || ($(this).val().split(".")[2]).length ){
+				$(this).val($(this).val().substring(0, $(this).val().lastIndexOf(".")));
+			}   
+		});
+	});
+</script>

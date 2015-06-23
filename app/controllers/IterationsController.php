@@ -92,10 +92,11 @@ class IterationsController extends BaseController {
 	//save mew
 	public function store(){
 
-		$validator = Validator::make(Input::all(), Iterations::$rules);
+		$validator = Validator::make(Input::all(), Iterations::$rules, Iterations::$messages);
+
 		$inicio = Input::get('start'); 
 		$end  = Input::get('end');   
-
+		
 		$valido = $this->validarFecha($inicio, $end); 
 		if(!$valido){
 		return Redirect::to('iterations/create?projectid='.Input::get('projectid'))
@@ -104,6 +105,7 @@ class IterationsController extends BaseController {
 			->withInput();
 		}	
 		if($validator->passes() && $valido){
+		//if($validator->passes()){
 			$iterations = new Iterations;
 			$iterations->name = Input::get('name'); 
 			$iterations->start = Input::get('start'); 

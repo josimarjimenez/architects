@@ -1,4 +1,5 @@
 @if(Auth::user()->rol=='Administrator')
+
   <div id="story_details" style="display: none;" >
     <table id="add_story_table">
       <tbody>
@@ -23,39 +24,8 @@
         </tr>
         <tr>
           <td>Puntos:&nbsp;</td>
-          <td id="points_section">
-            <ul>
-              <li>
-                <label for="id_points_3">
-                  <input id="id_points_3" value="1" name="points" type="radio"> 1
-                </label>
-              </li>
-              <li>
-                <label for="id_points_4">
-                  <input id="id_points_4" value="2" name="points" type="radio"> 2
-                </label>
-              </li>
-              <li>
-                <label for="id_points_5">
-                  <input id="id_points_5" value="3" name="points" type="radio"> 3
-                </label>
-              </li>
-              <li>
-                <label for="id_points_6">
-                  <input id="id_points_6" value="5" name="points" type="radio"> 5
-                </label>
-              </li>
-              <li>
-                <label for="id_points_7">
-                  <input id="id_points_7" value="8" name="points" type="radio"> 8
-                </label>
-              </li>
-              <li>
-                <label for="id_points_8">
-                  <input id="id_points_8" value="13" name="points" type="radio"> 13
-                </label>
-              </li>
-            </ul>
+          <td>
+            <input name="points" id="points" type="text" />
           </td>
         </tr>
         <tr>
@@ -98,12 +68,48 @@ $(document).ready(function() {
   $('#addStoryForm').submit(function(event){  
      var summary = $('#summary').val();
      var detail = $('#detail').val();
-     var radio = $('input[name=points]:checked'); 
-     if(summary == '' ||  detail == '' || !radio.val()){
+     
+//     var radio = $('input[name=points]:checked'); 
+     var radio = $('#points').val();
+     if(summary == '' ||  detail == '' || radio ==''){
+       jQuery('.remove-error-issue').remove();
+
+       var main = '<h class="remove-error-issue"><strong>Error! </strong> Existieron errores<h>';
+
+       var insert = '<ul class="remove-error-issue alert alert-error">';
+
+       if(summary == ''){
+        insert += '<li>'+ 'El resumen del ahistoria es obligatorio'+'</li>';
+       }
+
+       if(detail == ''){
+        insert += '<li>'+ 'El detalle de la historia es obligatorio'+'</li>';
+       }
+
+       if(radio ==''){
+        insert += '<li>'+ 'Los puntos para la historia es obligatorio'+'</li>';
+       }
+       
+       insert += '<ul>';
+       $("#mainError").css("visibility", "visible");
+       $('#mainError').append(main);
+       $('#issueError').append(insert);
        return false;
+     }else{
+      return true; 
      }
-     return true;
+     
   });   
 });
 
+</script>
+
+<script type="text/javascript">
+  
+  $(function() {
+    
+    $( "#points" ).keyup(function () { 
+      $(this).val($(this).val().replace(/[^0-9]/g,''));
+    });
+  });
 </script>

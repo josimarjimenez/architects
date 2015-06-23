@@ -33,7 +33,7 @@
 				<div class="ctrlHolder" id="div_id_name">
 					{{ Form::label('value','Identificación', array('class'=>'requiredField'))}}
 					{{ Form::text('identification',null,array('classs'=>'textInput textinput', 'placeholder'=>'Identificación',
-					'onblur'=>'validate()', 'id'=>'ident'))}}
+					'id'=>'ident'))}}
 				</div>
 				<div class="ctrlHolder" id="div_id_name">
 					{{ Form::label('value','Teléfono', array('class'=>'requiredField'))}}

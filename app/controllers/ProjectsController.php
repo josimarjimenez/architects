@@ -13,6 +13,23 @@ class ProjectsController extends BaseController {
 			$project = Project::findOrFail($id); 
 			$iterations =sizeof($project->iterations);
 			$idIterations = array();
+			/*			
+			$current_date = date("Y-m-d");
+			print_r($current_date);  
+			print_r(gettype($current_date));
+			print_r(' < ');  
+	        $project = Project::findOrFail($id);
+	        $end_date = $project->endDate;
+	        print_r($end_date);
+	        print_r(gettype($end_date));
+	        print_r(' >>> ');  
+	        if($current_date < $end_date){
+				 print_r('mayor');
+			}else{ 
+				 print_r('menor');
+			}
+			die();
+			*/
 			foreach ($project->iterations as $iteration) {
 				$idIterations[] = $iteration->id;
 			}
@@ -244,7 +261,7 @@ class ProjectsController extends BaseController {
 
 				$resultado = ($diferencia / $totalEstimatedBudget) * 100;
 				$resultado = round($resultado, 2);
-				$respuesta = $respuesta . $resultado . '%, referente al presupuesto.'; 
+				$respuesta = $respuesta . $resultado . '% referente al presupuesto estimado.'; 
 
 				$result['estimated_budget'] = round($totalEstimatedBudget, 2);
 				$result['real_budget'] = round($totalRealBudget, 2);
@@ -295,9 +312,13 @@ class ProjectsController extends BaseController {
 					$diferencia = $totalRealTime - $totalEstimatedTime;
 				}
 
-				$resultado = ($diferencia / $totalEstimatedTime) * 100;
+				if($diferencia > 0){
+					$resultado = ($diferencia / $totalEstimatedTime) * 100;	
+				}
+				
+				
 				$resultado = round($resultado, 2);
-				$respuesta = $respuesta . $resultado . '%referente al tiempo.'; 
+				$respuesta = $respuesta . $resultado . '% referente al tiempo estimado.'; 
 
 				$result['estimated_time'] = round($totalEstimatedTime, 2);
 				$result['real_time'] = round($totalRealTime, 2);

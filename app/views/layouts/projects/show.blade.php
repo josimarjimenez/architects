@@ -174,8 +174,8 @@
 			    		@endif
 			    	</table> 
 				</div>
+		        <p><input type="button" id="printer_areaRP" class="btn btn-success" value="Imprimir"></p>
 		    </div>
-
 		</div>
 	@endif 
 </div>
@@ -187,7 +187,8 @@ $( document ).ready(function()
 	var pathname = window.location.pathname.split("/");
 	var id = pathname[pathname.length-1];
 	var rol = "{{  Auth::user()->rol; }}" ;
-	createProjMenu(id, rol); 
+	var finished = "{{  Helper::checkFinishedProject($project->id); }}" ;
+	createProjMenu(id, rol, finished); 
 
 	$("#report_areaTE").css( "display", "block" );
     $("#report_areaEO").css( "display", "none" );

@@ -1,3 +1,14 @@
+<div id="iterationError">
+	@if($errors->all())
+	<ul class="alert alert-error">
+		@foreach($errors->all() as $error)
+		<li>{{ $error }}</li>
+		@endforeach
+	</ul>
+	@endif
+
+</div>
+
 <h1>Crear/Editar iteración</h1>
 
 @if($type == 'new')
@@ -22,6 +33,7 @@
 	{{ Form::text('estimatedBudget', null, array('class'=>'textInput textinput', 'placeholder'=>'Presupuesto estimado para la iteración')) }}
 </div>
 <div class="buttonHolder">
+	{{ HTML::link('projects/'. $project->id,  'Salir', array('class'=>"btn btn-danger btn-sm")  ) }} 
 	{{ Form::submit('Guardar  ', array('class'=>'btn btn-primary'))}}
 </div>
 	{{ Form::hidden('projectid', $project->id) }}

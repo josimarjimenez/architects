@@ -19,7 +19,7 @@ Validator::extend('alpha_num_spaces', function($attribute, $value){
 });
 
 Validator::extend('foo', function($field,$value,$parameters){
-	return $value > 3;
+	return $value > 0;
 });
 
 Validator::extend('amount_major_cero', function($field,$value,$parameters){

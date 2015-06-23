@@ -37,23 +37,21 @@
 				</li>
 				@endif
 				
-				@if(Auth::user()->rol=='Administrator')
+				
 				<li>
 					<a href="/materials" title="Lista de materiales en la organización">
 						<i class="topmenu-icon icon-glyph icon-material"></i> 
 						Material 
 					</a>
 				</li>
-				@endif
-
-				@if(Auth::user()->rol=='Administrator')
+				
+				
 				<li>
 					<a href="/personalType" title="Lista de tipo de personal en la organización">
 						<i class="topmenu-icon icon-glyph icon-group"></i> 
 						Tipo de personal 
 					</a>
 				</li>
-				@endif
 				 
 				@if(Auth::user()->rol=='Administrator')
 				<li>

@@ -11,14 +11,27 @@ class Issue extends Eloquent{
 	use UserTrait, RemindableTrait;
 	public static $rules = array(
 	    'summary'=>'required|latino|min:2', 
-	    'detail'=>'required|alpha_spaces|min:2',
-	    'budget'=>'required|alpha_spaces|min:2',
-	    'currentState'=>'required|alpha_spaces|min:2',
-	    'points'=>'required|alpha_spaces|min:2',
-	    'labels'=>'required|alpha_spaces|min:2',
+	    'detail'=>'required|latino|min:2',
+	    'points'=>'required|numeric|amount_major_cero',
+	    'categoryid'=>'required',
+	    'iterationid'=>'required',
 	    'startDate'=>'date', 
 	    'endDate'=>'date'
 	);  
+
+    public static $messages = array(
+      'summary.required' => 'El resumen es obligatorio.',
+      'summary.min' => 'El resumen debe contener al menos dos caracteres.',
+      'summary.latino' => 'El resumen debe contener solamente letras y números',
+      'detail.required' => 'El detalle es obligatorio.',
+      'detail.min' => 'El detalle debe contener al menos dos caracteres.',
+      'detail.latino' => 'El detalle debe contener solamente letras y números',
+      'points.required' => 'La estimación en puntos para la historia son obligatoria.',
+      'points.numeric' => 'La estimación en puntos para la historia deben ser enteros.',
+      'points.amount_major_cero' => 'La estimación en puntos para la historia deben ser mayor a cero.',
+      'categoryid.required' => 'Debe de seleccionar o ingresar una categoría',
+      'iterationid.required' => 'Debe de seleccionar una iteración.'
+   	);
 
 
 	public function category(){

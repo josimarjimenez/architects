@@ -100,7 +100,7 @@ class GraphicsController extends BaseController{
 		//$datax=array('TO-DO','DOING','DONE');
         $datax=array('POR HACER','HACIENDO','HECHAS');
 		//Create the graph
-		$graph = new Graph(900,400);    
+		$graph = new Graph(700,300);    
 		$graph->SetScale('textlin');
  
 		$graph->img->SetMargin(60,130,40,60);

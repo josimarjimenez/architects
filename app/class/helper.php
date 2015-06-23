@@ -15,6 +15,23 @@ class Helper {
         return 'Hola.....';
     }
 
+    public static function checkFinishedProject($id) {
+        $current_date = date("Y-m-d");
+        $project = Project::findOrFail($id);
+        $end_date = $project->endDate;
+
+        if($current_date > $end_date){
+        //if($current_date > '2016-05-31'){
+        //if('2017-05-31' > '2016-05-31'){
+             return 'MAYOR';
+        }else{
+            return 'MENOR';    
+        } 
+
+        
+        
+    }
+
     public static function messagesNumber(){
         $currentUser = Auth::user();
         $currentUserId = $currentUser->id;

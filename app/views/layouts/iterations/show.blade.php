@@ -43,13 +43,19 @@
 <div class="container wide_body" id="body">
 	@if($hasmembers)
 	<div style="margin-left:auto; margin-right:auto; width:100%;">
-		@if(Auth::user()->rol=='Administrator')
+		@if( Auth::user()->rol=='Administrator' && Helper::checkFinishedProject($iteration->projects->id)=='MENOR' )
 			<div id="story_form" class="story_form" style="margin-left:auto; margin-right:auto">
+				<!-- inicio -->
+				<div id="mainError" class="alert alert-error" style="visibility:hidden;">  
+	            </div>  
+				<div id="issueError">
+				</div>
+				<!-- fin -->
 				<ul id="createdStories">
 				</ul>
 				<div id="addStoryFormOnProgress" class="hidden">Guardando historia.  Por favor espere...</div> 
 				{{ Form::open(array('url'=>'issue','class'=>'uniForm', 'id'=>'addStoryForm')) }}
-				<textarea id="summary" rows="1" cols="50" name="summary" maxlength="5000"></textarea>
+				<textarea id="summary" rows="1" cols="50" name="summary" maxlength="5000" placeholder="Resumen"></textarea>
 				@if(Auth::user()->rol=='Administrator')
 					<button id="add_button" type="submit" class="btn">Agregar historia</button>
 				@endif
@@ -80,7 +86,7 @@
 							</a>  
 						</span>
 						<h1 class="formatted_story_text story-summary">
-							<span style="color:#555555;" class="story_number">#{{ $issue->id }}</span>
+							<span style="color:#555555;" class="story_number">#</span>
 							<p>{{ $issue->summary }}</p>
 						</h1>
 						<div class="formatted_story_text story_detail">
@@ -88,26 +94,15 @@
 						</div>
 					</div>	
 					<div class="story_footer">    
-						<a class="status-text label-task status-background-1 status-foreground-1" 
-						href="#">
-						{{ $issue->currentState }}
-					</a>
-
 					@if($hasmembers)
 					<span class="tasks-holder">
 						<span>
-							<a class="open-tasks-link show_tasks_link" href="#myModal" onclick="mostrarTaskboard({{ $issue->id }}, {{ Auth::user()->id }}, '{{ Auth::user()->rol }}')">
+							<a class="status-text label-task status-background-1 status-foreground-1" href="#myModal" onclick="mostrarTaskboard({{ $issue->id }}, {{ Auth::user()->id }}, '{{ Auth::user()->rol }}')">
 								Tareas
 							</a>
 						</span>
 					</span>
 					@endif
-					|
-					<span class="comments-holder">
-						<a class="comments-link" href="#">
-							0&nbsp;Comments
-						</a>
-					</span> 
 				</div>
 			</div>
 		</li>
@@ -138,5 +133,6 @@ $(".add_category_link").click(function() {
 });
 
 var rol = "{{  Auth::user()->rol; }}" ;
-createProjMenu("{{ $project->id }}", rol);
+var finished = "{{  Helper::checkFinishedProject($project->id); }}" ;
+createProjMenu("{{ $project->id }}", rol, finished);
 </script>
