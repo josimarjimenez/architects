@@ -47,6 +47,23 @@
 					{{ Form::label('value', 'Dirección', array('class'=>'requiredField' )) }}
 					{{ Form::text('direccion', null, array('class'=>'textInput textinput', 'placeholder'=>'Dirección')) }}
 				</div>
+
+
+				<div class="ctrlHolder" id="div_id_function">
+					<select name="functionid" id="functionid">
+		              <option value="0">----</option>
+		              @foreach ($functions as $function)
+		                @if($function->id == $idFunction)
+		                  <option value="{{ $function->id }}" selected>{{ $function->name }} </option>
+		                @else
+		                  <option value="{{ $function->id }}" >{{ $function->name }} </option>
+		                @endif
+		              @endforeach
+		            </select>   
+		            <a class="add_fucntion_link" href="#">Agregar nueva función</a>
+		            <input name="function_name" class="function_name" maxlength="25" style="display:none" type="text">
+				</div>
+
 				<div class="ctrlHolder" id="div_id_name">
 					{{ Form::label('value', 'Password', array('class'=>'requiredField' )) }}
 					{{ Form::password('password', array('class'=>'textInput textinput', 'placeholder'=>'Contraseña')) }}
