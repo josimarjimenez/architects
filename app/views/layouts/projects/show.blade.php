@@ -86,114 +86,94 @@
 		    </div>
 
 		    <div id="report_areaRP" class="print_areaRP" style="min-height: 92px; text-align:center">
-		    	 <br>
-		    	@if ( !empty($project->iterations()))
-			    	<div class="table-responsive">
-			    		<table width="100%" class="table table-hover" id="summaryTable">
-			    			<tr>
-			    				<td rowspan="2"></td>
-			    				<td colspan="3" align="center" class="headerTitle">Materiales</td>
-			    				<td colspan="3" align="center" class="headerTitle">Personal</td>
-			    				<td colspan="3" align="center" class="headerTitle">Gastos adicionales</td>
-			    				<td rowspan="2" align="center" class="headerTitle">Total</td>
-			    			</tr>
-			    			<tr>
-			    				<td align="center" class="headerTitle">Unidad</td>
-			    				<td align="center" class="headerTitle">Cant.</td>
-			    				<td align="center" class="headerTitle">Total</td>
-
-			    				<td align="center" class="headerTitle">Unidad</td>
-			    				<td align="center" class="headerTitle">Cant.</td>
-			    				<td align="center" class="headerTitle">Total</td>
-
-			    				<td align="center" class="headerTitle">Descript.</td>
-			    				<td align="center" class="headerTitle">Total</td>
-			    			</tr>
-			    		@foreach($project->iterations()->get() as $iteration)
-			    			<tr>
-			    				<td class="iterationTitle">{{ $iteration->name }} <br>
-			    					({{ $iteration->start}} al {{ $iteration->end}})</td>
-			    				<td>&nbsp</td>
-			    				<td>&nbsp</td>
-			    				<td>&nbsp</td>
-			    				<td>&nbsp</td>
-			    				<td>&nbsp</td>
-			    				<td>&nbsp</td>
-			    				<td>&nbsp</td>
-			    				<td>&nbsp</td> 
-			    				<td>&nbsp</td> 
-			    				<td>&nbsp</td>
-			    			</tr>
-			    			
-			    			@foreach($iteration->issues()->get() as $issue)
-								<tr>
-			    					<td align="left" class="issueTable">{{ $issue->summary }}</td>
-			    					<td>&nbsp</td>
-				    				<td>&nbsp</td>
-				    				<td>&nbsp</td>
-				    				<td>&nbsp</td>
-				    				<td>&nbsp</td>
-				    				<td>&nbsp</td>
-				    				<td>&nbsp</td>
-				    				<td>&nbsp</td>
-				    				<td>&nbsp</td>
-				    				<td>&nbsp</td>
+		    	<br>
+			   	<div class="table-responsive">
+			    	<table width="100%" class="table table-hover" id="summaryTable">
+			    		<tr>
+			    			<td colspan="5" style="text-align:center">
+			    				<h1>Proyecto: {{ $project->name }}</h1>
+			    			</td>
+			    		</tr>
+			    		@if ( !empty($project->iterations()))
+							<!-- iteraciones -->
+			    			@foreach($project->iterations()->get() as $iteration)
+			    				<tr>
+			    					<td colspan="5">
+			    						<p  style="text-align:center; font-weight:bold">Iteracion: {{$iteration->name}}</p>
+			    						<p  style="text-align:center">({{ $iteration->start}} al {{ $iteration->end}})</p>
+			    					</td>
 			    				</tr>
-			    				@foreach($issue->tasks()->get() as $task)
-									<tr>
-										<td align="left" class="taskTable">{{ $task->name }}</td>
-										<!-- Materiales -->
-										<td colspan="3">
-											<table width="100%">
-												@foreach($task->materials as $material)
-												 	<tr>
-												 		<td width="50%">{{ $material->name }}</td>
-												 		<td width="15%">{{ $material->pivot->quantity }}</td>
-												 		<td>{{ $material->pivot->total }}</td>
-												 	</tr>
-												@endforeach
-											</table>
-										</td>
-										<!-- Personal -->
-					    				<td colspan="3">
-					    					<table width="100%">
-												@foreach($task->typePersonal as $personal)
-												 	<tr>
-												 		<td width="50%">{{ $personal->name }}</td>
-												 		<td width="15%">{{ $personal->pivot->quantity }}</td>
-												 		<td>{{ $personal->pivot->total }}</td>
-												 	</tr>
-												@endforeach
-											</table>
-					    				</td>
-					    				<!-- Gastos personales -->
-					    				<td colspan="2">
-					    					<table width="100%">
-												@foreach($task->additionalCost as $aditional)
-												 	<tr>
-												 		<td width="50%">{{ $aditional->description }}</td>
-												 		<td width="15%">{{ $aditional->total }}</td>
-												 		<td></td>
-												 	</tr>
-												@endforeach
-											</table>
-					    				</td>
-					    				<td>&nbsp</td>
-					    				<td>&nbsp</td>
-									</tr>
+			    				<!-- historias -->
+			    				@foreach($iteration->issues()->get() as $issue)
+			    					<tr>
+			    						<td colspan="5"><strong>Historia:</strong> {{ $issue->summary }}</td>
+			    					</tr>
+			    					<!-- TAREAS -->
+			    					@foreach($issue->tasks()->get() as $task)
+			    						<tr>
+			    							<td><strong>Actividad:</strong> {{ $task->name }}</td>
+											<td colspan="4">
+												<!-- MATERIALES -->
+												<table width="100%">
+													<tr style="background:#CEEAFA">
+														<td width="60%">Materiales</td>
+														<td width="10%">Cant.</td>
+														<td width="15%">Precio Unit.</td>
+														<td width="15%">Total</td>
+													</tr>	
+													@foreach($task->materials as $material)
+													 	<tr>
+													 		<td>{{ $material->name }}</td>
+													 		<td>{{ $material->pivot->quantity }}</td>
+													 		<td>{{ $material->value }}</td>
+													 		<td>{{ $material->pivot->total }}</td>
+													 	</tr>
+													@endforeach
+												</table>
 
-								@endforeach
-								<tr>
-									<td colspan="11" class="totalIter"></td>
-								</tr>
+												<!-- PERSONAL -->
+												<table width="100%"  >
+													<tr style="background:#CEEAFA">
+														<td width="60%">Personal</td>
+														<td width="10%">Cant.</td>
+														<td width="15%">Precio Unit.</td>
+														<td width="15%">Total</td>
+													</tr>	
+													@foreach($task->typePersonal as $personal)
+													 	<tr>
+													 		<td>{{ $personal->name }}</td>
+													 		<td>{{ $personal->pivot->quantity }}</td>
+													 		<td>{{ $personal->hourCost }}</td>
+													 		<td>{{ $personal->pivot->total }}</td>
+													 	</tr>
+													@endforeach
+												</table>
+
+												<!-- GASTOS ADICIONALES -->
+												<table width="100%">
+													<tr style="background:#CEEAFA">
+														<td width="85%" colspan="3">Gastos adicionales</td>
+														<td width="15%">Total</td>
+													</tr>	
+													@foreach($task->additionalCost as $aditional)
+													 	<tr>
+													 		<td colspan="3">{{ $aditional->description }}</td>
+													 		<td>{{ $aditional->total }}</td>
+													 	</tr>
+												@endforeach
+												</table>
+											</td>			    						
+			    						</tr> 
+			    					@endforeach
+			    				@endforeach
+			    				<tr>
+									<td colspan="4" class="totalIter">Total de iteración: $ {{ $iteration->realBudget }}</td>
+								</tr> 
 			    			@endforeach
-							<tr>
-									<td colspan="11" class="totalIter">$ {{ $iteration->realBudget }}</td>
-							</tr>
-			    		@endforeach
-			    		</table>
-			    	</div>
-		    	@endif
+			    			
+			    		@endif
+			    	</table> 
+				</div>
 		        <p><input type="button" id="printer_areaRP" class="btn btn-success" value="Imprimir"></p>
 		    </div>
 		</div>

@@ -7807,6 +7807,12 @@ a#newGroup:hover{
     margin-left: -4px !important;
 }
 
+<<<<<<< HEAD
+/* iPads (portrait and landscape) ----------- */
+   @media only screen 
+   and (min-device-width : 768px) 
+   and (max-device-width : 1024px) {
+=======
 
 #perfil li{
     width: 180px;
@@ -7818,6 +7824,7 @@ a#newGroup:hover{
 
 @media only screen 
 and (min-device-width : 768px) and (max-device-width : 1024px) {
+>>>>>>> 21601ab203b7e58e9cd863adcbbb52fd30b48e01
    /* Styles */
    #logo{
         width: 60% !important;
@@ -7826,4 +7833,12 @@ and (min-device-width : 768px) and (max-device-width : 1024px) {
    #body{
         width: 90% !important;
    }
+<<<<<<< HEAD
+}
+
+#summaryTable{
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+=======
+>>>>>>> 21601ab203b7e58e9cd863adcbbb52fd30b48e01
 }
