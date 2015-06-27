@@ -40,6 +40,21 @@
 					{{ Form::label('value', 'Dirección', array('class'=>'requiredField' )) }}
 					{{ Form::text('direccion', $user->direction, array('class'=>'textInput textinput', 'placeholder'=>'Dirección')) }}
 				</div>
+				<div class="ctrlHolder" id="div_id_function">
+					{{ Form::label('value', 'Función', array('class' => 'requiredField')) }}
+					<select name="functionid" id="functionid">
+		              <option value="0">----</option>
+		              @foreach ($functions as $function)
+		                @if($function->id == $idFunction)
+		                  <option value="{{ $function->id }}" selected>{{ $function->name }} </option>
+		                @else
+		                  <option value="{{ $function->id }}" >{{ $function->name }} </option>
+		                @endif
+		              @endforeach
+		            </select>   
+		            <a class="add_function_link" href="#">Agregar función</a>
+		            <input name="function_name" class="function_name" maxlength="25" style="display:none" type="text">
+				</div>
 				<div class="ctrlHolder" id="div_id_name">
 					{{ Form::label('value', 'Password', array('class'=>'requiredField' )) }}
 					{{ Form::password('password', array('class'=>'textInput textinput', 'placeholder'=>'Contraseña')) }}
@@ -79,6 +94,15 @@
 
 	<script type="text/javascript">
 	
+	
+	$(".add_function_link").click(function() {
+		$("#functionid").val("0");
+		$(this).css('display', 'none');
+		$("#functionid").css( "display","none" );
+		$(".function_name").css( "display","block" ); 
+	});
+
+
 	$(function() {
 		
 		$( "#price" ).keyup(function () { 

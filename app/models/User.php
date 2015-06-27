@@ -74,6 +74,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->belongsTo('Organization', 'usersid');
 	}
 
+	 public function position()
+    {
+        return $this->belongsTo('Functions','functionid');
+    }
 
 	public function threads(){
 		return $this->belongsToMany('Cmgmyr\Messenger\Models\Thread', 'participants', 'user_id', 'thread_id')

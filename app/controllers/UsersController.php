@@ -52,6 +52,17 @@ class UsersController extends BaseController {
 				$upload_success = $file->move('public/uploads/users/', $file->getClientOriginalName());
 				$user->avatar = $file->getClientOriginalName();
 			}
+			$functionId = Input::get('functionid');
+			if ($functionId == 0) {
+    			//crear funcion
+					$function = new Functions;
+					$function->name = Input::get('function_name');
+					$function->save();
+					$user->functionid = $function->id;
+			}else{
+					$user->functionid = Input::get('functionid');
+			}
+
 			if($user->save()){
 				try
 				{
@@ -73,7 +84,8 @@ class UsersController extends BaseController {
 			}
 		
 		} else {
-			return Redirect::to('users/register')
+//			return Redirect::to('users/register')
+			return Redirect::to('users/new')
 			->with('error', 'Ocurrieron los siguientes errores.')
 			->withErrors($validator)
 			->withInput();   
@@ -117,10 +129,15 @@ class UsersController extends BaseController {
 		    return Redirect::to('/organization/members/'. $organization->auxName . '/all_members')
 			->with('message', 'No existe el usuario');
 		}
+
+		$functions = Functions::all();
+		$idFunction = $user->functionid;
 		
 		$this->layout->content = View::make('layouts.users.edit')
 	//		->with('organization', app('organization'))
 			->with('user', $user)
+			->with('functions', $functions)
+			->with('idFunction', $idFunction)
 			->with('type', "edit");
 
 			//->with('type', "edit");
@@ -166,7 +183,16 @@ class UsersController extends BaseController {
 				$upload_success = $file->move('public/uploads/users/', $file->getClientOriginalName());
 				$user->avatar = $file->getClientOriginalName();
 			}
-			
+			$functionId = Input::get('functionid');
+			if ($functionId == 0) {
+    			//crear funcion
+					$function = new Functions;
+					$function->name = Input::get('function_name');
+					$function->save();
+					$user->functionid = $function->id;
+			}else{
+					$user->functionid = Input::get('functionid');
+			}
 			$user->save();
 			$organization = app('organization');
 
@@ -234,8 +260,12 @@ class UsersController extends BaseController {
 
 	public function getNew() {
 		//$this->layout->content = View::make('layouts.users.register');
+		$functions = Functions::all();
+		$idFunction = 0;
 		$this->layout->content = View::make('layouts.users.form')
 		->with('organization', app('organization'))
+		->with('functions', $functions)
+		->with('idFunction', $idFunction)
 		->with('type', 'new');
 	}
 

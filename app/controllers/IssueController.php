@@ -46,7 +46,7 @@ class IssueController extends BaseController {
 			$issue->iterationid = Input::get('iterationid'); 
 
 				$categoryId = Input::get('categoryid');
-				if($categoryId == 0 ){
+				if($categoryId == 0){
 					//crear categoria 
 					$category = new Category;
 					$category->name = Input::get('category_name');

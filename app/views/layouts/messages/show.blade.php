@@ -9,12 +9,12 @@
                 <div class="media-body">
                     <h5 class="media-heading">{{$message->user->name}} {{$message->user->lastname}}</h5>
                     <p>{{$message->body}}</p>
-                    <div class="text-muted"><small>Posted {{$message->created_at->diffForHumans()}}</small></div>
+                    <!--<div class="text-muted"><small>Publicado {{$message->created_at->diffForHumans()}}</small></div>-->
                 </div>
             </div>
         @endforeach
 
-        <h2>Add a new message</h2>
+        <h2>Nuevo mensaje</h2>
         {{Form::open(['route' => ['messages.update', $thread->id], 'method' => 'PUT'])}}
         <!-- Message Form Input -->
         <div class="form-group">
@@ -31,8 +31,8 @@
 
         <!-- Submit Form Input -->
         <div class="form-group">
-            {{ link_to(URL::previous(), 'Cancelar', ['style' => 'color:green']) }}
-            {{ Form::submit('Enviar', ['style' => 'color:green']) }}
+            {{ link_to(URL::previous(), 'Cancelar', ['class' => 'btn btn-danger btn-sm']) }}
+            {{ Form::submit('Enviar', ['class' => 'btn btn-primary form-control']) }}
         </div>
         {{Form::close()}}
     </div>

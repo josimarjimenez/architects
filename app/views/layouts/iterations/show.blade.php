@@ -21,6 +21,7 @@
 			Total Puntos
 			<h4>{{ $totalPoints }}</h4> 
 		</div>
+		<!--
 		<div class="stats-bubble">
 			Puntos en progreso
 			<h4>0</h4> 
@@ -33,6 +34,7 @@
 			Dias restantes
 			<h4>3</h4> 
 		</div>
+		-->
 	</div>
 	<div style="text-align:center; margin-top:20px;" id="burnup_chart">
  		<img src="{{ action('GraphicsController@iterationSummary', array('iteration' =>  $iteration->id)) }}">
@@ -127,6 +129,7 @@ $("#summary").keypress(function() {
 });	
 
 $(".add_category_link").click(function() {
+	$("#categoryid").val("0");
 	$(this).css('display', 'none');
 	$("#categoryid").css( "display","none" );
 	$(".category_name").css( "display","block" ); 

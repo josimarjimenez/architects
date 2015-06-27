@@ -18,10 +18,10 @@
         <div class="media alert {{$class}}">
             <h4 class="media-heading">{{link_to('messages/' . $thread->id, $thread->subject)}}</h4>
             <p>{{$thread->latestMessage->body}}</p>
-            <p><small><strong>Participants:</strong> {{ $thread->participantsString(Auth::id()) }}</small></p>
+            <p><small><strong>Participantes:</strong> {{ $thread->participantsString(Auth::id()) }}</small></p>
         </div>
         @endforeach
     @else
-        <p>Sorry, no threads.</p>
+        <p>Disculpa, no existen mensajes...</p>
     @endif
 

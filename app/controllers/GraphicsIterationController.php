@@ -36,7 +36,7 @@ class GraphicsIterationController extends BaseController{
         $data1y=array(45,40,95,25,50,25);
         $data2y=array(40,10,55,30,60,20);
          
-        $graph = new Graph(600,400);    
+        $graph = new Graph(800,400);    
         /*
         $graph->SetScale("textlin");
         $graph->SetShadow();
@@ -121,7 +121,7 @@ class GraphicsIterationController extends BaseController{
         $data1y=array(45,40,95,25,50,25);
         $data2y=array(40,10,55,30,60,20);
          
-        $graph = new Graph(600,400);    
+        $graph = new Graph(800,400);    
         /*
         $graph->SetScale("textlin");
         $graph->SetShadow();
@@ -205,7 +205,7 @@ class GraphicsIterationController extends BaseController{
         $ydata2  = array(0,1, 19, 15, 7, 22, 14, 5, 9, 21, 13 );
          
         // Size of the overall graph
-        $width=600;
+        $width=800;
         $height=400;
          
         // Create the graph and set a scale.
@@ -333,7 +333,7 @@ class GraphicsIterationController extends BaseController{
         $ydata2  = array(0,1, 19, 15, 7, 22, 14, 5, 9, 21, 13 );
          
         // Size of the overall graph
-        $width=600;
+        $width=800;
         $height=400;
          
         // Create the graph and set a scale.

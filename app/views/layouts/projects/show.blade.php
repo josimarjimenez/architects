@@ -64,8 +64,8 @@
 				<img src="{{ action('GraphicsIterationController@line_time', array('project' =>  $project->id)) }}">
 				
 				<div style="text-align:left; font-weight: bold;">
-					<p>Tiempo estimado {{ $estimatedTime }}</p>
-					<p>Tiempo real {{ $realTime }}</p>
+					<p>Tiempo estimado: {{ $estimatedTime }} horas</p>
+					<p>Tiempo real: {{ $realTime }} horas</p>
 					<p> {{ $resultTime }}</p>
 				</div>
 				<p><input type="button" id="printer_areaTE" class="btn btn-success" value="Imprimir"></p>
@@ -77,8 +77,8 @@
 				<img src="{{ action('GraphicsIterationController@line_budget', array('project' =>  $project->id)) }}">
 				
 				<div style="text-align:left; font-weight: bold;">
-					<p>Presupuesto estimado {{ $estimatedBudget }}</p>
-					<p> Presupuesto real {{ $realBudget }}</p>
+					<p>Presupuesto estimado: US$ {{ $estimatedBudget }}</p>
+					<p> Presupuesto real: US$ {{ $realBudget }}</p>
 					<p> {{ $resultBudget }}</p>
 				</div>
 				<p><input type="button" id="printer_areaEO" class="btn btn-success" value="Imprimir"></p>
