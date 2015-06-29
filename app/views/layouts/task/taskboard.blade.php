@@ -96,7 +96,18 @@
 		                $('.errors_form').html(errors);
 		            }
 		        });
+        	    $.bootstrapGrowl("Cambio de estado correcto.", { type: 'success' });
         	}
 	    }).disableSelection();
   	});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+	     $('#todo').tooltip({title: "<span><img src=\"/images/next.png\" /><h5> <strong>Selecciona y mueve la terea a la lista Haciendo!</strong></h5></span>", html: true, placement: "right"}); 
+
+	     $('#haciendo').tooltip({title: "<span><img src=\"/images/next.png\" /><h5> <strong>Finalizada la tarea, mueve la tarea a la lista Hecho!</h5></strong></span>", html: true, placement: "right"}); 
+
+	     $('#hecho').tooltip({title: "<span><img src=\"/images/accept.png\" /><h5><strong>Ingresa toda la información y cierra la tarea!</strong></h5></span>", html: true, placement: "left"}); 
+	});
 </script>

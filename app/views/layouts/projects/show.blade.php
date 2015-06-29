@@ -23,10 +23,12 @@
 		</div>
 	</div>
 	<br><br>
-
-	@if($iterations < 1)
+	@if(!sizeof($project->team->users) > 0)
 		<h2>Crea un grupo de trabajo par empezar!</h2>
 		{{ HTML::link('/projects/members/'.$project->id, 'Grupo de trabajo', array('class' => 'button green large', 'id' =>'newGroup'))}}
+	@endif
+
+	@if($iterations < 1)
 		{{ Form::open(array('url' => 'iterations/create', 'method'=>'GET','class' => 'pull-center')) }}
 		{{ Form::hidden('projectid', $project->id) }}
 		<h2>Aún no has creado iteraciones para crear tu primer iteración ;)</h2>
@@ -97,8 +99,8 @@
 			    		@if ( !empty($project->iterations()))
 							<!-- iteraciones -->
 			    			@foreach($project->iterations()->get() as $iteration)
-			    				<tr>
-			    					<td colspan="5">
+			    				<tr id="toPrint">
+			    					<td class="to-iteration" colspan="5" id="iteration-print">
 			    						<p  style="text-align:center; font-weight:bold">Iteracion: {{$iteration->name}}</p>
 			    						<p  style="text-align:center">({{ $iteration->start}} al {{ $iteration->end}})</p>
 			    					</td>
@@ -106,7 +108,7 @@
 			    				<!-- historias -->
 			    				@foreach($iteration->issues()->get() as $issue)
 			    					<tr>
-			    						<td colspan="5"><strong>Historia:</strong> {{ $issue->summary }}</td>
+			    						<td class="to-issue" colspan="5"><strong>Historia:</strong> {{ $issue->summary }}</td>
 			    					</tr>
 			    					<!-- TAREAS -->
 			    					@foreach($issue->tasks()->get() as $task)
@@ -114,54 +116,60 @@
 			    							<td><strong>Actividad:</strong> {{ $task->name }}</td>
 											<td colspan="4">
 												<!-- MATERIALES -->
-												<table width="100%">
-													<tr style="background:#CEEAFA">
-														<td width="60%">Materiales</td>
-														<td width="10%">Cant.</td>
-														<td width="15%">Precio Unit.</td>
-														<td width="15%">Total</td>
-													</tr>	
-													@foreach($task->materials as $material)
-													 	<tr>
-													 		<td>{{ $material->name }}</td>
-													 		<td>{{ $material->pivot->quantity }}</td>
-													 		<td>{{ $material->value }}</td>
-													 		<td>{{ $material->pivot->total }}</td>
-													 	</tr>
-													@endforeach
-												</table>
+												@if (sizeof($task->materials) > 0)
+													<table width="100%">
+														<tr class="cabecera-print" style="background:#CEEAFA">
+															<td width="60%">Materiales</td>
+															<td width="10%">Cant.</td>
+															<td width="15%">Precio Unit.</td>
+															<td width="15%">Total</td>
+														</tr>	
+														@foreach($task->materials as $material)
+														 	<tr>
+														 		<td>{{ $material->name }}</td>
+														 		<td>{{ $material->pivot->quantity }}</td>
+														 		<td>{{ $material->value }}</td>
+														 		<td>{{ $material->pivot->total }}</td>
+														 	</tr>
+														@endforeach
+													</table>
+												@endif
 
 												<!-- PERSONAL -->
-												<table width="100%"  >
-													<tr style="background:#CEEAFA">
-														<td width="60%">Personal</td>
-														<td width="10%">Cant.</td>
-														<td width="15%">Precio Unit.</td>
-														<td width="15%">Total</td>
-													</tr>	
-													@foreach($task->typePersonal as $personal)
-													 	<tr>
-													 		<td>{{ $personal->name }}</td>
-													 		<td>{{ $personal->pivot->quantity }}</td>
-													 		<td>{{ $personal->hourCost }}</td>
-													 		<td>{{ $personal->pivot->total }}</td>
-													 	</tr>
-													@endforeach
-												</table>
+												@if (sizeof($task->typePersonal) > 0)
+													<table width="100%"  >
+														<tr class="cabecera-print" style="background:#CEEAFA">
+															<td width="60%">Personal</td>
+															<td width="10%">Cant.</td>
+															<td width="15%">Precio Unit.</td>
+															<td width="15%">Total</td>
+														</tr>	
+														@foreach($task->typePersonal as $personal)
+														 	<tr>
+														 		<td>{{ $personal->name }}</td>
+														 		<td>{{ $personal->pivot->quantity }}</td>
+														 		<td>{{ $personal->hourCost }}</td>
+														 		<td>{{ $personal->pivot->total }}</td>
+														 	</tr>
+														@endforeach
+													</table>
+												@endif
 
 												<!-- GASTOS ADICIONALES -->
-												<table width="100%">
-													<tr style="background:#CEEAFA">
-														<td width="85%" colspan="3">Gastos adicionales</td>
-														<td width="15%">Total</td>
-													</tr>	
-													@foreach($task->additionalCost as $aditional)
-													 	<tr>
-													 		<td colspan="3">{{ $aditional->description }}</td>
-													 		<td>{{ $aditional->total }}</td>
-													 	</tr>
-												@endforeach
-												</table>
+												@if (sizeof($task->additionalCost) > 0)
+													<table width="100%">
+														<tr class="cabecera-print" style="background:#CEEAFA">
+															<td width="85%" colspan="3">Gastos adicionales</td>
+															<td width="15%">Total</td>
+														</tr>	
+														@foreach($task->additionalCost as $aditional)
+														 	<tr>
+														 		<td colspan="3">{{ $aditional->description }}</td>
+														 		<td>{{ $aditional->total }}</td>
+														 	</tr>
+													@endforeach
+													</table>
+												@endif
 											</td>			    						
 			    						</tr> 
 			    					@endforeach
@@ -174,7 +182,7 @@
 			    		@endif
 			    	</table> 
 				</div>
-		        <p><input type="button" id="printer_areaRP" class="btn btn-success" value="Imprimir"></p>
+		        <p><input href="javascript:void(0)" type="button" id="printer_areaRP" class="btn btn-success" value="Imprimir"></p>
 		    </div>
 		</div>
 	@endif 
@@ -235,10 +243,15 @@ $( document ).ready(function()
   		//	alert( "Handler for .click() called." );
   		//	$(".print").printArea();
 		//});
-		$("#printer_areaRP").bind("click",function()
-		{
-			$(".print_areaRP").printArea();
-		});
+
+		$("#printer_areaRP").click(function () {
+		  $("div#report_areaRP").printArea();
+		})
+
+		//$("#printer_areaRP").bind("click",function()
+		//{
+		//	$(".print_areaRP").printArea();
+		//});
 
 		$("#printer_areaEO").bind("click",function()
 		{

@@ -22,12 +22,12 @@
    <div id="div_id_name" class="ctrlHolder">
     <label for="inputEmail" class="control-label">Puntos</label>
     <div class="controls">
-      <input type="text" value="" class="inputTask" name="tags" id="txtTags">
+      <input type="text" value="" class="inputTask" name="points" id="points">
   </div>
 </div>
 
 <div id="div_id_name" class="ctrlHolder">
-    <label for="inputEmail" class="control-label">Estimado</label>
+    <label for="inputEmail" class="control-label">Tiempo estimado (Horas)</label>
     <div class="controls">
       <input type="text" value="0"  class="inputTask" placeholder="00" name="timeEstimated" id="timeEstimated">
   </div>

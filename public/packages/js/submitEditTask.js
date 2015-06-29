@@ -55,11 +55,15 @@ $( "#editFormTask" ).submit(function( event ) {
 	                	$('li#'+data.task.id).addClass('ui-state-disabled');
 	                	$('li#'+data.task.id+' .edit-link').css('display', 'none');
 	                }
-	                
+	    			
 	                li += data.task.name+'<br >';
-	                li += data.task.summary;
-	                li += '<b> ('+data.user.name+')</b>';
+			        li += '<b> Responsable: </b>'+data.user.name+'<br >';
+			        li += '<b>Tiempo</b> (Horas):<br >';
+			        li += 'Planificado: '+data.task.timeEstimated+' Trabajado: '+data.task.timeReal+' Restante: '+data.task.timeRemaining;
+			        li += '</li>';
+
 	    			$('li#'+data.task.id).append(li);
+	    			$.bootstrapGrowl("Tarea actualizada correctamente.", { type: 'success' });
 				}
 			} 
 		},

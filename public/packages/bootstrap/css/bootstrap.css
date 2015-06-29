@@ -252,8 +252,23 @@ table {
         display: none
     }
 
+    /*
     .table td, .table th {
         background-color: #fff !important
+    }
+    */
+
+    /*.table td#iteration-print {*/
+    .table td.to-iteration {
+        background-color: rgb(255,224,224) !important
+    }
+    
+    .to-issue {
+        background-color: #BFB9B9 !important
+    }
+
+    .cabecera-print {
+        background-color: #CEEAFA !important
     }
 
     .btn>.caret, .dropup>.btn>.caret {
@@ -7274,6 +7289,11 @@ a {
     margin: 3px;
     min-height: 30px;
     padding: 3px;
+    font-size:11pt;
+}
+
+.task-view{
+    font-size: 10pt; 
 }
 
 .task-window .tasks-header-table .task-popup-list li, .task-window .tasks-table .task-popup-list li {
@@ -7790,7 +7810,7 @@ a#newGroup:hover{
 .totalIter{
     font-weight: bold;
     text-align: right !important;
-    background: #D3EFFF
+  /*  background: #D3EFFF*/
 }
 
 #summaryTable .issueTable{
@@ -7807,13 +7827,6 @@ a#newGroup:hover{
     margin-left: -4px !important;
 }
 
-<<<<<<< HEAD
-/* iPads (portrait and landscape) ----------- */
-   @media only screen 
-   and (min-device-width : 768px) 
-   and (max-device-width : 1024px) {
-=======
-
 #perfil li{
     width: 180px;
 }
@@ -7822,23 +7835,35 @@ a#newGroup:hover{
     display: inline-block;
 }
 
+/* iPads (portrait and landscape) ----------- */
 @media only screen 
-and (min-device-width : 768px) and (max-device-width : 1024px) {
->>>>>>> 21601ab203b7e58e9cd863adcbbb52fd30b48e01
-   /* Styles */
-   #logo{
-        width: 60% !important;
-   }
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
 
-   #body{
+    /* Styles */
+    #logo{
+        width: 60% !important;
+    }
+
+    #body{
         width: 90% !important;
-   }
-<<<<<<< HEAD
+    }
 }
 
 #summaryTable{
     border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;
-=======
->>>>>>> 21601ab203b7e58e9cd863adcbbb52fd30b48e01
+}
+
+.to-issue
+{
+    background-color: #BFB9B9;
+    /*background-color: rgb(255,224,224);
+    color: #BB0000;*/
+}
+
+.to-iteration
+{
+    background-color: rgb(255,224,224);
+   /*color: #BB0000;*/
 }

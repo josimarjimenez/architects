@@ -40,7 +40,7 @@
           cssClass='ui-state-disabled';
           style='display:none';
         }
-        li += '<li class="task-view '+cssClass+'" id="'+value.id+'" >';
+        li += '<li class="task-view '+cssClass+'" style="font-size:11pt" id="'+value.id+'" >';
         li += '<span class="task-toolbar">';
         li += '<a  style="'+style+'" href="#" class="edit-link" onclick="editTask('+value.id+')"> ';
         li += '<i class="icon-glyph icon-edit" title="Editar tarea"></i>';
@@ -63,9 +63,9 @@
          }
         
         li += value.name+'<br >';
-        li += value.summary+'<br >';
-        li += 'Tiempo trabajado: '+value.timeReal;
-        li += '<b> ('+value.username+')</b>';
+        li += '<b> Responsable: </b>'+value.username+'<br >';
+        li += '<b>Tiempo</b> (Horas):<br >';
+        li += 'Planificado: '+value.timeEstimated+' Trabajado: '+value.timeReal+' Restante: '+value.timeRemaining;
         li += '</li>';
 
         switch(value.scrumid){
@@ -108,6 +108,7 @@ $("#issueid").val(id);
         data: 'id='+id,
         success: function (data) { 
           $('#'+id).remove();
+          $.bootstrapGrowl("Tarea eliminada correctamente.", { type: 'success' });
         },
         error: function(errors){
           $('.before').hide();
@@ -306,6 +307,7 @@ function eliminarIDP(id){
       $('#editFormTask #tags').val(data.task.points);
       $('#editFormTask #timeEstimated').val(data.task.timeEstimated);
       $('#editFormTask #timeReal').val(data.task.timeReal);
+      $('#editFormTask #points').val(data.task.points);
       $('#editFormTask #issueid').val(data.task.issueid);
       $('#editFormTask #state').val(data.task.scrumid); 
       $('#editFormTask #id').val(data.task.id); 

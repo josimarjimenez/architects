@@ -28,7 +28,7 @@ $( "#formularioTarea" ).submit(function( event ) {
             }else{
                 var task = data.task;  
                 //fijar en la parte de atras la tarea
-                var li = '<li class="task-view" data-task-id="'+task.id+'">';
+                var li = '<li class="task-view" style="font-size:11pt" data-task-id="'+task.id+'" id="'+task.id+'" >';
                 li += '<span class="task-toolbar">';
                 li += '<a href="#" class="edit-link" onclick="editTask('+task.id+')">';
                 li +='<i class="icon-glyph icon-edit" title="Editar tarea"></i>';
@@ -49,9 +49,10 @@ $( "#formularioTarea" ).submit(function( event ) {
                 }    
                 
                 li += task.name+'<br >';
-                li += task.summary+'<br >';
-                li += task.timeReal;
-                li += '<b> ('+data.username+')</b>';
+                li += 'Responsable: <b>'+task.username+'</b><br >';
+                li += 'Tiempo planificado: '+task.timeEstimated+'<br >';
+                li += 'Tiempo trabajado: '+task.timeReal;
+                li += 'Tiempo restante: '+task.timeRemaining;
                 li += '</li>';
 
 
@@ -60,6 +61,7 @@ $( "#formularioTarea" ).submit(function( event ) {
                 $('#taskForm').modal('hide');
                 //limpiamos el formulario
                 $('.success_message').show().html(data.message);
+                $.bootstrapGrowl("Tarea creada correctamente.", { type: 'success' });
             } 
         },
         error: function(errors){

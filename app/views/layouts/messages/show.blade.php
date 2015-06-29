@@ -31,7 +31,7 @@
 
         <!-- Submit Form Input -->
         <div class="form-group">
-            {{ link_to(URL::previous(), 'Cancelar', ['class' => 'btn btn-danger btn-sm']) }}
+            {{ HTML::link('messages/',  'Cancelar', array('class'=>"btn btn-danger btn-sm")  ) }} 
             {{ Form::submit('Enviar', ['class' => 'btn btn-primary form-control']) }}
         </div>
         {{Form::close()}}

@@ -21,6 +21,8 @@
   {{ HTML::script('packages/js/todo.js') }}
   {{ HTML::script('packages/js/jquery.PrintArea.js') }}
   {{ HTML::script('packages/js/bootstrap-alert.js') }}
+  {{ HTML::script('packages/js/jquery.bootstrap-growl.js') }}
+  {{ HTML::script('packages/bootstrap/js/bootstrap.js') }}
   {{ HTML::script('packages/bootstrap/js/bootstrap-datepicker.js') }}
   {{ HTML::script('packages/bootstrap/js/bootstrap-modal.js') }}
   {{ HTML::script('packages/bootstrap/js/slidebars.js') }}

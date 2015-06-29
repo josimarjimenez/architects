@@ -150,11 +150,16 @@ class UsersController extends BaseController {
 		}catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) { 
 			$organization = app('organization');
 		    return Redirect::to('/organization/members/'. $organization->auxName . '/all_members')
-			->with('message', 'No existe el usuario');
+			->with('error', 'No existe el usuario');
 		}
 
+		$functions = Functions::all();
+		$idFunction = $user->functionid;
+		
 		$this->layout->content = View::make('layouts.users.editprofile')
 			->with('user', $user)
+			->with('functions', $functions)
+			->with('idFunction', $idFunction)
 			->with('type', "edit");
 	}	
 

@@ -24,7 +24,7 @@
      <div class="ctrlHolder">
       <label for="inputEmail" class="control-label">Puntos</label>
       <div class="controls">
-        <input type="text" value="" name="tags" id="txtTags">
+        <input type="text" value="" name="points" id="points">
       </div>
     </div>
 

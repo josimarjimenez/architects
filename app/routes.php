@@ -90,10 +90,10 @@ Route::post('task', function(){
 		$task = new Task; 
 		$task->name = Input::get("name");
 		$task->summary = Input::get("summary");
-		//$task->points  = Input::get("points");
-		$task->points  = 1;
+		$task->points  = Input::get("points");
 		$task->timeEstimated = Input::get("timeEstimated");
 		$task->timeRemaining = Input::get("timeEstimated");
+		$task->timeReal = 0;
 		$task->scrumid = 1; //estado todo ...quemado por código
 		$task->issueid = Input::get("issueid"); 
 		$task->userid =  Input::get("selAssignee");
@@ -207,6 +207,7 @@ Route::post('tareas/editTask', function(){
 		$task->timeEstimated = Input::get("timeEstimated");
 		$timeReal = $task->timeReal;
 		$task->timeReal = $timeReal + Input::get("timeReal"); 
+		$task->timeRemaining = $task->timeEstimated - $task->timeReal;
 		$task->userid =  Input::get("selAssignee");
 		$task->save(); 
 		$final="no";  
