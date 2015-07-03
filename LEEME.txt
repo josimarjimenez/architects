@@ -1,0 +1,41 @@
+PROYARQMANAGMENT.
+
+Es un Software para la Administración, Control y Seguiemento de Proyectos Arquitectónicos.
+
+Para empezar a utilizar el Software PROYARQMANAGMENT se debe
+1° Crear una base de datos en Mysql
+2° Configurar el archivo en la ruta ~rutabase/architects/appconfig/local/database.php
+3° Ingresar los datos de:
+
+		'driver'    => 'mysql',
+		'host'      => '', -> Ubicación de la base de datos
+		'database'  => '', -> Nombre de la base de Datos
+		'username'  => '', -> Nombre del usuario de la base de datos
+		'password'  => '', -> Contraseña de la base de datos
+		'charset'   => 'utf8',
+		'collation' => 'utf8_general_ci';
+	de acuerdo a los datos de su servidor de Base de Datos Mysql
+
+4° Copiar el contenido de la carpeta architects dentro /var/www o en donde le indique el hosting
+
+Para ejecutar el software, se debe seguir los siguientes pasos.
+1° Laravel viene con un servidor de pruebas, el cual se lo puede inicar de dos formas:
+	
+		1.- php artisan serve 
+			Luego accedemos a: http://localhost:8000/users/login 
+
+		2.- php artisan serve --host=direccion-ip --port=8000
+			Luego accedemos a: http://direccion-ip:8000/users/login
+
+2° Si estamos en un hosting acceder a http://midomio/users/login 
+3° Los datos para ingresar son:
+		administrador: 
+                usuario:admin@gmail.com
+                clave: admin1234
+        miembro:
+                usuario:daniel@gmail.com
+                clave:daniel
+
+Y finalmente una vez ingresados los datos podemos comenzar a utilizar el software PROYARQMANAGMENT.
+
+

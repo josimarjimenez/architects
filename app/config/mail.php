@@ -57,7 +57,7 @@ return array(
 	*/
 
 	//'from' => array('address' => null, 'name' => null),
-	'from' => array('address' => 'josimar.revolution@gmail.com', 'name' => 'Josimar Jimenez'),
+	'from' => array('address' => 'arquinova.loja.ec@gmail.com', 'name' => 'Arquinova'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -83,7 +83,7 @@ return array(
 	|
 	*/
 
-	'username' => 'josimar.revolution@gmail.com',
+	'username' => 'arquinova.loja.ec@gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -96,7 +96,7 @@ return array(
 	|
 	*/
 
-	'password' => 'josim10RAECU',
+	'password' => 'arquinova2015',
 
 	/*
 	|--------------------------------------------------------------------------
