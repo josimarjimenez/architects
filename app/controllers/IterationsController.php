@@ -80,12 +80,24 @@ class IterationsController extends BaseController {
 	}
 
 	//date validator
-	public function validarFecha($inicio, $fin){
+	public function validateDate($inicio, $fin){
 		 
 		if($inicio > $fin){
 			return false;
 		}else{ 
 			return true;
+		}
+	}
+
+	public function validateDateWithProjectDate($projectid, $inicio, $fin){
+		$project = Project::findOrFail($projectid);
+        $start_date = $project->startDate;
+        $end_date = $project->endDate;
+
+		if($inicio >= $start_date && $fin <=$end_date){
+			return true;
+		}else{ 
+			return false;
 		}
 	}
 
@@ -96,14 +108,25 @@ class IterationsController extends BaseController {
 
 		$inicio = Input::get('start'); 
 		$end  = Input::get('end');   
-		
-		$valido = $this->validarFecha($inicio, $end); 
+		$projectid = Input::get('projectid');
+
+
+		$valido = $this->validateDate($inicio, $end); 
 		if(!$valido){
-		return Redirect::to('iterations/create?projectid='.Input::get('projectid'))
-			->with('error', 'La fecha inicial es mayor que la final')
-			->withErrors($validator)
-			->withInput();
-		}	
+			return Redirect::to('iterations/create?projectid='.Input::get('projectid'))
+				->with('error', 'La fecha inicial es mayor que la final')
+				->withErrors($validator)
+				->withInput();
+		}else{
+			$valido = $this->validateDateWithProjectDate($projectid, $inicio, $end); 
+			if(!$valido){
+				return Redirect::to('iterations/create?projectid='.Input::get('projectid'))
+					->with('error', 'La fecha de inicio o fin estan fuera de las fechas de ejecución del projecto.')
+					->withErrors($validator)
+					->withInput();
+			}
+		}
+
 		if($validator->passes() && $valido){
 		//if($validator->passes()){
 			$iterations = new Iterations;
@@ -111,7 +134,7 @@ class IterationsController extends BaseController {
 			$iterations->start = Input::get('start'); 
 			$iterations->end = Input::get('end');   
 			$iterations->estimatedBudget = Input::get('estimatedBudget');  
-			$iterations->projectid = Input::get('projectid'); 
+			$iterations->projectid = $projectid;
 			$iterations->save();
 
 
@@ -143,12 +166,50 @@ class IterationsController extends BaseController {
 	}
 
 	public function update($id){
-		$project = Project::findOrFail($id);
+		/*$project = Project::findOrFail($id);
 		$project->fill(Input::all());
 		$project->save();
 		$organization = app('organization');
 		return Redirect::to('organization/name/'.$organization->auxName.'/projects')
-			->with('message', 'Registro actualizado');
+			->with('message', 'Registro actualizado');*/
+
+		$validator = Validator::make(Input::all(), Iterations::$rules, Iterations::$messages);
+
+		$inicio = Input::get('start'); 
+		$end  = Input::get('end');   
+		$projectid = Input::get('projectid');
+
+
+		$valido = $this->validateDate($inicio, $end); 
+		if(!$valido){
+			return Redirect::to('iterations/create?projectid='.Input::get('projectid'))
+				->with('error', 'La fecha inicial es mayor que la final')
+				->withErrors($validator)
+				->withInput();
+		}else{
+			$valido = $this->validateDateWithProjectDate($projectid, $inicio, $end); 
+			if(!$valido){
+				return Redirect::to('iterations/edit'.$id)
+					->with('error', 'La fecha de inicio o fin estan fuera de las fechas de ejecución del projecto.')
+					->withErrors($validator)
+					->withInput();
+			}
+		}
+
+		if($validator->passes() && $valido){
+			$project->fill(Input::all());
+			$project->save();
+			$organization = app('organization');
+			return Redirect::to('organization/name/'.$organization->auxName.'/projects')
+				->with('message', 'Registro actualizado');
+		}else{
+			return Redirect::to('iterations/create?projectid='.Input::get('projectid'))
+			->with('error', 'Ocurrieron los siguientes errores')
+			->withErrors($validator)
+			->withInput();
+		}
+
+
 	}
 
 
