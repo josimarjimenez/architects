@@ -86,6 +86,7 @@
               <th width="50%" >Nombre</th>
               <th width="15%" >P. H.
               <th>Cant.</th>
+              <th>Horas</th>
               <th>Total</th>
               <th></th>
             </tr>

@@ -139,7 +139,8 @@
 												@if (sizeof($task->typePersonal) > 0)
 													<table width="100%"  >
 														<tr class="cabecera-print" style="background:#CEEAFA">
-															<td width="60%">Personal</td>
+															<td width="50%">Personal</td>
+															<td width="10%">Horas</td>
 															<td width="10%">Cant.</td>
 															<td width="15%">Precio Unit.</td>
 															<td width="15%">Total</td>
@@ -147,6 +148,7 @@
 														@foreach($task->typePersonal as $personal)
 														 	<tr>
 														 		<td>{{ $personal->name }}</td>
+														 		<td>{{ $personal->pivot->hours }}</td>
 														 		<td>{{ $personal->pivot->quantity }}</td>
 														 		<td>{{ $personal->hourCost }}</td>
 														 		<td>{{ $personal->pivot->total }}</td>

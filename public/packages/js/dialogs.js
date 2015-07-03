@@ -217,6 +217,7 @@ function eliminarID(id){
    insert += '<td>'+nombre+'</td>';
    insert += '<td class="text-left">'+valor+'</td>';
    insert += '<td><input style="width:60px !important" type="text" name="cuP_'+id+'" value="" id="cuP_'+id+'" onkeyup="calcular('+id+', '+valor+', \'P\');" /></td>';
+   insert += '<td><input style="width:60px !important" type="text" name="chP_'+id+'" value="" id="chP_'+id+'" onkeyup="calcular('+id+', '+valor+', \'P\');" /></td>';
    insert += '<td>';
    insert += '<input readonly style="width:60px !important"  type="text" value="" id="toP_'+id+'" name="toP_'+id+'" />';
    insert += '<input type="hidden" value="'+id+'" name="idP_'+id+'" id="idP_'+id+'" />';
@@ -248,7 +249,14 @@ function eliminarIDP(id){
  */
  function calcular(id, valor, label){
   var cantidad = $('#cu'+label+'_'+id).val();
-  var total = cantidad * valor;
+  var total = 0;
+  var horas = 0;
+  if(label=='P'){
+    horas = $('#ch'+label+'_'+id).val();
+    total = cantidad * valor * horas;  
+  }else{
+    total = cantidad * valor;
+  }
 
   //fijar total de cada fila
   $('#to'+label+'_'+id).val(total);
@@ -292,81 +300,81 @@ function eliminarIDP(id){
  * @return {[type]}    [description]
  */
  function editTask(id){ 
-  //recover task data
-  //
-  $('#listaIDS_M').val('');
-  $('#listaIDS_P').val('');
+      //recover task data
+      //
+      $('#listaIDS_M').val('');
+      $('#listaIDS_P').val('');
 
-  $.ajax({
-    type: 'GET',
-    url:  '/tareas/getTask',
-    data: 'id='+id,
-    success: function (data) {
-      $('#editFormTask #name').val(data.task.name);
-      $('#editFormTask #summary').val(data.task.summary);
-      $('#editFormTask #tags').val(data.task.points);
-      $('#editFormTask #timeEstimated').val(data.task.timeEstimated);
-      $('#editFormTask #timeReal').val(data.task.timeReal);
-      $('#editFormTask #points').val(data.task.points);
-      $('#editFormTask #issueid').val(data.task.issueid);
-      $('#editFormTask #state').val(data.task.scrumid); 
-      $('#editFormTask #id').val(data.task.id); 
+      $.ajax({
+        type: 'GET',
+        url:  '/tareas/getTask',
+        data: 'id='+id,
+        success: function (data) {
+          $('#editFormTask #name').val(data.task.name);
+          $('#editFormTask #summary').val(data.task.summary);
+          $('#editFormTask #points').val(data.task.points);
+          $('#editFormTask #timeEstimated').val(data.task.timeEstimated);
+          $('#editFormTask #timeReal').val(data.task.timeReal);
+          $('#editFormTask #points').val(data.task.points);
+          $('#editFormTask #issueid').val(data.task.issueid);
+          $('#editFormTask #state').val(data.task.scrumid); 
+          $('#editFormTask #id').val(data.task.id); 
 
-      //vaciar el select
-      $('#editFormTask #selAssignee').empty();
+          //vaciar el select
+          $('#editFormTask #selAssignee').empty();
 
-      $.each( data.users, function( index, user ) {
-        //alert(user.name);
-        var o = new Option(user.name, user.id);
-        if(data.task.userid ==  user.id){
-          o.selected = true;
+          $.each( data.users, function( index, user ) {
+            //alert(user.name);
+            var o = new Option(user.name, user.id);
+            if(data.task.userid ==  user.id){
+              o.selected = true;
+            }
+            $('#editFormTask #selAssignee').append(o);
+          });
+        },
+        error: function(errors){
+          $('.before').hide();
+          $('.errors_form').html('');
+          $('.errors_form').html(errors);
         }
-        $('#editFormTask #selAssignee').append(o);
       });
-    },
-    error: function(errors){
-      $('.before').hide();
-      $('.errors_form').html('');
-      $('.errors_form').html(errors);
-    }
-  });
 
 
-  //levantar el dialogo
-  $("#editTaskForm").modal({  
-    "backdrop" : "static",
-    "keyboard" : true,
-    "show" : true  
-  }); 
+      //levantar el dialogo
+      $("#editTaskForm").modal({  
+        "backdrop" : "static",
+        "keyboard" : true,
+        "show" : true  
+      }); 
 
-  //esconder un panel y  mostrar otro
-  $('#myModal').css('z-index','50');
+      //esconder un panel y  mostrar otro
+      $('#myModal').css('z-index','50');
 
-  //limpiar inputs
-  $('#listaIDS_M').val();
-  $('#listaIDS_P').val();
-  
-  //chequear si esta en la columna de hcho
-  var state=$('li#'+id).parent().attr('id');
-  if(state=="hecho"){
-    $('#editTaskForm .control-group').css('display', 'block');
-    //actualizar a 1 el input para registrar gastos
-    $('#canRegisterSpent').val(1);
-  }else{
-    $('#editTaskForm .control-group').css('display', 'none');
-    //actualizar a 1 el input para registrar gastos
-    $('#canRegisterSpent').val(0);
-  }
+      //limpiar inputs
+      $('#listaIDS_M').val();
+      $('#listaIDS_P').val();
+      
+      //chequear si esta en la columna de hcho
+      var state=$('li#'+id).parent().attr('id');
+      if(state=="hecho"){
+        $('#editTaskForm .control-group').css('display', 'block');
+        //actualizar a 1 el input para registrar gastos
+        $('#canRegisterSpent').val(1);
+      }else{
+        $('#editTaskForm .control-group').css('display', 'none');
+        //actualizar a 1 el input para registrar gastos
+        $('#canRegisterSpent').val(0);
+      }
 
-  //borrar las tablas de material, personal y gastos
-  //tambien ocultarlas
-  $('#listaMateriales tbody').empty();
-  $('#listaPersonal tbody').empty();
-  $('#listaGasto tbody').empty();
+      //borrar las tablas de material, personal y gastos
+      //tambien ocultarlas
+      $('#listaMateriales tbody').empty();
+      $('#listaPersonal tbody').empty();
+      $('#listaGasto tbody').empty();
 
-  $('#listaMateriales').css('display','none');
-  $('#listaPersonal').css('display','none');
-  $('#listaGasto').css('display','none');
+      $('#listaMateriales').css('display','none');
+      $('#listaPersonal').css('display','none');
+      $('#listaGasto').css('display','none');
 
 }
 

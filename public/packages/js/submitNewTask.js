@@ -49,11 +49,11 @@ $( "#formularioTarea" ).submit(function( event ) {
                 }    
                 
                 li += task.name+'<br >';
-                li += 'Responsable: <b>'+task.username+'</b><br >';
-                li += 'Tiempo planificado: '+task.timeEstimated+'<br >';
-                li += 'Tiempo trabajado: '+task.timeReal;
-                li += 'Tiempo restante: '+task.timeRemaining;
+                li += 'Responsable: <b>'+data.username+'</b><br >';
+                li += '<b>Tiempo</b> (Horas):<br >';
+                li += 'Planificado: '+task.timeEstimated+' Trabajado: '+task.timeReal+' Restante: '+task.timeRemaining;
                 li += '</li>';
+
 
 
                 $('#todo').append(li);

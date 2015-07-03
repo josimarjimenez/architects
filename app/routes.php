@@ -203,11 +203,14 @@ Route::post('tareas/editTask', function(){
 		$task = Task::findOrFail($id);
 		$task->name = Input::get("name"); 
 		$task->summary = Input::get("summary");
-		$task->points = Input::get("tags");
+		$task->points = Input::get("points");
 		$task->timeEstimated = Input::get("timeEstimated");
-		$timeReal = $task->timeReal;
-		$task->timeReal = $timeReal + Input::get("timeReal"); 
-		$task->timeRemaining = $task->timeEstimated - $task->timeReal;
+		if(Input::get("canRegisterSpent")==0){
+			$timeReal = $task->timeReal;
+			$task->timeReal = $timeReal + Input::get("timeReal"); 
+			$task->timeRemaining = $task->timeEstimated - $task->timeReal;
+		}
+		
 		$task->userid =  Input::get("selAssignee");
 		$task->save(); 
 		$final="no";  
@@ -241,19 +244,21 @@ Route::post('tareas/editTask', function(){
 			}
 			
 			//vincular personal a tarea
+			$idsPersonal =  Input::get("listaIDS_P");
+		 	$ids = explode(" ", $idsPersonal);
 			$totalPersonal=0;
-			if(!empty($idsMaterial)){
-				$idsMaterial =  Input::get("listaIDS_P");
-		 		$ids = explode(" ", $idsMaterial);
+			if(!empty($idsPersonal)){
+				
 				foreach ($ids as $id) {
 					if($id==''){
 						continue;
 					}
 					$cantidad 	=  Input::get("cuP_".$id); 
+					$hours 		=  Input::get("chP_".$id);
 					$total  	=  Input::get("toP_".$id); 
 					$totalPersonal += $total;
 
-					$task->typePersonal()->attach([$id => ['quantity'=>$cantidad, 'total'=>$total]]);
+					$task->typePersonal()->attach([$id => ['quantity'=>$cantidad, 'hours'=> $hours,'total'=>$total]]);
 				}
 			}
 

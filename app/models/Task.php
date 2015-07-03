@@ -45,7 +45,7 @@ class Task extends Eloquent implements JsonSerializable{
 
 	public function typePersonal(){
 		return $this->belongsToMany('PersonalType', 'assigned', 'taskid', 'personlTypeid')
-		->withPivot('quantity', 'total');
+		->withPivot('hours','quantity', 'total');
 	}
 
 	public function additionalCost(){
