@@ -66,7 +66,7 @@
 <script type="text/javascript">
 	$(function() {
 		position_updated = false; //flag bit
-
+		cont = 0;
 		$( "#todo, #haciendo, #hecho" ).sortable({
 	    	connectWith: ".connectedSortable",
 	    	items: "li:not(.ui-state-disabled)",
@@ -77,7 +77,7 @@
 	        update: function(event, ui){
 	        	var id= ui.item.attr('id');
 	        	var state = $(this).attr('id'); 
-        	  
+        	  	cont++;
         		//actiualizacion ajax
         		$.ajax({
 		            type: 'GET',
@@ -89,6 +89,12 @@
 		            	}else{
 		            		$('#'+id+' .delete-link').css('display', 'none');
 		            	}
+
+		            	if(cont==2){
+		        			$.bootstrapGrowl("Cambio de estado correcto.", { type: 'success' });
+		        			cont=0;    		
+		            	}
+
 		            },
 		            error: function(errors){
 		                $('.before').hide();
@@ -96,7 +102,7 @@
 		                $('.errors_form').html(errors);
 		            }
 		        });
-        	    $.bootstrapGrowl("Cambio de estado correcto.", { type: 'success' });
+        	    
         	}
 	    }).disableSelection();
   	});
