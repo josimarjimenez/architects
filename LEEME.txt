@@ -4,6 +4,7 @@ Es un Software para la Administración, Control y Seguiemento de Proyectos Arqui
 
 Para empezar a utilizar el Software PROYARQMANAGMENT se debe
 1° Crear una base de datos en Mysql
+2° Ejecutar el archivo sql 
 2° Configurar el archivo en la ruta ~rutabase/architects/appconfig/local/database.php
 3° Ingresar los datos de:
 
